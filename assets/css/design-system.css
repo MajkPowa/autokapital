@@ -394,6 +394,23 @@ input[type="range"].range::-moz-range-thumb { width: 26px; height: 26px; border-
 .notice { background: var(--green-050); border: 1px solid var(--green-100); border-radius: var(--r-md); padding: var(--sp-4); font-size: var(--fs-sm); color: var(--green-700); display: flex; gap: 12px; }
 .notice .ico { color: var(--green); flex: none; }
 
+/* Hero with photo background */
+.hero-photo { position: relative; overflow: hidden; }
+.hero-photo .hero-photo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center right; z-index: 0; }
+.hero-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.94) 28%, rgba(255,255,255,0.6) 48%, rgba(255,255,255,0) 70%); }
+.hero-photo .container { position: relative; z-index: 2; }
+
+/* Audience photo card */
+.aud-card { overflow: hidden; padding: 0; display: flex; flex-direction: column; }
+.aud-card .aud-photo { width: 100%; aspect-ratio: 4 / 3.1; object-fit: cover; display: block; }
+.aud-card .aud-body { padding: var(--sp-4) var(--sp-5) var(--sp-5); }
+.aud-card .aud-body h3 { margin-bottom: 6px; }
+.aud-card .aud-body p { color: var(--muted); margin-bottom: var(--sp-3); }
+
+/* UI mockup frame (portal preview) */
+.ui-frame { border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--line); background: #fff; }
+.ui-frame img { width: 100%; display: block; }
+
 /* Utilities */
 .hide { display: none !important; }
 .divider { height: 1px; background: var(--line); border: none; margin-block: var(--sp-5); }
@@ -427,6 +444,8 @@ input[type="range"].range::-moz-range-thumb { width: 26px; height: 26px; border-
   .field-row { grid-template-columns: 1fr; }
   .result-grid { grid-template-columns: 1fr 1fr; }
   .section { padding-block: var(--sp-7); }
+  .hero-photo::before { background: linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.86) 50%, rgba(255,255,255,0.55) 100%); }
+  .hero-photo .hero-photo-img { object-position: center 75%; opacity: 0.55; }
   .app-shell { grid-template-columns: 1fr; }
   .sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 264px; height: 100vh; transform: translateX(-100%); transition: transform var(--transition); z-index: 60; }
   .sidebar.open { transform: translateX(0); box-shadow: var(--shadow-lg); }

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<title>AutoKapitál – návod k assetům</title>
+<style>
+body{font-family:Arial,sans-serif;margin:40px;background:#f7faf9;color:#101820}
+h1{font-size:36px;margin-bottom:8px}
+h2{margin-top:36px}
+.card{background:#fff;border:1px solid #e6ece9;border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 8px 28px rgba(0,0,0,.06)}
+.badge{display:inline-block;background:#e8f6ef;color:#00865A;border-radius:999px;padding:6px 12px;font-weight:700}
+img{max-width:100%;border-radius:14px;border:1px solid #edf1ef}
+code{background:#f0f5f2;padding:2px 6px;border-radius:6px}
+</style>
+</head>
+<body>
+<h1>AutoKapitál – grafické prvky bez textů</h1>
+<p>Texty a CTA doplňujte ve webu přes HTML/CSS. Níže je doporučené pořadí a použití assetů.</p>
+
+<div class="card">
+  <span class="badge">01. Hero sekce</span>
+  <h2>Hero sekce</h2>
+  <p><strong>Soubor:</strong> <code>assets_webp/01_hero_visual_no_text.webp</code></p>
+  <p><strong>Kam dát:</strong> Homepage úplně nahoře pod navigaci.</p>
+  <p><strong>Použití:</strong> Použít jako hlavní hero vizuál. Vlevo nechat text a CTA v HTML/CSS, vpravo je auto a abstraktní kalkulační karta.</p>
+  <p><strong>Desktop:</strong> width: 100%; max-width: 1440px; aspect-ratio: 16/9; object-fit: cover;</p>
+  <p><strong>Mobile:</strong> Oříznout na střed auta a UI kartu, případně použít jako background s gradientem. Text v mobilu vždy nad obrázkem.</p>
+  <img src="../assets_webp/01_hero_visual_no_text.webp" alt="Hero sekce">
+</div>
+
+<div class="card">
+  <span class="badge">02. Výhody</span>
+  <h2>Výhody</h2>
+  <p><strong>Soubor:</strong> <code>assets_webp/02_benefit_cards_no_text.webp</code></p>
+  <p><strong>Kam dát:</strong> Hned pod hero sekci.</p>
+  <p><strong>Použití:</strong> Grafický podklad pro 4 výhody. Nad/pod karty vložit skutečné texty přes HTML.</p>
+  <p><strong>Desktop:</strong> 4 sloupce; asset může být vložen jako ilustrační grafika nebo rozřezán na jednotlivé karty.</p>
+  <p><strong>Mobile:</strong> Karty skládat 2×2 nebo pod sebe.</p>
+  <img src="../assets_webp/02_benefit_cards_no_text.webp" alt="Výhody">
+</div>
+
+<div class="card">
+  <span class="badge">03. Jak to funguje</span>
+  <h2>Jak to funguje</h2>
+  <p><strong>Soubor:</strong> <code>assets_webp/03_process_steps_no_text.webp</code></p>
+  <p><strong>Kam dát:</strong> Pod sekci Výhody.</p>
+  <p><strong>Použití:</strong> Horizontální proces 4 kroků. Skutečné popisky vložit v HTML/CSS.</p>
+  <p><strong>Desktop:</strong> Použít přes celou šířku sekce.</p>
+  <p><strong>Mobile:</strong> Na mobilu převést do vertikální timeline, obrázek lze použít jako doplňkový vizuál.</p>
+  <img src="../assets_webp/03_process_steps_no_text.webp" alt="Jak to funguje">
+</div>
+
+<div class="card">
+  <span class="badge">04. Pro koho je služba</span>
+  <h2>Pro koho je služba</h2>
+  <p><strong>Soubor:</strong> <code>assets_webp/04_audience_cards_no_text.webp</code></p>
+  <p><strong>Kam dát:</strong> Pod proces nebo před kalkulačku.</p>
+  <p><strong>Použití:</strong> 4 segmenty cílových skupin. Doplnit titulky OSVČ, malé firmy, řemeslníci, podnikatelé v HTML.</p>
+  <p><strong>Desktop:</strong> 4 karty v jednom řádku.</p>
+  <p><strong>Mobile:</strong> 2×2 nebo jeden sloupec.</p>
+  <img src="../assets_webp/04_audience_cards_no_text.webp" alt="Pro koho je služba">
+</div>
+
+<div class="card">
+  <span class="badge">05. Kalkulačka / orientační nabídka</span>
+  <h2>Kalkulačka / orientační nabídka</h2>
+  <p><strong>Soubor:</strong> <code>assets_webp/05_calculator_ui_no_text.webp</code></p>
+  <p><strong>Kam dát:</strong> Střed landing page jako hlavní konverzní blok.</p>
+  <p><strong>Použití:</strong> Vizuální podklad kalkulačky bez textů. Doporučuji skutečnou interaktivní kalkulačku kódovat v HTML/Reactu a tento asset použít jako referenční mockup nebo background.</p>
+  <p><strong>Desktop:</strong> 2 sloupce: vlevo vysvětlení, vpravo kalkulačka.</p>
+  <p><strong>Mobile:</strong> Kalkulačku skládat do jednoho sloupce.</p>
+  <img src="../assets_webp/05_calculator_ui_no_text.webp" alt="Kalkulačka / orientační nabídka">
+</div>
+
+<div class="card">
+  <span class="badge">06. Proč AutoKapitál</span>
+  <h2>Proč AutoKapitál</h2>
+  <p><strong>Soubor:</strong> <code>assets_webp/06_benefits_split_car_no_text.webp</code></p>
+  <p><strong>Kam dát:</strong> Pod kalkulačku.</p>
+  <p><strong>Použití:</strong> Split layout: vlevo benefit checklist, vpravo auto. Skutečný text vložit přes HTML.</p>
+  <p><strong>Desktop:</strong> 50/50 split layout.</p>
+  <p><strong>Mobile:</strong> Nejdřív text, potom obrázek auta.</p>
+  <img src="../assets_webp/06_benefits_split_car_no_text.webp" alt="Proč AutoKapitál">
+</div>
+
+<div class="card">
+  <span class="badge">07. Klientský portál</span>
+  <h2>Klientský portál</h2>
+  <p><strong>Soubor:</strong> <code>assets_webp/07_client_portal_ui_no_text.webp</code></p>
+  <p><strong>Kam dát:</strong> Pod sekci Proč AutoKapitál nebo jako samostatný produktový blok.</p>
+  <p><strong>Použití:</strong> Ukázka klientského dashboardu bez textů. Přes asset doplnit popisky okolo, samotný UI mockup může zůstat bez textu.</p>
+  <p><strong>Desktop:</strong> Vložit jako screenshot/mockup portálu.</p>
+  <p><strong>Mobile:</strong> Zmenšit, dát do carouselu nebo zobrazit jen hlavní část dashboardu.</p>
+  <img src="../assets_webp/07_client_portal_ui_no_text.webp" alt="Klientský portál">
+</div>
+
+<div class="card">
+  <span class="badge">08. Finální CTA + footer</span>
+  <h2>Finální CTA + footer</h2>
+  <p><strong>Soubor:</strong> <code>assets_webp/08_footer_cta_no_text.webp</code></p>
+  <p><strong>Kam dát:</strong> Úplný spodek homepage.</p>
+  <p><strong>Použití:</strong> Závěrečný CTA banner s autem a abstraktní patičkou. Doplnit finální claim, CTA a odkazy v HTML.</p>
+  <p><strong>Desktop:</strong> Široký CTA banner nad footerem.</p>
+  <p><strong>Mobile:</strong> Nejdříve CTA text a tlačítko, potom auto/obrázek, footer pod sebe.</p>
+  <img src="../assets_webp/08_footer_cta_no_text.webp" alt="Finální CTA + footer">
+</div>
+</body></html>

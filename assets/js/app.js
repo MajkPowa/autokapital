@@ -132,15 +132,9 @@
     const presets = document.querySelectorAll(".preset[data-val]");
     let requested = +(document.querySelector(".preset.active")?.dataset.val) || 350000;
     function render() {
-      const value = +range.value;
-      const maxAvail = round(value * LTV, 5000);
-      requested = Math.min(requested, maxAvail);
-      if (elValue) elValue.textContent = AK.fmt.czk(value);
+      if (elValue) elValue.textContent = AK.fmt.czk(+range.value);
       if (elAmount) elAmount.textContent = AK.fmt.czk(requested);
-      presets.forEach(p => {
-        p.classList.toggle("active", +p.dataset.val === requested);
-        p.classList.toggle("hide", +p.dataset.val > maxAvail);
-      });
+      presets.forEach(p => p.classList.toggle("active", +p.dataset.val === requested));
     }
     range.addEventListener("input", render);
     presets.forEach(p => p.addEventListener("click", () => { requested = +p.dataset.val; render(); }));

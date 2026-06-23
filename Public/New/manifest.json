@@ -1,0 +1,73 @@
+{
+  "project": "AutoKapitál",
+  "package": "Grafické prvky bez textů + návod",
+  "created": "2026-06-23T22:52:22",
+  "format": "WEBP",
+  "note": "Grafické prvky jsou bez textových overlayů. Texty a CTA doplňovat ve webu přes HTML/CSS kvůli responzivitě a SEO.",
+  "assets": [
+    {
+      "file": "assets_webp/01_hero_visual_no_text.webp",
+      "section": "Hero sekce",
+      "placement": "Homepage úplně nahoře pod navigaci.",
+      "usage": "Použít jako hlavní hero vizuál. Vlevo nechat text a CTA v HTML/CSS, vpravo je auto a abstraktní kalkulační karta.",
+      "desktop": "width: 100%; max-width: 1440px; aspect-ratio: 16/9; object-fit: cover;",
+      "mobile": "Oříznout na střed auta a UI kartu, případně použít jako background s gradientem. Text v mobilu vždy nad obrázkem."
+    },
+    {
+      "file": "assets_webp/02_benefit_cards_no_text.webp",
+      "section": "Výhody",
+      "placement": "Hned pod hero sekci.",
+      "usage": "Grafický podklad pro 4 výhody. Nad/pod karty vložit skutečné texty přes HTML.",
+      "desktop": "4 sloupce; asset může být vložen jako ilustrační grafika nebo rozřezán na jednotlivé karty.",
+      "mobile": "Karty skládat 2×2 nebo pod sebe."
+    },
+    {
+      "file": "assets_webp/03_process_steps_no_text.webp",
+      "section": "Jak to funguje",
+      "placement": "Pod sekci Výhody.",
+      "usage": "Horizontální proces 4 kroků. Skutečné popisky vložit v HTML/CSS.",
+      "desktop": "Použít přes celou šířku sekce.",
+      "mobile": "Na mobilu převést do vertikální timeline, obrázek lze použít jako doplňkový vizuál."
+    },
+    {
+      "file": "assets_webp/04_audience_cards_no_text.webp",
+      "section": "Pro koho je služba",
+      "placement": "Pod proces nebo před kalkulačku.",
+      "usage": "4 segmenty cílových skupin. Doplnit titulky OSVČ, malé firmy, řemeslníci, podnikatelé v HTML.",
+      "desktop": "4 karty v jednom řádku.",
+      "mobile": "2×2 nebo jeden sloupec."
+    },
+    {
+      "file": "assets_webp/05_calculator_ui_no_text.webp",
+      "section": "Kalkulačka / orientační nabídka",
+      "placement": "Střed landing page jako hlavní konverzní blok.",
+      "usage": "Vizuální podklad kalkulačky bez textů. Doporučuji skutečnou interaktivní kalkulačku kódovat v HTML/Reactu a tento asset použít jako referenční mockup nebo background.",
+      "desktop": "2 sloupce: vlevo vysvětlení, vpravo kalkulačka.",
+      "mobile": "Kalkulačku skládat do jednoho sloupce."
+    },
+    {
+      "file": "assets_webp/06_benefits_split_car_no_text.webp",
+      "section": "Proč AutoKapitál",
+      "placement": "Pod kalkulačku.",
+      "usage": "Split layout: vlevo benefit checklist, vpravo auto. Skutečný text vložit přes HTML.",
+      "desktop": "50/50 split layout.",
+      "mobile": "Nejdřív text, potom obrázek auta."
+    },
+    {
+      "file": "assets_webp/07_client_portal_ui_no_text.webp",
+      "section": "Klientský portál",
+      "placement": "Pod sekci Proč AutoKapitál nebo jako samostatný produktový blok.",
+      "usage": "Ukázka klientského dashboardu bez textů. Přes asset doplnit popisky okolo, samotný UI mockup může zůstat bez textu.",
+      "desktop": "Vložit jako screenshot/mockup portálu.",
+      "mobile": "Zmenšit, dát do carouselu nebo zobrazit jen hlavní část dashboardu."
+    },
+    {
+      "file": "assets_webp/08_footer_cta_no_text.webp",
+      "section": "Finální CTA + footer",
+      "placement": "Úplný spodek homepage.",
+      "usage": "Závěrečný CTA banner s autem a abstraktní patičkou. Doplnit finální claim, CTA a odkazy v HTML.",
+      "desktop": "Široký CTA banner nad footerem.",
+      "mobile": "Nejdříve CTA text a tlačítko, potom auto/obrázek, footer pod sebe."
+    }
+  ]
+}
