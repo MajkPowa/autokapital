@@ -1,0 +1,371 @@
+[
+  {
+    "file": "full_mockups/autokapital-desktop-full-page.webp",
+    "size_px": [
+      724,
+      2172
+    ],
+    "placement": "Referenční full-page desktop mockup",
+    "note": "Celý návrh webové landing page jako reference pro developera."
+  },
+  {
+    "file": "full_mockups/autokapital-mobile-full-page.webp",
+    "size_px": [
+      724,
+      2172
+    ],
+    "placement": "Referenční full-page mobile mockup",
+    "note": "Celý návrh mobilní landing page jako reference pro developera."
+  },
+  {
+    "file": "desktop_sections/01-hero-header.webp",
+    "size_px": [
+      724,
+      502
+    ],
+    "placement": "Web / sekce 01 Header + Hero",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "desktop_sections/02-vyhody.webp",
+    "size_px": [
+      724,
+      190
+    ],
+    "placement": "Web / sekce 02 Výhody",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "desktop_sections/03-jak-to-funguje.webp",
+    "size_px": [
+      724,
+      125
+    ],
+    "placement": "Web / sekce 03 Jak to funguje",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "desktop_sections/04-pro-koho.webp",
+    "size_px": [
+      724,
+      230
+    ],
+    "placement": "Web / sekce 04 Pro koho",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "desktop_sections/05-kalkulacka.webp",
+    "size_px": [
+      724,
+      268
+    ],
+    "placement": "Web / sekce 05 Kalkulačka",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "desktop_sections/06-proc-autokapital.webp",
+    "size_px": [
+      724,
+      230
+    ],
+    "placement": "Web / sekce 06 Proč AutoKapitál",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "desktop_sections/07-klientsky-portal-preview.webp",
+    "size_px": [
+      724,
+      247
+    ],
+    "placement": "Web / sekce 07 Klientský portál",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "desktop_sections/08-faq.webp",
+    "size_px": [
+      724,
+      108
+    ],
+    "placement": "Web / sekce 08 FAQ",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "desktop_sections/09-final-cta-footer.webp",
+    "size_px": [
+      724,
+      284
+    ],
+    "placement": "Web / sekce 09 Final CTA + Footer",
+    "note": "Vyříznutá sekce z desktop návrhu."
+  },
+  {
+    "file": "mobile_sections/01-mobile-hero.webp",
+    "size_px": [
+      524,
+      525
+    ],
+    "placement": "Mobile / sekce 01 Hero",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "mobile_sections/02-mobile-vyhody.webp",
+    "size_px": [
+      524,
+      185
+    ],
+    "placement": "Mobile / sekce 02 Výhody",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "mobile_sections/03-mobile-jak-to-funguje.webp",
+    "size_px": [
+      524,
+      220
+    ],
+    "placement": "Mobile / sekce 03 Jak to funguje",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "mobile_sections/04-mobile-pro-koho.webp",
+    "size_px": [
+      524,
+      242
+    ],
+    "placement": "Mobile / sekce 04 Pro koho",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "mobile_sections/05-mobile-kalkulacka.webp",
+    "size_px": [
+      524,
+      296
+    ],
+    "placement": "Mobile / sekce 05 Kalkulačka",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "mobile_sections/06-mobile-proc-autokapital.webp",
+    "size_px": [
+      524,
+      140
+    ],
+    "placement": "Mobile / sekce 06 Proč AutoKapitál",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "mobile_sections/07-mobile-klientsky-portal.webp",
+    "size_px": [
+      524,
+      250
+    ],
+    "placement": "Mobile / sekce 07 Klientský portál",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "mobile_sections/08-mobile-faq.webp",
+    "size_px": [
+      524,
+      124
+    ],
+    "placement": "Mobile / sekce 08 FAQ",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "mobile_sections/09-mobile-final-cta-footer.webp",
+    "size_px": [
+      524,
+      190
+    ],
+    "placement": "Mobile / sekce 09 Final CTA + Footer",
+    "note": "Vyříznutá sekce z mobilního návrhu."
+  },
+  {
+    "file": "components/hero-car-visual.webp",
+    "size_px": [
+      420,
+      280
+    ],
+    "placement": "Hero / vizuál auta a města",
+    "note": "Použít jako hlavní hero image nebo background image vedle HTML headline."
+  },
+  {
+    "file": "components/hero-calculator-card.webp",
+    "size_px": [
+      245,
+      360
+    ],
+    "placement": "Hero / kalkulační karta",
+    "note": "Reference pro kalkulační komponentu; ideálně překódovat v HTML/CSS."
+  },
+  {
+    "file": "components/calculator-large-card.webp",
+    "size_px": [
+      470,
+      170
+    ],
+    "placement": "Sekce Kalkulačka / hlavní kalkulační karta",
+    "note": "Komponenta pro orientační nabídku."
+  },
+  {
+    "file": "components/why-car-side-image.webp",
+    "size_px": [
+      389,
+      183
+    ],
+    "placement": "Sekce Proč AutoKapitál / podpůrný image",
+    "note": "Obrázek auta k důvěryhodnostní sekci."
+  },
+  {
+    "file": "components/client-portal-dashboard.webp",
+    "size_px": [
+      692,
+      200
+    ],
+    "placement": "Sekce Klientský portál / desktop dashboard preview",
+    "note": "Preview klientského portálu pro web."
+  },
+  {
+    "file": "components/final-cta-car-strip.webp",
+    "size_px": [
+      444,
+      111
+    ],
+    "placement": "Final CTA / auto image strip",
+    "note": "Doprovodný obrázek auta u finální CTA."
+  },
+  {
+    "file": "components/mobile-portal-phone-preview.webp",
+    "size_px": [
+      380,
+      235
+    ],
+    "placement": "Mobile / klientský portál v telefonu",
+    "note": "Preview klientského portálu na mobilu."
+  },
+  {
+    "file": "components/audience-osvc-card.webp",
+    "size_px": [
+      159,
+      193
+    ],
+    "placement": "Pro koho / OSVČ karta",
+    "note": "Karta segmentu včetně fotky a krátkého textu."
+  },
+  {
+    "file": "components/audience-male-firmy-card.webp",
+    "size_px": [
+      160,
+      193
+    ],
+    "placement": "Pro koho / Malé firmy karta",
+    "note": "Karta segmentu včetně fotky a krátkého textu."
+  },
+  {
+    "file": "components/audience-remeslnici-card.webp",
+    "size_px": [
+      160,
+      193
+    ],
+    "placement": "Pro koho / Řemeslníci karta",
+    "note": "Karta segmentu včetně fotky a krátkého textu."
+  },
+  {
+    "file": "components/audience-podnikatele-card.webp",
+    "size_px": [
+      160,
+      193
+    ],
+    "placement": "Pro koho / Podnikatelé karta",
+    "note": "Karta segmentu včetně fotky a krátkého textu."
+  },
+  {
+    "file": "components/logo-autokapital-transparent.webp",
+    "size_px": [
+      520,
+      120
+    ],
+    "placement": "Header / logo",
+    "note": "Transparentní WEBP logo pro header/footer."
+  },
+  {
+    "file": "icons/icon-auto.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / auto",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  },
+  {
+    "file": "icons/icon-rychlost.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / rychlé posouzení",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  },
+  {
+    "file": "icons/icon-stitek-ochrana.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / jasné podmínky, bezpečí",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  },
+  {
+    "file": "icons/icon-dokumenty.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / dokumenty, smlouva",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  },
+  {
+    "file": "icons/icon-portal.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / klientský portál",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  },
+  {
+    "file": "icons/icon-handshake.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / férové podmínky",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  },
+  {
+    "file": "icons/icon-zpetny-odkup.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / zpětný odkup",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  },
+  {
+    "file": "icons/icon-kalkulacka.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / kalkulačka",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  },
+  {
+    "file": "icons/icon-uzivatel.webp",
+    "size_px": [
+      160,
+      160
+    ],
+    "placement": "Ikona / klient, podnikatel",
+    "note": "Transparentní WEBP ikona v brand zelené."
+  }
+]

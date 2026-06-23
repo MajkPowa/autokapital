@@ -1,0 +1,45 @@
+# AutoKapitál – WEBP asset balíček
+
+Všechny soubory jsou ve formátu WEBP. Doporučené použití:
+
+- `full_mockups/autokapital-desktop-full-page.webp` — Referenční full-page desktop mockup (724×2172 px). Celý návrh webové landing page jako reference pro developera.
+- `full_mockups/autokapital-mobile-full-page.webp` — Referenční full-page mobile mockup (724×2172 px). Celý návrh mobilní landing page jako reference pro developera.
+- `desktop_sections/01-hero-header.webp` — Web / sekce 01 Header + Hero (724×502 px). Vyříznutá sekce z desktop návrhu.
+- `desktop_sections/02-vyhody.webp` — Web / sekce 02 Výhody (724×190 px). Vyříznutá sekce z desktop návrhu.
+- `desktop_sections/03-jak-to-funguje.webp` — Web / sekce 03 Jak to funguje (724×125 px). Vyříznutá sekce z desktop návrhu.
+- `desktop_sections/04-pro-koho.webp` — Web / sekce 04 Pro koho (724×230 px). Vyříznutá sekce z desktop návrhu.
+- `desktop_sections/05-kalkulacka.webp` — Web / sekce 05 Kalkulačka (724×268 px). Vyříznutá sekce z desktop návrhu.
+- `desktop_sections/06-proc-autokapital.webp` — Web / sekce 06 Proč AutoKapitál (724×230 px). Vyříznutá sekce z desktop návrhu.
+- `desktop_sections/07-klientsky-portal-preview.webp` — Web / sekce 07 Klientský portál (724×247 px). Vyříznutá sekce z desktop návrhu.
+- `desktop_sections/08-faq.webp` — Web / sekce 08 FAQ (724×108 px). Vyříznutá sekce z desktop návrhu.
+- `desktop_sections/09-final-cta-footer.webp` — Web / sekce 09 Final CTA + Footer (724×284 px). Vyříznutá sekce z desktop návrhu.
+- `mobile_sections/01-mobile-hero.webp` — Mobile / sekce 01 Hero (524×525 px). Vyříznutá sekce z mobilního návrhu.
+- `mobile_sections/02-mobile-vyhody.webp` — Mobile / sekce 02 Výhody (524×185 px). Vyříznutá sekce z mobilního návrhu.
+- `mobile_sections/03-mobile-jak-to-funguje.webp` — Mobile / sekce 03 Jak to funguje (524×220 px). Vyříznutá sekce z mobilního návrhu.
+- `mobile_sections/04-mobile-pro-koho.webp` — Mobile / sekce 04 Pro koho (524×242 px). Vyříznutá sekce z mobilního návrhu.
+- `mobile_sections/05-mobile-kalkulacka.webp` — Mobile / sekce 05 Kalkulačka (524×296 px). Vyříznutá sekce z mobilního návrhu.
+- `mobile_sections/06-mobile-proc-autokapital.webp` — Mobile / sekce 06 Proč AutoKapitál (524×140 px). Vyříznutá sekce z mobilního návrhu.
+- `mobile_sections/07-mobile-klientsky-portal.webp` — Mobile / sekce 07 Klientský portál (524×250 px). Vyříznutá sekce z mobilního návrhu.
+- `mobile_sections/08-mobile-faq.webp` — Mobile / sekce 08 FAQ (524×124 px). Vyříznutá sekce z mobilního návrhu.
+- `mobile_sections/09-mobile-final-cta-footer.webp` — Mobile / sekce 09 Final CTA + Footer (524×190 px). Vyříznutá sekce z mobilního návrhu.
+- `components/hero-car-visual.webp` — Hero / vizuál auta a města (420×280 px). Použít jako hlavní hero image nebo background image vedle HTML headline.
+- `components/hero-calculator-card.webp` — Hero / kalkulační karta (245×360 px). Reference pro kalkulační komponentu; ideálně překódovat v HTML/CSS.
+- `components/calculator-large-card.webp` — Sekce Kalkulačka / hlavní kalkulační karta (470×170 px). Komponenta pro orientační nabídku.
+- `components/why-car-side-image.webp` — Sekce Proč AutoKapitál / podpůrný image (389×183 px). Obrázek auta k důvěryhodnostní sekci.
+- `components/client-portal-dashboard.webp` — Sekce Klientský portál / desktop dashboard preview (692×200 px). Preview klientského portálu pro web.
+- `components/final-cta-car-strip.webp` — Final CTA / auto image strip (444×111 px). Doprovodný obrázek auta u finální CTA.
+- `components/mobile-portal-phone-preview.webp` — Mobile / klientský portál v telefonu (380×235 px). Preview klientského portálu na mobilu.
+- `components/audience-osvc-card.webp` — Pro koho / OSVČ karta (159×193 px). Karta segmentu včetně fotky a krátkého textu.
+- `components/audience-male-firmy-card.webp` — Pro koho / Malé firmy karta (160×193 px). Karta segmentu včetně fotky a krátkého textu.
+- `components/audience-remeslnici-card.webp` — Pro koho / Řemeslníci karta (160×193 px). Karta segmentu včetně fotky a krátkého textu.
+- `components/audience-podnikatele-card.webp` — Pro koho / Podnikatelé karta (160×193 px). Karta segmentu včetně fotky a krátkého textu.
+- `components/logo-autokapital-transparent.webp` — Header / logo (520×120 px). Transparentní WEBP logo pro header/footer.
+- `icons/icon-auto.webp` — Ikona / auto (160×160 px). Transparentní WEBP ikona v brand zelené.
+- `icons/icon-rychlost.webp` — Ikona / rychlé posouzení (160×160 px). Transparentní WEBP ikona v brand zelené.
+- `icons/icon-stitek-ochrana.webp` — Ikona / jasné podmínky, bezpečí (160×160 px). Transparentní WEBP ikona v brand zelené.
+- `icons/icon-dokumenty.webp` — Ikona / dokumenty, smlouva (160×160 px). Transparentní WEBP ikona v brand zelené.
+- `icons/icon-portal.webp` — Ikona / klientský portál (160×160 px). Transparentní WEBP ikona v brand zelené.
+- `icons/icon-handshake.webp` — Ikona / férové podmínky (160×160 px). Transparentní WEBP ikona v brand zelené.
+- `icons/icon-zpetny-odkup.webp` — Ikona / zpětný odkup (160×160 px). Transparentní WEBP ikona v brand zelené.
+- `icons/icon-kalkulacka.webp` — Ikona / kalkulačka (160×160 px). Transparentní WEBP ikona v brand zelené.
+- `icons/icon-uzivatel.webp` — Ikona / klient, podnikatel (160×160 px). Transparentní WEBP ikona v brand zelené.

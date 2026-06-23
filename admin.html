@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoKapitál — Provozní centrum (admin)</title>
+  <meta name="description" content="Interní provozní centrum AutoKapitál: přehled případů, lead pipeline, scoring vozidla i klienta, vozidla, platby, rizikové centrum a automatické generování dokumentů." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/design-system.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 3h6l-7 26H0L7 3Z' fill='%23007A52'/%3E%3Cpath d='M16 3h6l-7 26H9L16 3Z' fill='%23007A52'/%3E%3C/svg%3E" />
+</head>
+<body data-active="admin">
+  <div class="app-shell">
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html" aria-label="AutoKapitál — domů">
+        <img class="brand-logo" src="Public/components/logo-autokapital-transparent.webp" alt="AutoKapitál" width="150" height="34" />
+      </a>
+
+      <div class="nav-group-label">Provoz</div>
+      <button class="side-link" data-target="dashboard" data-title="Přehled">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        Přehled
+      </button>
+      <button class="side-link" data-target="pipeline" data-title="Lead pipeline" aria-label="Lead pipeline, 12 nových">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="5" height="7" rx="1.5"/></svg>
+        Lead pipeline
+        <span class="badge-count" aria-hidden="true">12</span>
+      </button>
+      <button class="side-link" data-target="zadosti" data-title="Žádosti">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+        Žádosti
+      </button>
+      <button class="side-link" data-target="scoring" data-title="Scoring">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 18 0"/><path d="M12 12l4-3"/><circle cx="12" cy="12" r="1.5"/></svg>
+        Scoring
+      </button>
+      <button class="side-link" data-target="vozidla" data-title="Vozidla">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13l2-5a3 3 0 0 1 2.8-2h8.4A3 3 0 0 1 19 8l2 5"/><path d="M3 13h18v5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H8v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><circle cx="7.5" cy="16" r="1.3"/><circle cx="16.5" cy="16" r="1.3"/></svg>
+        Vozidla
+      </button>
+      <button class="side-link" data-target="platby" data-title="Platby">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        Platby
+      </button>
+      <button class="side-link" data-target="rizika" data-title="Rizikové centrum" aria-label="Rizikové centrum, 5 upozornění">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>
+        Rizikové centrum
+        <span class="badge-count" aria-hidden="true">5</span>
+      </button>
+      <button class="side-link" data-target="dokumenty" data-title="Dokumenty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/></svg>
+        Dokumenty
+      </button>
+
+      <div class="nav-group-label">Ostatní</div>
+      <a class="side-link" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        Zpět na web
+      </a>
+      <a class="side-link" href="portal.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        Klientský portál
+      </a>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <div class="app-main">
+      <div class="topbar">
+        <div class="cluster">
+          <button class="btn btn-ghost btn-sm sidebar-toggle" data-sidebar-toggle aria-label="Otevřít menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            menu
+          </button>
+          <h1 id="appTitle">Přehled</h1>
+        </div>
+        <div class="cluster">
+          <span class="pill"><span class="dot"></span> Demo data</span>
+          <div class="avatar" title="AutoKapitál — operátor">AK</div>
+        </div>
+      </div>
+
+      <div class="app-content">
+
+        <!-- ============ DASHBOARD ============ -->
+        <section class="tab-panel active" id="dashboard">
+          <div class="grid grid-4">
+            <div class="card pad">
+              <div class="muted" style="font-weight:600;font-size:var(--fs-sm)">Aktivní případy</div>
+              <div class="num mono" style="font-size:var(--fs-2xl);font-weight:800;color:var(--ink);margin:6px 0">38</div>
+              <span class="pill pill-success"><span class="dot"></span> +6</span>
+            </div>
+            <div class="card pad">
+              <div class="muted" style="font-weight:600;font-size:var(--fs-sm)">Objem financování</div>
+              <div class="num mono" style="font-size:var(--fs-2xl);font-weight:800;color:var(--ink);margin:6px 0">14,2 M Kč</div>
+              <span class="pill pill-success"><span class="dot"></span> +1,8 M</span>
+            </div>
+            <div class="card pad">
+              <div class="muted" style="font-weight:600;font-size:var(--fs-sm)">Průměrné LTV</div>
+              <div class="num mono" style="font-size:var(--fs-2xl);font-weight:800;color:var(--ink);margin:6px 0">61 %</div>
+              <span class="pill pill-muted">stabilní</span>
+            </div>
+            <div class="card pad">
+              <div class="muted" style="font-weight:600;font-size:var(--fs-sm)">Míra zpětného odkupu</div>
+              <div class="num mono" style="font-size:var(--fs-2xl);font-weight:800;color:var(--ink);margin:6px 0">94 %</div>
+              <span class="pill pill-success"><span class="dot"></span> +2 pb</span>
+            </div>
+          </div>
+
+          <div class="grid grid-2 mt-6" style="align-items:start">
+            <div class="card pad-lg">
+              <span class="eyebrow">Provoz</span>
+              <h2 class="mt-3" style="font-size:var(--fs-lg)">Automatizované workflow</h2>
+              <p class="lead mt-2" style="font-size:var(--fs-sm)">Většinu kroků zpracuje systém; lidská kontrola vstupuje tam, kde je potřeba úsudek nebo právní posouzení.</p>
+              <div class="table-wrap mt-4">
+                <table class="table">
+                  <thead>
+                    <tr><th>Fáze</th><th>Automatizace</th><th>Ruční kontrola</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Lead</strong></td><td><span class="pill pill-success">Plně auto</span></td><td class="muted">—</td></tr>
+                    <tr><td><strong>Ocenění</strong></td><td><span class="pill pill-success">Auto návrh</span></td><td class="muted">Schválení rozmezí</td></tr>
+                    <tr><td><strong>KYC / AML</strong></td><td><span class="pill">Předvyplnění</span></td><td class="muted">Ověření identity</td></tr>
+                    <tr><td><strong>Vozidlo</strong></td><td><span class="pill">Scoring vozu</span></td><td class="muted">Fyzická kontrola</td></tr>
+                    <tr><td><strong>Smlouvy</strong></td><td><span class="pill pill-success">Generování</span></td><td class="muted">Právní revize</td></tr>
+                    <tr><td><strong>Výplata</strong></td><td><span class="pill">Příprava příkazu</span></td><td class="muted">Dvojí schválení</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card pad-lg">
+              <span class="eyebrow">Aktivita</span>
+              <h2 class="mt-3" style="font-size:var(--fs-lg)">Poslední aktivita</h2>
+              <ul class="tracker mt-4">
+                <li class="done"><span class="node"></span><div class="t-title">Schválen případ AK-4790</div><div class="t-meta">AutoDoprava Klíma · Iveco Daily · dnes 09:14</div></li>
+                <li class="done"><span class="node"></span><div class="t-title">Připsána platba užívacího poplatku</div><div class="t-meta">AK-4812 · Dvořák Stavby · 6 900 Kč · dnes 08:02</div></li>
+                <li class="done"><span class="node"></span><div class="t-title">Nahrán technický průkaz</div><div class="t-meta">AK-5089 · Elektro Novák · čeká na ověření</div></li>
+                <li class="active"><span class="node"></span><div class="t-title">Nový lead z kalkulačky</div><div class="t-meta">AK-5104 · Pavel Horák · VW Passat B8 · 240 000 Kč</div></li>
+                <li><span class="node"></span><div class="t-title">Odeslán návrh smluv k podpisu</div><div class="t-meta">AK-5077 · Martin Dvořák · Škoda Superb</div></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ PIPELINE ============ -->
+        <section class="tab-panel" id="pipeline">
+          <div class="between" style="margin-bottom:var(--sp-5)">
+            <div>
+              <span class="eyebrow">Provoz</span>
+              <h2 class="mt-2" style="font-size:var(--fs-lg)">Lead pipeline</h2>
+            </div>
+            <span class="pill pill-muted">Tažením přesunete (demo)</span>
+          </div>
+          <div class="kanban" id="pipelineBoard"></div>
+        </section>
+
+        <!-- ============ ŽÁDOSTI ============ -->
+        <section class="tab-panel" id="zadosti">
+          <span class="eyebrow">Provoz</span>
+          <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Žádosti k posouzení</h2>
+          <p class="lead mt-2" style="font-size:var(--fs-sm)">Vždy se zobrazuje tržní hodnota, nabídka, LTV, cena zpětného odkupu, celkový náklad a scoring klienta i vozidla — rozhodnutí má operátor předem podložené.</p>
+          <div class="card pad mt-4">
+            <div class="table-wrap">
+              <table class="table rowhover">
+                <thead>
+                  <tr>
+                    <th>ID</th><th>Firma / IČO</th><th>Vozidlo</th>
+                    <th class="num">Tržní hodnota</th><th class="num">Nabídka</th><th class="num">LTV</th>
+                    <th class="num">Cena zpětného odkupu</th><th class="num">Celkový náklad</th>
+                    <th>Produkt</th><th>Scoring K/V</th><th>Riziko</th><th>Stav</th><th>Akce</th>
+                  </tr>
+                </thead>
+                <tbody id="leadsBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ SCORING ============ -->
+        <section class="tab-panel" id="scoring">
+          <div class="between" style="margin-bottom:var(--sp-5)">
+            <div>
+              <span class="eyebrow">Příklad případu</span>
+              <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Scoring — AK-5077 · Martin Dvořák</h2>
+            </div>
+            <span class="pill pill-mint">Škoda Superb 2.0 TDI</span>
+          </div>
+          <div class="grid grid-2" style="align-items:start">
+            <div class="card pad-lg">
+              <div class="between">
+                <h3>Scoring vozidla</h3>
+                <span class="pill pill-success">Skóre vozidla 86/100</span>
+              </div>
+              <div class="stack gap-3 mt-5">
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Značka / model</span><div class="progress mint" style="flex:1.2"><span style="width:88%"></span></div><span class="meter-val">88</span></div>
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Stáří vozu</span><div class="progress mint" style="flex:1.2"><span style="width:82%"></span></div><span class="meter-val">82</span></div>
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Nájezd</span><div class="progress mint" style="flex:1.2"><span style="width:79%"></span></div><span class="meter-val">79</span></div>
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Likvidita na trhu</span><div class="progress mint" style="flex:1.2"><span style="width:85%"></span></div><span class="meter-val">85</span></div>
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Technický stav</span><div class="progress mint" style="flex:1.2"><span style="width:86%"></span></div><span class="meter-val">86</span></div>
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Servisní historie</span><div class="progress mint" style="flex:1.2"><span style="width:80%"></span></div><span class="meter-val">80</span></div>
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Počet majitelů</span><div class="progress mint" style="flex:1.2"><span style="width:95%"></span></div><span class="meter-val">95</span></div>
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Právní omezení</span><div class="progress mint" style="flex:1.2"><span style="width:90%"></span></div><span class="meter-val">90</span></div>
+                <div class="meter-row"><span style="flex:1;font-size:var(--fs-sm);font-weight:600;color:var(--ink)">Pojistitelnost</span><div class="progress mint" style="flex:1.2"><span style="width:88%"></span></div><span class="meter-val">88</span></div>
+              </div>
+            </div>
+
+            <div class="card pad-lg">
+              <div class="between">
+                <h3>Scoring klienta (B2B)</h3>
+                <span class="pill pill-success">Skóre klienta 84/100</span>
+              </div>
+              <div class="table-wrap mt-4">
+                <table class="table">
+                  <tbody>
+                    <tr><td class="muted">IČO</td><td class="num"><strong>765 22 901</strong></td></tr>
+                    <tr><td class="muted">Historie firmy</td><td class="num"><strong>6 let</strong></td></tr>
+                    <tr><td class="muted">Insolvence</td><td class="num"><span class="pill pill-success">žádná</span></td></tr>
+                    <tr><td class="muted">Exekuce</td><td class="num"><span class="pill pill-success">žádná</span></td></tr>
+                    <tr><td class="muted">Účel financování</td><td class="num"><strong>provoz / materiál</strong></td></tr>
+                    <tr><td class="muted">Vlastnictví vozu</td><td class="num"><span class="pill pill-success">ano</span></td></tr>
+                    <tr><td class="muted">Oprávnění jednat</td><td class="num"><span class="pill pill-success">ověřeno</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="notice mt-4" style="align-items:flex-start">
+                <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
+                <div>Scoring je rozhodovací podklad, ne automatické zamítnutí. Cílíme na podnikatele a firmy; financování posuzujeme proti hodnotě vozu a bonitě firmy.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ VOZIDLA ============ -->
+        <section class="tab-panel" id="vozidla">
+          <span class="eyebrow">Provoz</span>
+          <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Vozidla v evidenci</h2>
+          <p class="lead mt-2" style="font-size:var(--fs-sm)">Vozidla dočasně ve vlastnictví AutoKapitál a.s., provozovaná dál klienty. Systém hlídá STK i pojištění.</p>
+          <div class="card pad mt-4">
+            <div class="table-wrap">
+              <table class="table rowhover">
+                <thead>
+                  <tr><th>SPZ</th><th>Model</th><th>Stav</th><th>STK</th><th>Pojištění</th><th>Případ</th></tr>
+                </thead>
+                <tbody id="vehiclesBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ PLATBY ============ -->
+        <section class="tab-panel" id="platby">
+          <span class="eyebrow">Provoz</span>
+          <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Platby a párování</h2>
+          <p class="lead mt-2" style="font-size:var(--fs-sm)">Příchozí platby se automaticky párují podle variabilního symbolu; nespárované jdou k ruční kontrole.</p>
+          <div class="grid grid-2 mt-4" style="align-items:start">
+            <div class="card pad-lg">
+              <h3>Splatnosti &amp; párování</h3>
+              <div class="table-wrap mt-4">
+                <table class="table">
+                  <thead><tr><th>Případ</th><th>Položka</th><th class="num">Částka</th><th>Stav</th></tr></thead>
+                  <tbody>
+                    <tr><td>AK-4812</td><td>Užívací poplatek — červen</td><td class="num mono">6 900 Kč</td><td><span class="pill pill-success">Spárováno</span></td></tr>
+                    <tr><td>AK-4790</td><td>Užívací poplatek — červen</td><td class="num mono">5 460 Kč</td><td><span class="pill pill-success">Spárováno</span></td></tr>
+                    <tr><td>AK-5012</td><td>Příchozí platba</td><td class="num mono">4 200 Kč</td><td><span class="pill pill-warning">Nespárováno</span></td></tr>
+                    <tr><td>AK-4655</td><td>Užívací poplatek — červen</td><td class="num mono">7 200 Kč</td><td><span class="pill pill-danger">Po splatnosti</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <button class="btn btn-ghost btn-sm mt-4" data-demo="Export plateb do účetnictví připraven (demo)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+                Export do účetnictví
+              </button>
+            </div>
+            <div class="card pad-lg">
+              <h3>Upomínky</h3>
+              <div class="stack gap-3 mt-4">
+                <div class="card pad" style="box-shadow:none">
+                  <div class="between">
+                    <div><strong>AK-4655 · Stavby Kovář</strong><div class="t-meta muted" style="font-size:var(--fs-sm)">Po splatnosti 3 dny · 7 200 Kč</div></div>
+                    <span class="pill pill-danger">1. upomínka</span>
+                  </div>
+                  <button class="btn btn-primary btn-sm mt-3" data-demo="Upomínka pro AK-4655 odeslána (demo)">Spustit upomínku</button>
+                </div>
+                <div class="card pad" style="box-shadow:none">
+                  <div class="between">
+                    <div><strong>AK-5012 · Servis Brno</strong><div class="t-meta muted" style="font-size:var(--fs-sm)">Nespárovaná platba · čeká na VS</div></div>
+                    <span class="pill pill-warning">K ověření</span>
+                  </div>
+                  <button class="btn btn-ghost btn-sm mt-3" data-demo="Žádost o doplnění VS odeslána (demo)">Spustit upomínku</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ RIZIKA ============ -->
+        <section class="tab-panel" id="rizika">
+          <span class="eyebrow">Provoz</span>
+          <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Rizikové centrum</h2>
+          <p class="lead mt-2" style="font-size:var(--fs-sm)">Upozornění na lhůty, platby a nesoulady. Každý záznam má jednu doporučenou akci.</p>
+          <div class="stack gap-3 mt-4" id="riskList"></div>
+        </section>
+
+        <!-- ============ DOKUMENTY ============ -->
+        <section class="tab-panel" id="dokumenty">
+          <span class="eyebrow">Provoz</span>
+          <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Automatické generování dokumentů</h2>
+          <p class="lead mt-2" style="font-size:var(--fs-sm)">Šablony s předvyplněnými údaji případu. Před odesláním klientovi prochází právní revizí.</p>
+          <div class="card pad-lg mt-4">
+            <div class="grid grid-2" id="docGrid"></div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var AK = window.AK || {};
+      var czk = (AK.fmt && AK.fmt.czk) ? AK.fmt.czk : function (n) { return n + " Kč"; };
+      function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+      function riskPill(r) {
+        if (r === "low") return '<span class="pill pill-success">nízké</span>';
+        if (r === "med") return '<span class="pill pill-warning">střední</span>';
+        return '<span class="pill pill-danger">vysoké</span>';
+      }
+
+      // ----- Pipeline kanban -----
+      var board = document.getElementById("pipelineBoard");
+      if (board && AK.pipeline) {
+        board.innerHTML = AK.pipeline.map(function (col) {
+          var cards = col.items.map(function (c) {
+            return '<div class="kanban-card">' +
+              '<div class="mono muted" style="font-size:var(--fs-xs)">' + esc(c.id) + '</div>' +
+              '<div style="font-weight:700;color:var(--ink);margin-top:2px">' + esc(c.name) + '</div>' +
+              '<div class="muted" style="font-size:var(--fs-sm)">' + esc(c.car) + '</div>' +
+              '<div class="cluster" style="margin-top:8px;gap:6px">' +
+                '<span class="pill pill-navy mono">' + czk(c.amount) + '</span>' +
+                '<span class="pill">LTV ' + c.ltv + '%</span>' +
+                riskPill(c.risk) +
+              '</div></div>';
+          }).join("");
+          return '<div class="kanban-col">' +
+            '<div class="col-head"><span>' + esc(col.label) + '</span><span class="pill pill-muted">' + col.items.length + '</span></div>' +
+            cards + '</div>';
+        }).join("");
+      }
+
+      // ----- Leads table -----
+      var lb = document.getElementById("leadsBody");
+      if (lb && AK.adminLeads) {
+        lb.innerHTML = AK.adminLeads.map(function (l) {
+          var buyback = (l.buyback != null) ? czk(l.buyback) : czk(Math.round(l.offer * 1.18));
+          var total = (l.totalCost != null) ? czk(l.totalCost) : czk(Math.round(l.offer * 1.18) - l.offer);
+          return '<tr>' +
+            '<td class="mono">' + esc(l.id) + '</td>' +
+            '<td><strong>' + esc(l.company) + '</strong><div class="muted" style="font-size:var(--fs-xs)">IČO ' + esc(l.ico) + '</div></td>' +
+            '<td>' + esc(l.car) + '</td>' +
+            '<td class="num mono">' + czk(l.market) + '</td>' +
+            '<td class="num mono">' + czk(l.offer) + '</td>' +
+            '<td class="num">' + l.ltv + ' %</td>' +
+            '<td class="num mono">' + buyback + '</td>' +
+            '<td class="num mono">' + total + '</td>' +
+            '<td><span class="pill pill-muted">' + esc(l.product) + '</span></td>' +
+            '<td class="num mono">' + l.clientScore + ' / ' + l.vehicleScore + '</td>' +
+            '<td>' + riskPill(l.risk) + '</td>' +
+            '<td><span class="pill">' + esc(l.stage) + '</span></td>' +
+            '<td><button class="btn btn-sm btn-primary" data-demo="Případ ' + esc(l.id) + ' schválen (demo)">Schválit</button></td>' +
+            '</tr>';
+        }).join("");
+      }
+
+      // ----- Vehicles table -----
+      var vb = document.getElementById("vehiclesBody");
+      if (vb && AK.adminVehicles) {
+        vb.innerHTML = AK.adminVehicles.map(function (v) {
+          var sp = "pill";
+          if (v.state === "Aktivní") sp = "pill pill-success";
+          else if (v.state === "Odkoupeno zpět") sp = "pill pill-mint";
+          else if (v.state === "K prodeji") sp = "pill pill-warning";
+          var insPill = v.ins === "OK" ? '<span class="pill pill-success">OK</span>'
+            : v.ins === "Pozor" ? '<span class="pill pill-danger">Pozor</span>'
+            : '<span class="muted">' + esc(v.ins) + '</span>';
+          return '<tr>' +
+            '<td class="mono"><strong>' + esc(v.spz) + '</strong></td>' +
+            '<td>' + esc(v.model) + '</td>' +
+            '<td><span class="' + sp + '">' + esc(v.state) + '</span></td>' +
+            '<td>' + esc(v.stk) + '</td>' +
+            '<td>' + insPill + '</td>' +
+            '<td class="mono">' + esc(v.caseId) + '</td>' +
+            '</tr>';
+        }).join("");
+      }
+
+      // ----- Risk alerts -----
+      var rl = document.getElementById("riskList");
+      if (rl && AK.riskAlerts) {
+        rl.innerHTML = AK.riskAlerts.map(function (a) {
+          var p = "pill";
+          if (a.kind === "warning") p = "pill pill-warning";
+          else if (a.kind === "danger") p = "pill pill-danger";
+          else p = "pill pill-mint";
+          var label = a.kind === "danger" ? "Riziko" : a.kind === "warning" ? "Upozornění" : "Info";
+          return '<div class="card pad">' +
+            '<div class="between" style="align-items:flex-start;gap:var(--sp-4)">' +
+              '<div style="display:flex;gap:12px;align-items:flex-start">' +
+                '<span class="' + p + '">' + label + '</span>' +
+                '<div><strong>' + esc(a.title) + '</strong><div class="muted" style="font-size:var(--fs-sm)">' + esc(a.meta) + '</div></div>' +
+              '</div>' +
+              '<button class="btn btn-sm btn-ghost" data-demo="' + esc(a.action) + ' (demo)">' + esc(a.action) + '</button>' +
+            '</div></div>';
+        }).join("");
+      }
+
+      // ----- Document templates -----
+      var dg = document.getElementById("docGrid");
+      if (dg) {
+        var templates = [
+          "Kupní smlouva", "Smlouva o užívání vozidla", "Opční smlouva / budoucí kupní smlouva",
+          "Předávací protokol", "GDPR souhlasy", "AML záznam", "Výzva k platbě", "Potvrzení o ukončení"
+        ];
+        dg.innerHTML = templates.map(function (t) {
+          return '<div class="doc-card">' +
+            '<span class="doc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/></svg></span>' +
+            '<div style="flex:1;min-width:0"><strong>' + esc(t) + '</strong><div class="muted" style="font-size:var(--fs-xs)">Šablona · auto-předvyplnění</div></div>' +
+            '<button class="btn btn-sm btn-ghost" data-demo="Dokument „' + esc(t) + '“ vygenerován (demo)">Generovat</button>' +
+            '</div>';
+        }).join("");
+      }
+    })();
+  </script>
+</body>
+</html>
