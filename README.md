@@ -1,37 +1,44 @@
 # AutoKapitál — prototyp produktu
 
-> **Uvolněte kapitál z vozu. Jezdit můžete dál.**
-> Moderní, férové provozní financování proti hodnotě vozu pro podnikatele a firmy.
+> **Peníze z auta. Auto používáte dál.**
+> Rychle. Férově. Bez starostí.
 
-Klikací webový prototyp produktu typu **„dočasný výkup vozu se zpětným odkupem"** (sale & use-back):
-klient dočasně prodá vozidlo, dál ho používá jako provozovatel a má předem známou možnost odkoupit ho zpět.
+Klikací webový prototyp spotřebitelsky bezpečného fintech produktu typu **„dočasný výkup vozu se zpětným odkupem"**:
+běžný člověk získá rychle peníze z hodnoty svého auta, vůz dál používá pro běžný život a má smluvně danou
+možnost odkoupit ho zpět za předem známých podmínek.
+
+Produkt je stavěný a prezentovaný jako **spotřebitelský úvěr** — s posouzením úvěruschopnosti,
+předsmluvními informacemi a reprezentativním příkladem všude, kde se objeví číselný údaj o nákladech.
+
+## Cílová skupina
+Běžné domácnosti a řidiči (segmenty **C1–C3**), 35–55 let — jezdí do práce, vozí děti, řeší nečekané výdaje
+a nechtějí auto prodat natrvalo. **Není** to B2B / cashflow nástroj pro firmy. Zranitelné skupiny (segment E) vědomě neoslovujeme.
 
 ## Co prototyp obsahuje
 
 ### Fáze 1 — MVP
-- **Landing page** (`index.html`) — hero, orientační kalkulačka, jak to funguje, produkty, pro koho, trust box
-- **Žádost & kalkulačka** (`zadost.html`) — 4krokový průvodce s orientační nabídkou a transparentním celkovým nákladem
-- **Klientský portál** (`portal.html`) — nabídka, vozidlo, stav procesu, platby, dokumenty, podpora
-- **Admin systém** (`admin.html`) — lead pipeline, scoring vozidla i klienta, žádosti, vozidla, platby, rizikové centrum, dokumenty
-- **Férovost & compliance** (`compliance.html`) — právní konstrukce, regulatorní mantinel, transparentnost
+- **Landing** (`index.html`) — hero, výhody, jak to funguje (7 kroků), pro koho, kalkulačka s reprezentativním příkladem, proč AutoKapitál, náhled portálu, FAQ, CTA
+- **Žádost & kalkulačka** (`zadost.html`) — průvodce s posouzením úvěruschopnosti a orientační nabídkou (splátka, RPSN, celková částka, cena zpětného odkupu)
+- **Klientský portál** (`portal.html`) — osobní zóna: moje žádost, auto, platby, dokumenty, podpora
+- **Admin systém** (`admin.html`) — pipeline, scoring vozidla i úvěruschopnosti, vozidla, platby, rizika, dokumenty a **compliance checklist** (11 kroků)
+- **Férovost & compliance** (`compliance.html`) — spotřebitelský úvěr, posouzení úvěruschopnosti, předsmluvní informace, AML/KYC, „co v reklamě nikdy nepoužíváme"
 
 ### Fáze 2 — Roadmapa
-- **Roadmapa & Fáze 2** (`faze2.html`) — auto-oceňování, externí registry, risk engine, párování plateb, e-podpis, partnerská síť, remarketing, mobilní aplikace
-- **Prezentace projektu** (`prezentace.html`) — obchodní/investiční prezentace ve 12 sekcích
+- **Roadmapa & Fáze 2** (`faze2.html`) — automatické oceňování, externí registry, risk engine, párování plateb, e-podpis, partnerská síť, remarketing, mobilní aplikace
+- **Prezentace projektu** (`prezentace.html`) — prezentace ve 12 sekcích se segmentací C1–C3
 
 ## Technologie
-Statický web — HTML5 + CSS (design systém v `assets/css/design-system.css`) + vanilla JS
-(`assets/js/data.js`, `shell.js`, `app.js`). Bez build kroku.
+Statický web — HTML5 + CSS (`assets/css/design-system.css`, zelený brand) + vanilla JS
+(`assets/js/data.js`, `shell.js`, `app.js`). Bez build kroku. Assety v `Public/` a `assets/img/`.
 
 ## Lokální spuštění
 ```bash
 npx serve .
 ```
-Pak otevřete `http://localhost:3000`.
 
 ## Compliance-first
-Komunikace je úmyslně vedena jako B2B provozní financování, ne jako rychlopůjčka.
-Vyhýbáme se zavádějícím frázím; cenu zpětného odkupu i celkový náklad klient zná předem.
+Komunikace je vedena férově a nepredátorsky. Vyhýbáme se zavádějícím frázím (např. „bez registru",
+„bez doložení příjmů", „schválíme každému") a cenu, RPSN, celkový náklad i cenu zpětného odkupu klient zná předem.
 
 ---
 *Demoprezentace. Nejedná se o závaznou nabídku ani o právní poradenství.*

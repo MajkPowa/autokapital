@@ -1,183 +1,199 @@
 /* =========================================================================
-   AutoKapitál — Mock data layer
+   AutoKapitál — Mock data layer (B2C / spotřebitel)
    Exposes window.AK with all demo data. Read-only prototype content (CZ).
+   Positioning: spotřebitelsky bezpečný fintech — dočasné uvolnění kapitálu z auta.
    ========================================================================= */
 window.AK = (function () {
   "use strict";
 
   const user = {
-    name: "Martin Dvořák",
-    company: "Dvořák Stavby s.r.o.",
-    ico: "287 41 559",
-    initials: "MD",
-    email: "martin@dvorakstavby.cz",
-    segment: "Malá firma",
+    name: "Jan Novák",
+    household: "Domácnost · Brno",
+    initials: "JN",
+    email: "jan.novak@email.cz",
+    segment: "Běžná domácnost",
   };
 
-  // Active client case (drives the client portal)
+  // Active client case (drives the client portal) — consumer credit, sale-&-use-back
   const activeCase = {
     id: "AK-2026-04812",
-    product: "Flex 90",
-    status: "Aktivní užívání",
+    product: "24 měsíců",
+    status: "Aktivní",
     statusKind: "success",
-    marketValue: 520000,
-    offer: 320000,           // výkupní cena vyplacená klientovi
-    buyback: 320000,         // cena zpětného odkupu = výkupní cena (za stejnou částku)
-    monthlyFee: 6900,        // měsíční užívací poplatek
-    totalFees: 20700,        // celkový náklad za 90 dní (3 × užívací poplatek)
-    termDays: 90,
+    marketValue: 520000,     // odhad hodnoty vozu
+    amount: 320000,          // získaná částka (výše úvěru)
+    offer: 320000,           // alias (získaná částka)
+    monthly: 14750,          // měsíční splátka
+    rpsn: "9,9 %",
+    rate: "8,7 % p.a.",
+    termMonths: 24,
+    totalPayable: 354000,    // celková částka k úhradě (24 × splátka)
+    buyback: 320000,         // cena zpětného odkupu za předem známých podmínek
     offerValidUntil: "8. 7. 2026",
     payoutDate: "26. 3. 2026",
-    buybackDate: "24. 6. 2026",
+    nextPaymentDate: "26. 6. 2026",
     earlyBuybackAvailable: true,
-    daysRemaining: 0,
     approvalProbability: 92,
   };
 
   const vehicle = {
     brand: "Škoda",
-    model: "Superb 2.0 TDI Style",
-    year: 2021,
+    model: "Octavia Combi 2.0 TDI",
+    year: 2020,
     vin: "TMBJJ7NE0M0123456",
     spz: "5AK 4812",
-    mileage: 78400,
+    mileage: 96400,
     fuel: "Diesel",
-    transmission: "Automat (DSG)",
+    transmission: "Manuál",
     owners: 1,
     stk: "platná do 3/2027",
-    insurance: "Povinné + havarijní, platné",
-    role: "Vlastník: AutoKapitál a.s. · Provozovatel: Dvořák Stavby s.r.o.",
+    insurance: "Povinné ručení, platné",
+    role: "Vlastník: AutoKapitál a.s. · Provozovatel: Jan Novák",
     photos: 6,
-    conditionScore: 86,
+    conditionScore: 84,
   };
 
-  // Client process tracker
+  // Client process tracker (7 consumer steps)
   const processSteps = [
     { title: "Žádost přijata", meta: "18. 3. 2026", state: "done" },
-    { title: "Nacenění vozu", meta: "19. 3. 2026", state: "done" },
-    { title: "Kontrola vozu a dokumentů", meta: "23. 3. 2026", state: "done" },
-    { title: "Podpis smluv", meta: "25. 3. 2026", state: "done" },
-    { title: "Převod a výplata", meta: "26. 3. 2026 · 320 000 Kč", state: "done" },
-    { title: "Aktivní užívání", meta: "vůz dál používáte", state: "active" },
-    { title: "Zpětný odkup", meta: "možný kdykoliv · do 24. 6. 2026", state: "todo" },
+    { title: "Orientační nabídka", meta: "18. 3. 2026", state: "done" },
+    { title: "Ověření vozu a úvěruschopnosti", meta: "23. 3. 2026", state: "done" },
+    { title: "Předsmluvní informace a podpis", meta: "25. 3. 2026", state: "done" },
+    { title: "Výplata peněz", meta: "26. 3. 2026 · 320 000 Kč", state: "done" },
+    { title: "Splácení · auto používáte dál", meta: "splátka 14 750 Kč / měsíc", state: "active" },
+    { title: "Zpětný odkup", meta: "možný kdykoliv za předem známých podmínek", state: "todo" },
   ];
 
-  // Client payments
+  // Client payments — monthly splátky
   const payments = [
-    { date: "26. 4. 2026", label: "Užívací poplatek — duben", amount: 6900, state: "Uhrazeno" },
-    { date: "26. 5. 2026", label: "Užívací poplatek — květen", amount: 6900, state: "Uhrazeno" },
-    { date: "26. 6. 2026", label: "Užívací poplatek — červen", amount: 6900, state: "Splatné" },
-    { date: "24. 6. 2026", label: "Zpětný odkup (volitelný)", amount: 320000, state: "Naplánováno" },
+    { date: "26. 4. 2026", label: "Splátka — duben", amount: 14750, state: "Uhrazeno" },
+    { date: "26. 5. 2026", label: "Splátka — květen", amount: 14750, state: "Uhrazeno" },
+    { date: "26. 6. 2026", label: "Splátka — červen", amount: 14750, state: "Splatné" },
+    { date: "kdykoliv", label: "Předčasný zpětný odkup (volitelný)", amount: 320000, state: "Možné" },
   ];
 
   const documents = [
-    { name: "Kupní smlouva", meta: "PDF · 25. 3. 2026", kind: "Smlouva", signed: true },
+    { name: "Předsmluvní informace (formulář)", meta: "PDF · 24. 3. 2026", kind: "Informace", signed: false },
+    { name: "Smlouva o financování", meta: "PDF · 25. 3. 2026", kind: "Smlouva", signed: true },
     { name: "Smlouva o užívání vozidla", meta: "PDF · 25. 3. 2026", kind: "Smlouva", signed: true },
-    { name: "Smlouva o budoucím zpětném odkupu", meta: "PDF · 25. 3. 2026", kind: "Opce", signed: true },
+    { name: "Smlouva o zpětném odkupu", meta: "PDF · 25. 3. 2026", kind: "Odkup", signed: true },
     { name: "Předávací protokol", meta: "PDF · 26. 3. 2026", kind: "Protokol", signed: true },
-    { name: "Potvrzení o výplatě", meta: "PDF · 26. 3. 2026", kind: "Platba", signed: false },
     { name: "Splátkový a odkupní kalendář", meta: "PDF · 26. 3. 2026", kind: "Přehled", signed: false },
   ];
 
-  // ----- Admin data -----
+  // ----- Admin data (private individuals, consumer credit) -----
   const pipeline = [
     { key: "lead", label: "Nový lead", items: [
-      { id: "AK-5104", name: "Pavel Horák — OSVČ", car: "VW Passat B8", amount: 240000, ltv: 58, risk: "low" },
-      { id: "AK-5103", name: "TruckLine s.r.o.", car: "MAN TGX", amount: 880000, ltv: 61, risk: "med" },
+      { id: "AK-5104", name: "Pavel Horák", car: "VW Passat B8", amount: 180000, ltv: 56, risk: "low" },
+      { id: "AK-5103", name: "Marie Dvořáková", car: "Hyundai i30", amount: 120000, ltv: 58, risk: "low" },
     ]},
-    { key: "incomplete", label: "Čeká na fotky / KYC", items: [
-      { id: "AK-5098", name: "Jana Marešová — OSVČ", car: "Škoda Kodiaq", amount: 310000, ltv: 60, risk: "low" },
-      { id: "AK-5095", name: "Servis Brno s.r.o.", car: "Ford Transit", amount: 190000, ltv: 64, risk: "med" },
+    { key: "incomplete", label: "Čeká na doklady / KYC", items: [
+      { id: "AK-5098", name: "Jana Marešová", car: "Škoda Fabia", amount: 95000, ltv: 60, risk: "low" },
+      { id: "AK-5095", name: "Tomáš Král", car: "Ford Focus", amount: 140000, ltv: 62, risk: "med" },
     ]},
     { key: "priced", label: "Předběžně oceněno", items: [
-      { id: "AK-5089", name: "Elektro Novák", car: "Mercedes Vito", amount: 420000, ltv: 59, risk: "low" },
+      { id: "AK-5089", name: "Lucie Procházková", car: "Kia Ceed", amount: 160000, ltv: 59, risk: "low" },
     ]},
     { key: "review", label: "Čeká na schválení", items: [
-      { id: "AK-5081", name: "Dřevo Group s.r.o.", car: "BMW X5", amount: 690000, ltv: 62, risk: "med" },
-      { id: "AK-5077", name: "Martin Dvořák", car: "Škoda Superb", amount: 320000, ltv: 61, risk: "low" },
+      { id: "AK-5081", name: "Petr Beneš", car: "VW Tiguan", amount: 290000, ltv: 61, risk: "med" },
+      { id: "AK-5077", name: "Jan Novák", car: "Škoda Octavia", amount: 320000, ltv: 62, risk: "low" },
     ]},
     { key: "active", label: "Aktivní případ", items: [
-      { id: "AK-4812", name: "Dvořák Stavby s.r.o.", car: "Škoda Superb", amount: 320000, ltv: 61, risk: "low" },
-      { id: "AK-4790", name: "AutoDoprava Klíma", car: "Iveco Daily", amount: 260000, ltv: 63, risk: "med" },
+      { id: "AK-4812", name: "Jan Novák", car: "Škoda Octavia", amount: 320000, ltv: 62, risk: "low" },
+      { id: "AK-4790", name: "Eva Horáková", car: "Toyota Yaris", amount: 110000, ltv: 60, risk: "low" },
     ]},
-    { key: "closed", label: "Zpětně odkoupeno", items: [
-      { id: "AK-4503", name: "Zedník & syn", car: "Toyota Hilux", amount: 280000, ltv: 60, risk: "low" },
+    { key: "closed", label: "Splaceno / odkoupeno", items: [
+      { id: "AK-4503", name: "Martin Veselý", car: "Renault Mégane", amount: 130000, ltv: 60, risk: "low" },
     ]},
   ];
 
   const adminLeads = [
-    { id: "AK-5081", company: "Dřevo Group s.r.o.", ico: "094 22 117", car: "BMW X5 xDrive30d", market: 1110000, offer: 690000, ltv: 62, product: "Business 180", clientScore: 78, vehicleScore: 81, risk: "med", stage: "Čeká na schválení" },
-    { id: "AK-5077", company: "Martin Dvořák (OSVČ)", ico: "765 22 901", car: "Škoda Superb 2.0 TDI", market: 520000, offer: 320000, ltv: 61, product: "Flex 90", clientScore: 84, vehicleScore: 86, risk: "low", stage: "Čeká na schválení" },
-    { id: "AK-5089", company: "Elektro Novák", ico: "281 90 334", car: "Mercedes Vito 119", market: 700000, offer: 420000, ltv: 59, product: "Flex 90", clientScore: 80, vehicleScore: 83, risk: "low", stage: "Předběžně oceněno" },
-    { id: "AK-5103", company: "TruckLine s.r.o.", ico: "067 55 210", car: "MAN TGX 18.480", market: 1450000, offer: 880000, ltv: 61, product: "Business 180", clientScore: 71, vehicleScore: 74, risk: "med", stage: "Nový lead" },
+    { id: "AK-5081", client: "Petr Beneš", city: "Praha", car: "VW Tiguan 2.0 TDI", market: 470000, offer: 290000, ltv: 61, product: "24 měsíců", clientScore: 79, vehicleScore: 82, risk: "med", stage: "Čeká na schválení" },
+    { id: "AK-5077", client: "Jan Novák", city: "Brno", car: "Škoda Octavia Combi 2.0 TDI", market: 520000, offer: 320000, ltv: 62, product: "24 měsíců", clientScore: 84, vehicleScore: 84, risk: "low", stage: "Čeká na schválení" },
+    { id: "AK-5089", client: "Lucie Procházková", city: "Ostrava", car: "Kia Ceed 1.5", market: 270000, offer: 160000, ltv: 59, product: "18 měsíců", clientScore: 81, vehicleScore: 80, risk: "low", stage: "Předběžně oceněno" },
+    { id: "AK-5103", client: "Marie Dvořáková", city: "Plzeň", car: "Hyundai i30 1.6", market: 205000, offer: 120000, ltv: 58, product: "12 měsíců", clientScore: 76, vehicleScore: 78, risk: "low", stage: "Nový lead" },
   ];
 
   const riskAlerts = [
-    { kind: "warning", title: "Konec opční lhůty za 7 dní", meta: "AK-4790 · AutoDoprava Klíma", action: "Kontaktovat klienta" },
-    { kind: "danger", title: "Platba po splatnosti", meta: "AK-4655 · 3 dny · 7 200 Kč", action: "Spustit upomínku" },
-    { kind: "warning", title: "Blíží se konec STK", meta: "AK-4812 · vozidlo 5AK 4812 · 3/2027", action: "Pouze evidence" },
+    { kind: "warning", title: "Posouzení úvěruschopnosti čeká na doklad příjmu", meta: "AK-5095 · Tomáš Král", action: "Vyžádat doklad" },
+    { kind: "danger", title: "Splátka po splatnosti", meta: "AK-4655 · 3 dny · 7 200 Kč", action: "Spustit upomínku" },
+    { kind: "warning", title: "Blíží se konec lhůty pro odkup", meta: "AK-4790 · Eva Horáková", action: "Kontaktovat klienta" },
     { kind: "info", title: "Nahrán nový doklad — čeká na ověření", meta: "AK-5089 · technický průkaz", action: "Ověřit dokument" },
     { kind: "danger", title: "Nesoulad vlastníka a žadatele", meta: "AK-5070 · nutná ruční kontrola", action: "Eskalovat" },
   ];
 
   const adminVehicles = [
-    { spz: "5AK 4812", model: "Škoda Superb", state: "Aktivní", stk: "3/2027", ins: "OK", caseId: "AK-4812" },
-    { spz: "2BX 9920", model: "Iveco Daily", state: "Aktivní", stk: "11/2026", ins: "OK", caseId: "AK-4790" },
-    { spz: "7CD 1180", model: "Toyota Hilux", state: "Odkoupeno zpět", stk: "5/2027", ins: "—", caseId: "AK-4503" },
-    { spz: "3EF 4521", model: "BMW X5", state: "K prodeji", stk: "1/2026", ins: "Pozor", caseId: "AK-4399" },
+    { spz: "5AK 4812", model: "Škoda Octavia", state: "Aktivní", stk: "3/2027", ins: "OK", caseId: "AK-4812" },
+    { spz: "2BX 9920", model: "Toyota Yaris", state: "Aktivní", stk: "11/2026", ins: "OK", caseId: "AK-4790" },
+    { spz: "7CD 1180", model: "Renault Mégane", state: "Odkoupeno zpět", stk: "5/2027", ins: "—", caseId: "AK-4503" },
+    { spz: "3EF 4521", model: "VW Tiguan", state: "K prodeji", stk: "1/2026", ins: "Pozor", caseId: "AK-4399" },
   ];
 
-  // KPIs for admin dashboard
   const kpis = [
-    { label: "Aktivní případy", value: "38", delta: "+6", trend: "up" },
-    { label: "Objem financování", value: "14,2 M Kč", delta: "+1,8 M", trend: "up" },
-    { label: "Průměrné LTV", value: "61 %", delta: "stabilní", trend: "flat" },
-    { label: "Míra zpětného odkupu", value: "94 %", delta: "+2 pb", trend: "up" },
+    { label: "Aktivní případy", value: "126", delta: "+14", trend: "up" },
+    { label: "Objem financování", value: "23,8 M Kč", delta: "+2,6 M", trend: "up" },
+    { label: "Průměrné RPSN", value: "9,9 %", delta: "stabilní", trend: "flat" },
+    { label: "Míra splacení / odkupu", value: "93 %", delta: "+2 pb", trend: "up" },
   ];
 
   // Vehicle valuation base values by segment (CZK, ~ new/recent)
   const segmentBase = {
-    "Malé / hatchback": 480000,
-    "Střední třída / kombi": 720000,
-    "SUV": 980000,
-    "Dodávka / užitkové": 850000,
-    "Prémiové / vyšší třída": 1450000,
+    "Malé / hatchback": 380000,
+    "Střední třída / kombi": 560000,
+    "SUV": 760000,
+    "Rodinné MPV / van": 620000,
+    "Prémiové / vyšší třída": 1150000,
   };
 
-  // Brands grouped to segment (for the calculator dropdown)
   const brands = [
     { name: "Škoda", segment: "Střední třída / kombi" },
     { name: "Volkswagen", segment: "Střední třída / kombi" },
     { name: "Toyota", segment: "Střední třída / kombi" },
     { name: "Hyundai", segment: "Malé / hatchback" },
-    { name: "Ford", segment: "Dodávka / užitkové" },
+    { name: "Kia", segment: "SUV" },
+    { name: "Ford", segment: "Střední třída / kombi" },
+    { name: "Renault", segment: "Malé / hatchback" },
+    { name: "Dacia", segment: "Malé / hatchback" },
     { name: "Mercedes-Benz", segment: "Prémiové / vyšší třída" },
     { name: "BMW", segment: "Prémiové / vyšší třída" },
     { name: "Audi", segment: "Prémiové / vyšší třída" },
-    { name: "Kia", segment: "SUV" },
-    { name: "Renault", segment: "Malé / hatchback" },
-    { name: "Iveco", segment: "Dodávka / užitkové" },
-    { name: "MAN", segment: "Dodávka / užitkové" },
+    { name: "Seat", segment: "Malé / hatchback" },
   ];
 
+  // Consumer FAQ
   const faqs = [
-    { q: "Mohu auto dál používat?", a: "Ano. Vozidlo zůstává ve vašem provozu jako u provozovatele — používáte ho dál pro práci i běžně. Vlastníkem se po dobu financování stává AutoKapitál a.s." },
-    { q: "Co potřebuji doložit?", a: "Doklady k vozidlu (velký technický průkaz), fotky vozu a údaje o firmě (IČO). U podnikatelů ověřujeme oprávnění jednat za firmu v rámci KYC/AML procesu." },
-    { q: "Jak rychle dostanu peníze?", a: "Orientační nabídku máte do 2 minut online. Po ověření vozu, dokumentů a podpisu smluv odesíláme peníze zpravidla do 24 hodin na váš účet." },
-    { q: "Co když chci splatit dříve?", a: "Zpětný odkup můžete zahájit kdykoliv přímo v klientském portálu. Cenu zpětného odkupu znáte předem a předčasný odkup vás nijak nepenalizuje." },
-    { q: "Máte skryté poplatky?", a: "Ne. Před podpisem vidíte kompletní podmínky — výkupní cenu, měsíční poplatek, celkový náklad i cenu zpětného odkupu. Žádné překvapení na konci." },
-    { q: "Je nutné havarijní pojištění?", a: "Vozidlo musí být po dobu financování řádně pojištěné (povinné ručení, u dražších vozů i havarijní). Termíny pojištění a STK hlídá za vás systém." },
+    { q: "Mohu auto opravdu dál používat?", a: "Ano. Vozidlo můžete dál používat pro běžný život podle smluvních podmínek — jezdíte do práce, vozíte děti i na dovolenou. Po dobu financování je vlastníkem AutoKapitál a.s., vy jste provozovatel." },
+    { q: "Kdo bude vlastníkem vozidla?", a: "Po dobu financování je vlastníkem AutoKapitál a.s. Vy zůstáváte provozovatelem a máte smluvně danou možnost vůz získat zpět za předem známých podmínek." },
+    { q: "Jak funguje zpětný odkup?", a: "Cenu i podmínky zpětného odkupu znáte předem ze smlouvy. Odkup můžete zahájit kdykoliv v klientském portálu — předčasný odkup vás nijak nepenalizuje." },
+    { q: "Kolik zaplatím celkem?", a: "Před podpisem vidíte kompletní reprezentativní příklad: získanou částku, dobu, úrokovou sazbu, RPSN, výši splátek i celkovou částku k úhradě. Žádné skryté poplatky." },
+    { q: "Co když chci auto odkoupit dříve?", a: "Předčasný odkup je možný kdykoliv a bez sankcí. V portálu uvidíte aktuální cenu odkupu k danému dni." },
+    { q: "Co když nestihnu termín splátky?", a: "Ozvěte se nám co nejdříve — termíny hlídá portál a upozorní vás předem. Společně hledáme řešení; podmínky případného prodlení jsou jasně uvedené ve smlouvě." },
+    { q: "Je nutné doložit příjem?", a: "U spotřebitelského financování ano. Provádíme posouzení úvěruschopnosti podle pravidel, abychom nabídli jen to, co zvládnete bez problémů splácet." },
+    { q: "Proč probíhá posouzení?", a: "Posouzení úvěruschopnosti je zákonná povinnost i ochrana pro vás — ověřuje, že splátky odpovídají vaší situaci. Chrání vás před nadměrným zadlužením." },
+    { q: "Je služba dostupná pro každého?", a: "Ne. Nabídka závisí na posouzení vozidla i vaší úvěruschopnosti. Neslibujeme schválení všem a vědomě neoslovujeme rizikové či zranitelné skupiny." },
+    { q: "Co když je auto v leasingu nebo úvěru?", a: "Řekněte nám to hned na začátku. Vozidlo zatížené leasingem, úvěrem nebo zástavou posuzujeme individuálně — v některých případech řešení existuje, v jiných ne." },
   ];
 
+  // Consumer products (durations)
   const products = [
-    { name: "Express 30", days: 30, tagline: "Krátké překlenutí cashflow", use: "Faktury po splatnosti, nákup materiálu, krátkodobé výpadky.", feeRate: 0.026, highlight: false },
-    { name: "Flex 90", days: 90, tagline: "Hlavní produkt", use: "Provoz firmy s možností prodloužení po kontrole.", feeRate: 0.0215, highlight: true },
-    { name: "Business 180", days: 180, tagline: "Pro firmy a flotily", use: "Delší překlenovací období, práce s více vozy.", feeRate: 0.0195, highlight: false },
+    { name: "12 měsíců", months: 12, tagline: "Krátké období", use: "Rychlé překlenutí a nižší celkový náklad.", highlight: false },
+    { name: "24 měsíců", months: 24, tagline: "Nejoblíbenější", use: "Vyvážená výše splátky pro běžnou domácnost.", highlight: true },
+    { name: "36 měsíců", months: 36, tagline: "Nižší splátka", use: "Delší doba a nižší měsíční splátka.", highlight: false },
   ];
+
+  // Reprezentativní příklad (povinné údaje u spotřebitelského úvěru s číselným údajem)
+  const representativeExample = {
+    amount: 200000,            // celková výše úvěru
+    termMonths: 24,            // doba trvání
+    rate: "8,7 % p.a.",        // pevná úroková sazba
+    rpsn: "9,9 %",             // RPSN
+    monthly: 9200,             // výše měsíční splátky
+    totalPayable: 220800,      // celková částka splatná spotřebitelem
+  };
 
   return {
     user, activeCase, vehicle, processSteps, payments, documents,
     pipeline, adminLeads, riskAlerts, adminVehicles, kpis,
-    segmentBase, brands, products, faqs,
+    segmentBase, brands, products, faqs, representativeExample,
   };
 })();

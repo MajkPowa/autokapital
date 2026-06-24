@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoKapitál — Žádost &amp; orientační kalkulačka</title>
-  <meta name="description" content="Spočítejte si nezávazně a zdarma, kolik provozního kapitálu uvolníte z hodnoty vozu. Cenu zpětného odkupu i celkový náklad uvidíte předem." />
+  <title>AutoKapitál — Zjistit orientační nabídku</title>
+  <meta name="description" content="Zjistěte nezávazně a zdarma, kolik můžete získat z hodnoty svého auta. Měsíční splátku, RPSN, celkovou částku k úhradě i cenu zpětného odkupu uvidíte předem. Auto přitom dál používáte." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,13 +14,13 @@
 <body data-shell="marketing" data-active="">
   <div id="site-header"></div>
 
-  <!-- ===================== ŽÁDOST / KALKULAČKA ===================== -->
+  <!-- ===================== ŽÁDOST / ORIENTAČNÍ NABÍDKA ===================== -->
   <section class="section full-bleed-bg">
     <div class="container narrow">
       <div class="section-head center">
         <span class="eyebrow">Orientační nabídka</span>
-        <h1 class="mt-3">Spočítejte, kolik kapitálu uvolníte z vozu</h1>
-        <p class="lead">Vyplnění je nezávazné a zdarma. Během chvíle uvidíte orientační výši výkupu, měsíční poplatek i předem známou cenu zpětného odkupu — auto přitom dál používáte.</p>
+        <h1 class="mt-3">Zjistěte, kolik můžete získat z hodnoty auta</h1>
+        <p class="lead">Vyplnění je nezávazné a zdarma. Během chvíle uvidíte orientační získanou částku, měsíční splátku, RPSN, celkovou částku k úhradě i předem známou cenu zpětného odkupu — auto přitom dál používáte podle smluvních podmínek.</p>
       </div>
 
       <!-- Wizard progress -->
@@ -38,49 +38,28 @@
           <!-- STEP 1 — Vozidlo -->
           <div class="wizard-step active">
             <span class="eyebrow">Krok 1 ze 4</span>
-            <h3 class="mt-3">Vaše vozidlo</h3>
-            <p class="muted mt-2">Základní údaje nám stačí pro orientační nacenění proti hodnotě vozu.</p>
+            <h3 class="mt-3">Vaše auto</h3>
+            <p class="muted mt-2">Stačí pár základních údajů. Z nich uděláme orientační odhad hodnoty vozu.</p>
 
             <div class="stack gap-4 mt-5">
               <div class="field">
-                <label for="w_segment">Segment vozidla</label>
+                <label for="w_segment">Typ vozidla</label>
                 <select class="select" id="w_segment">
                   <option value="hatchback">Malé / hatchback</option>
-                  <option value="kombi" selected>Střední třída / kombi</option>
+                  <option value="kombi" selected>Osobní / kombi</option>
                   <option value="suv">SUV</option>
-                  <option value="dodavka">Dodávka / užitkové</option>
-                  <option value="premium">Prémiové / vyšší třída</option>
+                  <option value="premium">Prémiové</option>
                 </select>
               </div>
 
               <div class="field-row">
                 <div class="field">
                   <label for="w_year">Rok výroby</label>
-                  <input class="input" type="number" id="w_year" value="2021" min="1995" max="2026" />
+                  <input class="input" type="number" id="w_year" value="2020" min="1995" max="2026" />
                 </div>
                 <div class="field">
                   <label for="w_mileage">Nájezd (km)</label>
-                  <input class="input" type="number" id="w_mileage" value="78000" min="0" step="1000" />
-                </div>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="w_fuel">Palivo</label>
-                  <select class="select" id="w_fuel">
-                    <option value="diesel" selected>Diesel</option>
-                    <option value="benzin">Benzín</option>
-                    <option value="hybrid">Hybrid</option>
-                    <option value="elektro">Elektro</option>
-                    <option value="lpg">LPG / CNG</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="w_gearbox">Převodovka</label>
-                  <select class="select" id="w_gearbox">
-                    <option value="automat" selected>Automat</option>
-                    <option value="manual">Manuál</option>
-                  </select>
+                  <input class="input" type="number" id="w_mileage" value="96000" min="0" step="1000" />
                 </div>
               </div>
 
@@ -93,6 +72,7 @@
                   <button type="button" class="choice" data-val="horsi">Horší</button>
                 </div>
                 <input type="hidden" id="w_condition" value="dobry" />
+                <span class="hint">Stačí odhadem — přesný stav ověříme později při prohlídce vozu.</span>
               </div>
             </div>
 
@@ -105,34 +85,36 @@
           <!-- STEP 2 — Financování -->
           <div class="wizard-step">
             <span class="eyebrow">Krok 2 ze 4</span>
-            <h3 class="mt-3">Financování</h3>
-            <p class="muted mt-2">Vyberte délku období podle vašeho cashflow. Cenu zpětného odkupu i celkový náklad uvidíte na konci.</p>
+            <h3 class="mt-3">Kolik chcete získat</h3>
+            <p class="muted mt-2">Vyberte částku a dobu splácení podle své situace. Splátku, RPSN, celkovou částku k úhradě i cenu zpětného odkupu uvidíte na konci.</p>
 
             <div class="stack gap-4 mt-5">
               <div class="field">
-                <label>Délka užívání</label>
-                <div class="choice-row" data-bind="w_days">
-                  <button type="button" class="choice" data-val="30">Express 30</button>
-                  <button type="button" class="choice active" data-val="90">Flex 90</button>
-                  <button type="button" class="choice" data-val="180">Business 180</button>
+                <label for="w_amount">Kolik chcete získat (Kč)</label>
+                <input class="input" type="number" id="w_amount" placeholder="např. 320 000" value="320000" min="20000" step="10000" />
+                <span class="hint">Nechte prázdné a navrhneme bezpečnou výši podle odhadované hodnoty vozu.</span>
+              </div>
+
+              <div class="field">
+                <label>Doba splácení</label>
+                <div class="choice-row" data-bind="w_months">
+                  <button type="button" class="choice" data-val="12">12 měsíců</button>
+                  <button type="button" class="choice active" data-val="24">24 měsíců</button>
+                  <button type="button" class="choice" data-val="36">36 měsíců</button>
+                  <button type="button" class="choice" data-val="48">48 měsíců</button>
                 </div>
-                <input type="hidden" id="w_days" value="90" />
+                <input type="hidden" id="w_months" value="24" />
+                <span class="hint">Delší doba znamená nižší měsíční splátku, ale vyšší celkovou částku.</span>
               </div>
 
               <div class="field">
-                <label for="w_requested">Požadovaná částka (nepovinné)</label>
-                <input class="input" type="number" id="w_requested" placeholder="např. 300 000" min="0" step="10000" />
-                <span class="hint">Nechte prázdné a navrhneme bezpečnou výši výkupu podle hodnoty vozu.</span>
-              </div>
-
-              <div class="field">
-                <label>Stav vozidla v registru</label>
+                <label>Auto je v leasingu, úvěru nebo zástavě</label>
                 <div class="choice-row" data-bind="w_encumbered">
-                  <button type="button" class="choice active" data-val="no">Bez zatížení</button>
-                  <button type="button" class="choice" data-val="yes">Úvěr / leasing / exekuce</button>
+                  <button type="button" class="choice active" data-val="no">Ne</button>
+                  <button type="button" class="choice" data-val="yes">Ano</button>
                 </div>
                 <input type="hidden" id="w_encumbered" value="no" />
-                <span class="hint">Případná zatížení vyřešíme společně před podpisem smluv.</span>
+                <span class="hint">Pokud ano, řekněte nám to hned — posoudíme to individuálně před podpisem.</span>
               </div>
             </div>
 
@@ -142,27 +124,16 @@
             </div>
           </div>
 
-          <!-- STEP 3 — Kontakt a ověření -->
+          <!-- STEP 3 — Kontakt a posouzení -->
           <div class="wizard-step">
             <span class="eyebrow">Krok 3 ze 4</span>
-            <h3 class="mt-3">Kontakt a ověření</h3>
-            <p class="muted mt-2">Produkt cílí na podnikatele a firmy. Údaje slouží k ověření a přípravě nezávazné nabídky.</p>
+            <h3 class="mt-3">Kontakt a posouzení</h3>
+            <p class="muted mt-2">Údaje slouží k přípravě nezávazné orientační nabídky a k posouzení podle pravidel. Nic se neděje bez vašeho souhlasu.</p>
 
             <div class="stack gap-4 mt-5">
-              <div class="field-row">
-                <div class="field">
-                  <label for="w_ico">IČO</label>
-                  <input class="input" type="text" id="w_ico" inputmode="numeric" placeholder="např. 287 41 559" />
-                </div>
-                <div class="field">
-                  <label for="w_company">Název firmy</label>
-                  <input class="input" type="text" id="w_company" placeholder="Dvořák Stavby s.r.o." />
-                </div>
-              </div>
-
               <div class="field">
                 <label for="w_name">Jméno a příjmení</label>
-                <input class="input" type="text" id="w_name" placeholder="Martin Dvořák" />
+                <input class="input" type="text" id="w_name" placeholder="Jan Novák" />
               </div>
 
               <div class="field-row">
@@ -177,7 +148,13 @@
               </div>
 
               <div class="field">
-                <label>Doklady k vozu</label>
+                <label for="w_income">Čistý měsíční příjem (Kč)</label>
+                <input class="input" type="number" id="w_income" placeholder="např. 38 000" min="0" step="1000" />
+                <span class="hint">Pomáhá nám nabídnout jen splátku, kterou v klidu zvládnete.</span>
+              </div>
+
+              <div class="field">
+                <label>Doklady k vozu (nepovinné)</label>
                 <div class="dropzone" role="button" tabindex="0" data-demo="Nahrávání dokladů je v demu vypnuté">
                   <div class="ico-box">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
@@ -187,51 +164,59 @@
                 </div>
               </div>
 
+              <label class="check" style="display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+                <input type="checkbox" id="w_consent" style="margin-top:3px;flex:none" />
+                <span style="font-size:var(--fs-sm)">Souhlasím s posouzením úvěruschopnosti a se zpracováním mých údajů pro přípravu nezávazné orientační nabídky.</span>
+              </label>
+
               <div class="notice" style="align-items:flex-start">
                 <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
                 <div>
-                  <strong>Ověření klienta (KYC/AML).</strong> Před uzavřením smluv provedeme identifikaci klienta dle § 7 zákona o některých opatřeních proti legalizaci výnosů z trestné činnosti (AML zákon), ověříme firmu v rejstříku a oprávnění osoby jednat za společnost. Jde o standardní krok férového a transparentního procesu.
+                  <strong>Posouzení a ověření klienta.</strong> Posouzení úvěruschopnosti je zákonná povinnost i ochrana pro vás — ověřuje, že splátky odpovídají vaší situaci, a chrání vás před nadměrným zadlužením. Před uzavřením smluv provádíme také identifikaci klienta (KYC/AML) dle § 7 zákona o opatřeních proti legalizaci výnosů z trestné činnosti. Jde o standardní krok férového a transparentního procesu.
                 </div>
               </div>
             </div>
 
             <div class="between mt-6">
               <button type="button" class="btn btn-ghost" data-prev>Zpět</button>
-              <button type="button" class="btn btn-primary" data-next>Zobrazit nabídku</button>
+              <button type="button" class="btn btn-primary" data-next>Zobrazit orientační nabídku</button>
             </div>
           </div>
 
-          <!-- STEP 4 — Nabídka -->
+          <!-- STEP 4 — Vaše orientační nabídka -->
           <div class="wizard-step">
             <span class="eyebrow">Krok 4 ze 4</span>
             <h3 class="mt-3">Vaše orientační nabídka</h3>
-            <p class="muted mt-2">Takto by mohlo vaše financování proti hodnotě vozu vypadat. Vůz dál používáte ve svém provozu.</p>
+            <p class="muted mt-2">Takto by vaše financování mohlo vypadat. Vůz přitom dál používáte podle smluvních podmínek.</p>
 
             <div class="card tint pad mt-5">
               <dl class="kv" style="font-size:var(--fs-base);gap:14px 16px">
-                <dt>Odhadovaná tržní hodnota vozu</dt>
+                <dt>Odhadovaná hodnota vozu</dt>
                 <dd class="mono" id="r_market">520 000 Kč</dd>
 
-                <dt>Nabídka výkupu (vyplaceno)</dt>
-                <dd class="mono" id="r_offer" style="color:var(--green)">320 000 Kč</dd>
+                <dt>Získaná částka (vyplaceno)</dt>
+                <dd class="mono" id="r_amount" style="color:var(--green)">320 000 Kč</dd>
 
-                <dt>Měsíční užívací poplatek</dt>
-                <dd class="mono" id="r_monthly">6 900 Kč</dd>
+                <dt>Měsíční splátka</dt>
+                <dd class="mono" id="r_monthly">14 750 Kč</dd>
 
-                <dt>Celkový náklad za období</dt>
-                <dd class="mono" id="r_total">20 700 Kč</dd>
+                <dt>RPSN</dt>
+                <dd class="mono" id="r_rpsn">od 9,9 %</dd>
+
+                <dt>Celková částka k úhradě</dt>
+                <dd class="mono" id="r_total">354 000 Kč</dd>
 
                 <dt>Cena zpětného odkupu</dt>
                 <dd class="mono" id="r_buyback">320 000 Kč</dd>
 
-                <dt>Doba užívání</dt>
-                <dd class="mono" id="r_days">90 dní</dd>
+                <dt>Doba splácení</dt>
+                <dd class="mono" id="r_months">24 měsíců</dd>
               </dl>
 
               <hr class="divider" />
 
               <div class="between">
-                <span class="calc-label">Pravděpodobnost schválení</span>
+                <span class="calc-label">Pravděpodobnost schválení po posouzení</span>
                 <span class="meter-val mono" id="r_approval">92 %</span>
               </div>
               <div class="progress mint mt-2"><span id="r_approvalbar" style="width:92%"></span></div>
@@ -241,14 +226,22 @@
               </p>
             </div>
 
+            <!-- Reprezentativní příklad (povinné u číselného údaje o nákladu) -->
+            <div class="notice mt-5" style="align-items:flex-start">
+              <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
+              <div>
+                <strong>Reprezentativní příklad.</strong> Celková výše úvěru 200 000 Kč, doba trvání 24 měsíců, pevná úroková sazba 8,7 % p.a., RPSN 9,9 %, výše měsíční splátky 9 200 Kč, celková částka splatná spotřebitelem 220 800 Kč.
+              </div>
+            </div>
+
             <div class="disclaimer mt-5">
               <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg></span>
-              <div>Tato kalkulace je pouze orientační a nezávazná. Konečné podmínky stanovíme po kontrole vozu, ověření vlastnictví a posouzení žádosti. Cenu zpětného odkupu i celkový náklad uvidíte v plné výši ještě před podpisem smluv.</div>
+              <div>Tato kalkulace je pouze orientační a nezávazná. Konečná nabídka závisí na posouzení vozidla a vaší úvěruschopnosti. Měsíční splátku, RPSN, celkovou částku k úhradě i cenu zpětného odkupu uvidíte v plné výši ještě před podpisem smluv.</div>
             </div>
 
             <div class="cluster mt-5">
               <a class="btn btn-primary" href="portal.html">Pokračovat do portálu</a>
-              <button type="button" class="btn btn-ghost" data-demo="Domluvíme se na termínu kontroly">Domluvit kontrolu vozu</button>
+              <button type="button" class="btn btn-ghost" data-demo="Domluvíme se na termínu ověření vozu">Domluvit ověření vozu</button>
               <button type="button" class="btn btn-ghost" data-prev>Zpět</button>
             </div>
           </div>
@@ -257,7 +250,7 @@
       </div>
 
       <p class="muted text-center mt-5" style="font-size:var(--fs-xs)">
-        Vyplněním nevzniká žádný závazek. Financování je určeno pro podnikatele a firmy jako provozní kapitál z hodnoty vozu, který dál používáte.
+        Vyplněním nevzniká žádný závazek. Nabídka je nezávazná a závisí na posouzení vozidla a úvěruschopnosti — schválení neslibujeme všem. Auto můžete dál používat podle smluvních podmínek.
       </p>
     </div>
   </section>

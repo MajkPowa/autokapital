@@ -213,26 +213,36 @@
     show(0);
   };
 
+  // Consumer-credit wizard result (annuity splátka + RPSN). Reads w_months / w_amount.
   AK.computeWizardResult = function () {
     const get = id => { const e = document.getElementById(id); return e ? e.value : ""; };
     const segment = get("w_segment") || "Střední třída / kombi";
-    const year = +get("w_year") || 2020;
-    const mileage = +get("w_mileage") || 80000;
+    const year = +get("w_year") || 2019;
+    const mileage = +get("w_mileage") || 100000;
     const condition = get("w_condition") || "dobry";
-    const days = +get("w_days") || 90;
+    const months = +get("w_months") || 24;
     const encumbered = get("w_encumbered") === "yes";
-    const requested = +get("w_requested") || 0;
+    const requested = +get("w_amount") || 0;
     const market = AK.valuation.estimateMarketValue({ segment, year, mileage, condition });
-    const o = AK.valuation.buildOffer({ marketValue: market, requested: requested || undefined, encumbered, days });
+    const maxAvail = round(market * LTV, 5000);
+    const amount = round(clamp(requested || maxAvail, 20000, maxAvail), 5000);
+    const monthly = AK.valuation.monthly(amount, months);
+    const total = monthly * months;
+    let approval = 95;
+    const reqLtv = amount / market * 100;
+    if (reqLtv > 60) approval -= (reqLtv - 60) * 1.5;
+    if (encumbered) approval -= 12;
+    approval = Math.round(clamp(approval, 50, 96));
     const set = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
-    set("r_market", AK.fmt.czk(o.marketValue));
-    set("r_offer", AK.fmt.czk(o.offer));
-    set("r_monthly", AK.fmt.czk(o.monthly));
-    set("r_total", AK.fmt.czk(o.totalFees));
-    set("r_buyback", AK.fmt.czk(o.buyback));
-    set("r_days", o.months * 30 + " dní");
-    set("r_approval", o.approval + " %");
-    const bar = document.getElementById("r_approvalbar"); if (bar) bar.style.width = o.approval + "%";
+    set("r_market", AK.fmt.czk(market));
+    set("r_amount", AK.fmt.czk(amount));
+    set("r_monthly", AK.fmt.czk(monthly));
+    set("r_rpsn", "od " + String(RPSN_PCT).replace(".", ",") + " %");
+    set("r_total", AK.fmt.czk(total));
+    set("r_buyback", AK.fmt.czk(amount));
+    set("r_months", months + " měsíců");
+    set("r_approval", approval + " %");
+    const bar = document.getElementById("r_approvalbar"); if (bar) bar.style.width = approval + "%";
   };
 
   // ---------- Boot ----------

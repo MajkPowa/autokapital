@@ -83,15 +83,15 @@
         <div class="footer-grid">
           <div>
             <a class="brand" href="index.html" aria-label="AutoKapitál — domů">${LOGO_IMG}</a>
-            <p class="mt-3" style="max-width:320px">Peníze z auta. Auto používáte dál. Moderní, férové provozní financování proti hodnotě vozu pro podnikatele a firmy.</p>
-            <span class="pill pill-mint mt-2">${I.shield} Compliance-first · B2B</span>
+            <p class="mt-3" style="max-width:320px">Peníze z auta. Auto používáte dál. Rychlé a férové řešení, když potřebujete peníze, ale auto dál potřebujete pro život.</p>
+            <span class="pill pill-mint mt-2">${I.shield} Rychle · Férově · Bez starostí</span>
           </div>
           <div>
             <h4>Produkty</h4>
             <ul class="footer-links">
-              <li><a href="zadost.html">Financování vozidla</a></li>
+              <li><a href="zadost.html">Peníze z hodnoty auta</a></li>
               <li><a href="index.html#jak-to-funguje">Zpětný odkup</a></li>
-              <li><a href="index.html#pro-koho">Pro firmy a OSVČ</a></li>
+              <li><a href="index.html#pro-koho">Pro domácnosti a řidiče</a></li>
               <li><a href="index.html#kalkulacka">Orientační kalkulačka</a></li>
             </ul>
           </div>
