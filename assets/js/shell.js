@@ -116,7 +116,7 @@
         </div>
         <div class="footer-bottom">
           <span>© 2026 AutoKapitál a.s. — Demoprezentace produktu. Nejedná se o závaznou nabídku ani o právní poradenství.</span>
-          <span>Financování proti hodnotě vozu se zpětným odkupem · Podmínky vždy předem.</span>
+          <span>Dočasný výkup vozu se zpětným odkupem · Podmínky vždy předem.</span>
         </div>
       </div>
     </footer>`;
@@ -137,6 +137,8 @@
       const f = document.getElementById("site-footer");
       if (h) h.outerHTML = headerHTML();
       if (f) f.outerHTML = footerHTML();
+      // injected chrome icons are decorative — hide from assistive tech
+      document.querySelectorAll(".site-header svg, .site-footer svg").forEach(s => s.setAttribute("aria-hidden", "true"));
 
       // active link highlight
       const active = document.body.getAttribute("data-active");

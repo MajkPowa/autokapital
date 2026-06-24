@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoKapitál — Peníze z auta. Auto používáte dál.</title>
-  <meta name="description" content="Rychlé a férové řešení, když potřebujete peníze, ale auto dál potřebujete pro život. Dočasný výkup vozu se smluvně danou možností zpětného odkupu. Vše přehledně a předem." />
+  <title>AutoKapitál — Peníze z hodnoty auta. Auto můžete dál používat.</title>
+  <meta name="description" content="Dočasně od vás vůz odkoupíme, vy ho můžete dál užívat podle smlouvy a máte předem nastavenou možnost zpětného odkupu. Vše vidíte jasně před podpisem." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -21,12 +21,12 @@
       <div class="hero-grid">
         <div>
           <span class="pill pill-mint">Rychle · Férově · Bez starostí</span>
-          <h1 class="hero-headline mt-4 balance">Peníze z auta.<br><span class="accent">Auto používáte dál.</span></h1>
-          <p class="lead" style="max-width:480px">Získejte orientační nabídku podle hodnoty vašeho vozu. Pokud bude vše v pořádku, můžete vůz dál používat a za předem daných podmínek ho získat zpět.</p>
+          <h1 class="hero-headline mt-4 balance">Peníze z hodnoty auta.<br><span class="accent">Auto můžete dál používat.</span></h1>
+          <p class="lead" style="max-width:490px">Dočasně od vás vůz odkoupíme. Vy ho můžete dál užívat podle smlouvy a zároveň máte předem nastavenou možnost odkupu zpět. Vše vidíte jasně před podpisem.</p>
           <div class="hero-chips mt-5">
             <span class="trust-chip"><span class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Rychlé posouzení</span>
             <span class="trust-chip"><span class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Vše víte předem</span>
-            <span class="trust-chip"><span class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Bez ztráty mobility</span>
+            <span class="trust-chip"><span class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Auto používáte dál</span>
           </div>
           <div class="cluster mt-6">
             <a class="btn btn-primary btn-lg" href="zadost.html">Zjistit orientační nabídku</a>
@@ -43,33 +43,27 @@
           </div>
           <div class="mt-4">
             <span class="calc-label">Odhad hodnoty vozu</span>
-            <div class="mono" style="font-size:var(--fs-xl);font-weight:800;color:var(--ink)" id="heroValue">520 000 Kč</div>
-            <input type="range" class="range" id="heroRange" min="100000" max="1200000" step="10000" value="520000" aria-label="Odhad hodnoty vozu" />
+            <div class="mono" style="font-size:var(--fs-xl);font-weight:800;color:var(--ink)" id="heroValue">300 000 Kč</div>
+            <input type="range" class="range" id="heroRange" min="100000" max="1200000" step="10000" value="300000" aria-label="Odhad hodnoty vozu" />
             <div class="range-ends"><span>100 000 Kč</span><span>1 200 000 Kč</span></div>
           </div>
-          <div class="mt-4">
-            <span class="calc-label">Kolik chcete získat</span>
-            <div class="calc-amount mono" id="heroAmount">320 000 Kč</div>
-            <div class="preset-row mt-3">
-              <button class="preset" data-val="80000">80 tis.</button>
-              <button class="preset" data-val="150000">150 tis.</button>
-              <button class="preset active" data-val="320000">320 tis.</button>
-              <button class="preset" data-val="450000">450 tis.</button>
-              <button class="preset" data-val="600000">600 tis.</button>
-              <button class="preset" data-val="800000">800 tis.</button>
+          <hr class="divider" />
+          <div class="between" style="align-items:flex-end">
+            <div>
+              <span class="calc-label">Výkupní nabídka</span>
+              <div class="calc-amount mono" id="heroAmount" style="font-size:var(--fs-2xl)">210 000 Kč</div>
+            </div>
+            <div style="text-align:right">
+              <span class="calc-label">Měsíční rezervační poplatek</span>
+              <div class="mono" style="font-weight:800;color:var(--ink)" id="heroFee">12 000 Kč / měsíc</div>
             </div>
           </div>
-          <div class="field mt-4">
-            <label for="heroTerm">Doba splácení</label>
-            <select class="select" id="heroTerm">
-              <option value="12">12 měsíců</option>
-              <option value="24" selected>24 měsíců</option>
-              <option value="36">36 měsíců</option>
-              <option value="48">48 měsíců</option>
-            </select>
+          <div class="between mt-3" style="font-size:var(--fs-sm)">
+            <span class="muted">Cena zpětného odkupu</span>
+            <span class="mono" style="font-weight:700;color:var(--green)" id="heroBuyback">210 000 Kč</span>
           </div>
-          <a class="btn btn-primary btn-block btn-lg mt-5" href="zadost.html">Zjistit orientační nabídku</a>
-          <p class="muted mb-0 mt-3" style="font-size:var(--fs-xs);text-align:center">🔒 Nezávazné a bezpečné · zabere to 2 minuty</p>
+          <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html">Zjistit orientační nabídku</a>
+          <p class="muted mb-0 mt-3" style="font-size:var(--fs-xs);text-align:center">🔒 Nezávazné · výkup, poplatek i cena odkupu předem · <a href="compliance.html">jak to funguje férově</a></p>
         </div>
       </div>
     </div>
@@ -82,22 +76,22 @@
         <div class="card pad feature hover">
           <div class="ico-img"><img src="Public/icons/icon-zpetny-odkup.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
           <h3>Auto dál používáte</h3>
-          <p>Vůz vám může zůstat k běžnému používání podle smlouvy. Bez okamžité ztráty mobility.</p>
+          <p>Vůz můžete dál využívat pro běžný život podle smlouvy o užívání vozidla.</p>
         </div>
         <div class="card pad feature hover">
           <div class="ico-img"><img src="Public/icons/icon-dokumenty.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
           <h3>Vše víte předem</h3>
-          <p>Nabídka, podmínky i možnost zpětného odkupu jsou jasně uvedené. Žádná překvapení.</p>
-        </div>
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-rychlost.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Rychlé posouzení</h3>
-          <p>Orientační výsledek získáte online během chvíle. Bez front a papírování.</p>
+          <p>Výkupní cena, poplatek, termíny i možnost zpětného odkupu jsou jasně uvedené.</p>
         </div>
         <div class="card pad feature hover">
           <div class="ico-img"><img src="Public/icons/icon-handshake.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Bez inzerce a vyjednávání</h3>
-          <p>Neřešíte bazary, kupce ani zdlouhavý prodej auta cizímu člověku.</p>
+          <h3>Bez inzerce a smlouvání</h3>
+          <p>Nemusíte hledat kupce ani řešit prodej přes bazar.</p>
+        </div>
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-portal.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
+          <h3>Přehled v klientské zóně</h3>
+          <p>Vidíte dokumenty, termíny, poplatky i stav zpětného odkupu.</p>
         </div>
       </div>
     </div>
@@ -108,17 +102,17 @@
     <div class="container">
       <div class="section-head center">
         <span class="eyebrow">Jak to funguje</span>
-        <h2 class="mt-3">Od zadání auta po peníze na účtu</h2>
+        <h2 class="mt-3">Dočasný výkup vozu se zpětným odkupem</h2>
         <p class="lead">Jednoduchý a srozumitelný proces. V každém kroku víte, co se děje a co bude následovat.</p>
       </div>
       <div class="steps horizontal">
-        <div class="step"><div class="step-num">1</div><h4>Zadáte informace o autě</h4><p>Značka, rok, nájezd a pár údajů o vaší situaci.</p></div>
-        <div class="step"><div class="step-num">2</div><h4>Dostanete orientační nabídku</h4><p>Online a hned — podle odhadované hodnoty vozu.</p></div>
-        <div class="step"><div class="step-num">3</div><h4>Ověříme vozidlo a vaši situaci</h4><p>Stav vozu, vlastnictví a posouzení úvěruschopnosti.</p></div>
-        <div class="step"><div class="step-num">4</div><h4>Podepíšete dokumenty</h4><p>Předsmluvní informace a smlouvy — vše jasně.</p></div>
-        <div class="step"><div class="step-num">5</div><h4>Peníze odejdou po schválení</h4><p>Zpravidla do 24 hodin na váš účet.</p></div>
-        <div class="step"><div class="step-num">6</div><h4>Auto používáte dál</h4><p>Vůz vám zůstává k běžnému používání podle smlouvy.</p></div>
-        <div class="step"><div class="step-num">7</div><h4>Hlídáte vše v portálu</h4><p>Termíny, platby i zpětný odkup přehledně na jednom místě.</p></div>
+        <div class="step"><div class="step-num">1</div><h4>Zadáte údaje o vozidle</h4><p>Značka, rok, nájezd a pár základních informací.</p></div>
+        <div class="step"><div class="step-num">2</div><h4>Dostanete výkupní nabídku</h4><p>Orientačně a hned — podle odhadované hodnoty vozu.</p></div>
+        <div class="step"><div class="step-num">3</div><h4>Ověříme vůz a dokumenty</h4><p>Stav vozidla, vlastnictví a případné zatížení.</p></div>
+        <div class="step"><div class="step-num">4</div><h4>Podepíšeme smlouvy</h4><p>Kupní smlouva, smlouva o užívání a možnost zpětného odkupu.</p></div>
+        <div class="step"><div class="step-num">5</div><h4>Pošleme peníze</h4><p>Výkupní cenu odešleme po schválení na váš účet.</p></div>
+        <div class="step"><div class="step-num">6</div><h4>Auto používáte dál</h4><p>Vůz dál užíváte podle smluvních podmínek.</p></div>
+        <div class="step"><div class="step-num">7</div><h4>Uplatníte zpětný odkup</h4><p>Pokud chcete vůz zpět, využijete sjednanou možnost odkupu.</p></div>
       </div>
     </div>
   </section>
@@ -145,7 +139,7 @@
         <div class="card pad feature hover">
           <div class="ico-img"><img src="Public/icons/icon-zpetny-odkup.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
           <h3>Nechcete auto prodat natrvalo</h3>
-          <p>Auto má pro vás praktickou hodnotu, ale je v něm uložený i kapitál.</p>
+          <p>Auto má pro vás praktickou hodnotu — a chcete mít možnost získat ho zpět.</p>
         </div>
         <div class="card pad feature hover">
           <div class="ico-img"><img src="Public/icons/icon-stitek-ochrana.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
@@ -162,65 +156,48 @@
       <div class="card calc-large pad-lg" style="padding:0">
         <div class="calc-inputs">
           <span class="eyebrow">Kalkulačka</span>
-          <h2 class="mt-2">Nezávazná orientační nabídka</h2>
-          <p class="muted">Zjistěte, kolik můžete získat z hodnoty svého vozu.</p>
-          <div class="field-row mt-5">
-            <div class="field">
-              <label for="bigRange">Kolik chcete získat</label>
-              <div class="mono" style="font-size:var(--fs-lg);font-weight:800;color:var(--green)" id="bigAmount">320 000 Kč</div>
-            </div>
-            <div class="field">
-              <label for="bigValue">Odhad hodnoty vozu</label>
-              <input class="input mono" id="bigValue" type="number" value="520000" step="10000" min="100000" />
-            </div>
+          <h2 class="mt-2">Orientační výkupní nabídka</h2>
+          <p class="muted">Zadejte odhad hodnoty vozu a uvidíte výkupní cenu i měsíční rezervační poplatek.</p>
+          <div class="field mt-5">
+            <label for="bigValue">Odhad hodnoty vozu (Kč)</label>
+            <input class="input mono" id="bigValue" type="number" value="300000" step="10000" min="50000" />
+            <span class="hint">Orientačně — přesnou hodnotu určíme po ověření vozu.</span>
           </div>
-          <input type="range" class="range" id="bigRange" min="50000" max="900000" step="10000" value="320000" aria-label="Kolik chcete získat" />
-          <div class="range-ends"><span>50 000 Kč</span><span>900 000 Kč</span></div>
-          <div class="field-row mt-4">
-            <div class="field">
-              <label for="bigTerm">Doba splácení</label>
-              <select class="select" id="bigTerm">
-                <option value="12">12 měsíců</option>
-                <option value="24" selected>24 měsíců</option>
-                <option value="36">36 měsíců</option>
-                <option value="48">48 měsíců</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="bigType">Typ vozidla</label>
-              <select class="select" id="bigType">
-                <option value="kombi">Osobní / kombi</option>
-                <option value="hatchback">Malé / hatchback</option>
-                <option value="suv">SUV</option>
-                <option value="premium">Prémiové</option>
-              </select>
-            </div>
+          <div class="field mt-4">
+            <label for="bigTerm">Doba rezervace zpětného odkupu</label>
+            <select class="select" id="bigTerm">
+              <option value="1">1 měsíc</option>
+              <option value="3" selected>3 měsíce</option>
+              <option value="6">6 měsíců</option>
+              <option value="12">12 měsíců</option>
+            </select>
           </div>
+          <p class="muted mt-4 mb-0" style="font-size:var(--fs-sm)">Měsíční rezervační poplatek za možnost zpětného odkupu a správu smlouvy je 4 % z hodnoty vozu. Přesnou částku v Kč vidíte vždy před podpisem.</p>
         </div>
         <div class="calc-out">
           <div class="result-stat">
-            <div class="ro-label">Orientační měsíční splátka</div>
-            <div class="ro-val mono" id="bigMonthly">14 750 Kč</div>
+            <div class="ro-label">Výkupní nabídka (vyplatíme vám)</div>
+            <div class="ro-val mono" id="bigAmount">210 000 Kč</div>
           </div>
           <div class="result-grid">
-            <div class="result-stat"><div class="ro-label">RPSN</div><div class="ro-val mono" id="bigRpsn" style="font-size:var(--fs-lg)">od 9,9 %</div></div>
-            <div class="result-stat"><div class="ro-label">Získáte až</div><div class="ro-val mono" id="bigMax" style="font-size:var(--fs-lg)">322 000 Kč</div></div>
+            <div class="result-stat"><div class="ro-label">Měsíční rezervační poplatek</div><div class="ro-val mono" id="bigFee" style="font-size:var(--fs-lg)">12 000 Kč</div></div>
+            <div class="result-stat"><div class="ro-label">Cena zpětného odkupu</div><div class="ro-val mono" id="bigBuyback" style="font-size:var(--fs-lg)">210 000 Kč</div></div>
           </div>
           <div class="result-stat" style="border-top:1px solid rgba(255,255,255,0.18);padding-top:var(--sp-3)">
-            <div class="ro-label">Celková částka k úhradě</div>
-            <div class="ro-val mono" id="bigTotal" style="font-size:var(--fs-lg)">354 000 Kč</div>
+            <div class="ro-label">Poplatek za zvolenou dobu</div>
+            <div class="ro-val mono" id="bigPeriod" style="font-size:var(--fs-lg)">36 000 Kč</div>
           </div>
           <a class="btn btn-white btn-block btn-lg" href="zadost.html">Zjistit orientační nabídku</a>
-          <p class="mb-0" style="font-size:var(--fs-xs);color:#A9D3C2;text-align:center">🔒 Vidíte splátku, RPSN i celkovou částku k úhradě</p>
+          <p class="mb-0" style="font-size:var(--fs-xs);color:#A9D3C2;text-align:center">🔒 Výkup, poplatek i cena odkupu — vše v Kč a předem</p>
         </div>
       </div>
 
-      <!-- Reprezentativní příklad + disclaimer (spotřebitelský úvěr) -->
+      <!-- Ukázkový příklad výkupu + disclaimer -->
       <div class="notice mt-5" style="align-items:flex-start">
         <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
         <div>
-          <strong>Reprezentativní příklad.</strong> Celková výše úvěru 200 000 Kč, doba trvání 24 měsíců, pevná úroková sazba 8,7 % p.a., RPSN 9,9 %, měsíční splátka 9 200 Kč, celková částka splatná spotřebitelem 220 800 Kč.
-          <span style="display:block;margin-top:6px;color:var(--muted)">Jde o orientační výpočet, ne o závaznou nabídku. Konečná nabídka závisí na posouzení vozidla a vaší úvěruschopnosti.</span>
+          <strong>Ukázkový příklad.</strong> Odhad hodnoty vozu 300 000 Kč · výkupní nabídka 210 000 Kč · měsíční rezervační poplatek 12 000 Kč · poplatek za 3 měsíce 36 000 Kč · cena zpětného odkupu 210 000 Kč · auto používáte dál podle smlouvy.
+          <span style="display:block;margin-top:6px;color:var(--muted)">Jde o orientační výpočet, ne o závaznou nabídku. Konečná nabídka závisí na ověření stavu a dokladů vozidla.</span>
         </div>
       </div>
     </div>
@@ -236,23 +213,23 @@
           <ul class="stack gap-4 mt-5" style="list-style:none">
             <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
               <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Vše víte předem.</strong> <span class="muted">Nabídku, splátky, RPSN, celkovou částku i cenu zpětného odkupu vidíte před podpisem.</span></span>
+              <span><strong>Vše víte předem.</strong> <span class="muted">Výkupní cenu, měsíční rezervační poplatek v Kč i cenu zpětného odkupu vidíte před podpisem.</span></span>
             </li>
             <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
               <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Auto vám zůstává.</strong> <span class="muted">Vůz dál používáte pro běžný život podle smluvních podmínek.</span></span>
+              <span><strong>Auto můžete dál používat.</strong> <span class="muted">Po výkupu jste provozovatel a vůz dál užíváte pro běžný život podle smlouvy.</span></span>
             </li>
             <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
               <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Posouzení podle pravidel.</strong> <span class="muted">Ověřujeme úvěruschopnost, abyste spláceli jen to, co zvládnete.</span></span>
+              <span><strong>Možnost odkupu sjednaná předem.</strong> <span class="muted">Cena i podmínky zpětného odkupu jsou ve smlouvě — bez sankcí za předčasný odkup.</span></span>
             </li>
             <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
               <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Zpětný odkup kdykoliv.</strong> <span class="muted">Vůz můžete odkoupit zpět za předem známou cenu — bez sankcí za předčasný odkup.</span></span>
+              <span><strong>Bez inzerce a smlouvání.</strong> <span class="muted">Žádné čekání na kupce, žádný bazar a žádné dohadování o ceně.</span></span>
             </li>
             <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
               <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Klientský portál.</strong> <span class="muted">Termíny, platby a dokumenty přehledně 24/7, s upozorněním před splatností.</span></span>
+              <span><strong>Přehled v klientské zóně.</strong> <span class="muted">Dokumenty, termíny, poplatky a stav odkupu 24/7, s upozorněním předem.</span></span>
             </li>
           </ul>
         </div>
@@ -267,14 +244,14 @@
   <section class="section alt" id="portal">
     <div class="container">
       <div class="section-head center">
-        <span class="eyebrow">Klientský portál</span>
+        <span class="eyebrow">Klientská zóna</span>
         <h2 class="mt-3">Vaše přehledná osobní zóna</h2>
       </div>
-      <p class="lead text-center" style="max-width:680px;margin:0 auto var(--sp-6)">Moje žádost, moje auto, dokumenty, termíny, platby i cena zpětného odkupu — vše přehledně na jednom místě, s upozorněním před splatností.</p>
+      <p class="lead text-center" style="max-width:680px;margin:0 auto var(--sp-6)">Moje žádost, moje auto, dokumenty, termíny, rezervační poplatky i cena zpětného odkupu — vše přehledně na jednom místě, s upozorněním před splatností.</p>
       <div class="ui-frame">
-        <img src="assets/img/portal-ui.webp" alt="Náhled klientského portálu AutoKapitál — přehled žádosti, plateb a dokumentů" width="1280" height="720" loading="lazy" />
+        <img src="assets/img/portal-ui.webp" alt="Náhled klientské zóny AutoKapitál — přehled výkupu, poplatků a dokumentů" width="1280" height="720" loading="lazy" />
       </div>
-      <div class="text-center mt-6"><a class="btn btn-primary btn-lg" href="portal.html">Přihlásit do portálu</a></div>
+      <div class="text-center mt-6"><a class="btn btn-primary btn-lg" href="portal.html">Přihlásit do klientské zóny</a></div>
     </div>
   </section>
 
@@ -288,27 +265,27 @@
       <div class="faq">
         <div class="faq-item">
           <button class="faq-q" type="button">Mohu auto opravdu dál používat?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Ano. Vozidlo můžete dál používat pro běžný život podle smluvních podmínek. Po dobu financování je vlastníkem AutoKapitál a.s., vy jste provozovatel.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Ano. Po výkupu je vlastníkem AutoKapitál a.s., vy jste provozovatel a vůz můžete dál užívat pro běžný život podle smlouvy o užívání vozidla.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" type="button">Kdo bude vlastníkem vozidla?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Po dobu financování je vlastníkem AutoKapitál a.s. Vy zůstáváte provozovatelem a máte smluvně danou možnost vůz získat zpět za předem známých podmínek.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Po výkupu je vlastníkem AutoKapitál a.s. Vy zůstáváte provozovatelem a máte předem sjednanou možnost zpětného odkupu za podmínek uvedených ve smlouvě.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" type="button">Jak funguje zpětný odkup?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Cenu i podmínky zpětného odkupu znáte předem ze smlouvy. Odkup můžete zahájit kdykoliv v klientském portálu — předčasný odkup vás nijak nepenalizuje.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Cenu i podmínky zpětného odkupu máte uvedené ve smlouvě předem. Možnost odkupu si držíte úhradou měsíčního rezervačního poplatku a odkup zahájíte kdykoliv v klientské zóně.</div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button">Kolik zaplatím celkem?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Před podpisem vidíte kompletní reprezentativní příklad: získanou částku, dobu, úrokovou sazbu, RPSN, výši splátek i celkovou částku k úhradě. Žádné skryté poplatky.</div></div>
+          <button class="faq-q" type="button">Co je měsíční rezervační poplatek?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Poplatek za rezervaci možnosti zpětného odkupu a správu smlouvy — 4 % z odhadní hodnoty vozu měsíčně. Přesnou částku v Kč vidíte vždy před podpisem.</div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button">Je nutné doložit příjem?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">U spotřebitelského financování ano. Provádíme posouzení úvěruschopnosti podle pravidel, abychom nabídli jen to, co zvládnete bez problémů splácet.</div></div>
+          <button class="faq-q" type="button">Co když rezervační poplatek nezaplatím?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Možnost zpětného odkupu je vázaná na řádnou úhradu poplatku. Okamžik, kdy právo na odkup zaniká, máte jasně uvedený ve smlouvě — ozvěte se nám prosím včas, hledáme řešení.</div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button">Proč probíhá posouzení?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Posouzení úvěruschopnosti je zákonná povinnost i ochrana pro vás — ověřuje, že splátky odpovídají vaší situaci a chrání vás před nadměrným zadlužením.</div></div>
+          <button class="faq-q" type="button">Kdo platí pojištění, servis a STK?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
+          <div class="faq-a"><div class="faq-a-inner">Podmínky užívání (pojištění, servis, pokuty, škody, STK i případné limity nájezdu) jsou jasně uvedené ve smlouvě o užívání vozidla.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" type="button">Co když je auto v leasingu nebo úvěru?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
@@ -325,10 +302,10 @@
         <div class="grid grid-2" style="align-items:center;gap:var(--sp-6)">
           <div>
             <h2 style="color:#fff">Když potřebujete peníze rychle — ale auto ještě ne.</h2>
-            <p class="mt-3" style="color:#CFE9DD">Zjistěte přehledně, kolik můžete získat z hodnoty auta. Orientační nabídka je nezávazná a zdarma.</p>
+            <p class="mt-3" style="color:#CFE9DD">Zjistěte přehledně, kolik za vaše auto nabídneme. Orientační nabídka je nezávazná a zdarma.</p>
             <ul class="checklist mt-4" style="color:#EAF6F0">
               <li><span class="ico" style="background:#fff;color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Nezávazná nabídka zdarma</li>
-              <li><span class="ico" style="background:#fff;color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Podmínky i cena odkupu předem</li>
+              <li><span class="ico" style="background:#fff;color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Výkup, poplatek i cena odkupu předem</li>
               <li><span class="ico" style="background:#fff;color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Auto používáte dál</li>
             </ul>
             <a class="btn btn-white btn-lg mt-4" href="zadost.html">Zjistit orientační nabídku</a>

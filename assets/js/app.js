@@ -1,7 +1,9 @@
 /* =========================================================================
-   AutoKapitál — Shared app logic (green brand)
-   Formatting, toast, tabs, sidebar, valuation, hero + section calculators,
-   wizard, FAQ accordion.
+   AutoKapitál — Shared app logic (dočasný výkup vozu se zpětným odkupem)
+   Formatting, toast, tabs, sidebar, výkup calculators, wizard, FAQ.
+   Model: výkupní cena = 70 % odhadní hodnoty; měsíční rezervační poplatek = 4 %
+   z hodnoty vozu; cena zpětného odkupu = výkupní cena (podle smlouvy).
+   NENÍ úvěr — žádné RPSN, úroky ani splátky.
    ========================================================================= */
 (function () {
   "use strict";
@@ -9,8 +11,8 @@
 
   // ---------- Formatting ----------
   AK.fmt = {
-    czk(n) { return Math.round(n).toLocaleString("cs-CZ").replace(/ /g, " ") + " Kč"; },
-    num(n) { return Math.round(n).toLocaleString("cs-CZ").replace(/ /g, " "); },
+    czk(n) { return Math.round(n).toLocaleString("cs-CZ").replace(/ /g, " ") + " Kč"; },
+    num(n) { return Math.round(n).toLocaleString("cs-CZ").replace(/ /g, " "); },
     pct(n) { return Math.round(n) + " %"; },
   };
   const round = (n, to) => Math.round(n / to) * to;
@@ -29,56 +31,42 @@
     setTimeout(() => t.remove(), 3000);
   };
 
-  // ---------- Valuation engine ----------
-  const LTV = 0.62;
-  const RPSN_PCT = 9.9;            // indikativní RPSN (orientační)
-  const FEE_BY_DAYS = { 30: 0.026, 90: 0.0215, 180: 0.0195 };
+  // ---------- Výkup engine ----------
+  const VYKUP_RATE = 0.70;   // výkupní cena = 70 % odhadní hodnoty
+  const FEE_RATE = 0.04;     // měsíční rezervační poplatek = 4 % z hodnoty vozu
   const COND_FACTOR = { vyborny: 1.0, dobry: 0.93, prumerny: 0.84, horsi: 0.72 };
-  // Robust segment lookup: accept both display labels and short slugs.
   const SEGMENT_MAP = {
     "hatchback": "Malé / hatchback", "male": "Malé / hatchback",
     "kombi": "Střední třída / kombi", "stredni": "Střední třída / kombi",
     "suv": "SUV",
-    "dodavka": "Dodávka / užitkové", "uzitkove": "Dodávka / užitkové",
+    "mpv": "Rodinné MPV / van", "van": "Rodinné MPV / van",
     "premium": "Prémiové / vyšší třída", "premiove": "Prémiové / vyšší třída",
   };
 
   AK.valuation = {
-    LTV, RPSN_PCT,
+    VYKUP_RATE, FEE_RATE,
     resolveSegment(s) { return (AK.segmentBase && AK.segmentBase[s]) ? s : (SEGMENT_MAP[s] || "Střední třída / kombi"); },
     estimateMarketValue({ segment, year, mileage, condition }) {
       const seg = this.resolveSegment(segment);
-      const base = (AK.segmentBase && AK.segmentBase[seg]) || 720000;
-      const age = Math.max(0, 2026 - (year || 2020));
+      const base = (AK.segmentBase && AK.segmentBase[seg]) || 560000;
+      const age = Math.max(0, 2026 - (year || 2018));
       const ageFactor = Math.pow(0.88, age);
-      const mileageFactor = clamp(1 - (mileage || 80000) / 280000, 0.45, 1);
+      const mileageFactor = clamp(1 - (mileage || 100000) / 280000, 0.45, 1);
       const condFactor = COND_FACTOR[condition] || 0.9;
       return round(base * ageFactor * mileageFactor * condFactor, 5000);
     },
-    // Indicative monthly payment (annuity) at RPSN.
-    monthly(principal, months, annualPct) {
-      const r = (annualPct == null ? RPSN_PCT : annualPct) / 100 / 12;
-      const n = months || 12;
-      if (r === 0) return principal / n;
-      return round(principal * r / (1 - Math.pow(1 + r, -n)), 50);
+    // Dočasný výkup: výkupní cena + měsíční rezervační poplatek. Cena zpětného odkupu = výkupní cena.
+    buildOffer({ marketValue, encumbered }) {
+      let vykup = marketValue * VYKUP_RATE;
+      if (encumbered) vykup *= 0.9;
+      vykup = round(vykup, 5000);
+      const fee = round(marketValue * FEE_RATE, 100);
+      return {
+        marketValue, vykup, fee, buyback: vykup,
+        fee1: fee, fee3: fee * 3, fee6: fee * 6, fee12: fee * 12,
+      };
     },
-    // Transparent offer (sale-&-use-back). Buyback = offer (par). Usage cost = sum of fees.
-    buildOffer({ marketValue, requested, encumbered, days }) {
-      let maxOffer = marketValue * LTV;
-      if (encumbered) maxOffer *= 0.9;
-      maxOffer = round(maxOffer, 5000);
-      const offer = round(clamp(requested || maxOffer, 20000, maxOffer), 5000);
-      const rate = FEE_BY_DAYS[days] || FEE_BY_DAYS[90];
-      const months = Math.max(1, Math.round((days || 90) / 30));
-      const monthly = round(offer * rate, 100);
-      const totalFees = monthly * months;
-      const requestedLtv = (requested ? requested / marketValue : LTV) * 100;
-      let approval = 96;
-      if (requestedLtv > 60) approval -= (requestedLtv - 60) * 1.6;
-      if (encumbered) approval -= 14;
-      approval = Math.round(clamp(approval, 48, 97));
-      return { marketValue, offer, monthly, months, totalFees, buyback: offer, approval, maxOffer, ltvPct: Math.round((offer / marketValue) * 100) };
-    },
+    feeForMonths(marketValue, months) { return round(marketValue * FEE_RATE, 100) * (months || 1); },
   };
 
   // ---------- Tabs ----------
@@ -123,51 +111,46 @@
     }
   };
 
-  // ---------- Hero calculator (Odhad hodnoty vozu slider + Požadovaná částka presets) ----------
+  // ---------- Hero calculator (odhad hodnoty → výkupní nabídka + rezervační poplatek) ----------
   AK.initHeroCalc = function () {
     const range = document.getElementById("heroRange");
     if (!range) return;
     const elValue = document.getElementById("heroValue");
-    const elAmount = document.getElementById("heroAmount");
-    const presets = document.querySelectorAll(".preset[data-val]");
-    let requested = +(document.querySelector(".preset.active")?.dataset.val) || 350000;
+    const elAmount = document.getElementById("heroAmount");   // výkupní nabídka
+    const elFee = document.getElementById("heroFee");         // měsíční rezervační poplatek
+    const elBuyback = document.getElementById("heroBuyback"); // cena zpětného odkupu
     function render() {
-      if (elValue) elValue.textContent = AK.fmt.czk(+range.value);
-      if (elAmount) elAmount.textContent = AK.fmt.czk(requested);
-      presets.forEach(p => p.classList.toggle("active", +p.dataset.val === requested));
+      const value = +range.value;
+      const o = AK.valuation.buildOffer({ marketValue: value });
+      if (elValue) elValue.textContent = AK.fmt.czk(value);
+      if (elAmount) elAmount.textContent = AK.fmt.czk(o.vykup);
+      if (elFee) elFee.textContent = AK.fmt.czk(o.fee) + " / měsíc";
+      if (elBuyback) elBuyback.textContent = AK.fmt.czk(o.buyback);
     }
     range.addEventListener("input", render);
-    presets.forEach(p => p.addEventListener("click", () => { requested = +p.dataset.val; render(); }));
     render();
   };
 
   // ---------- Section 05 big calculator ----------
   AK.initBigCalc = function () {
-    const range = document.getElementById("bigRange");
-    if (!range) return;
-    const elAmount = document.getElementById("bigAmount");
-    const elValue = document.getElementById("bigValue");          // input (odhad hodnoty vozu)
-    const elTerm = document.getElementById("bigTerm");            // select months
-    const elType = document.getElementById("bigType");            // select segment
-    const elMonthly = document.getElementById("bigMonthly");
-    const elRpsn = document.getElementById("bigRpsn");
-    const elMax = document.getElementById("bigMax");
-    const elTotal = document.getElementById("bigTotal");
+    const valEl = document.getElementById("bigValue");        // odhad hodnoty (input or range)
+    if (!valEl) return;
+    const elAmount = document.getElementById("bigAmount");    // výkupní nabídka
+    const elFee = document.getElementById("bigFee");          // měsíční rezervační poplatek
+    const elTerm = document.getElementById("bigTerm");        // doba (měsíce)
+    const elPeriod = document.getElementById("bigPeriod");    // poplatek za zvolenou dobu
+    const elBuyback = document.getElementById("bigBuyback");  // cena zpětného odkupu
     function render() {
-      const value = +(elValue && elValue.value) || 620000;
-      const maxAvail = round(value * LTV, 5000);
-      let amount = +range.value;
-      amount = Math.min(amount, maxAvail);
-      const months = +(elTerm && elTerm.value) || 12;
-      const monthly = AK.valuation.monthly(amount, months);
-      if (elAmount) elAmount.textContent = AK.fmt.czk(amount);
-      if (elMonthly) elMonthly.textContent = AK.fmt.czk(monthly);
-      if (elRpsn) elRpsn.textContent = "od " + String(RPSN_PCT).replace(".", ",") + " %";
-      if (elMax) elMax.textContent = AK.fmt.czk(maxAvail);
-      if (elTotal) elTotal.textContent = AK.fmt.czk(monthly * months);
+      const value = +valEl.value || 300000;
+      const o = AK.valuation.buildOffer({ marketValue: value });
+      const months = +(elTerm && elTerm.value) || 3;
+      if (elAmount) elAmount.textContent = AK.fmt.czk(o.vykup);
+      if (elFee) elFee.textContent = AK.fmt.czk(o.fee);
+      if (elPeriod) elPeriod.textContent = AK.fmt.czk(o.fee * months);
+      if (elBuyback) elBuyback.textContent = AK.fmt.czk(o.buyback);
     }
-    range.addEventListener("input", render);
-    [elValue, elTerm, elType].forEach(el => el && el.addEventListener("input", render));
+    valEl.addEventListener("input", render);
+    if (elTerm) elTerm.addEventListener("input", render);
     render();
   };
 
@@ -213,34 +196,30 @@
     show(0);
   };
 
-  // Consumer-credit wizard result (annuity splátka + RPSN). Reads w_months / w_amount.
+  // Result ids: r_market, r_amount (výkupní nabídka), r_fee (měsíční poplatek),
+  // r_period (poplatek za zvolenou dobu), r_months, r_buyback (cena zpětného odkupu), r_approval(+bar)
   AK.computeWizardResult = function () {
     const get = id => { const e = document.getElementById(id); return e ? e.value : ""; };
     const segment = get("w_segment") || "Střední třída / kombi";
-    const year = +get("w_year") || 2019;
-    const mileage = +get("w_mileage") || 100000;
+    const year = +get("w_year") || 2018;
+    const mileage = +get("w_mileage") || 120000;
     const condition = get("w_condition") || "dobry";
-    const months = +get("w_months") || 24;
+    const months = +get("w_months") || 3;
     const encumbered = get("w_encumbered") === "yes";
-    const requested = +get("w_amount") || 0;
     const market = AK.valuation.estimateMarketValue({ segment, year, mileage, condition });
-    const maxAvail = round(market * LTV, 5000);
-    const amount = round(clamp(requested || maxAvail, 20000, maxAvail), 5000);
-    const monthly = AK.valuation.monthly(amount, months);
-    const total = monthly * months;
+    const o = AK.valuation.buildOffer({ marketValue: market, encumbered });
     let approval = 95;
-    const reqLtv = amount / market * 100;
-    if (reqLtv > 60) approval -= (reqLtv - 60) * 1.5;
-    if (encumbered) approval -= 12;
-    approval = Math.round(clamp(approval, 50, 96));
+    if (condition === "prumerny") approval -= 8;
+    if (condition === "horsi") approval -= 20;
+    if (encumbered) approval -= 18;
+    approval = Math.round(clamp(approval, 45, 96));
     const set = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
-    set("r_market", AK.fmt.czk(market));
-    set("r_amount", AK.fmt.czk(amount));
-    set("r_monthly", AK.fmt.czk(monthly));
-    set("r_rpsn", "od " + String(RPSN_PCT).replace(".", ",") + " %");
-    set("r_total", AK.fmt.czk(total));
-    set("r_buyback", AK.fmt.czk(amount));
-    set("r_months", months + " měsíců");
+    set("r_market", AK.fmt.czk(o.marketValue));
+    set("r_amount", AK.fmt.czk(o.vykup));
+    set("r_fee", AK.fmt.czk(o.fee));
+    set("r_period", AK.fmt.czk(o.fee * months));
+    set("r_months", months + (months === 1 ? " měsíc" : (months < 5 ? " měsíce" : " měsíců")));
+    set("r_buyback", AK.fmt.czk(o.buyback));
     set("r_approval", approval + " %");
     const bar = document.getElementById("r_approvalbar"); if (bar) bar.style.width = approval + "%";
   };

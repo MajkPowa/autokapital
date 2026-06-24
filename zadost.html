@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoKapitál — Zjistit orientační nabídku</title>
-  <meta name="description" content="Zjistěte nezávazně a zdarma, kolik můžete získat z hodnoty svého auta. Měsíční splátku, RPSN, celkovou částku k úhradě i cenu zpětného odkupu uvidíte předem. Auto přitom dál používáte." />
+  <title>AutoKapitál — Zjistit orientační výkupní nabídku</title>
+  <meta name="description" content="Zjistěte nezávazně a zdarma, kolik vám za vaše auto nabídneme. Výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu uvidíte předem. Auto přitom dál používáte podle smluvních podmínek." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,19 +14,19 @@
 <body data-shell="marketing" data-active="">
   <div id="site-header"></div>
 
-  <!-- ===================== ŽÁDOST / ORIENTAČNÍ NABÍDKA ===================== -->
+  <!-- ===================== ŽÁDOST / ORIENTAČNÍ VÝKUPNÍ NABÍDKA ===================== -->
   <section class="section full-bleed-bg">
     <div class="container narrow">
       <div class="section-head center">
-        <span class="eyebrow">Orientační nabídka</span>
-        <h1 class="mt-3">Zjistěte, kolik můžete získat z hodnoty auta</h1>
-        <p class="lead">Vyplnění je nezávazné a zdarma. Během chvíle uvidíte orientační získanou částku, měsíční splátku, RPSN, celkovou částku k úhradě i předem známou cenu zpětného odkupu — auto přitom dál používáte podle smluvních podmínek.</p>
+        <span class="eyebrow">Orientační výkupní nabídka</span>
+        <h1 class="mt-3">Zjistěte, kolik vám za vaše auto nabídneme</h1>
+        <p class="lead">Vyplnění je nezávazné a zdarma. Během chvíle uvidíte orientační výkupní cenu, měsíční rezervační poplatek v Kč i předem známou cenu zpětného odkupu — auto přitom dál používáte podle smluvních podmínek.</p>
       </div>
 
       <!-- Wizard progress -->
       <div class="wizard-progress" aria-hidden="true">
         <div class="wp active"><div class="bar"></div><div class="lbl">Vozidlo</div></div>
-        <div class="wp"><div class="bar"></div><div class="lbl">Financování</div></div>
+        <div class="wp"><div class="bar"></div><div class="lbl">Rezervace odkupu</div></div>
         <div class="wp"><div class="bar"></div><div class="lbl">Kontakt</div></div>
         <div class="wp"><div class="bar"></div><div class="lbl">Nabídka</div></div>
       </div>
@@ -39,27 +39,28 @@
           <div class="wizard-step active">
             <span class="eyebrow">Krok 1 ze 4</span>
             <h3 class="mt-3">Vaše auto</h3>
-            <p class="muted mt-2">Stačí pár základních údajů. Z nich uděláme orientační odhad hodnoty vozu.</p>
+            <p class="muted mt-2">Stačí pár základních údajů. Z nich uděláme orientační odhad hodnoty vozu a výkupní nabídku.</p>
 
             <div class="stack gap-4 mt-5">
               <div class="field">
                 <label for="w_segment">Typ vozidla</label>
                 <select class="select" id="w_segment">
                   <option value="hatchback">Malé / hatchback</option>
-                  <option value="kombi" selected>Osobní / kombi</option>
+                  <option value="kombi" selected>Střední třída / kombi</option>
                   <option value="suv">SUV</option>
-                  <option value="premium">Prémiové</option>
+                  <option value="mpv">Rodinné MPV / van</option>
+                  <option value="premium">Prémiové / vyšší třída</option>
                 </select>
               </div>
 
               <div class="field-row">
                 <div class="field">
                   <label for="w_year">Rok výroby</label>
-                  <input class="input" type="number" id="w_year" value="2020" min="1995" max="2026" />
+                  <input class="input" type="number" id="w_year" value="2018" min="1995" max="2026" />
                 </div>
                 <div class="field">
                   <label for="w_mileage">Nájezd (km)</label>
-                  <input class="input" type="number" id="w_mileage" value="96000" min="0" step="1000" />
+                  <input class="input" type="number" id="w_mileage" value="132000" min="0" step="1000" />
                 </div>
               </div>
 
@@ -82,29 +83,23 @@
             </div>
           </div>
 
-          <!-- STEP 2 — Financování -->
+          <!-- STEP 2 — Rezervace zpětného odkupu -->
           <div class="wizard-step">
             <span class="eyebrow">Krok 2 ze 4</span>
-            <h3 class="mt-3">Kolik chcete získat</h3>
-            <p class="muted mt-2">Vyberte částku a dobu splácení podle své situace. Splátku, RPSN, celkovou částku k úhradě i cenu zpětného odkupu uvidíte na konci.</p>
+            <h3 class="mt-3">Rezervace zpětného odkupu</h3>
+            <p class="muted mt-2">Vyberte, jak dlouho chcete mít možnost vůz odkoupit zpět. Výkupní cenu, měsíční rezervační poplatek v Kč i cenu zpětného odkupu uvidíte na konci.</p>
 
             <div class="stack gap-4 mt-5">
               <div class="field">
-                <label for="w_amount">Kolik chcete získat (Kč)</label>
-                <input class="input" type="number" id="w_amount" placeholder="např. 320 000" value="320000" min="20000" step="10000" />
-                <span class="hint">Nechte prázdné a navrhneme bezpečnou výši podle odhadované hodnoty vozu.</span>
-              </div>
-
-              <div class="field">
-                <label>Doba splácení</label>
+                <label>Doba rezervace zpětného odkupu</label>
                 <div class="choice-row" data-bind="w_months">
+                  <button type="button" class="choice" data-val="1">1 měsíc</button>
+                  <button type="button" class="choice active" data-val="3">3 měsíce</button>
+                  <button type="button" class="choice" data-val="6">6 měsíců</button>
                   <button type="button" class="choice" data-val="12">12 měsíců</button>
-                  <button type="button" class="choice active" data-val="24">24 měsíců</button>
-                  <button type="button" class="choice" data-val="36">36 měsíců</button>
-                  <button type="button" class="choice" data-val="48">48 měsíců</button>
                 </div>
-                <input type="hidden" id="w_months" value="24" />
-                <span class="hint">Delší doba znamená nižší měsíční splátku, ale vyšší celkovou částku.</span>
+                <input type="hidden" id="w_months" value="3" />
+                <span class="hint">Po tuto dobu si úhradou měsíčního rezervačního poplatku držíte možnost zpětného odkupu za předem sjednanou cenu.</span>
               </div>
 
               <div class="field">
@@ -114,7 +109,14 @@
                   <button type="button" class="choice" data-val="yes">Ano</button>
                 </div>
                 <input type="hidden" id="w_encumbered" value="no" />
-                <span class="hint">Pokud ano, řekněte nám to hned — posoudíme to individuálně před podpisem.</span>
+                <span class="hint">Pokud ano, řekněte nám to hned na začátku — zatížené vozidlo posuzujeme individuálně před výkupem.</span>
+              </div>
+
+              <div class="notice" style="align-items:flex-start">
+                <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
+                <div>
+                  <strong>Jak to funguje.</strong> Vůz od vás dočasně odkoupíme (kupní smlouva), vy ho jako provozovatel můžete dál užívat podle smlouvy o užívání vozidla a držíte si předem sjednanou možnost zpětného odkupu. Měsíční rezervační poplatek je <strong>4 % z odhadní hodnoty vozu měsíčně</strong> a hradí rezervaci možnosti odkupu a správu smlouvy.
+                </div>
               </div>
             </div>
 
@@ -124,11 +126,11 @@
             </div>
           </div>
 
-          <!-- STEP 3 — Kontakt a posouzení -->
+          <!-- STEP 3 — Kontakt a ověření -->
           <div class="wizard-step">
             <span class="eyebrow">Krok 3 ze 4</span>
-            <h3 class="mt-3">Kontakt a posouzení</h3>
-            <p class="muted mt-2">Údaje slouží k přípravě nezávazné orientační nabídky a k posouzení podle pravidel. Nic se neděje bez vašeho souhlasu.</p>
+            <h3 class="mt-3">Kontakt a ověření</h3>
+            <p class="muted mt-2">Údaje slouží k přípravě nezávazné orientační výkupní nabídky a k ověření vozidla. Nic se neděje bez vašeho souhlasu.</p>
 
             <div class="stack gap-4 mt-5">
               <div class="field">
@@ -148,12 +150,6 @@
               </div>
 
               <div class="field">
-                <label for="w_income">Čistý měsíční příjem (Kč)</label>
-                <input class="input" type="number" id="w_income" placeholder="např. 38 000" min="0" step="1000" />
-                <span class="hint">Pomáhá nám nabídnout jen splátku, kterou v klidu zvládnete.</span>
-              </div>
-
-              <div class="field">
                 <label>Doklady k vozu (nepovinné)</label>
                 <div class="dropzone" role="button" tabindex="0" data-demo="Nahrávání dokladů je v demu vypnuté">
                   <div class="ico-box">
@@ -166,13 +162,13 @@
 
               <label class="check" style="display:flex;gap:12px;align-items:flex-start;cursor:pointer">
                 <input type="checkbox" id="w_consent" style="margin-top:3px;flex:none" />
-                <span style="font-size:var(--fs-sm)">Souhlasím s posouzením úvěruschopnosti a se zpracováním mých údajů pro přípravu nezávazné orientační nabídky.</span>
+                <span style="font-size:var(--fs-sm)">Souhlasím se zpracováním údajů a ověřením vozidla pro přípravu nezávazné orientační výkupní nabídky.</span>
               </label>
 
               <div class="notice" style="align-items:flex-start">
                 <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
                 <div>
-                  <strong>Posouzení a ověření klienta.</strong> Posouzení úvěruschopnosti je zákonná povinnost i ochrana pro vás — ověřuje, že splátky odpovídají vaší situaci, a chrání vás před nadměrným zadlužením. Před uzavřením smluv provádíme také identifikaci klienta (KYC/AML) dle § 7 zákona o opatřeních proti legalizaci výnosů z trestné činnosti. Jde o standardní krok férového a transparentního procesu.
+                  <strong>Ověření vozidla a klienta.</strong> Před uzavřením smluv ověřujeme identitu klienta, vlastnictví vozu a jeho případné zatížení (leasing, úvěr nebo zástava). Identifikaci klienta (KYC/AML) provádíme dle § 7 zákona o opatřeních proti legalizaci výnosů z trestné činnosti. Jde o standardní krok férového a transparentního procesu.
                 </div>
               </div>
             </div>
@@ -183,64 +179,60 @@
             </div>
           </div>
 
-          <!-- STEP 4 — Vaše orientační nabídka -->
+          <!-- STEP 4 — Vaše orientační výkupní nabídka -->
           <div class="wizard-step">
             <span class="eyebrow">Krok 4 ze 4</span>
-            <h3 class="mt-3">Vaše orientační nabídka</h3>
-            <p class="muted mt-2">Takto by vaše financování mohlo vypadat. Vůz přitom dál používáte podle smluvních podmínek.</p>
+            <h3 class="mt-3">Vaše orientační výkupní nabídka</h3>
+            <p class="muted mt-2">Takto by váš dočasný výkup vozu mohl vypadat. Vůz přitom dál používáte podle smluvních podmínek.</p>
 
             <div class="card tint pad mt-5">
               <dl class="kv" style="font-size:var(--fs-base);gap:14px 16px">
-                <dt>Odhadovaná hodnota vozu</dt>
-                <dd class="mono" id="r_market">520 000 Kč</dd>
+                <dt>Odhad hodnoty vozu</dt>
+                <dd class="mono" id="r_market">300 000 Kč</dd>
 
-                <dt>Získaná částka (vyplaceno)</dt>
-                <dd class="mono" id="r_amount" style="color:var(--green)">320 000 Kč</dd>
+                <dt>Výkupní cena (vyplatíme vám)</dt>
+                <dd class="mono" id="r_amount" style="color:var(--green)">210 000 Kč</dd>
 
-                <dt>Měsíční splátka</dt>
-                <dd class="mono" id="r_monthly">14 750 Kč</dd>
+                <dt>Měsíční rezervační poplatek</dt>
+                <dd class="mono" id="r_fee">12 000 Kč</dd>
 
-                <dt>RPSN</dt>
-                <dd class="mono" id="r_rpsn">od 9,9 %</dd>
+                <dt>Poplatek za zvolenou dobu</dt>
+                <dd class="mono" id="r_period">36 000 Kč</dd>
 
-                <dt>Celková částka k úhradě</dt>
-                <dd class="mono" id="r_total">354 000 Kč</dd>
+                <dt>Doba rezervace</dt>
+                <dd class="mono" id="r_months">3 měsíce</dd>
 
                 <dt>Cena zpětného odkupu</dt>
-                <dd class="mono" id="r_buyback">320 000 Kč</dd>
-
-                <dt>Doba splácení</dt>
-                <dd class="mono" id="r_months">24 měsíců</dd>
+                <dd class="mono" id="r_buyback">210 000 Kč</dd>
               </dl>
 
               <hr class="divider" />
 
               <div class="between">
-                <span class="calc-label">Pravděpodobnost schválení po posouzení</span>
+                <span class="calc-label">Pravděpodobnost přijetí vozu</span>
                 <span class="meter-val mono" id="r_approval">92 %</span>
               </div>
               <div class="progress mint mt-2"><span id="r_approvalbar" style="width:92%"></span></div>
 
               <p class="mt-4 mb-0" style="font-weight:700;color:var(--ink)">
-                <span class="pill pill-mint" style="margin-right:8px"><span class="dot"></span> Auto používáte dál: ano</span>
+                <span class="pill pill-mint" style="margin-right:8px"><span class="dot"></span> Auto používáte dál podle smlouvy</span>
               </p>
             </div>
 
-            <!-- Reprezentativní příklad (povinné u číselného údaje o nákladu) -->
             <div class="notice mt-5" style="align-items:flex-start">
               <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
               <div>
-                <strong>Reprezentativní příklad.</strong> Celková výše úvěru 200 000 Kč, doba trvání 24 měsíců, pevná úroková sazba 8,7 % p.a., RPSN 9,9 %, výše měsíční splátky 9 200 Kč, celková částka splatná spotřebitelem 220 800 Kč.
+                <strong>Co tato nabídka znamená.</strong> Vůz od vás odkoupíme za výkupní cenu, kterou vám vyplatíme. Po výkupu je vlastníkem AutoKapitál a.s., vy jste provozovatel a auto můžete dál užívat podle smlouvy. Úhradou měsíčního rezervačního poplatku (4 % z odhadní hodnoty vozu měsíčně) si držíte možnost zpětného odkupu za předem sjednanou cenu. Při neuhrazení poplatku právo na odkup zaniká v okamžiku uvedeném ve smlouvě. Podmínky užívání (pojištění, servis, pokuty i STK) jsou v smlouvě o užívání vozidla.
               </div>
             </div>
 
             <div class="disclaimer mt-5">
               <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg></span>
-              <div>Tato kalkulace je pouze orientační a nezávazná. Konečná nabídka závisí na posouzení vozidla a vaší úvěruschopnosti. Měsíční splátku, RPSN, celkovou částku k úhradě i cenu zpětného odkupu uvidíte v plné výši ještě před podpisem smluv.</div>
+              <div>Tato kalkulace je pouze orientační a nezávazná. Konečná výkupní nabídka závisí na ověření stavu vozidla a dokladů. Výkupní cenu, měsíční rezervační poplatek v Kč i cenu zpětného odkupu uvidíte v plné výši ještě před podpisem smluv.</div>
             </div>
 
             <div class="cluster mt-5">
-              <a class="btn btn-primary" href="portal.html">Pokračovat do portálu</a>
+              <a class="btn btn-primary" href="portal.html">Pokračovat do klientské zóny</a>
               <button type="button" class="btn btn-ghost" data-demo="Domluvíme se na termínu ověření vozu">Domluvit ověření vozu</button>
               <button type="button" class="btn btn-ghost" data-prev>Zpět</button>
             </div>
@@ -250,7 +242,7 @@
       </div>
 
       <p class="muted text-center mt-5" style="font-size:var(--fs-xs)">
-        Vyplněním nevzniká žádný závazek. Nabídka je nezávazná a závisí na posouzení vozidla a úvěruschopnosti — schválení neslibujeme všem. Auto můžete dál používat podle smluvních podmínek.
+        Vyplněním nevzniká žádný závazek. Nabídka je nezávazná a závisí na ověření vozidla a dokladů — výkup neslibujeme všem a vědomě neoslovujeme zranitelné skupiny. Auto můžete dál používat podle smluvních podmínek.
       </p>
     </div>
   </section>
