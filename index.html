@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
+  <script>document.documentElement.classList.add("js")</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoKapitál — Peníze z hodnoty auta. Auto můžete dál používat.</title>
-  <meta name="description" content="Dočasně od vás vůz odkoupíme, vy ho můžete dál užívat podle smlouvy a máte předem nastavenou možnost zpětného odkupu. Vše vidíte jasně před podpisem." />
+  <title>AutoKapitál — Hotovost dnes. Jezdíte dál.</title>
+  <meta name="description" content="Dočasně od vás vůz odkoupíme, vy ho dál používáte podle smlouvy — a kdykoliv ho můžete mít zpět za předem danou cenu. Výkupní cena, měsíční rezervační poplatek i cena zpětného odkupu předem." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -15,28 +16,23 @@
   <div id="site-header"></div>
 
   <!-- ===================== 01 HERO ===================== -->
-  <section class="hero hero-photo">
-    <img class="hero-photo-img" src="assets/img/hero-bg.webp" alt="Bílý vůz na střeše budovy s panoramatem města" width="1123" height="941" />
+  <section class="hero hero-photo" id="hero">
+    <img class="hero-photo-img" src="assets/img/hero-family.webp" alt="Rodina s bílou Škodou Octavia před rodinným domem" width="1376" height="768" fetchpriority="high" style="object-position:center right" />
     <div class="container">
       <div class="hero-grid">
-        <div>
+        <div class="anim-hero">
           <span class="pill pill-mint">Rychle · Férově · Bez starostí</span>
-          <h1 class="hero-headline mt-4 balance">Peníze z hodnoty auta.<br><span class="accent">Auto můžete dál používat.</span></h1>
-          <p class="lead" style="max-width:490px">Dočasně od vás vůz odkoupíme. Vy ho můžete dál užívat podle smlouvy a zároveň máte předem nastavenou možnost odkupu zpět. Vše vidíte jasně před podpisem.</p>
-          <div class="hero-chips mt-5">
-            <span class="trust-chip"><span class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Rychlé posouzení</span>
-            <span class="trust-chip"><span class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Vše víte předem</span>
-            <span class="trust-chip"><span class="tc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Auto používáte dál</span>
-          </div>
+          <h1 class="display-headline mt-4"><span class="line-dark">Hotovost dnes.</span><span class="line-green">Jezdíte dál.</span></h1>
+          <p class="lead mt-4" style="max-width:470px">Dočasně od vás vůz odkoupíme, vy ho dál používáte podle smlouvy — a kdykoliv ho můžete mít zpět za předem danou cenu.</p>
           <div class="cluster mt-6">
-            <a class="btn btn-primary btn-lg" href="zadost.html">Zjistit orientační nabídku</a>
+            <a class="btn btn-primary btn-lg" href="zadost.html">Chci nabídku</a>
             <a class="btn btn-ghost btn-lg" href="#jak-to-funguje">Jak to funguje</a>
           </div>
-          <p class="muted mt-3" style="font-size:var(--fs-sm)">Nezávazně. Přehledně. Bez skrytých kroků.</p>
+          <p class="muted mt-3" style="font-size:var(--fs-sm)">Nezávazně · zdarma · za 2 minuty · Raději zavolat? <a href="tel:+420800123456" style="font-weight:700">800 123 456</a></p>
         </div>
 
         <!-- Hero calculator -->
-        <div class="calc-card">
+        <div class="calc-card anim-float">
           <div class="between">
             <span class="calc-label">Orientační výpočet</span>
             <span class="pill"><span class="dot"></span> nezávazně</span>
@@ -62,103 +58,173 @@
             <span class="muted">Cena zpětného odkupu</span>
             <span class="mono" style="font-weight:700;color:var(--green)" id="heroBuyback">210 000 Kč</span>
           </div>
-          <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html">Zjistit orientační nabídku</a>
-          <p class="muted mb-0 mt-3" style="font-size:var(--fs-xs);text-align:center">🔒 Nezávazné · výkup, poplatek i cena odkupu předem · <a href="compliance.html">jak to funguje férově</a></p>
+          <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html">Chci nabídku</a>
+          <p class="muted mb-0 mt-3" style="font-size:var(--fs-xs);text-align:center">🔒 Nezávazně · všechna čísla předem · <a href="compliance.html">jak to funguje férově</a></p>
+        </div>
+      </div>
+
+      <!-- Trust strip -->
+      <div class="trust-strip mt-7" data-reveal>
+        <div class="ts-item">
+          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg></span>
+          <span class="ts-label"><strong>Rychlý proces</strong>peníze zpravidla do 24 hodin od podpisu</span>
+        </div>
+        <div class="ts-item">
+          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="ts-label"><strong>Vše víte předem</strong>výkup · poplatek · cena odkupu</span>
+        </div>
+        <div class="ts-item">
+          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13l2-5a3 3 0 0 1 2.8-2h6.4A3 3 0 0 1 18 8l2 5"/><path d="M4 13h16v4a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1v-.5H7.5v.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><circle cx="8" cy="15.2" r="1.1"/><circle cx="16" cy="15.2" r="1.1"/></svg></span>
+          <span class="ts-label"><strong>Auto používáte dál</strong>podle smluvních podmínek</span>
+        </div>
+        <div class="ts-item">
+          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 12l3-3 2.5 2.5L17 8"/></svg></span>
+          <span class="ts-label"><strong>Online přehled</strong>vše máte pod kontrolou</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 02 VÝHODY ===================== -->
-  <section class="section" id="vyhody">
+  <!-- ===================== 02 SOCIAL PROOF ===================== -->
+  <section class="section alt" id="klienti">
     <div class="container">
-      <div class="grid grid-4">
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-zpetny-odkup.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Auto dál používáte</h3>
-          <p>Vůz můžete dál využívat pro běžný život podle smlouvy o užívání vozidla.</p>
+      <div class="proof-strip" data-reveal>
+        <div class="proof">
+          <div class="num mono"><span data-count="23800000" data-count-suffix=" Kč">23 800 000 Kč</span></div>
+          <div class="cap">vyplaceno klientům</div>
         </div>
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-dokumenty.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Vše víte předem</h3>
-          <p>Výkupní cena, poplatek, termíny i možnost zpětného odkupu jsou jasně uvedené.</p>
+        <div class="proof">
+          <div class="num mono"><span data-count="126">126</span></div>
+          <div class="cap">aktivních klientů</div>
         </div>
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-handshake.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Bez inzerce a smlouvání</h3>
-          <p>Nemusíte hledat kupce ani řešit prodej přes bazar.</p>
-        </div>
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-portal.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Přehled v klientské zóně</h3>
-          <p>Vidíte dokumenty, termíny, poplatky i stav zpětného odkupu.</p>
+        <div class="proof">
+          <div class="num mono"><span data-count="93" data-count-suffix=" %">93 %</span></div>
+          <div class="cap">vozů zpět u majitelů</div>
         </div>
       </div>
+      <div class="grid grid-3 mt-7" data-reveal-stagger>
+        <div class="card pad review-card">
+          <div class="stars" aria-hidden="true"><span class="sr-only">5 z 5 hvězdiček — </span>★★★★★</div>
+          <p class="quote mb-0">„Peníze jsem měl na účtu do druhého dne a autem dál vozím děti do školy. Přesně to jsme potřebovali."</p>
+          <div class="who">Martin K. · Ostrava</div>
+        </div>
+        <div class="card pad review-card">
+          <div class="stars" aria-hidden="true"><span class="sr-only">5 z 5 hvězdiček — </span>★★★★★</div>
+          <p class="quote mb-0">„Všechno bylo napsané předem — výkupní cena, poplatek i cena odkupu. Žádné překvapení, žádná drobná písmenka."</p>
+          <div class="who">Jana P. · Plzeň</div>
+        </div>
+        <div class="card pad review-card">
+          <div class="stars" aria-hidden="true"><span class="sr-only">5 z 5 hvězdiček — </span>★★★★★</div>
+          <p class="quote mb-0">„Po půl roce jsme auto odkoupili zpět přesně za cenu ze smlouvy. Férovější jednání jsem nečekal."</p>
+          <div class="who">Petr D. · Brno</div>
+        </div>
+      </div>
+      <p class="muted text-center mt-4 mb-0" style="font-size:var(--fs-xs)">Ukázkové recenze klientů (demo) · průměrné hodnocení 4,9 / 5</p>
     </div>
   </section>
 
   <!-- ===================== 03 JAK TO FUNGUJE ===================== -->
-  <section class="section alt" id="jak-to-funguje">
+  <section class="section" id="jak-to-funguje">
     <div class="container">
-      <div class="section-head center">
+      <div class="section-head center" data-reveal>
         <span class="eyebrow">Jak to funguje</span>
-        <h2 class="mt-3">Dočasný výkup vozu se zpětným odkupem</h2>
-        <p class="lead">Jednoduchý a srozumitelný proces. V každém kroku víte, co se děje a co bude následovat.</p>
+        <h2 class="mt-3">7 kroků. Vždy víte, co se děje.</h2>
+        <p class="lead">Od formuláře k penězům na účtu — jednoduše, srozumitelně a bez skrytých kroků.</p>
       </div>
-      <div class="steps horizontal">
-        <div class="step"><div class="step-num">1</div><h4>Zadáte údaje o vozidle</h4><p>Značka, rok, nájezd a pár základních informací.</p></div>
-        <div class="step"><div class="step-num">2</div><h4>Dostanete výkupní nabídku</h4><p>Orientačně a hned — podle odhadované hodnoty vozu.</p></div>
-        <div class="step"><div class="step-num">3</div><h4>Ověříme vůz a dokumenty</h4><p>Stav vozidla, vlastnictví a případné zatížení.</p></div>
-        <div class="step"><div class="step-num">4</div><h4>Podepíšeme smlouvy</h4><p>Kupní smlouva, smlouva o užívání a možnost zpětného odkupu.</p></div>
-        <div class="step"><div class="step-num">5</div><h4>Pošleme peníze</h4><p>Výkupní cenu odešleme po schválení na váš účet.</p></div>
-        <div class="step"><div class="step-num">6</div><h4>Auto používáte dál</h4><p>Vůz dál užíváte podle smluvních podmínek.</p></div>
-        <div class="step"><div class="step-num">7</div><h4>Uplatníte zpětný odkup</h4><p>Pokud chcete vůz zpět, využijete sjednanou možnost odkupu.</p></div>
+      <div class="steps horizontal" data-reveal-stagger>
+        <div class="step"><div class="step-num">1</div><h4>Vyplníte formulář</h4><p>Online a nezávazně. Zabere 2 minuty.</p></div>
+        <div class="step"><div class="step-num">2</div><h4>Zavoláme si</h4><p>Krátký hovor — ověříme údaje o vás a o voze.</p></div>
+        <div class="step" style="background:var(--green-050);border-radius:var(--r-md);padding:var(--sp-4);margin:calc(-1 * var(--sp-4)) 0"><div class="step-num">3</div><h4>Dostanete nabídku</h4><p>Výkupní cena, poplatek i cena odkupu — vše v Kč.</p><span class="pill pill-mint mt-2">Vše černé na bílém</span></div>
+        <div class="step"><div class="step-num">4</div><h4>Přijede technik</h4><p>Prohlídka vozu u vás doma — nikam nejezdíte.</p></div>
+        <div class="step"><div class="step-num">5</div><h4>Schválení</h4><p>Potvrdíme konečnou nabídku výkupu.</p></div>
+        <div class="step" style="background:var(--green-050);border-radius:var(--r-md);padding:var(--sp-4);margin:calc(-1 * var(--sp-4)) 0"><div class="step-num">6</div><h4>Pojištění</h4><p>Zařídíme převod pojištění vozidla za vás.</p><span class="pill pill-mint mt-2">Řešíme za vás</span></div>
+        <div class="step"><div class="step-num">7</div><h4>Podpis a peníze na účet</h4><p>Podepíšeme smlouvy a pošleme výkupní cenu.</p></div>
+      </div>
+      <div class="text-center mt-7" data-reveal>
+        <a class="btn btn-primary btn-lg" href="zadost.html">Chci nabídku</a>
+        <p class="muted mt-3 mb-0" style="font-size:var(--fs-sm)">Nezávazně · žádné skryté kroky</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 04 PRO KOHO ===================== -->
-  <section class="section" id="pro-koho">
+  <!-- ===================== 04 PŘÍBĚH VE 3 FOTKÁCH ===================== -->
+  <section class="section alt" id="pribeh">
     <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Pro koho je služba</span>
-        <h2 class="mt-3">Pro běžný život, ne pro byznys</h2>
-        <p class="lead">Pro lidi, kteří auto potřebují každý den a chtějí jasné, férové řešení bez zbytečného stresu.</p>
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Jak to vypadá v praxi</span>
+        <h2 class="mt-3">Váš běžný den se nemění</h2>
       </div>
-      <div class="grid grid-4">
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-uzivatel.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Rodiny a domácnosti</h3>
-          <p>Když potřebujete překlenout výdaje a auto dál potřebujete každý den.</p>
+      <div class="grid grid-3" data-reveal-stagger>
+        <div>
+          <div class="photo-frame"><img src="assets/img/story-technik.webp" alt="Technik s tabletem prohlíží vůz před rodinným domem" width="860" height="642" loading="lazy" /></div>
+          <h3 class="mt-4">Technik přijede k vám</h3>
+          <p class="muted mb-0">Prohlídka vozu proběhne u vás doma. Nikam nejezdíte, nic nezařizujete.</p>
         </div>
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-kalkulacka.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Lidé s nečekaným výdajem</h3>
-          <p>Oprava, stěhování, škola, zdraví nebo rozpočet domácnosti.</p>
+        <div>
+          <div class="photo-frame"><img src="assets/img/story-keys.webp" alt="Usměvavá řidička s klíčky od auta na sídlišti" width="860" height="642" loading="lazy" /></div>
+          <h3 class="mt-4">Klíčky zůstávají vám</h3>
+          <p class="muted mb-0">Vůz dál používáte pro běžný život podle smlouvy — práce, škola, nákupy.</p>
         </div>
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-zpetny-odkup.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Nechcete auto prodat natrvalo</h3>
-          <p>Auto má pro vás praktickou hodnotu — a chcete mít možnost získat ho zpět.</p>
+        <div>
+          <div class="photo-frame"><img src="assets/img/story-phone.webp" alt="Ruka drží telefon s aplikací klientské zóny AutoKapitál" width="860" height="642" loading="lazy" /></div>
+          <h3 class="mt-4">Vše hlídáte v mobilu</h3>
+          <p class="muted mb-0">Poplatky, termíny i cenu zpětného odkupu vidíte kdykoliv v klientské zóně.</p>
         </div>
-        <div class="card pad feature hover">
-          <div class="ico-img"><img src="Public/icons/icon-stitek-ochrana.webp" alt="" aria-hidden="true" width="34" height="34" /></div>
-          <h3>Chcete jasné řešení</h3>
-          <p>Bez čekání na kupce, smlouvání a nejistoty. S nabídkou předem.</p>
-        </div>
+      </div>
+      <div class="text-center mt-7" data-reveal>
+        <a class="btn btn-primary btn-lg" href="zadost.html">Chci nabídku</a>
+        <p class="muted mt-3 mb-0" style="font-size:var(--fs-sm)">Výsledek hned · auto používáte dál</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 05 KALKULAČKA ===================== -->
+  <!-- ===================== 05 VÝHODY ===================== -->
+  <section class="section" id="vyhody">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Proč AutoKapitál</span>
+        <h2 class="mt-3">Férové řešení, na které se můžete spolehnout</h2>
+      </div>
+      <div class="grid grid-4" data-reveal-stagger>
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-zpetny-odkup.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
+          <h3>Auto dál používáte</h3>
+          <p>Vůz můžete dál využívat pro běžný život podle smlouvy o užívání vozidla.</p>
+        </div>
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-dokumenty.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
+          <h3>Vše víte předem</h3>
+          <p>Výkupní cena, poplatek, termíny i možnost zpětného odkupu jsou jasně uvedené.</p>
+        </div>
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-handshake.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
+          <h3>Bez inzerce a smlouvání</h3>
+          <p>Nemusíte hledat kupce ani řešit prodej přes bazar.</p>
+        </div>
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-portal.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
+          <h3>Přehled v klientské zóně</h3>
+          <p>Vidíte dokumenty, termíny, poplatky i stav zpětného odkupu.</p>
+        </div>
+      </div>
+      <div class="text-center mt-7" data-reveal>
+        <a class="btn btn-primary btn-lg" href="zadost.html">Chci nabídku</a>
+        <p class="muted mt-3 mb-0" style="font-size:var(--fs-sm)">Nezávazně a zdarma · všechna čísla předem</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 06 KALKULAČKA ===================== -->
   <section class="section alt" id="kalkulacka">
     <div class="container">
-      <div class="card calc-large pad-lg" style="padding:0">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Kalkulačka</span>
+        <h2 class="mt-3">Kolik za vaše auto nabídneme?</h2>
+        <p class="lead">Posuňte hodnotu vozu a hned vidíte všechna tři čísla — výkup, poplatek i cenu odkupu.</p>
+      </div>
+      <div class="card calc-large" style="padding:0" data-reveal="scale">
         <div class="calc-inputs">
-          <span class="eyebrow">Kalkulačka</span>
-          <h2 class="mt-2">Orientační výkupní nabídka</h2>
-          <p class="muted">Zadejte odhad hodnoty vozu a uvidíte výkupní cenu i měsíční rezervační poplatek.</p>
-          <div class="field mt-5">
+          <div class="field">
             <label for="bigValue">Odhad hodnoty vozu (Kč)</label>
             <input class="input mono" id="bigValue" type="number" value="300000" step="10000" min="50000" />
             <span class="hint">Orientačně — přesnou hodnotu určíme po ověření vozu.</span>
@@ -187,13 +253,13 @@
             <div class="ro-label">Poplatek za zvolenou dobu</div>
             <div class="ro-val mono" id="bigPeriod" style="font-size:var(--fs-lg)">36 000 Kč</div>
           </div>
-          <a class="btn btn-white btn-block btn-lg" href="zadost.html">Zjistit orientační nabídku</a>
-          <p class="mb-0" style="font-size:var(--fs-xs);color:#A9D3C2;text-align:center">🔒 Výkup, poplatek i cena odkupu — vše v Kč a předem</p>
+          <a class="btn btn-white btn-block btn-lg" href="zadost.html">Chci nabídku</a>
+          <p class="mb-0" style="font-size:var(--fs-xs);color:#A9D3C2;text-align:center">🔒 Nezávazně · vše v Kč a předem · <a href="compliance.html" style="color:#fff">jak to funguje férově</a></p>
         </div>
       </div>
 
       <!-- Ukázkový příklad výkupu + disclaimer -->
-      <div class="notice mt-5" style="align-items:flex-start">
+      <div class="notice mt-5" style="align-items:flex-start" data-reveal>
         <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
         <div>
           <strong>Ukázkový příklad.</strong> Odhad hodnoty vozu 300 000 Kč · výkupní nabídka 210 000 Kč · měsíční rezervační poplatek 12 000 Kč · poplatek za 3 měsíce 36 000 Kč · cena zpětného odkupu 210 000 Kč · auto používáte dál podle smlouvy.
@@ -203,66 +269,66 @@
     </div>
   </section>
 
-  <!-- ===================== 06 PROČ AUTOKAPITÁL ===================== -->
-  <section class="section" id="proc">
+  <!-- ===================== 07 PRO KOHO ===================== -->
+  <section class="section" id="pro-koho">
     <div class="container">
-      <div class="grid grid-2" style="align-items:center;gap:var(--sp-7)">
-        <div>
-          <span class="eyebrow">Proč AutoKapitál</span>
-          <h2 class="mt-3">Férové řešení, na které se můžete spolehnout</h2>
-          <ul class="stack gap-4 mt-5" style="list-style:none">
-            <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
-              <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Vše víte předem.</strong> <span class="muted">Výkupní cenu, měsíční rezervační poplatek v Kč i cenu zpětného odkupu vidíte před podpisem.</span></span>
-            </li>
-            <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
-              <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Auto můžete dál používat.</strong> <span class="muted">Po výkupu jste provozovatel a vůz dál užíváte pro běžný život podle smlouvy.</span></span>
-            </li>
-            <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
-              <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Možnost odkupu sjednaná předem.</strong> <span class="muted">Cena i podmínky zpětného odkupu jsou ve smlouvě — bez sankcí za předčasný odkup.</span></span>
-            </li>
-            <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
-              <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Bez inzerce a smlouvání.</strong> <span class="muted">Žádné čekání na kupce, žádný bazar a žádné dohadování o ceně.</span></span>
-            </li>
-            <li class="cluster" style="align-items:flex-start;flex-wrap:nowrap">
-              <span class="ico" style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>
-              <span><strong>Přehled v klientské zóně.</strong> <span class="muted">Dokumenty, termíny, poplatky a stav odkupu 24/7, s upozorněním předem.</span></span>
-            </li>
-          </ul>
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Pro koho je služba</span>
+        <h2 class="mt-3">Pro běžný život, ne pro byznys</h2>
+        <p class="lead">Pro lidi, kteří auto potřebují každý den a chtějí jasné, férové řešení bez zbytečného stresu.</p>
+      </div>
+      <div class="grid grid-4" data-reveal-stagger>
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-uzivatel.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
+          <h3>Rodiny a domácnosti</h3>
+          <p>Když potřebujete překlenout výdaje a auto dál potřebujete každý den.</p>
         </div>
-        <div>
-          <img src="assets/img/why-car.webp" alt="Zadní část bílého vozu s panoramatem města" width="760" height="623" loading="lazy" style="border-radius:var(--r-lg);box-shadow:var(--shadow-md);width:100%" />
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-kalkulacka.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
+          <h3>Lidé s nečekaným výdajem</h3>
+          <p>Oprava, stěhování, škola, zdraví nebo rozpočet domácnosti.</p>
         </div>
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-zpetny-odkup.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
+          <h3>Nechcete auto prodat natrvalo</h3>
+          <p>Auto má pro vás praktickou hodnotu — a chcete mít možnost získat ho zpět.</p>
+        </div>
+        <div class="card pad feature hover">
+          <div class="ico-img"><img src="Public/icons/icon-stitek-ochrana.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
+          <h3>Chcete jasné řešení</h3>
+          <p>Bez čekání na kupce, smlouvání a nejistoty. S nabídkou předem.</p>
+        </div>
+      </div>
+      <div class="text-center mt-7" data-reveal>
+        <a class="btn btn-primary btn-lg" href="zadost.html">Chci nabídku</a>
+        <p class="muted mt-3 mb-0" style="font-size:var(--fs-sm)">Zdarma · zabere 2 minuty</p>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 07 KLIENTSKÝ PORTÁL PREVIEW ===================== -->
+  <!-- ===================== 08 KLIENTSKÁ ZÓNA ===================== -->
   <section class="section alt" id="portal">
     <div class="container">
-      <div class="section-head center">
+      <div class="section-head center" data-reveal>
         <span class="eyebrow">Klientská zóna</span>
-        <h2 class="mt-3">Vaše přehledná osobní zóna</h2>
+        <h2 class="mt-3">Vše přehledně na jednom místě</h2>
+        <p class="lead">Dokumenty, termíny, rezervační poplatky i cena zpětného odkupu — kdykoliv v mobilu, s upozorněním před splatností.</p>
       </div>
-      <p class="lead text-center" style="max-width:680px;margin:0 auto var(--sp-6)">Moje žádost, moje auto, dokumenty, termíny, rezervační poplatky i cena zpětného odkupu — vše přehledně na jednom místě, s upozorněním před splatností.</p>
-      <div class="ui-frame">
+      <div class="ui-frame" data-reveal="scale">
         <img src="assets/img/portal-ui.webp" alt="Náhled klientské zóny AutoKapitál — přehled výkupu, poplatků a dokumentů" width="1280" height="720" loading="lazy" />
       </div>
-      <div class="text-center mt-6"><a class="btn btn-primary btn-lg" href="portal.html">Přihlásit do klientské zóny</a></div>
+      <div class="text-center mt-6" data-reveal><a class="btn btn-ghost btn-lg" href="portal.html">Prohlédnout klientskou zónu</a></div>
     </div>
   </section>
 
-  <!-- ===================== 08 FAQ ===================== -->
+  <!-- ===================== 09 FAQ ===================== -->
   <section class="section" id="faq">
     <div class="container narrow">
-      <div class="section-head center">
+      <div class="section-head center" data-reveal>
         <span class="eyebrow">FAQ</span>
         <h2 class="mt-3">Časté dotazy</h2>
       </div>
-      <div class="faq">
+      <div class="faq" data-reveal>
         <div class="faq-item">
           <button class="faq-q" type="button">Mohu auto opravdu dál používat?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button>
           <div class="faq-a"><div class="faq-a-inner">Ano. Po výkupu je vlastníkem AutoKapitál a.s., vy jste provozovatel a vůz můžete dál užívat pro běžný život podle smlouvy o užívání vozidla.</div></div>
@@ -295,10 +361,10 @@
     </div>
   </section>
 
-  <!-- ===================== 09 FINAL CTA ===================== -->
+  <!-- ===================== 10 FINAL CTA ===================== -->
   <section class="section tight">
     <div class="container">
-      <div class="card pad-lg" style="background:linear-gradient(120deg,var(--green-700),var(--green));color:#fff;overflow:hidden">
+      <div class="card pad-lg" style="background:linear-gradient(120deg,var(--green-700),var(--green));color:#fff;overflow:hidden" data-reveal="scale">
         <div class="grid grid-2" style="align-items:center;gap:var(--sp-6)">
           <div>
             <h2 style="color:#fff">Když potřebujete peníze rychle — ale auto ještě ne.</h2>
@@ -308,7 +374,8 @@
               <li><span class="ico" style="background:#fff;color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Výkup, poplatek i cena odkupu předem</li>
               <li><span class="ico" style="background:#fff;color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Auto používáte dál</li>
             </ul>
-            <a class="btn btn-white btn-lg mt-4" href="zadost.html">Zjistit orientační nabídku</a>
+            <a class="btn btn-white btn-lg mt-4" href="zadost.html">Chci nabídku</a>
+            <p class="mt-3 mb-0" style="font-size:var(--fs-sm);color:#A9D3C2">Za 2 minuty online · žádné skryté kroky · AutoKapitál a.s. · působíme po celé ČR</p>
           </div>
           <div>
             <img src="assets/img/cta-car.webp" alt="Bílý vůz s panoramatem města" width="720" height="522" loading="lazy" style="border-radius:var(--r-md);width:100%" />

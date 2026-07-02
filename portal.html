@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
+  <script>document.documentElement.classList.add("js")</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AutoKapitál — Klientská zóna</title>
@@ -113,6 +114,21 @@
               <h4>Zpětný odkup zahájíte kdykoliv.</h4>
               <p class="muted mb-0 mt-2" style="font-size:var(--fs-sm)">Vůz můžete odkoupit zpět za předem známou cenu 210 000 Kč — bez sankcí za předčasný odkup.</p>
             </div>
+          </div>
+
+          <!-- Jak probíhal váš výkup -->
+          <div class="card pad-lg mt-5">
+            <h3>Jak probíhal váš výkup</h3>
+            <p class="muted mt-2" style="font-size:var(--fs-sm)">Sedm kroků od žádosti k výplatě — vše máte za sebou.</p>
+            <ol class="mt-4" style="list-style:none;display:flex;flex-wrap:wrap;gap:10px 14px;padding:0;margin-bottom:0">
+              <li class="cluster" style="gap:8px;font-size:var(--fs-sm);color:var(--ink)"><span aria-hidden="true" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:var(--fs-xs);display:grid;place-items:center;flex:none">1</span>Žádost</li>
+              <li class="cluster" style="gap:8px;font-size:var(--fs-sm);color:var(--ink)"><span aria-hidden="true" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:var(--fs-xs);display:grid;place-items:center;flex:none">2</span>Telefonát</li>
+              <li class="cluster" style="gap:8px;font-size:var(--fs-sm);color:var(--ink)"><span aria-hidden="true" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:var(--fs-xs);display:grid;place-items:center;flex:none">3</span>Scoring a nabídka</li>
+              <li class="cluster" style="gap:8px;font-size:var(--fs-sm);color:var(--ink)"><span aria-hidden="true" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:var(--fs-xs);display:grid;place-items:center;flex:none">4</span>Návštěva technika</li>
+              <li class="cluster" style="gap:8px;font-size:var(--fs-sm);color:var(--ink)"><span aria-hidden="true" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:var(--fs-xs);display:grid;place-items:center;flex:none">5</span>Schválení</li>
+              <li class="cluster" style="gap:8px;font-size:var(--fs-sm);color:var(--ink)"><span aria-hidden="true" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:var(--fs-xs);display:grid;place-items:center;flex:none">6</span>Pojištění</li>
+              <li class="cluster" style="gap:8px;font-size:var(--fs-sm);color:var(--ink)"><span aria-hidden="true" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:var(--fs-xs);display:grid;place-items:center;flex:none">7</span>Přepis a podpis</li>
+            </ol>
           </div>
         </section>
 
@@ -264,6 +280,7 @@
                 <div class="stack gap-3 mt-4">
                   <button class="btn btn-ghost btn-block" data-demo="Zpětný odkup spustíme po potvrzení — ozve se vám váš poradce. Cenu 210 000 Kč znáte předem.">Zahájit zpětný odkup</button>
                   <button class="btn btn-ghost btn-block" data-demo="Žádost o úpravu data platby jsme přijali. Posoudíme ji podle smluvních podmínek.">Změnit datum platby</button>
+                  <button class="btn btn-ghost btn-block" data-demo="Požadavek na změnu termínu návštěvy technika jsme přijali — ozveme se vám s novými termíny.">Domluvit návštěvu technika (změna termínu)</button>
                   <button class="btn btn-ghost btn-block" data-demo="Děkujeme, zprávu jsme přijali. Brzy se vám ozveme.">Napsat nám</button>
                 </div>
               </div>
