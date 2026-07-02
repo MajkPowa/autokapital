@@ -530,6 +530,9 @@ html.js .progress > span { transition: width 1.1s cubic-bezier(.22,.61,.36,1); }
 .photo-frame img { width: 100%; height: auto; display: block; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .8s cubic-bezier(.22,.61,.36,1); }
 .photo-frame:hover img { transform: scale(1.04); }
 .photo-frame.wide img { aspect-ratio: 16 / 10; }
+/* Svislé editorial karty (příběh) — nativní 9:16, na mobilu 4:5 kvůli výšce obrazovky */
+.photo-frame.tall img { aspect-ratio: 9 / 16; }
+@media (max-width: 860px) { .photo-frame.tall img { aspect-ratio: 4 / 5; } }
 
 /* Obrázek ve final CTA — jednotný ořez a zaoblení */
 .cta-photo { border-radius: var(--r-md); width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; box-shadow: var(--shadow-md); }
