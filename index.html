@@ -4,8 +4,8 @@
   <script>document.documentElement.classList.add("js")</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoKapitál — Hotovost dnes. Jezdíte dál.</title>
-  <meta name="description" content="Dočasně od vás vůz odkoupíme, vy ho dál používáte podle smlouvy — a kdykoliv ho můžete mít zpět za předem danou cenu. Výkupní cena, měsíční rezervační poplatek i cena zpětného odkupu předem." />
+  <title>AutoKapitál — Peníze z auta. Jezdíte dál.</title>
+  <meta name="description" content="Dočasně od vás vůz odkoupíme, vy ho dál používáte podle smlouvy — a po dobu rezervace ho můžete mít zpět za předem danou cenu. Výkupní cena, měsíční rezervační poplatek i cena zpětného odkupu předem." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -21,14 +21,14 @@
     <div class="container">
       <div class="hero-grid">
         <div class="anim-hero">
-          <span class="pill pill-mint">Rychle · Férově · Bez starostí</span>
-          <h1 class="display-headline mt-4"><span class="line-dark">Hotovost dnes.</span><span class="line-green">Jezdíte dál.</span></h1>
-          <p class="lead mt-4" style="max-width:470px">Dočasně od vás vůz odkoupíme, vy ho dál používáte podle smlouvy — a kdykoliv ho můžete mít zpět za předem danou cenu.</p>
+          <span class="pill pill-mint">Rychle · Férově · Přehledně</span>
+          <h1 class="display-headline mt-4"><span class="line-dark">Peníze z auta.</span><span class="line-green">Jezdíte dál.</span></h1>
+          <p class="lead mt-4" style="max-width:470px">Dočasně od vás vůz odkoupíme, vy ho dál používáte podle smlouvy — a po dobu rezervace ho můžete mít zpět za předem danou cenu.</p>
           <div class="cluster mt-6">
             <a class="btn btn-primary btn-lg" href="zadost.html">Chci nabídku</a>
             <a class="btn btn-ghost btn-lg" href="#jak-to-funguje">Jak to funguje</a>
           </div>
-          <p class="muted mt-3" style="font-size:var(--fs-sm)">Nezávazně · zdarma · za 2 minuty · Raději zavolat? <a href="tel:+420800123456" style="font-weight:700">800 123 456</a></p>
+          <p class="muted mt-3" style="font-size:var(--fs-sm)">Nezávazná žádost zdarma · výsledek za 2 minuty · Raději zavolat? <a href="tel:+420800123456" style="font-weight:700">800 123 456</a></p>
         </div>
 
         <!-- Hero calculator -->
@@ -58,8 +58,22 @@
             <span class="muted">Cena zpětného odkupu</span>
             <span class="mono" style="font-weight:700;color:var(--green)" id="heroBuyback">210 000 Kč</span>
           </div>
+          <div class="between mt-2" style="font-size:var(--fs-sm);gap:12px">
+            <label class="muted" for="heroTerm" style="flex:none">Doba rezervace</label>
+            <select class="select" id="heroTerm" style="padding:8px 36px 8px 12px;font-size:var(--fs-sm);width:auto">
+              <option value="1">1 měsíc</option>
+              <option value="3" selected>3 měsíce</option>
+              <option value="6">6 měsíců</option>
+              <option value="12">12 měsíců</option>
+            </select>
+          </div>
+          <div class="between mt-2" style="font-size:var(--fs-sm)">
+            <span class="muted">Poplatek za zvolenou dobu celkem</span>
+            <span class="mono" style="font-weight:700;color:var(--ink)" id="heroPeriod">36 000 Kč za 3 měsíce</span>
+          </div>
           <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html">Chci nabídku</a>
-          <p class="muted mb-0 mt-3" style="font-size:var(--fs-xs);text-align:center">🔒 Nezávazně · všechna čísla předem · <a href="compliance.html">jak to funguje férově</a></p>
+          <p class="mb-0 mt-3" style="font-size:var(--fs-sm);text-align:center;font-weight:800;color:var(--ink)">Pozor! Tato služba není zdarma — platíte měsíční rezervační poplatek.</p>
+          <p class="muted mb-0 mt-2" style="font-size:var(--fs-xs);text-align:center">🔒 Nezávazně · všechna čísla předem · <a href="compliance.html">jak to funguje férově</a></p>
         </div>
       </div>
 
@@ -88,7 +102,7 @@
   <!-- ===================== 02 SOCIAL PROOF ===================== -->
   <section class="section alt" id="klienti">
     <div class="container">
-      <div class="proof-strip" data-reveal>
+      <div class="proof-strip" data-reveal aria-describedby="proofDemo">
         <div class="proof">
           <div class="num mono"><span data-count="23800000" data-count-suffix=" Kč">23 800 000 Kč</span></div>
           <div class="cap">vyplaceno klientům</div>
@@ -119,7 +133,7 @@
           <div class="who">Petr D. · Brno</div>
         </div>
       </div>
-      <p class="muted text-center mt-4 mb-0" style="font-size:var(--fs-xs)">Ukázkové recenze klientů (demo) · průměrné hodnocení 4,9 / 5</p>
+      <p class="muted text-center mt-4 mb-0" style="font-size:var(--fs-xs)" id="proofDemo">Ukázková čísla a recenze klientů (demo) · průměrné hodnocení 4,9 / 5</p>
     </div>
   </section>
 
@@ -173,7 +187,7 @@
       </div>
       <div class="text-center mt-7" data-reveal>
         <a class="btn btn-primary btn-lg" href="zadost.html">Chci nabídku</a>
-        <p class="muted mt-3 mb-0" style="font-size:var(--fs-sm)">Výsledek hned · auto používáte dál</p>
+        <p class="muted mt-3 mb-0" style="font-size:var(--fs-sm)">Orientační nabídka hned · auto používáte dál</p>
       </div>
     </div>
   </section>
@@ -258,6 +272,8 @@
         </div>
       </div>
 
+      <p class="text-center mt-5 mb-0" style="font-weight:800;color:var(--ink);font-size:var(--fs-md)">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
+
       <!-- Ukázkový příklad výkupu + disclaimer -->
       <div class="notice mt-5" style="align-items:flex-start" data-reveal>
         <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
@@ -286,7 +302,7 @@
         <div class="card pad feature hover">
           <div class="ico-img"><img src="Public/icons/icon-kalkulacka.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>
           <h3>Lidé s nečekaným výdajem</h3>
-          <p>Oprava, stěhování, škola, zdraví nebo rozpočet domácnosti.</p>
+          <p>Oprava, stěhování, škola nebo zdraví.</p>
         </div>
         <div class="card pad feature hover">
           <div class="ico-img"><img src="Public/icons/icon-zpetny-odkup.webp" alt="" aria-hidden="true" width="34" height="34" loading="lazy" /></div>

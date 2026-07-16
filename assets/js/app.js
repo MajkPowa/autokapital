@@ -135,16 +135,21 @@
     const elAmount = document.getElementById("heroAmount");   // výkupní nabídka
     const elFee = document.getElementById("heroFee");         // měsíční rezervační poplatek
     const elBuyback = document.getElementById("heroBuyback"); // cena zpětného odkupu
+    const elTerm = document.getElementById("heroTerm");       // doba rezervace (měsíce)
+    const elPeriod = document.getElementById("heroPeriod");   // poplatek za zvolenou dobu celkem
     function render() {
       const value = +range.value;
       const o = AK.valuation.buildOffer({ marketValue: value });
+      const months = +(elTerm && elTerm.value) || 3;
       if (elValue) elValue.textContent = AK.fmt.czk(value);
       if (elAmount) elAmount.textContent = AK.fmt.czk(o.vykup);
       if (elFee) elFee.textContent = AK.fmt.czk(o.fee) + " / měsíc";
       if (elBuyback) elBuyback.textContent = AK.fmt.czk(o.buyback);
+      if (elPeriod) elPeriod.textContent = AK.fmt.czk(o.fee * months) + " za " + months + (months === 1 ? " měsíc" : (months < 5 ? " měsíce" : " měsíců"));
       AK.rememberValue(value);
     }
     range.addEventListener("input", render);
+    if (elTerm) { elTerm.addEventListener("input", render); elTerm.addEventListener("change", render); }
     render();
   };
 
@@ -338,7 +343,7 @@
     if (document.querySelector(".mobile-cta-bar")) return;
     const bar = document.createElement("div");
     bar.className = "mobile-cta-bar";
-    bar.innerHTML = '<span class="mc-price">Orientační nabídka zdarma<strong>za 2 minuty online</strong></span>' +
+    bar.innerHTML = '<span class="mc-price">Nezávazná orientační nabídka<strong>za 2 minuty online</strong></span>' +
       '<a class="btn btn-primary" href="zadost.html">Chci nabídku</a>';
     document.body.appendChild(bar);
     document.body.classList.add("has-mobile-cta");

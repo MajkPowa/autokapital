@@ -84,7 +84,7 @@
           <div>
             <a class="brand" href="index.html" aria-label="AutoKapitál — domů">${LOGO_IMG}</a>
             <p class="mt-3" style="max-width:320px">Peníze z auta. Auto používáte dál. Rychlé a férové řešení, když potřebujete peníze, ale auto dál potřebujete pro život.</p>
-            <span class="pill pill-mint mt-2">${I.shield} Rychle · Férově · Bez starostí</span>
+            <span class="pill pill-mint mt-2">${I.shield} Rychle · Férově · Přehledně</span>
           </div>
           <div>
             <h4>Produkty</h4>
@@ -115,9 +115,10 @@
             </ul>
           </div>
         </div>
-        <div class="footer-bottom">
-          <span>© 2026 AutoKapitál a.s. — Demoprezentace produktu. Nejedná se o závaznou nabídku ani o právní poradenství.</span>
-          <span>Dočasný výkup vozu se zpětným odkupem · Podmínky vždy předem.</span>
+        <div class="footer-bottom" style="flex-direction:column;gap:8px">
+          <span><strong>Povinné informace:</strong> AutoKapitál a.s. (demo) · IČO 000 00 000 · Sídlo a adresa pro doručování: Příkladová 123, 110 00 Praha 1 · Tel.: <a href="tel:+420800123456">+420 800 123 456</a> · E-mail: <a href="mailto:info@autokapital.cz">info@autokapital.cz</a> · <a href="compliance.html#povinne-informace">Právo na odstoupení od smlouvy a další povinné informace</a></span>
+          <span>Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</span>
+          <span>© 2026 AutoKapitál a.s. — Demoprezentace produktu. Nejedná se o závaznou nabídku ani o právní poradenství. Dočasný výkup vozu se zpětným odkupem · Podmínky vždy předem.</span>
         </div>
       </div>
     </footer>`;

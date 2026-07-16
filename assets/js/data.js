@@ -135,7 +135,7 @@ window.AK = (function () {
 
   const riskAlerts = [
     { kind: "warning", title: "Chybí doklad o vlastnictví vozidla", meta: "AK-5095 · Tomáš Král", action: "Vyžádat doklad" },
-    { kind: "danger", title: "Rezervační poplatek po splatnosti", meta: "AK-4655 · 3 dny · 7 200 Kč", action: "Spustit upomínku" },
+    { kind: "danger", title: "Rezervační poplatek po splatnosti", meta: "AK-4655 · 3 dny · 7 200 Kč", action: "Nabídnout řešení" },
     { kind: "warning", title: "Blíží se konec lhůty pro zpětný odkup", meta: "AK-4790 · Eva Horáková", action: "Kontaktovat klienta" },
     { kind: "info", title: "Nahrán nový doklad — čeká na ověření", meta: "AK-5089 · technický průkaz", action: "Ověřit dokument" },
     { kind: "danger", title: "Vozidlo zatížené zástavou / leasingem", meta: "AK-5070 · nutná ruční kontrola", action: "Eskalovat" },

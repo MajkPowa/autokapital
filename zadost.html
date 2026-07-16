@@ -94,7 +94,7 @@
 
           <!-- Reassurance mikro-řádek -->
           <ul class="reassure">
-            <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Nezávazně a zdarma</li>
+            <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Nezávazná žádost zdarma</li>
             <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Výsledek hned</li>
             <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Zabere 2 minuty</li>
           </ul>
@@ -180,7 +180,7 @@
                       <button type="button" class="choice" data-val="yes">Ano</button>
                     </div>
                     <input type="hidden" id="w_encumbered" value="no" />
-                    <span class="hint">Pokud ano, nevadí — jen to posuzujeme individuálně před výkupem.</span>
+                    <span class="hint">Pokud ano, uveďte to prosím hned — zatížení vozu posuzujeme individuálně; někdy řešení existuje, jindy ne.</span>
                   </div>
 
                   <div class="notice" style="align-items:flex-start">
@@ -233,11 +233,7 @@
 
                   <hr class="divider" />
 
-                  <div class="between">
-                    <span class="calc-label">Pravděpodobnost přijetí vozu</span>
-                    <span class="meter-val mono" id="r_approval">95 %</span>
-                  </div>
-                  <div class="progress mint mt-2"><span id="r_approvalbar" style="width:95%"></span></div>
+                  <p class="muted mb-0" style="font-size:var(--fs-sm)"><strong>Předběžné posouzení:</strong> vůz spadá do běžně vykupovaných kategorií. Konečné rozhodnutí padne až po prohlídce technikem — výkup neslibujeme všem.</p>
 
                   <p class="mt-4 mb-0">
                     <span class="pill pill-mint"><span class="dot"></span> Auto můžete dál používat podle smlouvy</span>
@@ -250,6 +246,8 @@
                     <strong>Co nabídka znamená.</strong> Vůz od vás odkoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává AutoKapitál a.s., vy jste provozovatel a auto můžete dál používat podle smlouvy o užívání vozidla. Úhradou měsíčního rezervačního poplatku si držíte možnost zpětného odkupu za předem sjednanou cenu; při neuhrazení právo na odkup zaniká v okamžiku uvedeném ve smlouvě. Podmínky užívání (pojištění, servis, STK i pokuty) jsou ve smlouvě.
                   </div>
                 </div>
+
+                <p class="mt-4 mb-0" style="font-weight:800;color:var(--ink)">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
 
                 <div class="disclaimer mt-4">
                   <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg></span>
@@ -302,6 +300,16 @@
                       <strong class="mt-3" style="display:block">Nahrajte fotky vozu a velký technický průkaz</strong>
                       <p class="muted mb-0 mt-2" style="font-size:var(--fs-sm)">Přetáhněte soubory sem nebo klepněte pro výběr. Urychlí to nabídku.</p>
                     </div>
+                  </div>
+
+                  <div class="q-block">
+                    <span class="q-label" id="lbl_channel">Jak chcete dostávat dokumenty a informace?</span>
+                    <div class="choice-row big" data-bind="c_channel" role="group" aria-labelledby="lbl_channel">
+                      <button type="button" class="choice active" data-val="digital">Digitálně (e-mail / klientská zóna)</button>
+                      <button type="button" class="choice" data-val="listinne">V listinné podobě (poštou)</button>
+                    </div>
+                    <input type="hidden" id="c_channel" value="digital" />
+                    <span class="hint">Svou volbu můžete kdykoliv změnit — respektujeme ji pro předsmluvní informace i dokumenty během trvání smlouvy.</span>
                   </div>
 
                   <label class="check" style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;border-radius:var(--r-sm)">
