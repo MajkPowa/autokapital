@@ -1,5 +1,5 @@
 /* =========================================================================
-   AutoKapitál — Mock data layer (B2C · dočasný výkup vozu se zpětným odkupem)
+   AutoKapitál — Mock data layer (B2B · dočasný výkup vozu se zpětným odkupem — pro podnikatele)
    Exposes window.AK with demo data (CZ). NENÍ úvěr — výkupní cena + měsíční
    rezervační poplatek (4 % z hodnoty vozu) + cena zpětného odkupu.
    ========================================================================= */
@@ -8,10 +8,11 @@ window.AK = (function () {
 
   const user = {
     name: "Jan Novák",
-    household: "Domácnost · Brno",
+    profile: "OSVČ · elektroinstalace · Brno",
+    ico: "765 22 901",
     initials: "JN",
-    email: "jan.novak@email.cz",
-    segment: "Běžná domácnost",
+    email: "jan.novak@elektronovak.cz",
+    segment: "OSVČ / živnostník",
   };
 
   // Active case (drives the client portal) — dočasný výkup se zpětným odkupem
@@ -44,7 +45,7 @@ window.AK = (function () {
     owners: 2,
     stk: "platná do 3/2027",
     insurance: "Povinné ručení, platné",
-    role: "Vlastník: AutoKapitál a.s. · Provozovatel: Jan Novák",
+    role: "Vlastník: AutoKapitál a.s. · Provozovatel: Jan Novák (OSVČ, IČO 765 22 901)",
     photos: 6,
     conditionScore: 82,
   };
@@ -77,66 +78,66 @@ window.AK = (function () {
     { name: "Smlouva o užívání vozidla", meta: "PDF · 25. 3. 2026", kind: "Smlouva", signed: true },
     { name: "Smlouva o zpětném odkupu (opce)", meta: "PDF · 25. 3. 2026", kind: "Odkup", signed: true },
     { name: "Ceník rezervačního poplatku", meta: "PDF · 24. 3. 2026", kind: "Ceník", signed: false },
-    { name: "Informační dokument pro spotřebitele", meta: "PDF · 24. 3. 2026", kind: "Informace", signed: false },
+    { name: "Informační dokument pro klienta", meta: "PDF · 24. 3. 2026", kind: "Informace", signed: false },
   ];
 
-  // ----- Admin data (soukromé osoby, model výkupu) -----
+  // ----- Admin data (podnikatelé a firmy, model výkupu) -----
   // CRM pipeline — 7 fází dle interního reportu:
   // 1 lead → 2 call → 3 scoring → 4 návštěva technikem → 5 schválení → 6 pojištění → 7 přepis & podpis (hotovo)
   const pipeline = [
     { key: "lead", label: "1 · Nový lead", items: [
-      { id: "AK-5104", name: "Pavel Horák", car: "VW Passat B8", vykup: 175000, fee: 10500, segment: "C2", channel: "GA/PPC", risk: "low" },
-      { id: "AK-5103", name: "Marie Dvořáková", car: "Hyundai i30", vykup: 119000, fee: 7800, segment: "C3", channel: "Facebook", risk: "low" },
+      { id: "AK-5104", name: "Pavel Horák — OSVČ", ico: "089 12 334", car: "VW Passat B8", vykup: 175000, fee: 10500, segment: "C2", channel: "GA/PPC", risk: "low" },
+      { id: "AK-5103", name: "Dvořák Pekařství s.r.o.", ico: "062 44 810", car: "Hyundai i30", vykup: 119000, fee: 7800, segment: "C3", channel: "Facebook", risk: "low" },
     ]},
     { key: "call", label: "2 · Call", items: [
-      { id: "AK-5101", name: "Jiří Svoboda", car: "Dacia Duster", vykup: 98000, fee: 6500, segment: "C3", channel: "Sklik", risk: "low" },
-      { id: "AK-5098", name: "Jana Marešová", car: "Škoda Fabia", vykup: 91000, fee: 5900, segment: "C3", channel: "GA/PPC", risk: "low" },
+      { id: "AK-5101", name: "Jiří Svoboda — OSVČ", ico: "714 55 902", car: "Dacia Duster", vykup: 98000, fee: 6500, segment: "C3", channel: "Sklik", risk: "low" },
+      { id: "AK-5098", name: "Marešová Úklid s.r.o.", ico: "045 78 123", car: "Škoda Fabia", vykup: 91000, fee: 5900, segment: "C3", channel: "GA/PPC", risk: "low" },
     ]},
     { key: "scoring", label: "3 · Scoring", items: [
-      { id: "AK-5095", name: "Tomáš Král", car: "Ford Focus", vykup: 133000, fee: 8700, segment: "C2", channel: "Instagram", risk: "med" },
-      { id: "AK-5089", name: "Lucie Procházková", car: "Kia Ceed", vykup: 154000, fee: 9200, segment: "C2", channel: "Retention/CRM", risk: "low" },
+      { id: "AK-5095", name: "Tomáš Král — OSVČ", ico: "728 91 445", car: "Ford Focus", vykup: 133000, fee: 8700, segment: "C2", channel: "Instagram", risk: "med" },
+      { id: "AK-5089", name: "Procházková Catering — OSVČ", ico: "691 02 887", car: "Kia Ceed", vykup: 154000, fee: 9200, segment: "C2", channel: "Retention/CRM", risk: "low" },
     ]},
     { key: "technik", label: "4 · Návštěva technikem", items: [
-      { id: "AK-5085", name: "Karel Novotný", car: "Škoda Kodiaq", vykup: 320000, fee: 17600, segment: "C1", channel: "GA/PPC", risk: "low" },
+      { id: "AK-5085", name: "Novotný Stavby s.r.o.", ico: "277 40 551", car: "Škoda Kodiaq", vykup: 320000, fee: 17600, segment: "C1", channel: "GA/PPC", risk: "low" },
     ]},
     { key: "approval", label: "5 · Schválení", items: [
-      { id: "AK-5081", name: "Petr Beneš", car: "VW Tiguan", vykup: 280000, fee: 16800, segment: "C2", channel: "Facebook", risk: "med" },
-      { id: "AK-5077", name: "Jan Novák", car: "Škoda Octavia", vykup: 210000, fee: 12000, segment: "C3", channel: "GA/PPC", risk: "low" },
+      { id: "AK-5081", name: "Beneš Autodoprava — OSVČ", ico: "745 20 663", car: "VW Tiguan", vykup: 280000, fee: 16800, segment: "C2", channel: "Facebook", risk: "med" },
+      { id: "AK-5077", name: "Jan Novák — OSVČ", ico: "765 22 901", car: "Škoda Octavia", vykup: 210000, fee: 12000, segment: "C3", channel: "GA/PPC", risk: "low" },
     ]},
     { key: "insurance", label: "6 · Pojištění", items: [
-      { id: "AK-5072", name: "Alena Křížová", car: "Toyota Corolla", vykup: 185000, fee: 11100, segment: "C2", channel: "Retention/CRM", risk: "low" },
+      { id: "AK-5072", name: "Křížová Květiny — OSVČ", ico: "701 33 289", car: "Toyota Corolla", vykup: 185000, fee: 11100, segment: "C2", channel: "Retention/CRM", risk: "low" },
     ]},
     { key: "done", label: "7 · Přepis & podpis — hotovo", items: [
-      { id: "AK-4812", name: "Jan Novák", car: "Škoda Octavia", vykup: 210000, fee: 12000, segment: "C3", channel: "GA/PPC", risk: "low" },
-      { id: "AK-4790", name: "Eva Horáková", car: "Toyota Yaris", vykup: 105000, fee: 6800, segment: "C3", channel: "Sklik", risk: "low" },
+      { id: "AK-4812", name: "Jan Novák — OSVČ", ico: "765 22 901", car: "Škoda Octavia", vykup: 210000, fee: 12000, segment: "C3", channel: "GA/PPC", risk: "low" },
+      { id: "AK-4790", name: "Horáková Krejčovství — OSVČ", ico: "688 45 120", car: "Toyota Yaris", vykup: 105000, fee: 6800, segment: "C3", channel: "Sklik", risk: "low" },
     ]},
   ];
 
-  // Segmentace klientů (dle CZ_SEGMENTATION_ANALYSIS_TARGET_GROUP_2025)
-  // Rezervační poplatek diferencovaný podle segmentu; core business = C1–C3, E neoslovovat.
+  // Segmentace PŘÍPADŮ dle parametrů vozidla (hodnota, stáří, stav) — klienti jsou podnikatelé (OSVČ/firmy)
+  // Rezervační poplatek diferencovaný podle vozového segmentu; core business = C2–C3, segment E nevykupujeme.
   const segments = [
-    { key: "A",  label: "A · Elita",                 feePct: "3 %",   cap: "strop 12 000 Kč", share: "0,6 %",  note: "Prémiová komunikace, diskrétnost, sub-brand PREMIUM.", tone: "prémiová, pečlivá, individualizovaná", channels: "LinkedIn, remarketing na prémiová publika" },
-    { key: "B",  label: "B · Vysoce bonitní",        feePct: "4 %",   cap: "strop 15 000 Kč", share: "0,6 %",  note: "Rychlost, jistota, profesionalita.", tone: "prémiová", channels: "LinkedIn, remarketing" },
-    { key: "C1", label: "C1 · Horní střední třída",  feePct: "5,5 %", cap: "—",               share: "4,8 %",  note: "Férovost, jistota ceny, jednoduchý proces.", tone: "spolehlivá, férová, profesionální", channels: "online + retargeting + e-mailing (CRM)" },
-    { key: "C2", label: "C2 · Střední třída",        feePct: "6 %",   cap: "—",               share: "10,6 %", note: "Transparentnost, rychlá platba, bezpečnost.", tone: "spolehlivá, férová", channels: "online kampaně, retargeting, e-mailing" },
-    { key: "C3", label: "C3 · Dolní střední třída",  feePct: "6,5 %", cap: "—",               share: "30,2 %", note: "Největší masový segment — rychlé peníze, jednoduchost, jistota.", tone: "přímočará, srozumitelná", channels: "Google Ads, FB Ads, Sklik (performance)" },
-    { key: "E",  label: "E · Zranitelná skupina",    feePct: "—",     cap: "—",               share: "—",      note: "NEOSLOVOVAT — nezabezpečení důchodci, nezaměstnaní, na hranici chudoby.", tone: "—", channels: "—" },
+    { key: "A",  label: "A · Prémiové vozy (nad 900 tis. Kč)",   feePct: "3 %",   cap: "strop 12 000 Kč", share: "1 %",  note: "Vysoká hodnota vozu — absolutní výše poplatku roste rychle, proto strop.", tone: "prémiová, diskrétní péče", channels: "LinkedIn, remarketing na prémiová publika" },
+    { key: "B",  label: "B · Vyšší třída (600–900 tis. Kč)",     feePct: "4 %",   cap: "strop 15 000 Kč", share: "2 %",  note: "Bonitní případy, nízké riziko — komfort a rychlost.", tone: "profesionální", channels: "LinkedIn, remarketing" },
+    { key: "C1", label: "C1 · Střední třída (400–600 tis. Kč)",  feePct: "5,5 %", cap: "—",               share: "9 %",  note: "Stabilní vozy s dobrou obchodovatelností.", tone: "spolehlivá, férová", channels: "online + retargeting + e-mailing (CRM)" },
+    { key: "C2", label: "C2 · Nižší střední (250–400 tis. Kč)",  feePct: "6 %",   cap: "—",               share: "26 %", note: "Nejčastější firemní kombi a dodávky.", tone: "spolehlivá, věcná", channels: "online kampaně, retargeting, e-mailing" },
+    { key: "C3", label: "C3 · Základní vozy (do 250 tis. Kč)",   feePct: "6,5 %", cap: "—",               share: "62 %", note: "Největší objem případů — starší vozy OSVČ a živnostníků.", tone: "přímočará, srozumitelná", channels: "Google Ads, FB Ads, Sklik (performance)" },
+    { key: "E",  label: "E · Mimo výkupní kritéria",             feePct: "—",     cap: "—",               share: "—",    note: "NEVYKUPUJEME — vozy starší 15 let, špatný stav nebo právní vady.", tone: "—", channels: "—" },
   ];
 
-  // Typický klient (průměry 2025 z analýzy)
-  const typicalClient = { age: 44, carAge: 10.1, mileage: 162500, marketValue: 256000, score2026: 35 };
+  // Typický případ (průměry 2025 z interní analýzy) — profil vozu a subjektu, ne osoby
+  const typicalClient = { form: "OSVČ 72 % · s.r.o. 28 %", carAge: 10.1, mileage: 162500, marketValue: 256000, score2026: 35 };
 
   const adminLeads = [
-    { id: "AK-5081", client: "Petr Beneš", city: "Praha", car: "VW Tiguan 2.0 TDI", market: 400000, vykup: 280000, fee: 16000, product: "3 měsíce", vehicleScore: 82, risk: "med", stage: "Čeká na schválení" },
-    { id: "AK-5077", client: "Jan Novák", city: "Brno", car: "Škoda Octavia Combi 1.6 TDI", market: 300000, vykup: 210000, fee: 12000, product: "3 měsíce", vehicleScore: 84, risk: "low", stage: "Čeká na schválení" },
-    { id: "AK-5089", client: "Lucie Procházková", city: "Ostrava", car: "Kia Ceed 1.5", market: 220000, vykup: 154000, fee: 8800, product: "6 měsíců", vehicleScore: 80, risk: "low", stage: "Předběžně oceněno" },
-    { id: "AK-5103", client: "Marie Dvořáková", city: "Plzeň", car: "Hyundai i30 1.6", market: 170000, vykup: 119000, fee: 6800, product: "1 měsíc", vehicleScore: 78, risk: "low", stage: "Nový lead" },
+    { id: "AK-5081", client: "Beneš Autodoprava — OSVČ", ico: "745 20 663", city: "Praha", car: "VW Tiguan 2.0 TDI", market: 400000, vykup: 280000, fee: 16000, product: "3 měsíce", vehicleScore: 82, risk: "med", stage: "Čeká na schválení" },
+    { id: "AK-5077", client: "Jan Novák — OSVČ", ico: "765 22 901", city: "Brno", car: "Škoda Octavia Combi 1.6 TDI", market: 300000, vykup: 210000, fee: 12000, product: "3 měsíce", vehicleScore: 84, risk: "low", stage: "Čeká na schválení" },
+    { id: "AK-5089", client: "Procházková Catering — OSVČ", ico: "691 02 887", city: "Ostrava", car: "Kia Ceed 1.5", market: 220000, vykup: 154000, fee: 8800, product: "6 měsíců", vehicleScore: 80, risk: "low", stage: "Předběžně oceněno" },
+    { id: "AK-5103", client: "Dvořák Pekařství s.r.o.", ico: "062 44 810", city: "Plzeň", car: "Hyundai i30 1.6", market: 170000, vykup: 119000, fee: 6800, product: "1 měsíc", vehicleScore: 78, risk: "low", stage: "Nový lead" },
   ];
 
   const riskAlerts = [
     { kind: "warning", title: "Chybí doklad o vlastnictví vozidla", meta: "AK-5095 · Tomáš Král", action: "Vyžádat doklad" },
     { kind: "danger", title: "Rezervační poplatek po splatnosti", meta: "AK-4655 · 3 dny · 7 200 Kč", action: "Nabídnout řešení" },
-    { kind: "warning", title: "Blíží se konec lhůty pro zpětný odkup", meta: "AK-4790 · Eva Horáková", action: "Kontaktovat klienta" },
+    { kind: "warning", title: "Blíží se konec lhůty pro zpětný odkup", meta: "AK-4790 · Horáková Krejčovství — OSVČ", action: "Kontaktovat klienta" },
     { kind: "info", title: "Nahrán nový doklad — čeká na ověření", meta: "AK-5089 · technický průkaz", action: "Ověřit dokument" },
     { kind: "danger", title: "Vozidlo zatížené zástavou / leasingem", meta: "AK-5070 · nutná ruční kontrola", action: "Eskalovat" },
   ];
@@ -201,16 +202,16 @@ window.AK = (function () {
 
   // ----- Aftersales data (po podpisu: poplatky, prodloužení, odkupy, remarketing, retention) -----
   const aftersalesCases = [
-    { id: "AK-4812", client: "Jan Novák", car: "Škoda Octavia", spz: "5AK 4812", vykup: 210000, fee: 12000, feeState: "Uhrazeno", months: 2, buyback: 210000, phase: "Aktivní užívání", risk: "low" },
-    { id: "AK-4790", client: "Eva Horáková", car: "Toyota Yaris", spz: "2BX 9920", vykup: 105000, fee: 6800, feeState: "Splatné za 5 dní", months: 4, buyback: 105000, phase: "Aktivní užívání", risk: "low" },
-    { id: "AK-4655", client: "Roman Fiala", car: "Ford Mondeo", spz: "8GH 2214", vykup: 120000, fee: 7200, feeState: "3 dny po splatnosti", months: 3, buyback: 120000, phase: "Upomínka", risk: "high" },
-    { id: "AK-4703", client: "Petra Malá", car: "VW Golf", spz: "4JK 7731", vykup: 145000, fee: 9000, feeState: "Uhrazeno", months: 5, buyback: 145000, phase: "Žádost o odkup", risk: "low" },
-    { id: "AK-4503", client: "Martin Veselý", car: "Renault Mégane", spz: "7CD 1180", vykup: 126000, fee: 7200, feeState: "—", months: 6, buyback: 126000, phase: "Odkoupeno zpět", risk: "low" },
+    { id: "AK-4812", client: "Jan Novák — OSVČ", car: "Škoda Octavia", spz: "5AK 4812", vykup: 210000, fee: 12000, feeState: "Uhrazeno", months: 2, buyback: 210000, phase: "Aktivní užívání", risk: "low" },
+    { id: "AK-4790", client: "Horáková Krejčovství — OSVČ", car: "Toyota Yaris", spz: "2BX 9920", vykup: 105000, fee: 6800, feeState: "Splatné za 5 dní", months: 4, buyback: 105000, phase: "Aktivní užívání", risk: "low" },
+    { id: "AK-4655", client: "Fiala Instalatérství — OSVČ", car: "Ford Mondeo", spz: "8GH 2214", vykup: 120000, fee: 7200, feeState: "3 dny po splatnosti", months: 3, buyback: 120000, phase: "Upomínka", risk: "high" },
+    { id: "AK-4703", client: "Malá Grafika — OSVČ", car: "VW Golf", spz: "4JK 7731", vykup: 145000, fee: 9000, feeState: "Uhrazeno", months: 5, buyback: 145000, phase: "Žádost o odkup", risk: "low" },
+    { id: "AK-4503", client: "Veselý Servis s.r.o.", car: "Renault Mégane", spz: "7CD 1180", vykup: 126000, fee: 7200, feeState: "—", months: 6, buyback: 126000, phase: "Odkoupeno zpět", risk: "low" },
   ];
   const buybackRequests = [
-    { id: "AK-4703", client: "Petra Malá", car: "VW Golf", buyback: 145000, requested: "28. 6. 2026", state: "Čeká na platbu", next: "Po připsání platby připravit přepis" },
-    { id: "AK-4788", client: "David Beran", car: "Škoda Fabia", buyback: 89000, requested: "25. 6. 2026", state: "Platba přijata", next: "Objednat přepis na úřadě / Portál dopravy" },
-    { id: "AK-4762", client: "Hana Urbanová", car: "Kia Rio", buyback: 96000, requested: "20. 6. 2026", state: "Přepis dokončen", next: "Předat vůz + protokol, uzavřít případ" },
+    { id: "AK-4703", client: "Malá Grafika — OSVČ", car: "VW Golf", buyback: 145000, requested: "28. 6. 2026", state: "Čeká na platbu", next: "Po připsání platby připravit přepis" },
+    { id: "AK-4788", client: "Beran Zednictví — OSVČ", car: "Škoda Fabia", buyback: 89000, requested: "25. 6. 2026", state: "Platba přijata", next: "Objednat přepis na úřadě / Portál dopravy" },
+    { id: "AK-4762", client: "Urbanová Kadeřnictví — OSVČ", car: "Kia Rio", buyback: 96000, requested: "20. 6. 2026", state: "Přepis dokončen", next: "Předat vůz + protokol, uzavřít případ" },
   ];
   const remarketingCars = [
     { spz: "3EF 4521", model: "VW Tiguan 2.0 TDI", year: 2017, km: 168000, price: 315000, state: "Inzerováno", note: "právo odkupu zaniklo 4/2026" },
@@ -247,18 +248,18 @@ window.AK = (function () {
     { name: "Seat", segment: "Malé / hatchback" },
   ];
 
-  // Consumer FAQ (model výkupu)
+  // B2B FAQ (podnikatelé a firmy) (model výkupu)
   const faqs = [
-    { q: "Mohu auto opravdu dál používat?", a: "Ano. Po výkupu je vlastníkem AutoKapitál a.s., vy jste provozovatel a vůz můžete dál užívat pro běžný život podle smlouvy o užívání vozidla." },
+    { q: "Pro koho je služba určená?", a: "Výhradně pro podnikatele a firmy — OSVČ, živnostníky a společnosti s IČO, které vůz používají pro podnikání. Spotřebitelům službu neposkytujeme." },
+    { q: "Musím mít IČO?", a: "Ano. Služba je určena podnikatelům — v žádosti uvádíte IČO (OSVČ nebo firmy) a u společností ověřujeme oprávnění jednat." },
+    { q: "Mohu auto dál používat pro práci?", a: "Ano. Po výkupu je vlastníkem AutoKapitál a.s., vy jste provozovatel a vůz dál používáte pro podnikání podle smlouvy o užívání vozidla — zakázky, materiál, klienti." },
     { q: "Kdo bude vlastníkem vozidla?", a: "Po výkupu je vlastníkem AutoKapitál a.s. Vy zůstáváte provozovatelem a máte předem sjednanou možnost zpětného odkupu za podmínek uvedených ve smlouvě." },
     { q: "Jak funguje zpětný odkup?", a: "Cenu i podmínky zpětného odkupu máte uvedené ve smlouvě předem. Možnost odkupu si držíte úhradou měsíčního rezervačního poplatku a odkup zahájíte kdykoliv v klientské zóně." },
-    { q: "Co je měsíční rezervační poplatek?", a: "Poplatek za rezervaci možnosti zpětného odkupu a správu smlouvy — 4 % z odhadní hodnoty vozu měsíčně. Přesnou částku v Kč vidíte vždy před podpisem." },
-    { q: "Kolik celkem zaplatím?", a: "Před podpisem vidíte výkupní cenu, měsíční rezervační poplatek v Kč, poplatek za 1, 3, 6 i 12 měsíců a cenu zpětného odkupu. Žádné skryté kroky." },
-    { q: "Co když poplatek nezaplatím?", a: "Možnost zpětného odkupu je vázaná na řádnou úhradu rezervačního poplatku. Okamžik, kdy právo na odkup zaniká, máte jasně uvedený ve smlouvě — ozvěte se nám prosím včas." },
-    { q: "Kdo platí pojištění, servis, STK a pokuty?", a: "Podmínky užívání (pojištění, servis, pokuty, škody, STK i případné limity nájezdu) jsou jasně uvedené ve smlouvě o užívání vozidla." },
-    { q: "Můžu auto odkoupit dříve?", a: "Ano, kdykoliv. Cenu zpětného odkupu znáte předem a předčasný odkup vás nijak nepenalizuje." },
-    { q: "Je služba dostupná pro každého?", a: "Ne. Vykupujeme jen vozidla, která projdou ověřením stavu a dokumentů. Neslibujeme přijetí všem a vědomě neoslovujeme zranitelné skupiny." },
-    { q: "Co když je auto v leasingu nebo úvěru?", a: "Řekněte nám to hned na začátku. Vozidlo zatížené leasingem, úvěrem nebo zástavou posuzujeme individuálně — někdy řešení existuje, jindy ne." },
+    { q: "Co je měsíční rezervační poplatek?", a: "Poplatek za rezervaci možnosti zpětného odkupu a správu smlouvy — 4 % z odhadní hodnoty vozu měsíčně. Přesnou částku v Kč vidíte vždy před podpisem a jde o daňově uznatelný provozní náklad (posuďte s účetním)." },
+    { q: "Co když poplatek nezaplatím?", a: "Možnost zpětného odkupu je vázaná na řádnou úhradu poplatku. Okamžik, kdy právo na odkup zaniká, máte jasně uvedený ve smlouvě — ozvěte se nám prosím včas, hledáme řešení." },
+    { q: "Kdo platí pojištění, servis a STK?", a: "Podmínky užívání (pojištění, servis, pokuty, škody, STK i případné limity nájezdu) jsou jasně uvedené ve smlouvě o užívání vozidla." },
+    { q: "Je služba dostupná každému podnikateli?", a: "Ne. Vykupujeme jen vozidla, která projdou ověřením stavu a dokumentů, a každou žádost posuzujeme individuálně. Výkup neslibujeme všem." },
+    { q: "Co když je auto v leasingu nebo úvěru?", a: "Uveďte to prosím hned na začátku — zatížení vozu posuzujeme individuálně; někdy řešení existuje, jindy ne." },
   ];
 
   // Délka rezervace zpětného odkupu

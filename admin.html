@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600)</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AutoKapitál — Provozní centrum (admin)</title>
-  <meta name="description" content="Interní provozní centrum AutoKapitál pro model dočasného výkupu vozu se zpětným odkupem: přehled případů domácností, CRM pipeline v 7 fázích, měsíční channel report, segmentace klientů, scoring vozidla, vozidla, platby rezervačních poplatků, rizikové centrum, dokumenty a compliance." />
+  <meta name="description" content="Interní provozní centrum AutoKapitál pro model dočasného výkupu vozu se zpětným odkupem — výhradně pro podnikatele a firmy (OSVČ, s.r.o.): přehled případů, CRM pipeline v 7 fázích, měsíční channel report, segmentace klientů, scoring vozidla, ověření IČO/ARES, platby rezervačních poplatků, rizikové centrum, dokumenty a compliance." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -63,10 +63,10 @@
       </button>
 
       <div class="nav-group-label">Dohled</div>
-      <button class="side-link" data-target="compliance" data-title="Compliance" aria-label="Compliance, 16 kroků kontroly">
+      <button class="side-link" data-target="compliance" data-title="Compliance" aria-label="Compliance, 17 kroků kontroly">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
         Compliance
-        <span class="badge-count" aria-hidden="true">16</span>
+        <span class="badge-count" aria-hidden="true">17</span>
       </button>
 
       <div class="nav-group-label">Ostatní</div>
@@ -158,11 +158,11 @@
               <span class="eyebrow">Aktivita</span>
               <h2 class="mt-3" style="font-size:var(--fs-lg)">Poslední aktivita</h2>
               <ul class="tracker mt-4">
-                <li class="done"><span class="node"></span><div class="t-title">Připsán rezervační poplatek</div><div class="t-meta">AK-4812 · Jan Novák · 12 000 Kč · dnes 08:02</div></li>
-                <li class="done"><span class="node"></span><div class="t-title">Ověřeno vlastnictví vozu</div><div class="t-meta">AK-4790 · Eva Horáková · Toyota Yaris</div></li>
-                <li class="done"><span class="node"></span><div class="t-title">Nahrán technický průkaz</div><div class="t-meta">AK-5089 · Lucie Procházková · čeká na ověření</div></li>
-                <li class="active"><span class="node"></span><div class="t-title">Nový lead z kalkulačky</div><div class="t-meta">AK-5104 · Pavel Horák · VW Passat B8 · výkup 175 000 Kč</div></li>
-                <li><span class="node"></span><div class="t-title">Odeslány smlouvy a ceník k podpisu</div><div class="t-meta">AK-5077 · Jan Novák · Škoda Octavia Combi</div></li>
+                <li class="done"><span class="node"></span><div class="t-title">Připsán rezervační poplatek</div><div class="t-meta">AK-4812 · Jan Novák — OSVČ (IČO 765 22 901) · 12 000 Kč · dnes 08:02</div></li>
+                <li class="done"><span class="node"></span><div class="t-title">Ověřeno vlastnictví vozu a IČO v ARES</div><div class="t-meta">AK-4790 · Horáková Krejčovství — OSVČ · Toyota Yaris</div></li>
+                <li class="done"><span class="node"></span><div class="t-title">Nahrán technický průkaz</div><div class="t-meta">AK-5089 · Procházková Catering — OSVČ · čeká na ověření</div></li>
+                <li class="active"><span class="node"></span><div class="t-title">Nový lead z kalkulačky</div><div class="t-meta">AK-5104 · Pavel Horák — OSVČ · VW Passat B8 · výkup 175 000 Kč</div></li>
+                <li><span class="node"></span><div class="t-title">Odeslány smlouvy a ceník k podpisu</div><div class="t-meta">AK-5077 · Jan Novák — OSVČ · Škoda Octavia Combi</div></li>
               </ul>
             </div>
           </div>
@@ -204,13 +204,13 @@
         <section class="tab-panel" id="segmenty">
           <span class="eyebrow">Provoz</span>
           <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Segmentace klientů</h2>
-          <p class="lead mt-2" style="font-size:var(--fs-sm)">Diferencovaný měsíční rezervační poplatek podle segmentu (interní pricing). Core business tvoří segmenty C1–C3; segment E vědomě neoslovujeme.</p>
+          <p class="lead mt-2" style="font-size:var(--fs-sm)">Diferencovaný měsíční rezervační poplatek podle segmentu VOZIDLA — hodnota, stáří a stav vozu (interní cenová politika). Core business tvoří vozy segmentů C2–C3; vozy mimo kritéria (E) nevykupujeme. Zranitelné skupiny zásadně neoslovujeme.</p>
 
           <div class="card pad mt-4">
             <div class="table-wrap">
               <table class="table rowhover">
                 <thead>
-                  <tr><th>Segment</th><th class="num">Podíl klientů</th><th class="num">Rezervační poplatek</th><th>Strop</th><th>Komunikace / tón</th><th>Kanály</th><th>Poznámka</th></tr>
+                  <tr><th>Segment vozu</th><th class="num">Podíl případů</th><th class="num">Rezervační poplatek</th><th>Strop</th><th>Komunikace / tón</th><th>Kanály</th><th>Poznámka</th></tr>
                 </thead>
                 <tbody id="segmentsBody"></tbody>
               </table>
@@ -220,7 +220,7 @@
           <div class="grid grid-2 mt-5" style="align-items:start">
             <div class="card pad-lg">
               <div class="between">
-                <h3>Typický klient 2025</h3>
+                <h3>Typický případ 2025</h3>
                 <span class="pill pill-mint">Průměry z analýzy</span>
               </div>
               <div class="table-wrap mt-4">
@@ -243,14 +243,14 @@
         <section class="tab-panel" id="zadosti">
           <span class="eyebrow">Provoz</span>
           <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Žádosti k posouzení výkupu</h2>
-          <p class="lead mt-2" style="font-size:var(--fs-sm)">U každé žádosti vidí operátor odhad hodnoty vozu, výkupní cenu, měsíční rezervační poplatek, zvolenou dobu rezervace, skóre vozu i riziko případu — rozhodnutí je předem podložené. Scoring je rozhodovací pomůcka, ne automatické zamítnutí. <strong>Cena zpětného odkupu odpovídá výkupní ceně</strong> a je uvedená v každé smlouvě.</p>
+          <p class="lead mt-2" style="font-size:var(--fs-sm)">Žadateli jsou výhradně podnikatelé a firmy (OSVČ, s.r.o.) — u každé žádosti operátor vidí IČO, odhad hodnoty vozu, výkupní cenu, měsíční rezervační poplatek, cenu zpětného odkupu, zvolenou dobu rezervace, skóre vozu i riziko případu — rozhodnutí je předem podložené. Scoring je rozhodovací pomůcka, ne automatické zamítnutí. <strong>Cena zpětného odkupu odpovídá výkupní ceně</strong> a je uvedená v každé smlouvě.</p>
           <div class="card pad mt-4">
             <div class="table-wrap">
               <table class="table rowhover">
                 <thead>
                   <tr>
                     <th>ID</th><th>Klient</th><th>Město</th><th>Vozidlo</th>
-                    <th class="num">Odhad hodnoty</th><th class="num">Výkupní cena</th><th class="num">Měsíční poplatek</th>
+                    <th class="num">Odhad hodnoty</th><th class="num">Výkupní cena</th><th class="num">Měsíční poplatek</th><th class="num">Cena odkupu</th>
                     <th>Doba</th><th class="num">Skóre vozu</th><th>Riziko</th><th>Stav</th><th>Akce</th>
                   </tr>
                 </thead>
@@ -265,7 +265,7 @@
           <div class="between" style="margin-bottom:var(--sp-5)">
             <div>
               <span class="eyebrow">Příklad případu</span>
-              <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Scoring — AK-5077 · Jan Novák · Brno</h2>
+              <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Scoring — AK-5077 · Jan Novák — OSVČ, elektroinstalace · Brno · IČO 765 22 901</h2>
             </div>
             <span class="pill pill-mint">Škoda Octavia Combi 1.6 TDI</span>
           </div>
@@ -292,11 +292,13 @@
                 <h3>Ověření a rizika</h3>
                 <span class="pill pill-success">Vše ověřeno</span>
               </div>
-              <p class="muted mt-2" style="font-size:var(--fs-sm)">Ověřujeme identitu klienta, vlastnictví vozu a jeho právní zatížení (leasing, úvěr, zástava).</p>
+              <p class="muted mt-2" style="font-size:var(--fs-sm)">Ověřujeme identitu klienta, jeho podnikatelský status (IČO v ARES), vlastnictví vozu a jeho právní zatížení (leasing, úvěr, zástava).</p>
               <div class="table-wrap mt-4">
                 <table class="table">
                   <tbody>
                     <tr><td class="muted">Ověření identity klienta</td><td class="num"><span class="pill pill-success">ověřeno</span></td></tr>
+                    <tr><td class="muted">Ověření IČO a podnikatelského účelu (ARES)</td><td class="num"><span class="pill pill-success">ověřeno</span></td></tr>
+                    <tr><td class="muted">Oprávnění jednat za firmu (u s.r.o.)</td><td class="num"><span class="pill pill-muted">OSVČ — netýká se</span></td></tr>
                     <tr><td class="muted">Ověření vlastnictví vozidla</td><td class="num"><span class="pill pill-success">ověřeno</span></td></tr>
                     <tr><td class="muted">Kontrola zatížení (leasing / úvěr / zástava)</td><td class="num"><span class="pill pill-success">bez zatížení</span></td></tr>
                     <tr><td class="muted">Pojistitelnost vozidla</td><td class="num"><span class="pill pill-success">v pořádku</span></td></tr>
@@ -318,7 +320,7 @@
         <section class="tab-panel" id="vozidla">
           <span class="eyebrow">Provoz</span>
           <h2 class="mt-2 mb-0" style="font-size:var(--fs-lg)">Vozidla v evidenci</h2>
-          <p class="lead mt-2" style="font-size:var(--fs-sm)">Vozidla dočasně ve vlastnictví AutoKapitál a.s., provozovaná dál klienty pro běžný život. Systém hlídá STK i pojištění.</p>
+          <p class="lead mt-2" style="font-size:var(--fs-sm)">Vozidla dočasně ve vlastnictví AutoKapitál a.s., provozovaná dál klienty-podnikateli pro jejich podnikání — zakázky, materiál, klienti. Systém hlídá STK i pojištění.</p>
           <div class="card pad mt-4">
             <div class="table-wrap">
               <table class="table rowhover">
@@ -360,7 +362,7 @@
               <div class="stack gap-3 mt-4">
                 <div class="card pad" style="box-shadow:none">
                   <div class="between">
-                    <div><strong>AK-4655 · Roman Fiala</strong><div class="t-meta muted" style="font-size:var(--fs-sm)">Poplatek po splatnosti 3 dny · 7 200 Kč</div></div>
+                    <div><strong>AK-4655 · Fiala Instalatérství — OSVČ</strong><div class="t-meta muted" style="font-size:var(--fs-sm)">Poplatek po splatnosti 3 dny · 7 200 Kč</div></div>
                     <span class="pill pill-danger">1. upomínka</span>
                   </div>
                   <div class="cluster mt-3" style="gap:8px">
@@ -371,7 +373,7 @@
                 </div>
                 <div class="card pad" style="box-shadow:none">
                   <div class="between">
-                    <div><strong>AK-5012 · Tomáš Král</strong><div class="t-meta muted" style="font-size:var(--fs-sm)">Nespárovaná platba · čeká na VS</div></div>
+                    <div><strong>AK-5012 · Tomáš Král — OSVČ</strong><div class="t-meta muted" style="font-size:var(--fs-sm)">Nespárovaná platba · čeká na VS</div></div>
                     <span class="pill pill-warning">K ověření</span>
                   </div>
                   <button class="btn btn-ghost btn-sm mt-3" data-demo="Žádost o doplnění VS odeslána (demo)">Vyžádat VS</button>
@@ -411,8 +413,8 @@
 
           <div class="card pad-lg mt-4">
             <div class="between">
-              <h3>Kontrolní seznam (16 kroků)</h3>
-              <span class="pill pill-success">AK-5077 · Jan Novák</span>
+              <h3>Kontrolní seznam (17 kroků)</h3>
+              <span class="pill pill-success">AK-5077 · Jan Novák — OSVČ · IČO 765 22 901</span>
             </div>
             <ul class="stack gap-3 mt-5" id="complianceList" style="list-style:none;padding:0;margin:0"></ul>
           </div>
@@ -420,8 +422,8 @@
           <div class="notice mt-5" style="align-items:flex-start">
             <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
             <div>
-              <strong>Segment E / zranitelné skupiny se neoslovují.</strong>
-              <span style="display:block;margin-top:6px;color:var(--muted)">Vědomě neoslovujeme rizikové ani zranitelné skupiny a neslibujeme přijetí všem. Reklama nesmí obsahovat zavádějící tvrzení — úplný seznam zakázaných formulací je na stránce <a href="compliance.html">Férovost &amp; compliance</a>. Ekonomiku produktu posuzuje advokát kvůli riziku překvalifikace na spotřebitelský úvěr.</span>
+              <strong>Hlavní regulatorní pojistka: služba je výhradně B2B — podnikatelský účel je mimo režim zákona o spotřebitelském úvěru.</strong>
+              <span style="display:block;margin-top:6px;color:var(--muted)">Služba je určena výhradně podnikatelům a firmám (OSVČ, s.r.o.) — spotřebitelům se neposkytuje; podnikatelský status u každé žádosti ověřujeme podle IČO v ARES. Spotřebitelská pravidla novely přesto držíme dobrovolně jako best practice. Segment E / zranitelné skupiny se neoslovují a přijetí neslibujeme všem. Reklama nesmí obsahovat zavádějící tvrzení — úplný seznam zakázaných formulací je na stránce <a href="compliance.html">Férovost &amp; compliance</a>. Ekonomiku produktu posuzuje advokát kvůli riziku překvalifikace na spotřebitelský úvěr.</span>
             </div>
           </div>
         </section>
@@ -485,11 +487,11 @@
             ' · měsíční rezervační poplatek ' + czk(ex.fee) + ' (4 % z hodnoty)' +
             ' · poplatek za 3 měsíce ' + czk(ex.fee3) +
             ' · cena zpětného odkupu ' + czk(ex.buyback) + '.' +
-            '<span style="display:block;margin-top:6px;color:var(--muted)">Jde o orientační výpočet, ne o závaznou nabídku. Konečná nabídka závisí na ověření stavu a dokladů vozidla. Klient zůstává provozovatelem a auto může dál užívat podle smlouvy.</span>' +
+            '<span style="display:block;margin-top:6px;color:var(--muted)">Jde o orientační výpočet, ne o závaznou nabídku. Konečná nabídka závisí na ověření stavu a dokladů vozidla a podnikatelského statusu (IČO/ARES). Klient zůstává provozovatelem a vůz dál používá pro podnikání podle smlouvy. Služba je určena výhradně podnikatelům a firmám — spotřebitelům ji neposkytujeme.</span>' +
           '</div>';
       }
 
-      // ----- CRM pipeline kanban — 7 fází (soukromé osoby, model výkupu) -----
+      // ----- CRM pipeline kanban — 7 fází (podnikatelé a firmy, model výkupu) -----
       var board = document.getElementById("pipelineBoard");
       if (board && AK.pipeline) {
         board.innerHTML = AK.pipeline.map(function (col) {
@@ -497,10 +499,12 @@
             return '<div class="kanban-card">' +
               '<div class="mono muted" style="font-size:var(--fs-xs)">' + esc(c.id) + '</div>' +
               '<div style="font-weight:700;color:var(--ink);margin-top:2px">' + esc(c.name) + '</div>' +
+              (c.ico ? '<div class="muted mono" style="font-size:var(--fs-xs)">IČO ' + esc(c.ico) + '</div>' : '') +
               '<div class="muted" style="font-size:var(--fs-sm)">' + esc(c.car) + '</div>' +
               '<div class="cluster" style="margin-top:8px;gap:6px">' +
-                '<span class="pill pill-navy mono">' + czk(c.vykup) + '</span>' +
+                '<span class="pill pill-navy mono">výkup ' + czk(c.vykup) + '</span>' +
                 '<span class="pill mono">poplatek ' + num(c.fee) + ' Kč/měs</span>' +
+                '<span class="pill mono">odkup ' + czk(c.vykup) + '</span>' +
                 '<span class="pill pill-muted">' + esc(c.segment) + '</span>' +
                 riskPill(c.risk) +
               '</div>' +
@@ -624,25 +628,26 @@
       if (tcb && AK.typicalClient) {
         var tc = AK.typicalClient;
         tcb.innerHTML =
-          '<tr><td class="muted">Věk</td><td class="num mono"><strong>' + tc.age + ' let</strong></td></tr>' +
+          '<tr><td class="muted">Právní forma</td><td class="num mono"><strong>' + tc.form + '</strong></td></tr>' +
           '<tr><td class="muted">Stáří auta</td><td class="num mono"><strong>' + String(tc.carAge).replace(".", ",") + ' roku</strong></td></tr>' +
           '<tr><td class="muted">Nájezd</td><td class="num mono"><strong>' + num(tc.mileage) + ' km</strong></td></tr>' +
           '<tr><td class="muted">Tržní cena vozu</td><td class="num mono"><strong>' + czk(tc.marketValue) + '</strong></td></tr>' +
           '<tr><td class="muted">Predikce skóre 2026</td><td class="num mono"><strong>' + tc.score2026 + '</strong></td></tr>';
       }
 
-      // ----- Leads table (private individuals, model výkupu) -----
+      // ----- Leads table (podnikatelé a firmy s IČO, model výkupu) -----
       var lb = document.getElementById("leadsBody");
       if (lb && AK.adminLeads) {
         lb.innerHTML = AK.adminLeads.map(function (l) {
           return '<tr>' +
             '<td class="mono">' + esc(l.id) + '</td>' +
-            '<td><strong>' + esc(l.client) + '</strong></td>' +
+            '<td><strong>' + esc(l.client) + '</strong>' + (l.ico ? '<div class="muted mono" style="font-size:var(--fs-xs)">IČO ' + esc(l.ico) + '</div>' : '') + '</td>' +
             '<td class="muted">' + esc(l.city) + '</td>' +
             '<td>' + esc(l.car) + '</td>' +
             '<td class="num mono">' + czk(l.market) + '</td>' +
             '<td class="num mono">' + czk(l.vykup) + '</td>' +
             '<td class="num mono">' + czk(l.fee) + '</td>' +
+            '<td class="num mono">' + czk(l.vykup) + '</td>' +
             '<td><span class="pill pill-muted">' + esc(l.product) + '</span></td>' +
             '<td class="num mono">' + l.vehicleScore + ' / 100</td>' +
             '<td>' + riskPill(l.risk) + '</td>' +
@@ -699,7 +704,7 @@
       if (dg) {
         var templates = AK.documents ? AK.documents.map(function (d) { return d.name; }) : [
           "Kupní smlouva na vozidlo", "Předávací protokol", "Smlouva o užívání vozidla",
-          "Smlouva o zpětném odkupu (opce)", "Ceník rezervačního poplatku", "Informační dokument pro spotřebitele"
+          "Smlouva o zpětném odkupu (opce)", "Ceník rezervačního poplatku", "Informační dokument pro klienta"
         ];
         dg.innerHTML = templates.map(function (t) {
           return '<div class="doc-card">' +
@@ -710,17 +715,18 @@
         }).join("");
       }
 
-      // ----- Compliance checklist (11 mandatory steps · model výkupu) -----
+      // ----- Compliance checklist (17 mandatory steps · B2B model výkupu) -----
       var cl = document.getElementById("complianceList");
       if (cl) {
         var steps = [
+          { t: "Ověření podnikatelského statusu (IČO/ARES)", m: "Služba jen pro podnikatele — spotřebitelům se neposkytuje", done: true },
           { t: "Ověření identity klienta", m: "Doklad totožnosti klienta ověřen", done: true },
           { t: "Ověření vlastnictví vozidla", m: "Technický průkaz a vlastník zkontrolováni", done: true },
           { t: "Kontrola zástav, leasingu a právních omezení", m: "Bez zatížení leasingem, úvěrem i zástavou", done: true },
           { t: "AML / KYC proces", m: "Screening a původ prostředků v pořádku", done: true },
           { t: "Předávací protokol a stav vozu", m: "Stav vozidla zdokumentován při převzetí", done: true },
           { t: "Ceník rezervačního poplatku", m: "Poplatek 4 % z hodnoty vozu předán klientovi", done: true },
-          { t: "Informační dokument pro spotřebitele", m: "Předán klientovi před podpisem", done: true },
+          { t: "Informační dokument pro klienta", m: "Předán před podpisem — spotřebitelský standard držíme dobrovolně", done: true },
           { t: "Jasné zobrazení všech nákladů v Kč", m: "Výkupní cena i poplatky jasně zobrazeny", done: true },
           { t: "Jasné zobrazení ceny zpětného odkupu", m: "Cena odkupu předem známá ze smlouvy", done: true },
           { t: "Archiv souhlasů a dokumentů", m: "Souhlasy a smlouvy uloženy v archivu", done: false },

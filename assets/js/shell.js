@@ -83,7 +83,7 @@
         <div class="footer-grid">
           <div>
             <a class="brand" href="index.html" aria-label="AutoKapitál — domů">${LOGO_IMG}</a>
-            <p class="mt-3" style="max-width:320px">Peníze z auta. Auto používáte dál. Rychlé a férové řešení, když potřebujete peníze, ale auto dál potřebujete pro život.</p>
+            <p class="mt-3" style="max-width:320px">Peníze z auta. Auto používáte dál. Rychlé a férové řešení, když vaše firma potřebuje peníze, ale vůz dál potřebujete pro podnikání.</p>
             <span class="pill pill-mint mt-2">${I.shield} Rychle · Férově · Přehledně</span>
           </div>
           <div>
@@ -91,7 +91,7 @@
             <ul class="footer-links">
               <li><a href="zadost.html">Peníze z hodnoty auta</a></li>
               <li><a href="index.html#jak-to-funguje">Zpětný odkup</a></li>
-              <li><a href="index.html#pro-koho">Pro domácnosti a řidiče</a></li>
+              <li><a href="index.html#pro-koho">Pro OSVČ a firmy</a></li>
               <li><a href="index.html#kalkulacka">Orientační kalkulačka</a></li>
             </ul>
           </div>

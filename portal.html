@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600)</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AutoKapitál — Klientská zóna</title>
-  <meta name="description" content="Vaše osobní zóna AutoKapitál. Přehled výkupu, vozidla, rezervačních poplatků a dokumentů. Výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu vidíte předem." />
+  <meta name="description" content="Klientská zóna AutoKapitál pro podnikatele a firmy. Přehled výkupu, vozidla, rezervačních poplatků a dokumentů. Výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu vidíte předem." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -73,7 +73,7 @@
         <!-- ============ PŘEHLED ============ -->
         <section class="tab-panel active" id="overview">
           <h2>Dobrý den, Jane</h2>
-          <p class="muted mt-2">Domácnost · Brno · případ AK-2026-04812</p>
+          <p class="muted mt-2">OSVČ · elektroinstalace · Brno · IČO 765 22 901 · případ AK-2026-04812</p>
 
           <div class="grid grid-2 mt-5">
             <!-- Moje žádost -->
@@ -90,7 +90,7 @@
               <hr class="divider" />
               <div class="notice mb-0" style="align-items:flex-start">
                 <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
-                <div><strong>Dočasný výkup vozu se zpětným odkupem.</strong> Vlastníkem vozu je AutoKapitál a.s., vy jste provozovatel a auto můžete dál používat podle smlouvy o užívání. Možnost zpětného odkupu si držíte úhradou měsíčního rezervačního poplatku (4 % z hodnoty vozu).</div>
+                <div><strong>Dočasný výkup vozu se zpětným odkupem.</strong> Vlastníkem vozu je AutoKapitál a.s., vy jste provozovatel a auto můžete dál používat podle smlouvy o užívání. Možnost zpětného odkupu si držíte úhradou měsíčního rezervačního poplatku (4 % z hodnoty vozu). Služba je poskytována podnikatelům — vůz užíváte v rámci svého podnikání.</div>
               </div>
             </div>
 
@@ -103,8 +103,8 @@
 
           <div class="grid grid-3 mt-5">
             <div class="card pad tint">
-              <h4>Auto můžete dál používat.</h4>
-              <p class="muted mb-0 mt-2" style="font-size:var(--fs-sm)">Jako provozovatel vůz dál užíváte pro běžný život podle smluvních podmínek — do práce, pro rodinu i na dovolenou.</p>
+              <h4>Auto dál používáte pro podnikání.</h4>
+              <p class="muted mb-0 mt-2" style="font-size:var(--fs-sm)">Jako provozovatel vůz dál užíváte pro svou firmu podle smluvních podmínek — jezdíte na zakázky, vozíte materiál i za klienty.</p>
             </div>
             <div class="card pad tint">
               <h4>Vše vidíte předem.</h4>
@@ -175,7 +175,7 @@
                 <hr class="divider" style="margin-block:var(--sp-2)" />
                 <div class="between"><span class="muted">STK platná do 3/2027</span><span class="pill pill-success">Platná</span></div>
                 <div class="between"><span class="muted">Pojištění povinné ručení</span><span class="pill pill-success">Platné</span></div>
-                <div class="between" style="align-items:flex-start"><span class="muted">Vlastník / provozovatel</span><span style="text-align:right;font-weight:700;color:var(--ink);font-size:var(--fs-sm)">AutoKapitál a.s. /<br>Jan Novák</span></div>
+                <div class="between" style="align-items:flex-start"><span class="muted">Vlastník / provozovatel</span><span id="vehicleRole" style="text-align:right;font-weight:700;color:var(--ink);font-size:var(--fs-sm)">AutoKapitál a.s. /<br>Jan Novák (OSVČ, IČO 765 22 901)</span></div>
                 <div class="between"><span class="muted">Fotodokumentace</span><span class="pill">6 fotek</span></div>
               </div>
               <div class="notice mt-4 mb-0" style="align-items:flex-start">
@@ -298,6 +298,7 @@
                   <div class="cluster" style="gap:10px">
                     <span class="ico" style="color:var(--green)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
                     <span class="muted">Po–Pá 8–18</span>
+                  <p class="muted mb-0 mt-3" style="font-size:var(--fs-xs)"><a href="compliance.html#povinne-informace">Povinné informace a právo na odstoupení</a></p>
                   </div>
                 </div>
                 <div class="notice mt-4 mb-0">
@@ -331,6 +332,12 @@
             '<div class="t-title">' + s.title + '</div>' +
             '<div class="t-meta">' + s.meta + '</div></li>';
         }).join("");
+      }
+
+      // ----- Vozidlo: vlastník / provozovatel (z data.js) -----
+      var roleEl = document.getElementById("vehicleRole");
+      if (roleEl && AK.vehicle && AK.vehicle.role) {
+        roleEl.textContent = AK.vehicle.role;
       }
 
       // ----- Platby (tabulka) -----

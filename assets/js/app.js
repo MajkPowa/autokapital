@@ -211,6 +211,8 @@
         return valid;
       };
       req("c_name", el => el.value.trim().length >= 3);
+      // B2B: IČO je povinné (8 číslic; mezery povoleny)
+      req("c_ico", el => /^\d{8}$/.test(el.value.replace(/\s/g, "")));
       const phoneOk = (document.getElementById("c_phone") || { value: "" }).value.replace(/\s/g, "").length >= 9;
       const mailOk = /.+@.+\..+/.test((document.getElementById("c_email") || { value: "" }).value);
       req("c_phone", () => phoneOk || mailOk);

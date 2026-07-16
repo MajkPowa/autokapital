@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600)</script>
   <title>AutoKapitál — Zjistěte, kolik vám vyplatíme</title>
-  <meta name="description" content="Nezávazně a zdarma zjistíte, kolik vám za vaše auto vyplatíme. Výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu uvidíte hned — auto přitom můžete dál používat podle smlouvy." />
+  <meta name="description" content="Pro podnikatele a firmy s IČO: nezávazná žádost zdarma — zjistíte, kolik vám za váš vůz vyplatíme. Výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu uvidíte hned — vůz přitom dál používáte pro podnikání podle smlouvy." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -63,14 +63,14 @@
 <body data-shell="marketing" data-active="">
   <div id="site-header"></div>
 
-  <!-- ===================== ŽÁDOST / ORIENTAČNÍ VÝKUPNÍ NABÍDKA ===================== -->
+  <!-- ===================== ŽÁDOST / ORIENTAČNÍ VÝKUPNÍ NABÍDKA (B2B) ===================== -->
   <section class="section full-bleed-bg" style="padding-top:var(--sp-7)">
     <div class="container">
 
       <div class="section-head" style="margin-bottom:var(--sp-6);max-width:640px">
         <span class="eyebrow">Nezávazná nabídka online</span>
         <h1 class="mt-3 balance" style="font-size:clamp(2rem, 5vw, var(--fs-3xl))">Zjistěte, kolik vám vyplatíme</h1>
-        <p class="lead mb-0">Pár otázek o vašem autě a hned uvidíte trojici čísel: výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu. Auto přitom můžete dál používat podle smlouvy.</p>
+        <p class="lead mb-0">Pro podnikatele a firmy (IČO). Pár otázek o vašem voze a hned uvidíte trojici čísel: výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu. Vůz přitom dál používáte pro podnikání podle smlouvy.</p>
       </div>
 
       <div class="zadost-grid">
@@ -97,6 +97,7 @@
             <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Nezávazná žádost zdarma</li>
             <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Výsledek hned</li>
             <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Zabere 2 minuty</li>
+            <li><span class="ri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Pro OSVČ a firmy</li>
           </ul>
 
           <!-- Wizard card -->
@@ -108,8 +109,21 @@
                 <span class="eyebrow">Krok 1 ze 4</span>
                 <h3 class="mt-3">Vaše auto</h3>
                 <p class="muted mt-2">Stačí odhad — přesný stav ověří technik později přímo u vás.</p>
+                <p class="muted mt-2">Vůz může být firemní i soukromý — důležité je, že ho používáte pro podnikání (na IČO).</p>
 
                 <div class="stack gap-4 mt-5">
+                  <div class="q-block">
+                    <span class="q-label" id="lbl_business">Podnikáte na IČO (OSVČ nebo firma)?</span>
+                    <div class="choice-row big" data-bind="w_business" role="group" aria-labelledby="lbl_business">
+                      <button type="button" class="choice active" data-val="yes">Ano, mám IČO</button>
+                      <button type="button" class="choice" data-val="no">Ne, nepodnikám</button>
+                    </div>
+                    <input type="hidden" id="w_business" value="yes" />
+                    <div id="businessGate" class="disclaimer hide" role="alert" style="margin-top:var(--sp-3)">
+                      <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg></span>
+                      <div>Omlouváme se — služba je určena <strong>výhradně podnikatelům a firmám s IČO</strong>. Spotřebitelům ji neposkytujeme.</div>
+                    </div>
+                  </div>
                   <div class="q-block">
                     <label class="q-label" for="w_segment">Jaký typ auta máte?</label>
                     <select class="select" id="w_segment">
@@ -149,7 +163,7 @@
                 </div>
 
                 <div class="wizard-nav">
-                  <span class="hint muted">Nezávazně a zdarma · výsledek hned</span>
+                  <span class="hint muted">Nezávazná žádost zdarma · výsledek hned</span>
                   <button type="button" class="btn btn-primary btn-lg" data-next>Pokračovat</button>
                 </div>
               </div>
@@ -186,7 +200,7 @@
                   <div class="notice" style="align-items:flex-start">
                     <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
                     <div>
-                      <strong>Jak to funguje.</strong> Vůz od vás dočasně odkoupíme a výkupní cenu vám vyplatíme. Vy ho můžete dál používat podle smlouvy o užívání vozidla. Měsíční rezervační poplatek (4&nbsp;% z odhadní hodnoty vozu) vám drží možnost zpětného odkupu za předem sjednanou cenu.
+                      <strong>Jak to funguje.</strong> Vůz od vás dočasně odkoupíme a výkupní cenu vám vyplatíme. Vy ho můžete dál používat pro podnikání podle smlouvy o užívání vozidla. Měsíční rezervační poplatek (4&nbsp;% z odhadní hodnoty vozu) vám drží možnost zpětného odkupu za předem sjednanou cenu.
                     </div>
                   </div>
                 </div>
@@ -236,14 +250,14 @@
                   <p class="muted mb-0" style="font-size:var(--fs-sm)"><strong>Předběžné posouzení:</strong> vůz spadá do běžně vykupovaných kategorií. Konečné rozhodnutí padne až po prohlídce technikem — výkup neslibujeme všem.</p>
 
                   <p class="mt-4 mb-0">
-                    <span class="pill pill-mint"><span class="dot"></span> Auto můžete dál používat podle smlouvy</span>
+                    <span class="pill pill-mint"><span class="dot"></span> Vůz dál používáte pro podnikání podle smlouvy</span>
                   </p>
                 </div>
 
                 <div class="notice mt-5" style="align-items:flex-start">
                   <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
                   <div>
-                    <strong>Co nabídka znamená.</strong> Vůz od vás odkoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává AutoKapitál a.s., vy jste provozovatel a auto můžete dál používat podle smlouvy o užívání vozidla. Úhradou měsíčního rezervačního poplatku si držíte možnost zpětného odkupu za předem sjednanou cenu; při neuhrazení právo na odkup zaniká v okamžiku uvedeném ve smlouvě. Podmínky užívání (pojištění, servis, STK i pokuty) jsou ve smlouvě.
+                    <strong>Co nabídka znamená.</strong> Vůz od vás odkoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává AutoKapitál a.s., vy jste provozovatel a vůz dál používáte pro podnikání podle smlouvy o užívání vozidla — zakázky, materiál i cesty za klienty. Úhradou měsíčního rezervačního poplatku si držíte možnost zpětného odkupu za předem sjednanou cenu; při neuhrazení právo na odkup zaniká v okamžiku uvedeném ve smlouvě. Podmínky užívání (pojištění, servis, STK i pokuty) jsou ve smlouvě.
                   </div>
                 </div>
 
@@ -251,7 +265,7 @@
 
                 <div class="disclaimer mt-4">
                   <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg></span>
-                  <div>Kalkulace je orientační a nezávazná. Konečná nabídka závisí na ověření stavu vozidla a dokladů. Výkupní cenu, měsíční rezervační poplatek v Kč i cenu zpětného odkupu uvidíte v plné výši ještě před podpisem smluv.</div>
+                  <div>Kalkulace je orientační a nezávazná. Konečná nabídka závisí na ověření stavu vozidla a dokladů. Výkupní cenu, měsíční rezervační poplatek v Kč i cenu zpětného odkupu uvidíte v plné výši ještě před podpisem smluv. Rezervační poplatek je zpravidla daňově uznatelný provozní náklad — posuďte se svým účetním.</div>
                 </div>
 
                 <div class="wizard-nav">
@@ -264,17 +278,23 @@
               <!-- STEP 4 — Kontakt (až PO zobrazení nabídky) -->
               <div class="wizard-step" data-validate="contact">
                 <span class="eyebrow">Krok 4 ze 4 · poslední krok</span>
-                <h2 class="mt-3" style="font-size:var(--fs-lg)">Kam pošleme nabídku písemně?</h2>
-                <p class="muted mt-2">Jen tři údaje — pošleme vám nabídku a domluvíme termín návštěvy technika. Nikomu je nepředáme a nic vám nevnucujeme.</p>
+                <h2 class="mt-3" style="font-size:var(--fs-lg)">Kam pošleme nabídku pro vaši firmu?</h2>
+                <p class="muted mt-2">Podle IČO si ověříme údaje v ARES — nic dalšího dokládat nemusíte. Pošleme vám nabídku a domluvíme termín návštěvy technika. Údaje nikomu nepředáme a nic vám nevnucujeme.</p>
 
                 <div class="stack gap-4 mt-5">
                   <div class="q-block">
                     <span class="q-label">Kontaktní údaje</span>
                     <div class="stack gap-4">
                       <div class="field">
-                        <label for="c_name">Jméno a příjmení</label>
+                        <label for="c_ico">IČO</label>
+                        <input class="input" type="text" id="c_ico" placeholder="12345678" inputmode="numeric" autocomplete="off" />
+                        <span class="field-error">Vyplňte platné IČO (8 číslic) — služba je pro podnikatele.</span>
+                        <span class="hint">Údaje si ověříme v ARES.</span>
+                      </div>
+                      <div class="field">
+                        <label for="c_name">Jméno a příjmení / název firmy</label>
                         <input class="input" type="text" id="c_name" placeholder="Jan Novák" autocomplete="name" />
-                        <span class="field-error">Vyplňte prosím jméno a příjmení.</span>
+                        <span class="field-error">Vyplňte prosím jméno a příjmení, nebo název firmy.</span>
                       </div>
                       <div class="field-row">
                         <div class="field">
@@ -289,6 +309,18 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+
+                  <div class="q-block">
+                    <span class="q-label" id="lbl_purpose">K čemu kapitál potřebujete? <span class="muted" style="font-weight:600">(nepovinné)</span></span>
+                    <div class="choice-row big" data-bind="c_purpose" role="group" aria-labelledby="lbl_purpose">
+                      <button type="button" class="choice active" data-val="provoz">Provoz/materiál</button>
+                      <button type="button" class="choice" data-val="faktury">Překlenutí faktur</button>
+                      <button type="button" class="choice" data-val="dph-mzdy">DPH/mzdy</button>
+                      <button type="button" class="choice" data-val="jiny">Jiný firemní účel</button>
+                    </div>
+                    <input type="hidden" id="c_purpose" value="provoz" />
+                    <span class="hint">Pomůže nám to připravit nabídku na míru vašemu podnikání — na výkupní cenu to nemá vliv.</span>
                   </div>
 
                   <div class="q-block">
@@ -314,12 +346,12 @@
 
                   <label class="check" style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;border-radius:var(--r-sm)">
                     <input type="checkbox" id="c_agree" style="margin-top:3px;flex:none;width:20px;height:20px;accent-color:var(--green)" />
-                    <span style="font-size:var(--fs-sm)">Souhlasím se zpracováním údajů a ověřením vozidla pro přípravu nezávazné orientační výkupní nabídky.</span>
+                    <span style="font-size:var(--fs-sm)">Souhlasím se zpracováním údajů, ověřením vozidla a ověřením IČO v ARES pro přípravu nezávazné orientační výkupní nabídky.</span>
                   </label>
 
-                  <div class="wizard-error hide" role="alert" style="color:var(--danger);font-weight:600;font-size:var(--fs-sm)">Zkontrolujte prosím zvýrazněná pole — potřebujeme jméno, telefon nebo e-mail a váš souhlas.</div>
+                  <div class="wizard-error hide" role="alert" style="color:var(--danger);font-weight:600;font-size:var(--fs-sm)">Zkontrolujte prosím zvýrazněná pole — potřebujeme platné IČO (8 číslic), jméno či název firmy, telefon nebo e-mail a váš souhlas.</div>
 
-                  <p class="muted mb-0" style="font-size:var(--fs-xs)">Před podpisem smluv standardně ověřujeme identitu klienta, vlastnictví vozu a jeho případné zatížení (KYC/AML dle zákona). Je to běžná součást férového procesu.</p>
+                  <p class="muted mb-0" style="font-size:var(--fs-xs)">Služba je určena výhradně podnikatelům a firmám. Spotřebitelům ji neposkytujeme. Před podpisem smluv standardně ověřujeme identitu jednající osoby, IČO a oprávnění jednat, vlastnictví vozu a jeho případné zatížení (KYC/AML dle zákona). Je to běžná součást férového procesu.</p>
                 </div>
 
                 <div class="wizard-nav">
@@ -333,10 +365,10 @@
               <div class="wizard-step">
                 <span class="eyebrow">Hotovo</span>
                 <h2 class="mt-3" style="font-size:var(--fs-lg)">Děkujeme — jsme na příjmu</h2>
-                <p class="lead mt-2">Ozveme se vám <strong>do 24 hodin</strong> a domluvíme návštěvu technika u vás. Vaše orientační čísla vidíte nahoře — platí, dokud je neupřesní prohlídka vozu.</p>
+                <p class="lead mt-2">Ozveme se vám <strong>do 24 hodin</strong> a domluvíme návštěvu technika u vás — v dílně, v provozovně nebo kdekoliv vám to vyhovuje. Vaše orientační čísla vidíte nahoře — platí, dokud je neupřesní prohlídka vozu.</p>
                 <div class="notice mt-4" style="align-items:flex-start">
                   <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
-                  <div><strong>Co bude dál.</strong> 1) Telefonát pro ověření údajů · 2) návštěva technika u vás · 3) schválení a podpis smluv · 4) peníze na účet. Auto přitom můžete dál používat podle smlouvy.</div>
+                  <div><strong>Co bude dál.</strong> 1) Telefonát pro ověření údajů a IČO · 2) návštěva technika u vás · 3) schválení a podpis smluv · 4) peníze na účet. Vůz přitom dál používáte pro podnikání podle smlouvy.</div>
                 </div>
                 <div class="cluster mt-5">
                   <a class="btn btn-ghost" href="tel:+420800123456">Zavolat 800 123 456</a>
@@ -349,7 +381,7 @@
           </div>
 
           <p class="muted mt-5 mb-0" style="font-size:var(--fs-xs)">
-            Vyplněním nevzniká žádný závazek. Nabídka je nezávazná a závisí na ověření vozidla a dokladů — výkup neslibujeme všem a vědomě neoslovujeme zranitelné skupiny. Auto můžete dál používat podle smluvních podmínek.
+            Vyplněním nevzniká žádný závazek. Služba je určena výhradně podnikatelům a firmám — spotřebitelům ji neposkytujeme. Nabídka je nezávazná a závisí na ověření vozidla a dokladů — výkup neslibujeme všem a vědomě neoslovujeme zranitelné skupiny. Vůz můžete dál používat pro podnikání podle smluvních podmínek.
           </p>
         </div>
 
@@ -359,27 +391,31 @@
             <div class="mini-trust">
               <div class="mt-item">
                 <span class="mt-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-                <div><strong>Rychlý proces</strong><span>Orientační nabídku vidíte hned, vše ostatní řešíme za vás.</span></div>
+                <div><strong>Rychlý proces</strong><span>Orientační nabídku vidíte hned, vše ostatní řešíme za vás — vy se věnujete zakázkám.</span></div>
               </div>
               <div class="mt-item">
                 <span class="mt-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></span>
-                <div><strong>Technik přijede k vám</strong><span>Auto ověříme u vás doma nebo v práci — nikam nejezdíte.</span></div>
+                <div><strong>Technik přijede k vám</strong><span>Vůz ověříme u vás v dílně, v provozovně nebo na stavbě — nikam nejezdíte, provoz nestojí.</span></div>
               </div>
               <div class="mt-item">
                 <span class="mt-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
                 <div><strong>Vše znáte předem</strong><span>Výkupní cena, poplatek i cena odkupu — před podpisem, v Kč.</span></div>
               </div>
+              <div class="mt-item">
+                <span class="mt-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M4 12h16"/></svg></span>
+                <div><strong>Pro podnikatele</strong><span>IČO ověříme v ARES, spotřebitelům službu neposkytujeme.</span></div>
+              </div>
             </div>
           </div>
 
           <div class="photo-frame" data-reveal="right">
-            <img src="assets/img/story-technik.webp" alt="Technik AutoKapitálu s tabletem kontroluje vůz klienta přímo před jeho domem" width="860" height="642" loading="lazy" />
+            <img src="assets/img/story-technik.webp" alt="Technik AutoKapitálu s tabletem kontroluje firemní kombi řemeslníka přímo před jeho dílnou" width="860" height="642" loading="lazy" />
           </div>
 
           <div class="card pad review-card" data-reveal="right">
             <div class="stars" aria-hidden="true">★★★★★</div>
-            <p class="quote mb-0">„Za dva dny bylo vše vyřízené a autem jezdím dál. Všechna čísla jsem znal dopředu, nikdo mě do ničeho netlačil.“</p>
-            <span class="who">Martin V., Renault Mégane · vůz už odkoupil zpět</span>
+            <p class="quote mb-0">„Za dva dny bylo vyřízené a dodávkou jezdím na zakázky dál. Všechna čísla jsem znal dopředu, nikdo mě do ničeho netlačil — a faktury jsem překlenul bez čekání.“</p>
+            <span class="who">Martin Veselý · Veselý Servis s.r.o. · vůz už odkoupil zpět</span>
           </div>
         </aside>
 
@@ -392,5 +428,21 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/shell.js"></script>
   <script src="assets/js/app.js"></script>
+  <script>
+    // Kvalifikační brána: bez IČO službu neposkytujeme
+    document.addEventListener("DOMContentLoaded", function () {
+      var row = document.querySelector('[data-bind="w_business"]');
+      if (!row) return;
+      var gate = document.getElementById("businessGate");
+      var step1 = row.closest(".wizard-step");
+      var nextBtn = step1 ? step1.querySelector("[data-next]") : null;
+      row.addEventListener("click", function () {
+        var val = (document.getElementById("w_business") || {}).value;
+        var blocked = val === "no";
+        if (gate) gate.classList.toggle("hide", !blocked);
+        if (nextBtn) { nextBtn.disabled = blocked; nextBtn.style.opacity = blocked ? ".45" : ""; nextBtn.style.pointerEvents = blocked ? "none" : ""; }
+      });
+    });
+  </script>
 </body>
 </html>
