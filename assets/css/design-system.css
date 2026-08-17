@@ -179,6 +179,12 @@ p { margin: 0 0 var(--sp-4); }
 .brand:hover { color: var(--ink); }
 .brand .logo-mark { width: 34px; height: 34px; flex: none; }
 .brand-logo { height: 30px; width: auto; }
+/* CashAuto wordmark — Cash zeleně, Auto tmavě; bílá varianta pro sidebar */
+.brand-word { font-weight: 800; font-size: 1.35rem; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; }
+.brand-word .bw-cash { color: var(--green); }
+.brand-word .bw-auto { color: var(--ink); }
+.sidebar .brand-word .bw-cash, .sidebar .brand-word .bw-auto { color: #fff; }
+.site-footer .brand-word .bw-auto { color: var(--ink); }
 .nav-links { display: flex; align-items: center; gap: var(--sp-5); list-style: none; }
 .nav-links a { color: var(--text); font-weight: 600; font-size: var(--fs-sm); }
 .nav-links a:hover { color: var(--green); }

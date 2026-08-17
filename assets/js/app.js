@@ -1,5 +1,5 @@
 /* =========================================================================
-   AutoKapitál — Shared app logic (dočasný výkup vozu se zpětným odkupem)
+   CashAuto — Shared app logic (dočasný výkup vozu se zpětným odkupem)
    Formatting, toast, tabs, sidebar, výkup calculators, wizard, FAQ.
    Model: výkupní cena = 70 % odhadní hodnoty; měsíční rezervační poplatek = 4 %
    z hodnoty vozu; cena zpětného odkupu = výkupní cena (podle smlouvy).

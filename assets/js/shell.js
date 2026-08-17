@@ -1,5 +1,5 @@
 /* =========================================================================
-   AutoKapitál — Shared chrome (icons, logo, marketing header + footer)
+   CashAuto — Shared chrome (icons, logo, marketing header + footer)
    Pages set <body data-shell="marketing" data-active="home"> to auto-render
    the header into #site-header and footer into #site-footer.
    ========================================================================= */
@@ -36,11 +36,11 @@
     key: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><path d="M11 11l8 8M16 16l2-2M19 19l2-2"/></svg>',
   };
 
-  // Brand logo — real WEBP asset (green "Auto" + dark "Kapitál")
-  const LOGO_SRC = "Public/components/logo-autokapital-transparent.webp";
-  const LOGO_IMG = '<img class="brand-logo" src="' + LOGO_SRC + '" alt="AutoKapitál" width="520" height="120">';
-  // White wordmark for dark/green surfaces (sidebars)
-  const LOGO_WHITE = '<span class="brand-wordmark" aria-hidden="true"><svg width="26" height="20" viewBox="0 0 26 20" fill="none"><path d="M6 1H11L5 19H0L6 1Z" fill="#fff"/><path d="M14 1H19L13 19H8L14 1Z" fill="#fff"/></svg></span><span>AutoKapitál</span>';
+  // Brand logo — inline SVG mark (zelená dvojitá lomítka) + wordmark Cash(zelená)Auto(tmavá)
+  const LOGO_MARK = '<svg width="30" height="24" viewBox="0 0 30 24" fill="none" aria-hidden="true" style="flex:none"><path d="M7 1h7L7 23H0L7 1Z" fill="#007A52"/><path d="M17 1h7l-7 22h-7L17 1Z" fill="#007A52"/></svg>';
+  const LOGO_IMG = LOGO_MARK + '<span class="brand-word"><span class="bw-cash">Cash</span><span class="bw-auto">Auto</span></span>';
+  // Bílá varianta pro tmavé/zelené plochy (sidebary)
+  const LOGO_WHITE = '<svg width="24" height="18" viewBox="0 0 26 20" fill="none" aria-hidden="true"><path d="M6 1H11L5 19H0L6 1Z" fill="#fff"/><path d="M14 1H19L13 19H8L14 1Z" fill="#fff"/></svg><span>CashAuto</span>';
 
   const NAV = [
     { label: "Výhody", href: "index.html#vyhody", key: "home" },
@@ -59,7 +59,7 @@
     return `
     <header class="site-header">
       <div class="container nav-inner">
-        <a class="brand" href="index.html" aria-label="AutoKapitál — domů">${LOGO_IMG}</a>
+        <a class="brand" href="index.html" aria-label="CashAuto — domů">${LOGO_IMG}</a>
         <nav aria-label="Hlavní navigace"><ul class="nav-links">${navLinks()}</ul></nav>
         <div class="nav-actions">
           <a class="btn btn-ghost btn-sm desktop-only" href="portal.html">Přihlásit se</a>
@@ -82,7 +82,7 @@
       <div class="container">
         <div class="footer-grid">
           <div>
-            <a class="brand" href="index.html" aria-label="AutoKapitál — domů">${LOGO_IMG}</a>
+            <a class="brand" href="index.html" aria-label="CashAuto — domů">${LOGO_IMG}</a>
             <p class="mt-3" style="max-width:320px">Peníze z auta. Auto používáte dál. Rychlé a férové řešení, když vaše firma potřebuje peníze, ale vůz dál potřebujete pro podnikání.</p>
             <span class="pill pill-mint mt-2">${I.shield} Rychle · Férově · Přehledně</span>
           </div>
@@ -109,16 +109,16 @@
             <h4>Podpora</h4>
             <ul class="footer-links">
               <li><a href="index.html#faq">Časté dotazy</a></li>
-              <li><a href="mailto:info@autokapital.cz">info@autokapital.cz</a></li>
+              <li><a href="mailto:info@cashauto.cz">info@cashauto.cz</a></li>
               <li><a href="tel:+420800123456">+420 800 123 456</a></li>
               <li class="muted">Po–Pá 8:00–18:00</li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom" style="flex-direction:column;gap:8px">
-          <span><strong>Povinné informace:</strong> AutoKapitál a.s. (demo) · IČO 000 00 000 · Sídlo a adresa pro doručování: Příkladová 123, 110 00 Praha 1 · Tel.: <a href="tel:+420800123456">+420 800 123 456</a> · E-mail: <a href="mailto:info@autokapital.cz">info@autokapital.cz</a> · <a href="compliance.html#povinne-informace">Právo na odstoupení od smlouvy a další povinné informace</a></span>
+          <span><strong>Povinné informace:</strong> CashAuto a.s. (demo) · IČO 000 00 000 · Sídlo a adresa pro doručování: Příkladová 123, 110 00 Praha 1 · Tel.: <a href="tel:+420800123456">+420 800 123 456</a> · E-mail: <a href="mailto:info@cashauto.cz">info@cashauto.cz</a> · <a href="compliance.html#povinne-informace">Právo na odstoupení od smlouvy a další povinné informace</a></span>
           <span>Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</span>
-          <span>© 2026 AutoKapitál a.s. — Demoprezentace produktu. Nejedná se o závaznou nabídku ani o právní poradenství. Dočasný výkup vozu se zpětným odkupem · Podmínky vždy předem.</span>
+          <span>© 2026 CashAuto a.s. — Demoprezentace produktu. Nejedná se o závaznou nabídku ani o právní poradenství. Dočasný výkup vozu se zpětným odkupem · Podmínky vždy předem.</span>
         </div>
       </div>
     </footer>`;
@@ -127,7 +127,6 @@
   // Expose for all pages
   window.AK = window.AK || {};
   window.AK.icons = I;
-  window.AK.logoSrc = LOGO_SRC;
   window.AK.logoImg = LOGO_IMG;
   window.AK.logoWhite = LOGO_WHITE;
   window.AK.icon = (name) => I[name] || "";

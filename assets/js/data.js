@@ -1,5 +1,5 @@
 /* =========================================================================
-   AutoKapitál — Mock data layer (B2B · dočasný výkup vozu se zpětným odkupem — pro podnikatele)
+   CashAuto — Mock data layer (B2B · dočasný výkup vozu se zpětným odkupem — pro podnikatele)
    Exposes window.AK with demo data (CZ). NENÍ úvěr — výkupní cena + měsíční
    rezervační poplatek (4 % z hodnoty vozu) + cena zpětného odkupu.
    ========================================================================= */
@@ -45,7 +45,7 @@ window.AK = (function () {
     owners: 2,
     stk: "platná do 3/2027",
     insurance: "Povinné ručení, platné",
-    role: "Vlastník: AutoKapitál a.s. · Provozovatel: Jan Novák (OSVČ, IČO 765 22 901)",
+    role: "Vlastník: CashAuto a.s. · Provozovatel: Jan Novák (OSVČ, IČO 765 22 901)",
     photos: 6,
     conditionScore: 82,
   };
@@ -252,8 +252,8 @@ window.AK = (function () {
   const faqs = [
     { q: "Pro koho je služba určená?", a: "Výhradně pro podnikatele a firmy — OSVČ, živnostníky a společnosti s IČO, které vůz používají pro podnikání. Spotřebitelům službu neposkytujeme." },
     { q: "Musím mít IČO?", a: "Ano. Služba je určena podnikatelům — v žádosti uvádíte IČO (OSVČ nebo firmy) a u společností ověřujeme oprávnění jednat." },
-    { q: "Mohu auto dál používat pro práci?", a: "Ano. Po výkupu je vlastníkem AutoKapitál a.s., vy jste provozovatel a vůz dál používáte pro podnikání podle smlouvy o užívání vozidla — zakázky, materiál, klienti." },
-    { q: "Kdo bude vlastníkem vozidla?", a: "Po výkupu je vlastníkem AutoKapitál a.s. Vy zůstáváte provozovatelem a máte předem sjednanou možnost zpětného odkupu za podmínek uvedených ve smlouvě." },
+    { q: "Mohu auto dál používat pro práci?", a: "Ano. Po výkupu je vlastníkem CashAuto a.s., vy jste provozovatel a vůz dál používáte pro podnikání podle smlouvy o užívání vozidla — zakázky, materiál, klienti." },
+    { q: "Kdo bude vlastníkem vozidla?", a: "Po výkupu je vlastníkem CashAuto a.s. Vy zůstáváte provozovatelem a máte předem sjednanou možnost zpětného odkupu za podmínek uvedených ve smlouvě." },
     { q: "Jak funguje zpětný odkup?", a: "Cenu i podmínky zpětného odkupu máte uvedené ve smlouvě předem. Možnost odkupu si držíte úhradou měsíčního rezervačního poplatku a odkup zahájíte kdykoliv v klientské zóně." },
     { q: "Co je měsíční rezervační poplatek?", a: "Poplatek za rezervaci možnosti zpětného odkupu a správu smlouvy — 4 % z odhadní hodnoty vozu měsíčně. Přesnou částku v Kč vidíte vždy před podpisem a jde o daňově uznatelný provozní náklad (posuďte s účetním)." },
     { q: "Co když poplatek nezaplatím?", a: "Možnost zpětného odkupu je vázaná na řádnou úhradu poplatku. Okamžik, kdy právo na odkup zaniká, máte jasně uvedený ve smlouvě — ozvěte se nám prosím včas, hledáme řešení." },
