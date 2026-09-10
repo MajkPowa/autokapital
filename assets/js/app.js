@@ -516,6 +516,39 @@
       </a>`).join("");
   };
 
+  // ---------- Niche ovladač kalkulačky: „Kdy čekáte tržby?“ (měsíce) / „Splatnost faktur“ (dny) → doba rezervace ----------
+  // <select data-niche-ctl="heroTerm" data-map="months|days"> — vybere nejbližší dostupnou dobu (1/3/6/12) v segmentovém ovladači
+  AK.initNicheCtl = function () {
+    document.querySelectorAll("[data-niche-ctl]").forEach(sel => {
+      const targetId = sel.getAttribute("data-niche-ctl");
+      const group = document.querySelector('[data-segmented="' + targetId + '"]');
+      const pick = (months) => {
+        const term = months <= 1 ? 1 : months <= 3 ? 3 : months <= 6 ? 6 : 12;
+        const btn = group && group.querySelector('button[data-val="' + term + '"]');
+        if (btn) btn.click();
+      };
+      const apply = () => {
+        const v = +sel.value;
+        if (sel.getAttribute("data-map") === "days") pick(Math.ceil(v / 30));
+        else pick(v);
+        const hint = document.getElementById(sel.getAttribute("aria-describedby") || "") || (sel.closest(".niche-ctl") && sel.closest(".niche-ctl").querySelector(".hint-line"));
+        if (hint) hint.textContent = sel.getAttribute("data-map") === "days"
+          ? "Rezervaci nastavíme na " + (v <= 30 ? "1 měsíc" : v <= 90 ? "3 měsíce" : v <= 180 ? "6 měsíců" : "12 měsíců") + " — odkup hned po zaplacení faktur, dřívější odkup bez penalizace."
+          : "Rezervaci nastavíme na " + (v <= 1 ? "1 měsíc" : v <= 3 ? "3 měsíce" : v <= 6 ? "6 měsíců" : "12 měsíců") + " — odkup po sklizni či výplatě, dřívější odkup bez penalizace.";
+      };
+      // měsíce do sklizně: naplnit názvy měsíců od příštího měsíce
+      if (sel.getAttribute("data-map") === "months" && !sel.options.length) {
+        const names = ["leden", "únor", "březen", "duben", "květen", "červen", "červenec", "srpen", "září", "říjen", "listopad", "prosinec"];
+        const now = new Date().getMonth();
+        for (let i = 1; i <= 12; i++) {
+          const o = document.createElement("option"); o.value = String(i); o.textContent = names[(now + i) % 12] + (i === 12 ? " (za rok)" : ""); if (i === 6) o.selected = true; sel.appendChild(o);
+        }
+      }
+      sel.addEventListener("change", apply);
+      apply();
+    });
+  };
+
   // ---------- Segmentový ovladač (Apple-like) → skrytý input + event change ----------
   AK.initSegmented = function () {
     document.querySelectorAll("[data-segmented]").forEach(group => {
@@ -555,6 +588,7 @@
     AK.initSidebar();
     AK.initWizardVertical();
     AK.initSegmented();
+    AK.initNicheCtl();
     AK.initRangeFill();
     AK.initHeroCalc();
     AK.initBigCalc();

@@ -88,6 +88,7 @@
             <span class="calc-label" style="display:block;margin-bottom:8px">Doba rezervace (do zaplacení faktur)</span>
             <div class="segmented" role="radiogroup" aria-label="Doba rezervace" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="false" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="3" />
           </div>
+          <div class="niche-ctl mt-4"><label for="heroDue">Splatnost vašich faktur</label><select class="select" id="heroDue" data-niche-ctl="heroTerm" data-map="days" aria-describedby="nicheHint"><option value="30">30 dní</option><option value="45">45 dní</option><option value="60">60 dní</option><option value="90" selected>90 dní</option><option value="120">120 dní</option></select></div><span class="hint-line" id="nicheHint"></span>
           <div class="between mt-3" style="font-size:var(--fs-sm)">
             <span class="muted">Poplatek za zvolenou dobu celkem</span>
             <span class="mono" style="font-weight:600;color:var(--ink)" id="heroPeriod">189&nbsp;000&nbsp;Kč za 3&nbsp;měsíce</span>
@@ -136,6 +137,33 @@
     </div>
   </section>
 
+
+  <!-- ===================== STORY (niche) ===================== -->
+  <section class="section story-strip" id="pribeh">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Jak to vypadá v depu</span>
+        <h2 class="mt-3">Náklady jízdy hned, faktura za tři měsíce</h2>
+      </div>
+      <div class="grid grid-3 mobile-carousel" data-reveal-stagger>
+        <div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Nafta a AdBlue hned</span></span><img src="assets/img/tech-story-nafta.webp" alt="Řidič ve vestě tankuje bílý tahač u pumpy za svítání" width="720" height="1280" loading="lazy" /></div>
+          <h3>Tankovací karta nečeká na odběratele</h3>
+          <p class="mb-0">Peníze z dočasného výkupu tahače pokryjí palivo, mýto a diety — kamion jede dál na vaše zakázky.</p>
+        </div>
+        <div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Kilometry vydělávají</span></span><img src="assets/img/tech-story-dalnice.webp" alt="Bílý tahač s návěsem jede za soumraku po dálnici" width="720" height="1280" loading="lazy" /></div>
+          <h3>Vozidlo dál jezdí, i mezinárodně</h3>
+          <p class="mb-0">Zůstáváte provozovatelem v technickém průkazu. Technik přijede do depa mezi dvěma jízdami, plán jízd se nemění.</p>
+        </div>
+        <div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Dispečink v klidu</span></span><img src="assets/img/tech-story-dispecer.webp" alt="Majitel dopravní firmy s tabletem v kanceláři s mapou tras a výhledem na kamiony" width="720" height="1280" loading="lazy" /></div>
+          <h3>Odkup, až odběratel zaplatí</h3>
+          <p class="mb-0">Dobu rezervace nastavíte podle splatnosti faktur (60–90 dní). Tři čísla v Kč vidíte hned, dřívější odkup je bez penalizace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- ===================== 03 NA CO PENÍZE ===================== -->
   <section class="section alt" id="pouziti">
     <div class="container">

@@ -90,6 +90,7 @@
             <span class="calc-label" style="display:block;margin-bottom:8px">Doba rezervace (do sklizně)</span>
             <div class="segmented" role="radiogroup" aria-label="Doba rezervace" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="false" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="6" />
           </div>
+          <div class="niche-ctl mt-4"><label for="heroHarvest">Kdy čekáte tržby nebo dotace?</label><select class="select" id="heroHarvest" data-niche-ctl="heroTerm" data-map="months" aria-describedby="nicheHint"></select></div><span class="hint-line" id="nicheHint"></span>
           <div class="between mt-3" style="font-size:var(--fs-sm)">
             <span class="muted">Poplatek za zvolenou dobu celkem</span>
             <span class="mono" style="font-weight:600;color:var(--ink)" id="heroPeriod">270&nbsp;000&nbsp;Kč za 6&nbsp;měsíců</span>
@@ -138,6 +139,33 @@
     </div>
   </section>
 
+
+  <!-- ===================== STORY (niche) ===================== -->
+  <section class="section story-strip" id="pribeh">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Jak to vypadá na statku</span>
+        <h2 class="mt-3">Peníze přijdou na jaře, ne až po žních</h2>
+      </div>
+      <div class="grid grid-3 mobile-carousel" data-reveal-stagger>
+        <div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Osivo a hnojiva</span></span><img src="assets/img/agro-story-osivo.webp" alt="Farmářovy ruce kontrolují osivo pšenice v pytli ve stodole" width="720" height="1280" loading="lazy" /></div>
+          <h3>Dodavatel chce zaplatit teď</h3>
+          <p class="mb-0">Peníze z dočasného výkupu traktoru pokryjí nákup před setím — bez prodeje stroje, který vám sezónu odpracuje.</p>
+        </div>
+        <div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Setí nečeká</span></span><img src="assets/img/agro-story-seti.webp" alt="Zelený traktor se secím strojem seje na jarním poli při nízkém slunci" width="720" height="1280" loading="lazy" /></div>
+          <h3>Traktor dál jezdí po vašich polích</h3>
+          <p class="mb-0">Technik přijede na statek, prohlídka trvá hodinu a stroj se ani nezastaví. Provozovatelem zůstáváte vy.</p>
+        </div>
+        <div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">U kuchyňského stolu</span></span><img src="assets/img/agro-story-stul.webp" alt="Farmář u kuchyňského stolu s notebookem a fakturami plánuje sezónu" width="720" height="1280" loading="lazy" /></div>
+          <h3>Nabídka za 2 minuty, odkup po sklizni</h3>
+          <p class="mb-0">Tři čísla v Kč hned online. Dobu rezervace nastavíte podle sklizně nebo výplaty dotací — odkup dřív je bez penalizace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- ===================== 03 NA CO PENÍZE ===================== -->
   <section class="section alt" id="pouziti">
     <div class="container">
