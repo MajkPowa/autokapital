@@ -58,10 +58,11 @@
     return document.getElementById(id) ? location.pathname + "#" + id : "/index.html#" + id;
   }
 
+  // v4 (Apple-like): položky jsou čistý text — bez barevných teček vertikál (.nav-dot) v hlavičce i v mobilním menu.
   const NAV = [
-    { label: "Firemní vozy", href: "/index.html", key: "home", dot: "auto" },
-    { label: "AgroCash", href: "/agrocash.html", key: "agro", dot: "agro" },
-    { label: "TechCash", href: "/techcash.html", key: "tech", dot: "tech" },
+    { label: "Firemní vozy", href: "/index.html", key: "home" },
+    { label: "AgroCash", href: "/agrocash.html", key: "agro" },
+    { label: "TechCash", href: "/techcash.html", key: "tech" },
     { label: "Jak to funguje", anchor: "jak-to-funguje", key: "" },
     { label: "Rádce", href: "/blog/", key: "blog" },
     { label: "O nás", href: "/prezentace.html", key: "prezentace" },
@@ -71,8 +72,7 @@
     return NAV.map(n => {
       const href = n.anchor ? own(n.anchor) : n.href;
       const cls = n.key && n.key === active ? ' class="active" aria-current="page"' : "";
-      const dot = n.dot ? `<span class="nav-dot ${n.dot}" aria-hidden="true"></span>` : "";
-      return `<li><a href="${href}"${cls}>${dot}${n.label}</a></li>`;
+      return `<li><a href="${href}"${cls}>${n.label}</a></li>`;
     }).join("");
   }
 
@@ -92,6 +92,9 @@
     const headerCta = ON_ZADOST ? callBtn("btn-sm") : `<a class="btn btn-primary btn-sm" href="${zadostHref()}">Chci nabídku</a>`;
     const mobileCta = ON_ZADOST ? callBtn("btn-lg") : `<a class="btn btn-primary btn-lg" href="${zadostHref()}">Chci nabídku</a>
           <a class="btn btn-ghost btn-lg" href="tel:${PHONE.tel}">Zavolat ${PHONE.label}</a>`;
+    // v4 (Apple-like) hlavička vpravo: 13px textové položky (telefon jako prostý text bez ikony, „Přihlásit se“ bez rámečku)
+    // a jediná malá pilulka (headerCta). Na /zadost.html je pilulkou samotný telefon → textový telefon by byl duplicitní.
+    const headerPhone = ON_ZADOST ? "" : `<a class="nav-phone desktop-only" href="tel:${PHONE.tel}">${PHONE.label}</a>`;
     // Mobilní menu je SOUROZENEC hlavičky, ne její potomek: .site-header má backdrop-filter, a stala by se tak
     // containing blockem pro position:fixed → otevřené menu by mělo výšku jen paddingu a přetékalo přes obsah.
     // overflow-y:auto: na nižších displejích (např. 375×812) je obsah menu vyšší než viewport minus hlavička.
@@ -102,8 +105,8 @@
         <a class="brand" href="/" aria-label="CashAuto — domů">${LOGO_IMG}</a>
         <nav aria-label="Hlavní navigace"><ul class="nav-links">${navLinks(active)}</ul></nav>
         <div class="nav-actions">
-          <a class="nav-phone desktop-only" href="tel:${PHONE.tel}">${I.phone}${PHONE.label}</a>
-          <a class="btn btn-ghost btn-sm desktop-only" href="/portal.html">Přihlásit se</a>
+          ${headerPhone}
+          <a class="nav-plain desktop-only" href="/portal.html">Přihlásit se</a>
           ${headerCta}
           <button class="nav-toggle" id="navToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">${I.menu}</button>
         </div>

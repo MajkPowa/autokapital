@@ -378,8 +378,26 @@
         child.style.setProperty("--reveal-delay", Math.min(i * 90, 450) + "ms");
       });
     });
+    // Mobilní carousel (≤860px): karty vpravo jsou mimo viewport, takže by se odkrývaly až při swipu
+    // (uživatel by ~1 s viděl prázdnou šedou dlaždici) a „peek“ karta (~7 % viditelná) nedosáhne
+    // threshold 0.12 vůbec. Proto se na mobilu odkrývá celý pás najednou jako jeden blok:
+    // obal dostane data-reveal, karty nulové zpoždění a při protnutí obalu se odkryjí všechny.
+    const carouselMq = window.matchMedia("(max-width: 860px)");
+    if (carouselMq.matches) {
+      document.querySelectorAll(".mobile-carousel[data-reveal-stagger]").forEach(wrap => {
+        if (!wrap.hasAttribute("data-reveal")) wrap.setAttribute("data-reveal", "");
+        [...wrap.children].forEach(child => child.style.setProperty("--reveal-delay", "0ms"));
+      });
+    }
     const io = new IntersectionObserver(entries => {
-      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("revealed"); io.unobserve(en.target); } });
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        el.classList.add("revealed"); io.unobserve(el);
+        // pás carouselu: spolu s obalem (nebo první viditelnou kartou po zúžení okna) odkrýt i karty mimo viewport
+        const wrap = el.classList.contains("mobile-carousel") ? el : (carouselMq.matches ? el.closest(".mobile-carousel") : null);
+        if (wrap) wrap.querySelectorAll("[data-reveal]").forEach(c => { c.classList.add("revealed"); io.unobserve(c); });
+      });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     document.querySelectorAll("[data-reveal]").forEach(el => io.observe(el));
   };
@@ -430,12 +448,22 @@
     document.body.appendChild(bar);
     document.body.classList.add("has-mobile-cta");
     let ticking = false;
+    // Lišta se neukazuje, dokud je ve viewportu kalkulačka s vlastním CTA a varováním o ceně
+    // (na 360–430 px sahá hero kalkulačka do ~1500 px, takže samotný práh 520 px nestačí),
+    // ani při otevřeném mobilním menu (lišta by překryla spodní tlačítka menu, např. „Zavolat“).
+    const calcs = [...document.querySelectorAll(".hero-tiles .calc-card, .hero .calc-card, .calc-large")];
+    const calcVisible = () => calcs.some(c => { const r = c.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; });
+    const menuOpen = () => { const m = document.getElementById("mobileMenu"); return !!(m && m.classList.contains("open")); };
     const update = () => {
       ticking = false;
-      const show = window.scrollY > 520 && (window.innerHeight + window.scrollY) < document.body.scrollHeight - 420;
+      const show = !menuOpen() && !calcVisible() && window.scrollY > 520 && (window.innerHeight + window.scrollY) < document.body.scrollHeight - 420;
       bar.classList.toggle("visible", show);
     };
-    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    const schedule = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    // přepnutí menu (shell.js) — delegovaně, aby nezáleželo na pořadí inicializace; rAF počká na změnu třídy
+    document.addEventListener("click", e => { if (e.target.closest && e.target.closest("#navToggle")) schedule(); });
     update();
   };
 
@@ -493,16 +521,21 @@
     document.querySelectorAll("[data-segmented]").forEach(group => {
       const target = document.getElementById(group.getAttribute("data-segmented"));
       const btns = [...group.querySelectorAll("button")];
+      // ARIA radiogroup: roving tabindex — Tab zastaví jen na zaškrtnuté volbě, mezi volbami se chodí šipkami / Home / End
       const set = (b) => {
-        btns.forEach(x => { const on = x === b; x.classList.toggle("active", on); x.setAttribute("aria-checked", String(on)); });
+        btns.forEach(x => { const on = x === b; x.classList.toggle("active", on); x.setAttribute("aria-checked", String(on)); x.tabIndex = on ? 0 : -1; });
         if (target) { target.value = b.dataset.val; target.dispatchEvent(new Event("change", { bubbles: true })); }
       };
       btns.forEach(b => b.addEventListener("click", () => set(b)));
+      const cur = btns.find(b => b.classList.contains("active")) || btns[0]; // bez zaškrtnuté volby je Tab zastávkou první tlačítko
+      btns.forEach(x => { x.tabIndex = x === cur ? 0 : -1; });
       group.addEventListener("keydown", e => {
         const i = btns.findIndex(b => b.classList.contains("active"));
         let n = -1;
         if (e.key === "ArrowRight" || e.key === "ArrowDown") n = (i + 1) % btns.length;
         if (e.key === "ArrowLeft" || e.key === "ArrowUp") n = (i - 1 + btns.length) % btns.length;
+        if (e.key === "Home") n = 0;
+        if (e.key === "End") n = btns.length - 1;
         if (n >= 0) { e.preventDefault(); set(btns[n]); btns[n].focus(); }
       });
     });

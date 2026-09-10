@@ -955,23 +955,28 @@ body[data-vertical="tech"] { --accent: #E8641B; --accent-050: #FDEFE6; --accent-
 html { scroll-padding-top: calc(var(--header-h) + 12px); }
 body { letter-spacing: -0.01em; color: var(--text); }
 
-/* ---------- Typografie ---------- */
-body[data-shell="marketing"] h1, body[data-shell="marketing"] h2, body[data-shell="marketing"] h3,
+/* ---------- Typografie ----------
+   :where() drží specificitu obalu na (0,0,1) (stejně jako v3), aby komponentová pravidla (.article h2,
+   .article-hero h1, .related h2, .cta-band h3, .post-card h3, .display-headline) mohla velikost přebít.
+   Základní h1–h4 (v1) mají stejnou specificitu, ale jsou dřív → marketingové výchozí hodnoty platí. */
+:where(body[data-shell="marketing"]) h1, :where(body[data-shell="marketing"]) h2, :where(body[data-shell="marketing"]) h3,
 .display-headline, .calc-amount, .stat .num, .proof-strip .proof .num, .result-stat .ro-val,
 .offer-cell .val, .big-num, .brand-word.xl, .compare thead th, .season .s-item .s-q, .uc-card .uc-amt,
 .stat-band .sb .num, .cta-band h3, .article .example .ex .val, .post-card.featured h3, .article .callout strong:first-child {
   font-family: var(--font); letter-spacing: -0.03em;
 }
-body[data-shell="marketing"] h1 { font-size: clamp(2.5rem, 7vw, 4.4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; }
-body[data-shell="marketing"] h2 { font-size: clamp(1.9rem, 4.4vw, 2.9rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; }
-body[data-shell="marketing"] h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
-body[data-shell="marketing"] h4 { font-weight: 600; letter-spacing: -0.015em; }
+:where(body[data-shell="marketing"]) h1 { font-size: clamp(2.5rem, 7vw, 4.4rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; }
+:where(body[data-shell="marketing"]) h2 { font-size: clamp(1.9rem, 4.4vw, 2.9rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; }
+:where(body[data-shell="marketing"]) h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+:where(body[data-shell="marketing"]) h4 { font-weight: 600; letter-spacing: -0.015em; }
 .display-headline { text-transform: none; font-size: clamp(2.6rem, 7.6vw, 4.9rem); line-height: 1.02; letter-spacing: -0.04em; font-weight: 700; }
 .display-headline .line-dark, .display-headline .line-green, .display-headline .line-accent { display: block; }
 .lead { font-size: clamp(1.1rem, 1.7vw, 1.3rem); color: var(--muted); font-weight: 500; line-height: 1.45; letter-spacing: -0.012em; }
 .eyebrow { font-size: 0.95rem; letter-spacing: -0.005em; text-transform: none; font-weight: 600; color: var(--green); }
 .eyebrow::before { display: none; }
-.section-head { text-align: center; margin-inline: auto; max-width: 780px; margin-bottom: var(--sp-6); }
+/* Centrování jen s .center — řádky .between s tlačítkem vpravo (Rádce) a hlavička žádosti zůstávají vlevo */
+.section-head { max-width: 780px; margin-bottom: var(--sp-6); }
+.section-head.center { text-align: center; margin-inline: auto; }
 .section-head h2 { margin-bottom: var(--sp-3); }
 .section-head .lead { font-size: clamp(1.05rem, 1.5vw, 1.2rem); }
 .section { padding-block: var(--sp-8); }
@@ -1026,7 +1031,8 @@ body[data-shell="marketing"] h4 { font-weight: 600; letter-spacing: -0.015em; }
 }
 .section.alt .card, .section.alt .big-step, .section.alt .uc-card, .section.alt .machine, .section.alt .obj,
 .section.alt .v-card, .section.alt .season .s-item, .section.alt .post-card, .section.alt .doc-list li, .article-hero + .section .card { background: #fff; }
-.card.hover:hover, .post-card:hover, .v-card:hover, .machine:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: transparent; }
+/* Hover-lift jen na interaktivních prvcích (odkazové karty); div.card.hover (feature) a .machine se nehýbou */
+a.card.hover:hover, .post-card:hover, .v-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: transparent; }
 .card.tint { background: var(--green-050); }
 .feature .ico-img, .feature .ico-box { background: #fff; border-radius: 14px; }
 .section.alt .feature .ico-img, .section.alt .feature .ico-box { background: var(--surface-2); }
@@ -1130,13 +1136,15 @@ body[data-shell="marketing"] h4 { font-weight: 600; letter-spacing: -0.015em; }
 .calc-label { font-size: 13px; color: var(--muted); font-weight: 500; letter-spacing: -0.005em; }
 .calc-card .divider { margin-block: var(--sp-4); }
 .segmented { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; padding: 3px; border-radius: 12px; background: var(--surface-2); }
-.segmented button { border: none; background: transparent; border-radius: 10px; padding: 8px 6px; font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: -0.01em; transition: background var(--transition), color var(--transition), box-shadow var(--transition); min-height: 36px; }
+.segmented button { border: none; background: transparent; border-radius: 10px; padding: 8px 6px; font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: -0.01em; transition: background var(--transition), color var(--transition), box-shadow var(--transition); min-height: 44px; }   /* dotykový cíl 44 px (HIG / WCAG 2.5.8) */
 .segmented button.active, .segmented button[aria-checked="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,.12), 0 0 0 .5px rgba(0,0,0,.04); }
 .segmented button:focus-visible { outline: 2px solid var(--green); outline-offset: 1px; }
-input[type="range"].range { height: 4px; background: linear-gradient(90deg, var(--green) var(--pct, 25%), var(--line-2) var(--pct, 25%)); margin: var(--sp-4) 0 var(--sp-2); }
+/* Hit-box 44 px, vizuálně stále 4px dráha (kreslená jako pozadí inputu uprostřed); palec se v Chrome/Safari/Firefox centruje sám */
+input[type="range"].range { height: 44px; margin: 2px 0 0; background: linear-gradient(90deg, var(--green) var(--pct, 25%), var(--line-2) var(--pct, 25%)) center / 100% 4px no-repeat; }
+input[type="range"].range::-moz-range-track { height: 4px; background: transparent; border: none; }
 input[type="range"].range::-webkit-slider-thumb { width: 28px; height: 28px; background: #fff; border: none; box-shadow: 0 1px 6px rgba(0,0,0,.25), 0 0 0 .5px rgba(0,0,0,.06); }
 input[type="range"].range::-moz-range-thumb { width: 28px; height: 28px; background: #fff; border: none; box-shadow: 0 1px 6px rgba(0,0,0,.25); }
-.range-ends { font-size: 12px; color: var(--muted-2); }
+.range-ends { font-size: 12px; color: var(--muted); }   /* --muted-2 měla na bílé kartě 3,6:1; --muted 5,07:1 (WCAG 1.4.3) */
 .calc-large { border-radius: var(--r-xl); overflow: hidden; }
 .calc-large .calc-inputs { padding: var(--sp-6); }
 .input, .select, textarea.input { border: 1px solid var(--line-2); border-radius: 12px; padding: 14px 14px; font-size: 17px; }
@@ -1222,9 +1230,10 @@ html.js [data-reveal-stagger] .step.revealed .step-num { animation: stepPop .45s
 }
 @media (max-width: 860px) {
   :root { --fs-2xl: 1.9rem; --header-h: 50px; }
-  body[data-shell="marketing"] h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
-  .display-headline { font-size: clamp(2.5rem, 12vw, 3.4rem); }
-  body[data-shell="marketing"] h2 { font-size: clamp(1.7rem, 7.5vw, 2.2rem); }
+  :where(body[data-shell="marketing"]) h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
+  /* 36/39/43 px na 360/390/430 px → „Kamiony jedou dál.“ / „Peníze ze stroje.“ / „Sezóna jede dál.“ na jeden řádek */
+  .display-headline { font-size: clamp(2.2rem, 10vw, 3.4rem); }
+  :where(body[data-shell="marketing"]) h2 { font-size: clamp(1.7rem, 7.5vw, 2.2rem); }
   .lead { font-size: 1.05rem; }
   .section { padding-block: var(--sp-7); }
   .section-head { margin-bottom: var(--sp-5); }
@@ -1238,7 +1247,8 @@ html.js [data-reveal-stagger] .step.revealed .step-num { animation: stepPop .45s
   .trust-strip .ts-ico { width: 40px; height: 40px; flex: none; }
   .trust-strip .ts-label { font-size: 13px; }
   /* Carousel: gridy karet se na mobilu mění v horizontální snap pás */
-  .mobile-carousel { display: flex !important; grid-template-columns: none !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 4px var(--sp-4) 14px; margin-inline: calc(-1 * var(--sp-4)); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  /* margin/padding = padding .container (24 px, ≤520 px 20 px); scroll-padding drží levý gutter i po snapu */
+  .mobile-carousel { display: flex !important; grid-template-columns: none !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; padding: 4px var(--sp-5) 14px; margin-inline: calc(-1 * var(--sp-5)); scroll-padding-inline: var(--sp-5); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .mobile-carousel::-webkit-scrollbar { display: none; }
   .mobile-carousel > * { flex: 0 0 min(84%, 340px); scroll-snap-align: start; min-width: 0; margin: 0 !important; }
   .mobile-carousel .card, .mobile-carousel .post-card { height: auto; }
@@ -1269,9 +1279,10 @@ html.js [data-reveal-stagger] .step.revealed .step-num { animation: stepPop .45s
   .machine { padding: 14px; }
   .machine .m-ico, .machine .m-ico svg { width: 32px; height: 32px; }
   .doc-list { grid-template-columns: 1fr; }
-  .segmented button { font-size: 12px; padding: 8px 4px; }
+  .segmented button { font-size: 13px; padding: 8px 4px; }
   .calc-card .between { flex-wrap: wrap; gap: 8px; }
-  .mobile-carousel > * { flex-basis: 86%; }
+  .mobile-carousel { margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; }
+  .mobile-carousel > * { flex-basis: 82%; }   /* peek další karty ≈ 33 px na 360 px */
 }
 @media (prefers-reduced-motion: reduce) {
   html.js [data-reveal] { transition: none; }
@@ -1317,3 +1328,110 @@ html.js [data-reveal-stagger] .step.revealed .step-num { animation: stepPop .45s
 
 /* Absolutně pozicované děti (.sr-only apod.) se musí klipovat uvnitř scroll kontejnerů */
 .mobile-carousel, .table-wrap, .card, .post-card, .v-card, .obj { position: relative; }
+
+/* =========================================================================
+   v4 · audit (Apple HIG · mobile-first · WCAG 2.1 AA) — poslední blok, přebíjí vše výše
+   ========================================================================= */
+
+/* ---------- Barva jen v jediném prvku: eyebrow, odrážky, avatar ---------- */
+.eyebrow { color: var(--muted); }                              /* 15 px / 600 · 5,07:1 na bílé, 4,7:1 na #f5f5f7 */
+.section.dark .eyebrow { color: #86868b; }                     /* 5,8:1 na #000 */
+.article li::marker { color: var(--ink); }
+.author-box .avatar { background: var(--surface-2); color: var(--ink); }
+
+/* ---------- Sekundární tlačítko = šedá výplň, bez obrysu (Apple nemá outline tlačítka) ----------
+   Translucentní černá místo #f5f5f7: funguje i na .section.alt (#f5f5f7) a v zeleném CTA (index.html, inline color:#fff). */
+.btn-ghost { background: rgba(0,0,0,.05); color: var(--ink); border-color: transparent; }
+.btn-ghost:hover { background: rgba(0,0,0,.09); color: var(--ink); border-color: transparent; }
+.section.dark .btn-ghost, .hero-v4.dark .btn-ghost, .cta-band .btn-ghost { background: rgba(255,255,255,.12); color: #f5f5f7; border-color: transparent; }
+.section.dark .btn-ghost:hover, .hero-v4.dark .btn-ghost:hover, .cta-band .btn-ghost:hover { background: rgba(255,255,255,.18); color: #fff; border-color: transparent; }
+
+/* ---------- Trust strip: tenká ikona v ink, bez kroužku a stínu ---------- */
+.trust-strip .ts-ico { border: none; background: transparent; box-shadow: none; width: 28px; height: 28px; color: var(--ink); }
+.trust-strip .ts-ico svg { width: 26px; height: 26px; }
+.hero-v4.dark .trust-strip .ts-ico { background: transparent; box-shadow: none; color: #f5f5f7; }
+
+/* ---------- Pilulky: jediný neutrální tón (bez zelené/zlaté/oranžové) ---------- */
+.pill-mint, .pill-accent, .pill-agro, .pill-tech { background: var(--surface-2); color: var(--muted); }
+.section.alt .pill-mint, .section.alt .pill-accent, .section.alt .pill-muted { background: #fff; }
+/* na šedé dlaždici bílá pilulka, na bílé dlaždici (.section.alt) šedá, na tmavé dlaždici #2c2c2e */
+.card .pill-mint, .card .pill-accent, .card .pill-muted, .big-step .pill-mint, .big-step .pill-accent, .big-step .pill-muted,
+.obj .pill-mint, .obj .pill-accent, .obj .pill-muted, .uc-card .pill-mint, .uc-card .pill-accent, .uc-card .pill-muted { background: #fff; }
+.section.alt .card .pill-mint, .section.alt .card .pill-accent, .section.alt .card .pill-muted,
+.section.alt .big-step .pill-mint, .section.alt .big-step .pill-accent, .section.alt .big-step .pill-muted { background: var(--surface-2); }
+.section.dark .card .pill-mint, .section.dark .card .pill-accent, .section.dark .card .pill-muted,
+.section.dark .big-step .pill-mint, .section.dark .big-step .pill-accent, .section.dark .big-step .pill-muted { background: #2c2c2e; color: #d2d2d7; }
+
+/* ---------- Srovnávací tabulka: monochromní, rozdíl nese text a váha ---------- */
+.compare thead .is-us { background: transparent; color: var(--ink); }
+.compare .is-us { background: var(--surface-2); color: var(--ink); font-weight: 500; }
+.compare .yes, .compare .no, .compare .meh { color: var(--ink); font-weight: 600; }
+
+/* ---------- Plochy vertikál: dlaždice šedé/bílé, akcent jen v textu ---------- */
+.season .s-item.peak { background: var(--surface-2); }
+.section.alt .season .s-item.peak { background: #fff; }
+.season .s-item.peak .s-q { color: var(--accent-700); }
+.section.alt .uc-card .uc-ico { background: var(--surface-2); color: var(--ink); }
+.machine .m-ico { color: var(--ink); }
+.hero-v4.dark .link-arrow { color: var(--green-bright); }     /* žádná třetí (modrá) akcentová barva; 6,3:1 na #000 */
+
+/* ---------- Klidný pohyb: hover jen na interaktivních prvcích ---------- */
+.card.hover:hover { transform: none; box-shadow: none; border-color: transparent; }   /* div.card.hover (feature) */
+a.card.hover:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+html.js .step:hover .step-num { background: var(--ink); transform: none; }
+.photo-frame:hover img { transform: none; }
+
+/* ---------- Stíny jen u kalkulačky ---------- */
+.ui-frame, .photo-frame, .cta-photo, .offer-summary-bar { box-shadow: none; }
+.ui-frame { border: none; border-radius: var(--r-xl); }
+.photo-frame { border-radius: var(--r-xl); }
+
+/* ---------- Chipy wizardu (.choice) = pill, active = ink (jako .segmented / .v-switch) ---------- */
+.choice { border: 1px solid var(--muted-2); border-radius: var(--r-pill); background: #fff; color: var(--ink); font-weight: 500; }
+.choice:hover { border-color: var(--ink); background: #fff; color: var(--ink); }
+.choice.active, .choice[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+/* ---------- Váhy: max 700 (Apple), 800 nikde → stránky mohou stahovat jen Inter 400;500;600;700 ---------- */
+:where(body:not([data-shell="marketing"])) :is(h1, h2, h3, h4) { font-weight: 700; }   /* portály; marketing má 700/600 výše */
+.brand, .brand-word, .brand-word.xl, .display-headline, .calc-amount, .result-stat .ro-val, .stat .num, .proof-strip .proof .num,
+.obj .obj-q, .obj .obj-q .q-ico, .big-step .big-num, .uc-card .uc-amt, .season .s-item .s-q, .stat-band .sb .num,
+.article .example .ex .val, .post-card.featured h3, .cta-band h3, .cta-band .cta-phone, .meter-row .meter-val,
+.side-link .badge-count, .avatar { font-weight: 700; }
+.v-card .vc-more { font-weight: 500; }
+
+/* ---------- Mobilní CTA lišta: tlačítko se nezmenšuje, popisek ano; ≤420 px jen tlačítko ---------- */
+.mobile-cta-bar .btn { flex: 0 0 auto; }
+.mobile-cta-bar .mc-price { flex: 1 1 0; min-width: 0; color: #424245; }   /* 6,5:1 i na rozostřeném tmavém podkladu (≈#d1d1d1) */
+@media (max-width: 420px) {
+  .mobile-cta-bar .mc-price { display: none; }
+  .mobile-cta-bar .btn { flex: 1; }
+}
+
+/* ---------- Srovnávací tabulka na mobilu: vodorovný scroll + přilepený první sloupec ---------- */
+@media (max-width: 860px) {
+  .table-wrap { margin-inline: calc(-1 * var(--sp-5)); padding-inline: var(--sp-5); }
+  .compare { min-width: 640px; overflow: clip; }              /* clip (ne hidden) → sticky funguje uvnitř .table-wrap */
+  .compare tbody th { position: sticky; left: 0; z-index: 1; background: #fff; min-width: 120px; width: 120px; box-shadow: 1px 0 0 var(--line); }
+  .compare thead th:first-child { position: sticky; left: 0; z-index: 2; background: #fff; }
+}
+@media (max-width: 520px) {
+  .table-wrap { margin-inline: -20px; padding-inline: 20px; }
+}
+
+/* ---------- Přístupnost: fokus, kontrast, rozpoznatelnost odkazů a polí ---------- */
+/* WCAG 2.4.7: v1 mělo outline:none (0,2,1) a přebíjelo globální :focus-visible → slider bez indikátoru */
+input[type="range"].range:focus-visible { outline: 3px solid var(--green); outline-offset: 0; border-radius: var(--r-md); }
+input[type="range"].range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--green), 0 1px 6px rgba(0,0,0,.25); }
+input[type="range"].range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px var(--green), 0 1px 6px rgba(0,0,0,.25); }
+/* WCAG 1.4.11: bílá kalkulačka v tmavém heru — bílý kroužek by byl na bílé kartě neviditelný */
+.hero-v4.dark .calc-card :focus-visible { outline-color: var(--green); }
+.mobile-carousel:focus-visible { outline-offset: -3px; }      /* padding 4 px by 2px offset ořízl (AK.initCarousels) */
+/* WCAG 1.4.11: hranice polí a chipů ≥ 3:1 (#86868b = 3,6:1 na bílé, 3,3:1 na #f5f5f7); fokus zesílen */
+.input, .select, textarea.input, .choice, .v-switch a { border-color: var(--muted-2); }
+.input:focus, .select:focus, textarea.input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(0,122,82,.35); }
+.field.invalid .input { border-color: var(--danger); }
+/* WCAG 1.4.1 (G183): odkazy v běžném textu nejen barvou — podtržení; ostatní textové odkazy podtržení na hover */
+.muted a:not(.btn):not(.link-arrow), .lead a, .faq-a-inner a, .notice a, .disclaimer a, .cost-warning a,
+.article p a, .article li a, .article td a, .section-head p a, .field .hint a, .check a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+p a:not(.btn):not(.link-arrow):hover, li a:not(.btn):not(.link-arrow):not(.nav-links a):not(.side-link):hover, td a:hover,
+.breadcrumbs a:hover, .toc a:hover, .site-footer a:not(.btn):hover, .article a:not(.btn):hover { text-decoration: underline; text-underline-offset: 3px; }

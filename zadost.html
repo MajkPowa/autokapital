@@ -40,8 +40,8 @@
     .reassure .ri svg { width: 11px; height: 11px; }
 
     /* 1 otázka = 1 vizuální blok */
-    .q-block { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--sp-5); }
-    .q-block .q-label { display: block; font-weight: 800; font-size: var(--fs-md); color: var(--ink); letter-spacing: -0.01em; margin-bottom: var(--sp-3); }
+    .q-block { background: var(--surface-2); border: none; border-radius: var(--r-lg); padding: var(--sp-5); }
+    .q-block .q-label { display: block; font-weight: 600; font-size: var(--fs-md); color: var(--ink); letter-spacing: -0.01em; margin-bottom: var(--sp-3); }
     .q-block .hint { display: block; margin-top: var(--sp-3); }
 
     /* Velké dotykové chipy */
@@ -52,14 +52,14 @@
     .wizard-nav { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); margin-top: var(--sp-6); }
     @media (max-width: 640px) {
       .wizard-nav { flex-direction: column-reverse; align-items: stretch; }
-      .wizard-nav .btn { width: 100%; }
+      .wizard-nav .btn { width: 100%; white-space: normal; text-align: center; line-height: 1.2; } /* .btn má nowrap + .btn-primary overflow:hidden → dlouhé CTA se na 320–430 px ořezávalo */
       .wizard-nav .hint { text-align: center; }
     }
 
     /* Výsledek — trojice čísel vždy pohromadě */
     .offer-big .calc-label { display: block; margin-bottom: 2px; }
     .offer-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin-top: var(--sp-4); }
-    .offer-cell { background: var(--white); border: 1px solid var(--green-100); border-radius: var(--r-md); padding: var(--sp-4); }
+    .offer-cell { background: #fff; border: none; border-radius: var(--r-md); padding: var(--sp-4); }
     .offer-cell .val { font-size: var(--fs-xl); font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.15; }
     .offer-cell .cap { font-size: var(--fs-xs); color: var(--muted); font-weight: 600; }
     @media (max-width: 460px) { .offer-pair { grid-template-columns: 1fr; } }
@@ -76,13 +76,28 @@
     .mini-trust .mt-ico svg { width: 21px; height: 21px; }
     .mini-trust strong { display: block; color: var(--ink); font-size: var(--fs-base); }
     .mini-trust span { color: var(--muted); font-size: var(--fs-sm); line-height: 1.45; }
+
+    /* v4 (Apple-like): wizard = bílý „konfigurátor“ jako .calc-card; otázky (.q-block) a výsledek (.card.pad) = šedé dlaždice bez rámečků,
+       buňky nabídky a dropzone bílé — žádné zelené tinty ani 1px rámečky */
+    .zadost-grid .card.pad-lg { background: #fff; box-shadow: var(--shadow-lg); border-radius: var(--r-xl); }
+    .wizard-step .dropzone { background: #fff; }
+    .wizard-step .dropzone:hover { background: #fff; border-color: var(--green); }
+    /* ≤520 px: trojité vnoření paddingů (container 20 + karta + otázka) → užší vnitřní odstupy, chipy 2×2, částka se vejde i u TechCash */
+    @media (max-width: 520px) {
+      .zadost-grid .card.pad-lg { padding: 16px; border-radius: var(--r-lg); }
+      .q-block { padding: 16px; }
+      .choice-row.big { grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); }
+      .choice-row.big .choice { padding-inline: 12px; }
+      .wizard-step .card.pad { padding: 18px; }
+      .calc-amount { font-size: clamp(1.9rem, 9vw, 2.6rem); }
+    }
   </style>
 </head>
 <body data-shell="marketing" data-active="">
   <div id="site-header"></div>
 
   <!-- ===================== ŽÁDOST / ORIENTAČNÍ VÝKUPNÍ NABÍDKA (B2B) ===================== -->
-  <main id="main"><section class="section full-bleed-bg" style="padding-top:var(--sp-7)">
+  <main id="main"><section class="section" style="padding-top:var(--sp-7)">
     <div class="container">
 
       <div class="section-head" style="margin-bottom:var(--sp-6);max-width:640px">
@@ -219,7 +234,7 @@
                   <div class="notice" style="align-items:flex-start">
                     <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
                     <div>
-                      <strong>Jak to funguje.</strong> <span data-v="auto">Vůz od vás dočasně odkoupíme a výkupní cenu vám vyplatíme. Vy ho můžete dál používat pro podnikání podle smlouvy o&nbsp;užívání vozidla.</span><span data-v="agro" hidden>Stroj od vás dočasně odkoupíme a výkupní cenu vám vyplatíme. Vy ho můžete dál používat pro své hospodaření podle smlouvy o&nbsp;užívání.</span><span data-v="tech" hidden>Vozidlo od vás dočasně odkoupíme a výkupní cenu vám vyplatíme. Vy je můžete dál používat pro svou dopravu podle smlouvy o&nbsp;užívání vozidla.</span> Měsíční rezervační poplatek (<span data-v="auto">4&nbsp;% z&nbsp;odhadní hodnoty vozu</span><span data-v="agro" hidden>3&nbsp;% z&nbsp;odhadní hodnoty stroje</span><span data-v="tech" hidden>3,5&nbsp;% z&nbsp;odhadní hodnoty vozidla</span>) vám drží možnost zpětného odkupu za předem sjednanou cenu.
+                      <strong>Měsíční rezervační poplatek.</strong> <span data-v="auto">4&nbsp;% z&nbsp;odhadní hodnoty vozu</span><span data-v="agro" hidden>3&nbsp;% z&nbsp;odhadní hodnoty stroje</span><span data-v="tech" hidden>3,5&nbsp;% z&nbsp;odhadní hodnoty vozidla</span> měsíčně — drží vám možnost zpětného odkupu za předem sjednanou cenu. Přesnou částku v&nbsp;Kč uvidíte v&nbsp;dalším kroku.
                     </div>
                   </div>
                 </div>
@@ -236,7 +251,7 @@
                 <h2 class="mt-3" style="font-size:var(--fs-lg)">Vaše orientační nabídka</h2>
                 <p class="muted mt-2">Tři čísla, která rozhodují. Všechna znáte předem — žádné skryté kroky.</p>
 
-                <div class="card tint pad mt-5">
+                <div class="card pad mt-5">
                   <!-- Trojice čísel vždy pohromadě -->
                   <div class="offer-big">
                     <span class="calc-label">Výkupní cena — vyplatíme vám</span>
@@ -276,15 +291,15 @@
                 <div class="notice mt-5" style="align-items:flex-start">
                   <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
                   <div>
-                    <strong>Co nabídka znamená.</strong> <span data-v="auto">Vůz od vás odkoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává CashAuto a.s., vy jste provozovatel a vůz dál používáte pro podnikání podle smlouvy o&nbsp;užívání vozidla — zakázky, materiál i&nbsp;cesty za klienty.</span><span data-v="agro" hidden>Stroj od vás odkoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává CashAuto a.s., vy jste provozovatel a stroj dál používáte pro své hospodaření podle smlouvy o&nbsp;užívání — setí, sklizeň i&nbsp;služby pro okolní podniky.</span><span data-v="tech" hidden>Vozidlo od vás odkoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává CashAuto a.s., vy jste provozovatel a vozidlo dál používáte pro svou dopravu podle smlouvy o&nbsp;užívání vozidla — přepravy, linky i&nbsp;zakázky pro odběratele.</span> Úhradou měsíčního rezervačního poplatku si držíte možnost zpětného odkupu za předem sjednanou cenu; při neuhrazení právo na odkup zaniká v okamžiku uvedeném ve smlouvě. Podmínky užívání (<span data-v="auto">pojištění, servis, STK i&nbsp;pokuty</span><span data-v="agro" hidden>pojištění, servis, údržba i&nbsp;případná STK u&nbsp;registrované techniky</span><span data-v="tech" hidden>pojištění, servis, STK, tachograf i&nbsp;pokuty</span>) jsou ve smlouvě.
+                    <strong>Co nabídka znamená.</strong> <span data-v="auto">Vůz od vás vykoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává CashAuto a.s., vy jste provozovatel a vůz dál používáte pro podnikání podle smlouvy o&nbsp;užívání vozidla — zakázky, materiál i&nbsp;cesty za klienty.</span><span data-v="agro" hidden>Stroj od vás vykoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává CashAuto a.s., vy jste provozovatel a stroj dál používáte pro své hospodaření podle smlouvy o&nbsp;užívání — setí, sklizeň i&nbsp;služby pro okolní podniky.</span><span data-v="tech" hidden>Vozidlo od vás vykoupíme a výkupní cenu vám vyplatíme. Vlastníkem se stává CashAuto a.s., vy jste provozovatel a vozidlo dál používáte pro svou dopravu podle smlouvy o&nbsp;užívání vozidla — přepravy, linky i&nbsp;zakázky pro odběratele.</span> Úhradou měsíčního rezervačního poplatku si držíte možnost zpětného odkupu za předem sjednanou cenu; při neuhrazení právo na odkup zaniká v okamžiku uvedeném ve smlouvě. Podmínky užívání (<span data-v="auto">pojištění, servis, STK i&nbsp;pokuty</span><span data-v="agro" hidden>pojištění, servis, údržba i&nbsp;případná STK u&nbsp;registrované techniky</span><span data-v="tech" hidden>pojištění, servis, STK, tachograf i&nbsp;pokuty</span>) jsou ve smlouvě.
                   </div>
                 </div>
 
-                <p class="mt-4 mb-0" style="font-weight:800;color:var(--ink)">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
+                <p class="cost-warning mt-4 mb-0">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
 
                 <div class="disclaimer mt-4">
                   <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg></span>
-                  <div>Kalkulace je orientační a nezávazná. Konečná nabídka závisí na ověření stavu vozidla a dokladů. Výkupní cenu, měsíční rezervační poplatek v Kč i cenu zpětného odkupu uvidíte v plné výši ještě před podpisem smluv. Rezervační poplatek je zpravidla daňově uznatelný provozní náklad — posuďte se svým účetním.</div>
+                  <div>Kalkulace je orientační a nezávazná. Konečná nabídka závisí na ověření stavu a dokladů. Výkupní cenu, měsíční rezervační poplatek v Kč i cenu zpětného odkupu uvidíte v plné výši ještě před podpisem smluv. Rezervační poplatek je provozní náklad, jehož daňovou uznatelnost posuďte se svým účetním.</div>
                 </div>
 
                 <div class="wizard-nav">
@@ -298,7 +313,7 @@
               <div class="wizard-step" data-validate="contact">
                 <span class="eyebrow">Krok 4 ze 4 · poslední krok</span>
                 <h2 class="mt-3" style="font-size:var(--fs-lg)">Kam pošleme nabídku pro vaši firmu?</h2>
-                <p class="muted mt-2">Podle IČO si ověříme údaje v ARES — nic dalšího dokládat nemusíte. Pošleme vám nabídku a domluvíme termín návštěvy technika. Údaje nikomu nepředáme a nic vám nevnucujeme.</p>
+                <p class="muted mt-2">Podle IČO si ověříme základní údaje v&nbsp;ARES. Pošleme vám nabídku a&nbsp;domluvíme termín návštěvy technika — doklady stačí ukázat až jemu. Údaje nikomu nepředáme.</p>
 
                 <div class="stack gap-4 mt-5">
                   <div class="q-block">
@@ -345,7 +360,7 @@
                   <div class="q-block">
                     <span class="q-label">Doklady <span data-v="auto">k&nbsp;vozu</span><span data-v="agro" hidden>ke stroji</span><span data-v="tech" hidden>k&nbsp;vozidlu</span> <span class="muted" style="font-weight:600">(nepovinné)</span></span>
                     <div class="dropzone" role="button" tabindex="0" data-demo="Nahrávání dokladů je v demu vypnuté">
-                      <div class="ico-box" style="width:56px;height:56px;border-radius:var(--r-md);background:var(--green-050);color:var(--green);display:grid;place-items:center">
+                      <div class="ico-box" style="width:56px;height:56px;border-radius:var(--r-md);background:var(--surface-2);color:var(--ink);display:grid;place-items:center">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
                       </div>
                       <strong class="mt-3" style="display:block"><span data-v="auto">Nahrajte fotky vozu a velký technický průkaz</span><span data-v="agro" hidden>Nahrajte fotky stroje a technický průkaz — u&nbsp;neregistrované techniky kupní smlouvu nebo fakturu</span><span data-v="tech" hidden>Nahrajte fotky vozidla a velký technický průkaz</span></strong>
@@ -434,7 +449,8 @@
           <div class="card pad review-card" data-reveal="right">
             <div class="stars" aria-hidden="true">★★★★★</div>
             <p class="quote mb-0"><span data-v="auto">„Za dva dny bylo vyřízené a dodávkou jezdím na zakázky dál. Všechna čísla jsem znal dopředu, nikdo mě do ničeho netlačil — a faktury jsem překlenul bez čekání.“</span><span data-v="agro" hidden>„Před sezónou jsem potřeboval naftu, osivo a díly. Traktor jezdil dál, čísla jsem měl v&nbsp;Kč na papíře předem a po sklizni jsem ho odkoupil zpět za cenu ze smlouvy.“</span><span data-v="tech" hidden>„Odběratel platil až po 90 dnech a mzdy nečekají. Tahač jezdil dál na linkách, poplatek jsem znal v&nbsp;Kč dopředu a po třech měsících jsem ho odkoupil zpět.“</span></p>
-            <span class="who"><span data-v="auto">Martin Veselý · Veselý Servis s.r.o. · vůz už odkoupil zpět</span><span data-v="agro" hidden>Josef Hruška · Farma Hruška, zemědělský podnikatel · stroj už odkoupil zpět</span><span data-v="tech" hidden>Petr Dvořák · Dvořák Transport s.r.o. · tahač už odkoupil zpět</span></span>
+            <span class="who"><span data-v="auto">Martin V. · autoservis, Brno · vůz už odkoupil zpět</span><span data-v="agro" hidden>Josef H. · zemědělský podnikatel, Vysočina · stroj už odkoupil zpět</span><span data-v="tech" hidden>Petr D. · dopravní firma, Ostrava · tahač už odkoupil zpět</span></span>
+            <span class="muted" style="font-size:var(--fs-xs)">Ukázková reference</span>
           </div>
         </aside>
 
