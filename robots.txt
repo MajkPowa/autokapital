@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+# Klientskou zónu a interní portály (/portal.html, /admin.html, /aftersales.html)
+# záměrně neblokujeme: mají <meta name="robots" content="noindex,nofollow">
+# a robot ho musí načíst. Blokujeme jen podklady, které nejsou součástí webu.
+Disallow: /tools/
+Disallow: /Public/New/
+Disallow: /Public/Mockup/
+
+Sitemap: https://cashauto.cz/sitemap.xml

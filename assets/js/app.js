@@ -10,10 +10,12 @@
   const AK = (window.AK = window.AK || {});
 
   // ---------- Formatting ----------
+  // Částky: tisícové oddělovače i mezera před „Kč“ jsou nezlomitelné (U+00A0), aby se „Kč“
+  // v úzkých buňkách nezalomilo na samostatný řádek.
   AK.fmt = {
-    czk(n) { return Math.round(n).toLocaleString("cs-CZ").replace(/ /g, " ") + " Kč"; },
-    num(n) { return Math.round(n).toLocaleString("cs-CZ").replace(/ /g, " "); },
-    pct(n) { return Math.round(n) + " %"; },
+    num(n) { return Math.round(n).toLocaleString("cs-CZ").replace(/\s/g, "\u00a0"); },
+    czk(n) { return AK.fmt.num(n) + "\u00a0Kč"; },
+    pct(n) { return Math.round(n) + " %"; },
   };
   const round = (n, to) => Math.round(n / to) * to;
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
@@ -35,6 +37,21 @@
   const VYKUP_RATE = 0.70;   // výkupní cena = 70 % odhadní hodnoty
   const FEE_RATE = 0.04;     // měsíční rezervační poplatek = 4 % z hodnoty vozu
   const COND_FACTOR = { vyborny: 1.0, dobry: 0.93, prumerny: 0.84, horsi: 0.72 };
+  // Odhad vychází z ceny NOVÉHO vozu segmentu, ze které se odečítá stáří, nájezd a stav.
+  // Kalibrace: referenční vůz webu (kombi, 2018, 132 000 km, dobrý) ≈ 275 000–295 000 Kč,
+  // tj. v pásmu ukázkové hodnoty 300 000 Kč. Hodnoty v AK.segmentBase (data.js) slouží jen jako záloha.
+  const NEW_PRICE = {
+    "Malé / hatchback": 500000,
+    "Střední třída / kombi": 800000,
+    "SUV": 1100000,
+    "Rodinné MPV / van": 900000,
+    "Prémiové / vyšší třída": 1700000,
+  };
+  // Roční pokles hodnoty (osobní vozy rychleji než stroje a tahače) a škála nájezdu podle vertikály
+  // (auto = km, tech = km, agro = motohodiny). Faktor nájezdu má spodní mez 0,45.
+  const AGE_FACTOR = { auto: 0.91, agro: 0.95, tech: 0.95 };
+  const WEAR_SCALE = { auto: 600000, agro: 30000, tech: 1500000 };
+  const WEAR_DEFAULT = { auto: 100000, agro: 6000, tech: 450000 };
   const SEGMENT_MAP = {
     "hatchback": "Malé / hatchback", "male": "Malé / hatchback",
     "kombi": "Střední třída / kombi", "stredni": "Střední třída / kombi",
@@ -43,30 +60,52 @@
     "premium": "Prémiové / vyšší třída", "premiove": "Prémiové / vyšší třída",
   };
 
+  // Vertikála (auto | agro | tech): z body[data-vertical], jinak z ?typ= (žádost), jinak auto
+  AK.vertical = function () {
+    const fromBody = document.body && document.body.getAttribute("data-vertical");
+    const fromQuery = new URLSearchParams(location.search).get("typ");
+    const key = fromBody || fromQuery || "auto";
+    const V = AK.verticals || {};
+    return V[key] || V.auto || { key: "auto", vykupRate: VYKUP_RATE, feeRate: FEE_RATE, segments: [] };
+  };
+
   AK.valuation = {
     VYKUP_RATE, FEE_RATE,
-    resolveSegment(s) { return (AK.segmentBase && AK.segmentBase[s]) ? s : (SEGMENT_MAP[s] || "Střední třída / kombi"); },
-    estimateMarketValue({ segment, year, mileage, condition }) {
-      const seg = this.resolveSegment(segment);
-      const base = (AK.segmentBase && AK.segmentBase[seg]) || 560000;
-      const age = Math.max(0, 2026 - (year || 2018));
-      const ageFactor = Math.pow(0.88, age);
-      const mileageFactor = clamp(1 - (mileage || 100000) / 280000, 0.45, 1);
+    resolveSegment(s) { return (NEW_PRICE[s] || (AK.segmentBase && AK.segmentBase[s])) ? s : (SEGMENT_MAP[s] || "Střední třída / kombi"); },
+    estimateMarketValue({ segment, year, mileage, condition, vertical }) {
+      const V = vertical || AK.vertical();
+      const vKey = V.key in WEAR_SCALE ? V.key : "auto";
+      let base;
+      if (vKey !== "auto") {
+        const seg = (V.segments || []).find(x => x.key === segment) || (V.segments || [])[0];
+        base = seg ? seg.base : 1500000;
+      } else {
+        const seg = this.resolveSegment(segment);
+        base = NEW_PRICE[seg] || (AK.segmentBase && AK.segmentBase[seg]) || NEW_PRICE["Střední třída / kombi"];
+      }
+      const age = Math.max(0, new Date().getFullYear() - (year || 2018));
+      const ageFactor = Math.pow(AGE_FACTOR[vKey], age);
+      const wear = mileage == null ? WEAR_DEFAULT[vKey] : mileage;
+      const mileageFactor = clamp(1 - wear / WEAR_SCALE[vKey], 0.45, 1);
       const condFactor = COND_FACTOR[condition] || 0.9;
-      return round(base * ageFactor * mileageFactor * condFactor, 5000);
+      return round(base * ageFactor * mileageFactor * condFactor, vKey === "auto" ? 5000 : 10000);
     },
     // Dočasný výkup: výkupní cena + měsíční rezervační poplatek. Cena zpětného odkupu = výkupní cena.
-    buildOffer({ marketValue, encumbered }) {
-      let vykup = marketValue * VYKUP_RATE;
-      if (encumbered) vykup *= 0.9;
-      vykup = round(vykup, 5000);
-      const fee = round(marketValue * FEE_RATE, 100);
+    // Sazby lze předat (kalkulačky vertikál), jinak se vezmou z aktivní vertikály.
+    // Stávající zatížení vozu (leasing apod.) se do orientační nabídky nepromítá — posuzuje se
+    // individuálně po telefonátu, jak říká nápověda v žádosti i FAQ.
+    buildOffer({ marketValue, vykupRate, feeRate }) {
+      const V = AK.vertical();
+      const vr = vykupRate || V.vykupRate || VYKUP_RATE;
+      const fr = feeRate || V.feeRate || FEE_RATE;
+      const vykup = round(marketValue * vr, 5000);
+      const fee = round(marketValue * fr, 100);
       return {
-        marketValue, vykup, fee, buyback: vykup,
+        marketValue, vykup, fee, buyback: vykup, vykupRate: vr, feeRate: fr,
         fee1: fee, fee3: fee * 3, fee6: fee * 6, fee12: fee * 12,
       };
     },
-    feeForMonths(marketValue, months) { return round(marketValue * FEE_RATE, 100) * (months || 1); },
+    feeForMonths(marketValue, months) { return round(marketValue * (AK.vertical().feeRate || FEE_RATE), 100) * (months || 1); },
   };
 
   // ---------- Tabs ----------
@@ -112,18 +151,38 @@
   };
 
   // ---------- Přenos hodnoty vozu z kalkulaček do žádosti ----------
+  // Hodnota se ukládá jen po skutečné interakci s kalkulačkou (ne při prvním vykreslení) a platí 24 h.
+  // V žádosti slouží pouze jako VÝCHOZÍ odhad: jakmile klient změní typ, rok, nájezd nebo stav,
+  // počítá se z jeho údajů (viz computeWizardResult).
+  const CARRY_TTL_MS = 24 * 60 * 60 * 1000;
+  const VEHICLE_FIELDS = ["w_segment", "w_year", "w_mileage", "w_condition"];
+  const vehicleSnapshot = () => VEHICLE_FIELDS.map(id => { const e = document.getElementById(id); return e ? String(e.value) : ""; }).join("|");
+  let wizardDefaults = null; // snímek výchozích hodnot kroku 1 (po přizpůsobení vertikále)
   AK.rememberValue = function (v) {
-    try { localStorage.setItem("ak_hodnota", String(v)); } catch (e) { /* private mode */ }
-    // CTA odkazy na žádost nesou hodnotu i v query stringu
-    document.querySelectorAll('a[href^="zadost.html"]').forEach(a => {
-      const base = a.getAttribute("href").split("?")[0];
-      a.setAttribute("href", base + "?hodnota=" + v);
+    // hodnota se pamatuje per vertikála (auto/agro/tech), aby traktor nepřepsal odhad dodávky
+    try { localStorage.setItem("ak_hodnota", JSON.stringify({ v: AK.vertical().key, k: v, t: Date.now() })); } catch (e) { /* private mode */ }
+    // CTA odkazy na žádost nesou hodnotu i v query stringu (a zachovají ?typ= vertikály)
+    document.querySelectorAll('a[href*="zadost.html"]').forEach(a => {
+      const href = a.getAttribute("href");
+      const base = href.split("?")[0];
+      const params = new URLSearchParams(href.split("?")[1] || "");
+      params.set("hodnota", String(v));
+      const vKey = AK.vertical().key;
+      if (vKey && vKey !== "auto") params.set("typ", vKey);
+      a.setAttribute("href", base + "?" + params.toString());
     });
   };
   AK.recallValue = function () {
     const q = new URLSearchParams(location.search).get("hodnota");
     if (q && +q >= 50000) return +q;
-    try { const s = localStorage.getItem("ak_hodnota"); if (s && +s >= 50000) return +s; } catch (e) {}
+    try {
+      const s = localStorage.getItem("ak_hodnota");
+      if (s) {
+        const o = JSON.parse(s);
+        const fresh = o && typeof o.t === "number" && (Date.now() - o.t) < CARRY_TTL_MS;
+        if (fresh && o.v === AK.vertical().key && +o.k >= 50000) return +o.k;
+      }
+    } catch (e) { /* starý formát nebo private mode */ }
     return null;
   };
 
@@ -137,20 +196,23 @@
     const elBuyback = document.getElementById("heroBuyback"); // cena zpětného odkupu
     const elTerm = document.getElementById("heroTerm");       // doba rezervace (měsíce)
     const elPeriod = document.getElementById("heroPeriod");   // poplatek za zvolenou dobu celkem
-    function render() {
+    // remember = true jen při skutečném posunu jezdce (ne při prvním vykreslení ani změně doby)
+    function render(remember) {
       const value = +range.value;
       const o = AK.valuation.buildOffer({ marketValue: value });
       const months = +(elTerm && elTerm.value) || 3;
+      // čtečka oznámí „300 000 Kč“ místo surového čísla 300000
+      range.setAttribute("aria-valuetext", AK.fmt.czk(value));
       if (elValue) elValue.textContent = AK.fmt.czk(value);
       if (elAmount) elAmount.textContent = AK.fmt.czk(o.vykup);
       if (elFee) elFee.textContent = AK.fmt.czk(o.fee) + " / měsíc";
       if (elBuyback) elBuyback.textContent = AK.fmt.czk(o.buyback);
       if (elPeriod) elPeriod.textContent = AK.fmt.czk(o.fee * months) + " za " + months + (months === 1 ? " měsíc" : (months < 5 ? " měsíce" : " měsíců"));
-      AK.rememberValue(value);
+      if (remember) AK.rememberValue(value);
     }
-    range.addEventListener("input", render);
-    if (elTerm) { elTerm.addEventListener("input", render); elTerm.addEventListener("change", render); }
-    render();
+    range.addEventListener("input", () => render(true));
+    if (elTerm) { elTerm.addEventListener("input", () => render(false)); elTerm.addEventListener("change", () => render(false)); }
+    render(false);
   };
 
   // ---------- Section 05 big calculator ----------
@@ -162,24 +224,28 @@
     const elTerm = document.getElementById("bigTerm");        // doba (měsíce)
     const elPeriod = document.getElementById("bigPeriod");    // poplatek za zvolenou dobu
     const elBuyback = document.getElementById("bigBuyback");  // cena zpětného odkupu
-    function render() {
+    function render(remember) {
       const value = +valEl.value || 300000;
       const o = AK.valuation.buildOffer({ marketValue: value });
       const months = +(elTerm && elTerm.value) || 3;
+      if (valEl.type === "range") valEl.setAttribute("aria-valuetext", AK.fmt.czk(value));
       if (elAmount) elAmount.textContent = AK.fmt.czk(o.vykup);
       if (elFee) elFee.textContent = AK.fmt.czk(o.fee);
       if (elPeriod) elPeriod.textContent = AK.fmt.czk(o.fee * months);
       if (elBuyback) elBuyback.textContent = AK.fmt.czk(o.buyback);
-      AK.rememberValue(value);
+      if (remember && +valEl.value >= 50000) AK.rememberValue(value);
     }
-    valEl.addEventListener("input", render);
-    if (elTerm) { elTerm.addEventListener("input", render); elTerm.addEventListener("change", render); }
-    render();
+    valEl.addEventListener("input", () => render(true));
+    if (elTerm) { elTerm.addEventListener("input", () => render(false)); elTerm.addEventListener("change", () => render(false)); }
+    render(false);
   };
 
   // ---------- FAQ accordion ----------
   AK.initFaq = function () {
-    document.querySelectorAll(".faq-item .faq-q").forEach(q => {
+    document.querySelectorAll(".faq-item .faq-q").forEach((q, i) => {
+      // vazba tlačítko → panel odpovědi (aria-controls), panel dostane id, pokud ho nemá
+      const panel = q.closest(".faq-item") && q.closest(".faq-item").querySelector(".faq-a");
+      if (panel) { if (!panel.id) panel.id = "faq-a-" + (i + 1); q.setAttribute("aria-controls", panel.id); }
       q.setAttribute("aria-expanded", "false");
       q.addEventListener("click", () => {
         const item = q.closest(".faq-item");
@@ -228,12 +294,19 @@
       if (errBox) errBox.classList.toggle("hide", ok);
       return ok;
     };
-    const show = (n) => {
+    // moveFocus: po přechodu na další/předchozí krok převezme fokus nadpis kroku — tlačítko, na kterém
+    // byl fokus, se skryje (display:none) a bez toho by fokus spadl na <body>; čtečka tak přečte
+    // název kroku (např. „Vaše orientační nabídka“). Při načtení stránky se fokus nepřesouvá.
+    const show = (n, moveFocus) => {
       i = clamp(n, 0, steps.length - 1);
       steps.forEach((s, k) => s.classList.toggle("active", k === i));
       wps.forEach((w, k) => { w.classList.toggle("active", k === i); w.classList.toggle("done", k < i); });
       window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
       if (steps[i].querySelector("#r_market")) AK.computeWizardResult();
+      if (moveFocus) {
+        const h = steps[i].querySelector("h2, h3");
+        if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+      }
     };
     wiz.addEventListener("click", e => {
       const nextBtn = e.target.closest("[data-next]");
@@ -242,9 +315,9 @@
         if (cur.hasAttribute("data-validate") && cur.getAttribute("data-validate") === "contact" && !validateContact(cur)) return;
         // úspěšné odeslání kontaktu (poslední krok s data-submit-toast)
         if (nextBtn.hasAttribute("data-submit-toast")) { AK.toast(nextBtn.getAttribute("data-submit-toast")); }
-        show(i + 1);
+        show(i + 1, true);
       }
-      if (e.target.closest("[data-prev]")) show(i - 1);
+      if (e.target.closest("[data-prev]")) show(i - 1, true);
     });
     wiz.querySelectorAll(".choice-row").forEach(row => {
       row.addEventListener("click", e => {
@@ -255,28 +328,28 @@
         if (target) { const inp = document.getElementById(target); if (inp) inp.value = c.dataset.val; }
       });
     });
-    show(0);
+    // výchozí hodnoty kroku 1 (už po přizpůsobení vertikále) — proti nim se pozná, zda klient údaje upravil
+    wizardDefaults = vehicleSnapshot();
+    show(0, false);
   };
 
   // Result ids: r_market, r_amount (výkupní nabídka), r_fee (měsíční poplatek),
-  // r_period (poplatek za zvolenou dobu), r_months, r_buyback (cena zpětného odkupu), r_approval(+bar)
+  // r_period (poplatek za zvolenou dobu), r_months, r_buyback (cena zpětného odkupu).
+  // Žádná pravděpodobnost schválení — klientovi se procenta schválení neukazují.
   AK.computeWizardResult = function () {
     const get = id => { const e = document.getElementById(id); return e ? e.value : ""; };
     const segment = get("w_segment") || "Střední třída / kombi";
     const year = +get("w_year") || 2018;
-    const mileage = +get("w_mileage") || 120000;
+    const mileage = +get("w_mileage") || null; // null = výchozí nájezd vertikály v estimateMarketValue
     const condition = get("w_condition") || "dobry";
     const months = +get("w_months") || 3;
-    const encumbered = get("w_encumbered") === "yes";
-    // Přenos hodnoty z landing kalkulačky (?hodnota= / localStorage) — výsledek navazuje na slíbené číslo
+    // Hodnota z landing kalkulačky (?hodnota= / localStorage, max. 24 h) je jen VÝCHOZÍ odhad: platí,
+    // dokud klient nechá údaje o voze tak, jak byly. Jakmile změní typ, rok, nájezd nebo stav,
+    // odhad se počítá z jeho údajů — pole nesmí být „mrtvá“.
     const carried = AK.recallValue ? AK.recallValue() : null;
-    const market = carried || AK.valuation.estimateMarketValue({ segment, year, mileage, condition });
-    const o = AK.valuation.buildOffer({ marketValue: market, encumbered });
-    let approval = 95;
-    if (condition === "prumerny") approval -= 8;
-    if (condition === "horsi") approval -= 20;
-    if (encumbered) approval -= 18;
-    approval = Math.round(clamp(approval, 45, 96));
+    const untouched = wizardDefaults === null || vehicleSnapshot() === wizardDefaults;
+    const market = (carried && untouched) ? carried : AK.valuation.estimateMarketValue({ segment, year, mileage, condition });
+    const o = AK.valuation.buildOffer({ marketValue: market });
     const set = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
     set("r_market", AK.fmt.czk(o.marketValue));
     set("r_amount", AK.fmt.czk(o.vykup));
@@ -284,11 +357,9 @@
     set("r_period", AK.fmt.czk(o.fee * months));
     set("r_months", months + (months === 1 ? " měsíc" : (months < 5 ? " měsíce" : " měsíců")));
     set("r_buyback", AK.fmt.czk(o.buyback));
-    set("r_approval", approval + " %");
-    const bar = document.getElementById("r_approvalbar"); if (bar) bar.style.width = approval + "%";
     // sticky souhrn trojice čísel (viditelný během dalších kroků)
     set("os_vykup", AK.fmt.czk(o.vykup));
-    set("os_fee", AK.fmt.czk(o.fee) + "/měs");
+    set("os_fee", AK.fmt.czk(o.fee) + "/měs.");
     set("os_buyback", AK.fmt.czk(o.buyback));
     const sb = document.getElementById("offerSummaryBar"); if (sb) sb.classList.remove("hide");
   };
@@ -345,8 +416,17 @@
     if (document.querySelector(".mobile-cta-bar")) return;
     const bar = document.createElement("div");
     bar.className = "mobile-cta-bar";
-    bar.innerHTML = '<span class="mc-price">Nezávazná orientační nabídka<strong>za 2 minuty online</strong></span>' +
-      '<a class="btn btn-primary" href="zadost.html">Chci nabídku</a>';
+    const vKey = AK.vertical().key;
+    const href = "/zadost.html" + (vKey && vKey !== "auto" ? "?typ=" + vKey : "");
+    // popisek i tlačítko odpovídají CTA dané stránky („Chci nabídku pro stroj / pro vozidlo“)
+    const LABELS = {
+      auto: ["Chci nabídku", "Firemní vůz · 3 čísla za 2 minuty"],
+      agro: ["Chci nabídku pro stroj", "Traktor či kombajn · 3 čísla za 2 minuty"],
+      tech: ["Chci nabídku pro vozidlo", "Tahač či návěs · 3 čísla za 2 minuty"],
+    };
+    const [ctaText, subText] = LABELS[vKey] || LABELS.auto;
+    bar.innerHTML = '<span class="mc-price">Nezávazná orientační nabídka<strong>' + subText + '</strong></span>' +
+      '<a class="btn btn-primary" href="' + href + '">' + ctaText + '</a>';
     document.body.appendChild(bar);
     document.body.classList.add("has-mobile-cta");
     let ticking = false;
@@ -359,11 +439,90 @@
     update();
   };
 
+  // ---------- Žádost: přizpůsobení vertikále (?typ=agro|tech) ----------
+  // Přepne typy strojů v #w_segment, popisky s [data-v-auto]/[data-v-agro]/[data-v-tech] a označí body.
+  AK.initWizardVertical = function () {
+    const wiz = document.querySelector("[data-wizard]");
+    if (!wiz) return;
+    const V = AK.vertical();
+    document.body.setAttribute("data-vertical", V.key);
+    // varianty textů: <span data-v="auto">…</span><span data-v="agro">…</span>
+    document.querySelectorAll("[data-v]").forEach(el => { el.hidden = el.getAttribute("data-v") !== V.key; });
+    const sel = document.getElementById("w_segment");
+    if (sel && V.key !== "auto" && V.segments && V.segments.length) {
+      sel.innerHTML = V.segments.map((s, i) => `<option value="${s.key}"${i === 0 ? " selected" : ""}>${s.label}</option>`).join("");
+    }
+    // nájezd u strojů = motohodiny
+    const mil = document.getElementById("w_mileage");
+    const milLbl = document.querySelector('label[for="w_mileage"]');
+    if (mil && V.key === "agro") { mil.value = 6000; mil.step = 100; if (milLbl) milLbl.textContent = "Motohodiny"; }
+    if (mil && V.key === "tech") { mil.value = 450000; mil.step = 10000; if (milLbl) milLbl.textContent = "Nájezd (km)"; }
+    const pill = document.getElementById("verticalPill");
+    if (pill && V.key !== "auto") { pill.innerHTML = (AK.subBrand ? AK.subBrand[V.key] : V.name) + ' <span class="muted" style="font-weight:600">· ' + V.label + "</span>"; pill.classList.remove("hide"); }
+  };
+
+  // ---------- Rádce: související články ([data-related] + data-slug na body/článku) ----------
+  AK.initRelated = function () {
+    const box = document.querySelector("[data-related]");
+    if (!box || !AK.articles) return;
+    const cur = box.getAttribute("data-related") || document.body.getAttribute("data-slug") || "";
+    const vert = document.body.getAttribute("data-vertical") || "";
+    // Rotace podle pozice aktuálního článku: seznam začíná článkem NÁSLEDUJÍCÍM po aktuálním,
+    // takže každý článek dostane jinou trojici (ne stále první tři). Stabilní řazení pak
+    // upřednostní články stejné vertikály. Na stránkách vertikál (data-related není slug) se nerotuje.
+    const list = AK.articles;
+    const idx = list.findIndex(a => a.slug === cur);
+    const start = idx < 0 ? 0 : idx + 1;
+    const pool = list.slice(start).concat(list.slice(0, start)).filter(a => a.slug !== cur);
+    pool.sort((a, b) => (b.vertical === vert) - (a.vertical === vert));
+    const pick = pool.slice(0, 3);
+    box.innerHTML = pick.map(a => `
+      <a class="card hover post-card" href="/blog/${a.slug}.html">
+        <div class="pc-cover-wrap"><img class="pc-cover" src="${a.cover}" alt="" width="1376" height="768" loading="lazy" /></div>
+        <div class="pc-body">
+          <span class="pill pill-muted pc-tag">${a.tag}</span>
+          <h3>${a.title}</h3>
+          <p>${a.excerpt}</p>
+          <div class="pc-meta"><span>${a.read} min čtení</span></div>
+        </div>
+      </a>`).join("");
+  };
+
+  // ---------- Segmentový ovladač (Apple-like) → skrytý input + event change ----------
+  AK.initSegmented = function () {
+    document.querySelectorAll("[data-segmented]").forEach(group => {
+      const target = document.getElementById(group.getAttribute("data-segmented"));
+      const btns = [...group.querySelectorAll("button")];
+      const set = (b) => {
+        btns.forEach(x => { const on = x === b; x.classList.toggle("active", on); x.setAttribute("aria-checked", String(on)); });
+        if (target) { target.value = b.dataset.val; target.dispatchEvent(new Event("change", { bubbles: true })); }
+      };
+      btns.forEach(b => b.addEventListener("click", () => set(b)));
+      group.addEventListener("keydown", e => {
+        const i = btns.findIndex(b => b.classList.contains("active"));
+        let n = -1;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") n = (i + 1) % btns.length;
+        if (e.key === "ArrowLeft" || e.key === "ArrowUp") n = (i - 1 + btns.length) % btns.length;
+        if (n >= 0) { e.preventDefault(); set(btns[n]); btns[n].focus(); }
+      });
+    });
+  };
+  // Slider: vyplněná část dráhy (--pct) jako v iOS
+  AK.initRangeFill = function () {
+    document.querySelectorAll('input[type="range"].range').forEach(r => {
+      const paint = () => { const pct = ((+r.value - +r.min) / ((+r.max - +r.min) || 1)) * 100; r.style.setProperty("--pct", pct.toFixed(2) + "%"); };
+      r.addEventListener("input", paint); paint();
+    });
+  };
+
   // ---------- Boot ----------
   document.documentElement.classList.add("js");
   document.addEventListener("DOMContentLoaded", function () {
     AK.initTabs();
     AK.initSidebar();
+    AK.initWizardVertical();
+    AK.initSegmented();
+    AK.initRangeFill();
     AK.initHeroCalc();
     AK.initBigCalc();
     AK.initFaq();
@@ -371,6 +530,7 @@
     AK.initReveal();
     AK.initCountUp();
     AK.initMobileCta();
+    AK.initRelated();
     document.querySelectorAll("[data-demo]").forEach(el => {
       el.addEventListener("click", e => { e.preventDefault(); AK.toast(el.getAttribute("data-demo") || "Funkce v demu není aktivní"); });
       // klávesnicová aktivace pro ne-button prvky s role="button" (dropzone apod.)

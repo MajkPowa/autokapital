@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://cashauto.cz/</loc><lastmod>2026-09-10</lastmod><changefreq>weekly</changefreq><priority>1.0</priority><image:image><image:loc>https://cashauto.cz/assets/img/og-home.jpg</image:loc></image:image></url>
+  <url><loc>https://cashauto.cz/agrocash.html</loc><lastmod>2026-09-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority><image:image><image:loc>https://cashauto.cz/assets/img/og-agro.jpg</image:loc></image:image></url>
+  <url><loc>https://cashauto.cz/techcash.html</loc><lastmod>2026-09-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority><image:image><image:loc>https://cashauto.cz/assets/img/og-tech.jpg</image:loc></image:image></url>
+  <url><loc>https://cashauto.cz/zadost.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://cashauto.cz/blog/</loc><lastmod>2026-09-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cashauto.cz/blog/docasny-vykup-vozu-jak-to-funguje.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cashauto.cz/blog/kolik-stoji-docasny-vykup-rezervacni-poplatek.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cashauto.cz/blog/cash-flow-osvc-faktury-po-splatnosti.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cashauto.cz/blog/prodat-firemni-auto-nebo-docasny-vykup.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cashauto.cz/blog/jak-se-ocenuje-firemni-vuz-vykupni-cena.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cashauto.cz/blog/agrocash-penize-ze-zemedelske-techniky-pred-sezonou.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cashauto.cz/blog/techcash-splatnost-faktur-dopravci.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cashauto.cz/blog/danove-souvislosti-docasneho-vykupu-osvc-sro.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cashauto.cz/compliance.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://cashauto.cz/prezentace.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://cashauto.cz/faze2.html</loc><lastmod>2026-09-10</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+</urlset>

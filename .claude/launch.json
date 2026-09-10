@@ -4,7 +4,7 @@
     {
       "name": "autokapital",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["--yes", "serve", "-l", "4185", "."],
+      "runtimeArgs": ["--yes", "http-server", "-p", "4185", "-a", "::", "-c-1", "."],
       "port": 4185
     }
   ]

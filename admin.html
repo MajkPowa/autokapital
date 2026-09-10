@@ -5,7 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CashAuto — Provozní centrum (admin)</title>
-  <meta name="description" content="Interní provozní centrum CashAuto pro model dočasného výkupu vozu se zpětným odkupem — výhradně pro podnikatele a firmy (OSVČ, s.r.o.): přehled případů, CRM pipeline v 7 fázích, měsíční channel report, segmentace klientů, scoring vozidla, ověření IČO/ARES, platby rezervačních poplatků, rizikové centrum, dokumenty a compliance." />
+  <meta name="description" content="Interní administrace CashAuto (demo): pipeline výkupů, měsíční report kanálů, segmentace vozidel, scoring, rizika a compliance checklist." />
+  <link rel="canonical" href="https://cashauto.cz/admin.html" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#007A52" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CashAuto" />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta property="og:title" content="Admin CashAuto (demo)" />
+  <meta property="og:description" content="Ukázka administrace." />
+  <meta property="og:url" content="https://cashauto.cz/admin.html" />
+  <meta property="og:image" content="https://cashauto.cz/assets/img/og-home.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -158,7 +169,7 @@
               <span class="eyebrow">Aktivita</span>
               <h2 class="mt-3" style="font-size:var(--fs-lg)">Poslední aktivita</h2>
               <ul class="tracker mt-4">
-                <li class="done"><span class="node"></span><div class="t-title">Připsán rezervační poplatek</div><div class="t-meta">AK-4812 · Jan Novák — OSVČ (IČO 765 22 901) · 12 000 Kč · dnes 08:02</div></li>
+                <li class="done"><span class="node"></span><div class="t-title">Připsán rezervační poplatek — květen</div><div class="t-meta">AK-4812 · Jan Novák — OSVČ (IČO 765 22 901) · 12 000 Kč · 26. 5. 2026 · červnový poplatek splatný 26. 6. 2026</div></li>
                 <li class="done"><span class="node"></span><div class="t-title">Ověřeno vlastnictví vozu a IČO v ARES</div><div class="t-meta">AK-4790 · Horáková Krejčovství — OSVČ · Toyota Yaris</div></li>
                 <li class="done"><span class="node"></span><div class="t-title">Nahrán technický průkaz</div><div class="t-meta">AK-5089 · Procházková Catering — OSVČ · čeká na ověření</div></li>
                 <li class="active"><span class="node"></span><div class="t-title">Nový lead z kalkulačky</div><div class="t-meta">AK-5104 · Pavel Horák — OSVČ · VW Passat B8 · výkup 175 000 Kč</div></li>
@@ -345,9 +356,9 @@
                 <table class="table">
                   <thead><tr><th>Případ</th><th>Položka</th><th class="num">Částka</th><th>Stav</th></tr></thead>
                   <tbody>
-                    <tr><td>AK-4812</td><td>Rezervační poplatek — červen</td><td class="num mono">12 000 Kč</td><td><span class="pill pill-success">Spárováno</span></td></tr>
+                    <tr><td>AK-4812</td><td>Rezervační poplatek — červen (splatnost 26. 6.)</td><td class="num mono">12 000 Kč</td><td><span class="pill pill-warning">Čeká na platbu</span></td></tr>
                     <tr><td>AK-4790</td><td>Rezervační poplatek — červen</td><td class="num mono">6 800 Kč</td><td><span class="pill pill-success">Spárováno</span></td></tr>
-                    <tr><td>AK-5012</td><td>Příchozí platba</td><td class="num mono">4 200 Kč</td><td><span class="pill pill-warning">Nespárováno</span></td></tr>
+                    <tr><td>AK-4703</td><td>Příchozí platba bez VS (zpětný odkup?)</td><td class="num mono">145 000 Kč</td><td><span class="pill pill-warning">Nespárováno</span></td></tr>
                     <tr><td>AK-4655</td><td>Rezervační poplatek — červen</td><td class="num mono">7 200 Kč</td><td><span class="pill pill-danger">Po splatnosti</span></td></tr>
                   </tbody>
                 </table>
@@ -373,7 +384,7 @@
                 </div>
                 <div class="card pad" style="box-shadow:none">
                   <div class="between">
-                    <div><strong>AK-5012 · Tomáš Král — OSVČ</strong><div class="t-meta muted" style="font-size:var(--fs-sm)">Nespárovaná platba · čeká na VS</div></div>
+                    <div><strong>AK-4703 · Malá Grafika — OSVČ</strong><div class="t-meta muted" style="font-size:var(--fs-sm)">Nespárovaná platba 145 000 Kč · čeká na VS · odpovídá ceně zpětného odkupu (žádost o odkup z 28. 6. 2026)</div></div>
                     <span class="pill pill-warning">K ověření</span>
                   </div>
                   <button class="btn btn-ghost btn-sm mt-3" data-demo="Žádost o doplnění VS odeslána (demo)">Vyžádat VS</button>
