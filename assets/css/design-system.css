@@ -1435,3 +1435,20 @@ input[type="range"].range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4p
 .article p a, .article li a, .article td a, .section-head p a, .field .hint a, .check a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 p a:not(.btn):not(.link-arrow):hover, li a:not(.btn):not(.link-arrow):not(.nav-links a):not(.side-link):hover, td a:hover,
 .breadcrumbs a:hover, .toc a:hover, .site-footer a:not(.btn):hover, .article a:not(.btn):hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- v4 · doplňky po finální kontrole ---------- */
+.nav-plain { font-size: 13px; font-weight: 500; color: rgba(29,29,31,.82); white-space: nowrap; }
+.nav-plain:hover { color: var(--ink); }
+@media (max-width: 860px) {
+  .grid.compact { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid.compact .feature { padding: 16px; }
+  .grid.compact .feature .ico-img, .grid.compact .feature .ico-box { width: 40px; height: 40px; margin-bottom: 10px; }
+  .grid.compact .feature .ico-img img { width: 24px; height: 24px; }
+  .grid.compact .feature h3 { font-size: 1rem; }
+  .grid.compact .feature p { font-size: 13px; }
+}
+@media (max-width: 400px) { .grid.compact { grid-template-columns: 1fr; } }
+.feature .ico-img, .feature .ico-box { color: var(--ink); }
+/* fokus na slideru (v1 mělo outline:none) a uvnitř bílé kalkulačky v tmavém hero */
+input[type="range"].range:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; border-radius: 6px; }
+.hero-v4.dark .calc-card :focus-visible, .section.dark .calc-card :focus-visible { outline-color: var(--green); }
