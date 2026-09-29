@@ -294,19 +294,25 @@ window.AK = (function () {
       key: "tech", name: "TechCash", label: "Autodopravci", who: "dopravci, spediční a servisní firmy",
       vykupRate: 0.65, feeRate: 0.035, min: 400000, max: 6000000, step: 50000, def: 1800000,
       unit: "vozidla", thing: "vůz",
+      // base = orientační cena NOVÉHO vozidla (bez DPH) — estimateMarketValue (app.js) z ní odečítá
+      // stáří (0,95/rok), nájezd (škála 1,5 mil. km) a stav. Kalibrace na ukázkový tahač webu:
+      // tahač 2021, 350 000 km, dobrý stav ≈ 1 820 000 Kč, tj. v pásmu hero příkladu 1 800 000 Kč.
       segments: [
-        { key: "tahac", label: "Tahač návěsů", base: 2400000 },
-        { key: "naves", label: "Návěs (plachta / chladírenský / sklápěč)", base: 900000 },
-        { key: "nakladni", label: "Nákladní vůz (valník / skříň / sklápěč)", base: 1900000 },
-        { key: "dodavka", label: "Dodávka do 3,5 t", base: 650000 },
-        { key: "specialni", label: "Speciál (odtah, cisterna, hák)", base: 2600000 },
-        { key: "minibus", label: "Minibus / autobus", base: 2100000 },
+        { key: "tahac", label: "Tahač návěsů", base: 3300000 },
+        { key: "naves", label: "Návěs (plachta / chladírenský / sklápěč)", base: 1150000 },
+        { key: "nakladni", label: "Nákladní vůz (valník / skříň / sklápěč)", base: 2700000 },
+        { key: "dodavka", label: "Dodávka do 3,5 t", base: 950000 },
+        { key: "specialni", label: "Speciál (odtah, cisterna, hák)", base: 3400000 },
+        { key: "minibus", label: "Minibus / autobus", base: 2600000 },
       ],
     },
   };
 
   // ----- Rádce (blog) — index článků; soubory žijí v /blog/<slug>.html -----
   const articles = [
+    { slug: "euro-7-hodnota-firemniho-vozu", title: "Euro 7 a hodnota firemního vozu: co ověřit před prodejem", excerpt: "Ověřené termíny Euro 7, ocenění stávajícího auta a plán obnovy flotily bez nepodložených předpovědí cen.", cover: "/assets/img/blog-oceneni.webp", tag: "Oceňování", vertical: "auto", date: "2026-09-29", read: 6 },
+    { slug: "docasny-vykup-majetku-a-spotrebitelsky-uver", title: "Dočasný výkup firemního majetku a spotřebitelský úvěr: rozdíly a rizika", excerpt: "Převod vlastnictví, celkové náklady a rizika zpětného odkupu. Proč samotné IČO neurčuje právní povahu obchodu.", cover: "/assets/img/blog-srovnani.webp", tag: "Rozhodování", vertical: "auto", date: "2026-09-29", read: 6 },
+    { slug: "insolvence-odberatele-cash-flow-podnikatele", title: "Insolvence odběratele: jak postupovat a přepočítat cash flow firmy", excerpt: "Ověření řízení, přihlášení pohledávky a provozní plán bez nejistého inkasa. Rozdíl mezi výpadkem příjmů a vlastním úpadkem.", cover: "/assets/img/blog-cashflow.webp", tag: "Cash flow", vertical: "auto", date: "2026-09-29", read: 6 },
     { slug: "docasny-vykup-vozu-jak-to-funguje", title: "Dočasný výkup vozu se zpětným odkupem: jak to funguje krok za krokem", excerpt: "Sedm kroků od formuláře k penězům na firemním účtu — a co přesně podepisujete. Průvodce pro OSVČ a firmy.", cover: "/assets/img/story-technik.webp", tag: "Průvodce", vertical: "auto", date: "2026-09-02", read: 7 },
     { slug: "kolik-stoji-docasny-vykup-rezervacni-poplatek", title: "Kolik stojí dočasný výkup? Rezervační poplatek srozumitelně (příklad v Kč)", excerpt: "Tři čísla, která rozhodují: výkupní cena, měsíční rezervační poplatek a cena zpětného odkupu. Na příkladu vozu za 300 000 Kč.", cover: "/assets/img/blog-ucetni.webp", tag: "Ceny a poplatky", vertical: "auto", date: "2026-09-04", read: 6 },
     { slug: "cash-flow-osvc-faktury-po-splatnosti", title: "Cash flow OSVČ: 7 způsobů, jak překlenout faktury po splatnosti", excerpt: "Zálohy, skonto, faktoring, kontokorent, prodej majetku nebo dočasný výkup vozu — srovnání pro živnostníky a malé firmy.", cover: "/assets/img/blog-cashflow.webp", tag: "Cash flow", vertical: "auto", date: "2026-09-06", read: 8 },

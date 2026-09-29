@@ -485,6 +485,18 @@
     const milLbl = document.querySelector('label[for="w_mileage"]');
     if (mil && V.key === "agro") { mil.value = 6000; mil.step = 100; if (milLbl) milLbl.textContent = "Motohodiny"; }
     if (mil && V.key === "tech") { mil.value = 450000; mil.step = 10000; if (milLbl) milLbl.textContent = "Nájezd (km)"; }
+    // Výchozí doba rezervace v žádosti = výchozí doba hero kalkulačky dané vertikály (AgroCash 6 měsíců —
+    // odkup po sklizni), aby klient přicházející z kalkulačky (?hodnota=) dostal stejný součet poplatku,
+    // aniž by cokoli měnil. Třídy i aria-pressed se přepínají přímo: initWizard i inline syncPressed
+    // v zadost.html se registrují až později a berou stav z tříd.
+    const DEFAULT_MONTHS = { agro: "6" };
+    const months = DEFAULT_MONTHS[V.key];
+    const monthsRow = document.querySelector('[data-bind="w_months"]');
+    const monthsInp = document.getElementById("w_months");
+    if (months && monthsRow && monthsInp) {
+      monthsRow.querySelectorAll(".choice").forEach(c => { const on = c.dataset.val === months; c.classList.toggle("active", on); c.setAttribute("aria-pressed", String(on)); });
+      monthsInp.value = months;
+    }
     const pill = document.getElementById("verticalPill");
     if (pill && V.key !== "auto") { pill.innerHTML = (AK.subBrand ? AK.subBrand[V.key] : V.name) + ' <span class="muted" style="font-weight:600">· ' + V.label + "</span>"; pill.classList.remove("hide"); }
   };
@@ -517,24 +529,40 @@
   };
 
   // ---------- Niche ovladač kalkulačky: „Kdy čekáte tržby?“ (měsíce) / „Splatnost faktur“ (dny) → doba rezervace ----------
-  // <select data-niche-ctl="heroTerm" data-map="months|days"> — vybere nejbližší dostupnou dobu (1/3/6/12) v segmentovém ovladači
+  // <select data-niche-ctl="heroTerm" data-map="months|days"> — vybere nejbližší DELŠÍ dostupnou dobu (1/3/6/12)
+  // v segmentovém ovladači a v nápovědě zaokrouhlení přizná (srpen = 4 měsíce → „nastavíme na 6 měsíců
+  // (nejbližší delší doba)“), aby součet poplatku za delší dobu nevypadal jako platba navíc.
+  // Vazba je obousměrná: když klient přepne dobu přímo v segmentovém ovladači (klik / šipky), skrytý input
+  // vyšle change a nápověda to řekne na rovinu („nastavili ručně“) — dva ovladače téhož čísla si neodporují.
   AK.initNicheCtl = function () {
     document.querySelectorAll("[data-niche-ctl]").forEach(sel => {
       const targetId = sel.getAttribute("data-niche-ctl");
+      const target = document.getElementById(targetId);
       const group = document.querySelector('[data-segmented="' + targetId + '"]');
-      const pick = (months) => {
-        const term = months <= 1 ? 1 : months <= 3 ? 3 : months <= 6 ? 6 : 12;
-        const btn = group && group.querySelector('button[data-val="' + term + '"]');
-        if (btn) btn.click();
+      const days = sel.getAttribute("data-map") === "days";
+      const hint = document.getElementById(sel.getAttribute("aria-describedby") || "") || (sel.closest(".niche-ctl") && sel.closest(".niche-ctl").querySelector(".hint-line"));
+      // kolik měsíců klient potřebuje (dny → měsíce nahoru) a nejbližší delší nabízená doba
+      const needMonths = () => { const v = +sel.value; return days ? Math.ceil(v / 30) : v; };
+      const termFor = (m) => m <= 1 ? 1 : m <= 3 ? 3 : m <= 6 ? 6 : 12;
+      const label = (t) => t === 1 ? "1 měsíc" : t < 5 ? t + " měsíce" : t + " měsíců";
+      const renderHint = () => {
+        if (!hint) return;
+        const need = needMonths();
+        const term = termFor(need);
+        const current = target ? +target.value || term : term;
+        if (current !== term) {
+          hint.textContent = "Dobu rezervace jste nastavili ručně na " + label(current) + " — odkoupit můžete kdykoliv dřív, bez penalizace.";
+          return;
+        }
+        const rounded = need !== term ? " (nejbližší delší doba)" : "";
+        hint.textContent = days
+          ? "Splatnost " + sel.value + " dní — rezervaci nastavíme na " + label(term) + rounded + ". Odkoupit můžete kdykoliv dřív — hned po zaplacení faktur, bez penalizace."
+          : (need === 1 ? "Zbývá 1 měsíc" : need < 5 ? "Zbývají " + need + " měsíce" : "Zbývá " + need + " měsíců") + " — rezervaci nastavíme na " + label(term) + rounded + ". Odkoupit můžete kdykoliv dřív — po sklizni nebo po výplatě dotací, bez penalizace.";
       };
       const apply = () => {
-        const v = +sel.value;
-        if (sel.getAttribute("data-map") === "days") pick(Math.ceil(v / 30));
-        else pick(v);
-        const hint = document.getElementById(sel.getAttribute("aria-describedby") || "") || (sel.closest(".niche-ctl") && sel.closest(".niche-ctl").querySelector(".hint-line"));
-        if (hint) hint.textContent = sel.getAttribute("data-map") === "days"
-          ? "Rezervaci nastavíme na " + (v <= 30 ? "1 měsíc" : v <= 90 ? "3 měsíce" : v <= 180 ? "6 měsíců" : "12 měsíců") + " — odkup hned po zaplacení faktur, dřívější odkup bez penalizace."
-          : "Rezervaci nastavíme na " + (v <= 1 ? "1 měsíc" : v <= 3 ? "3 měsíce" : v <= 6 ? "6 měsíců" : "12 měsíců") + " — odkup po sklizni či výplatě, dřívější odkup bez penalizace.";
+        const btn = group && group.querySelector('button[data-val="' + termFor(needMonths()) + '"]');
+        if (btn) btn.click(); // initSegmented → change na skrytém inputu → renderHint
+        renderHint();         // bez segmentového ovladače se aspoň přepíše nápověda
       };
       // měsíce do sklizně: naplnit názvy měsíců od příštího měsíce
       if (sel.getAttribute("data-map") === "months" && !sel.options.length) {
@@ -545,6 +573,7 @@
         }
       }
       sel.addEventListener("change", apply);
+      if (target) target.addEventListener("change", renderHint); // klik / šipky v segmentovém ovladači
       apply();
     });
   };

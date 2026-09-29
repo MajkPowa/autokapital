@@ -46,7 +46,7 @@
 
     /* Velké dotykové chipy */
     .choice-row.big { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: var(--sp-2); }
-    .choice-row.big .choice { min-height: 54px; display: inline-flex; align-items: center; justify-content: center; font-size: var(--fs-base); font-weight: 700; }
+    .choice-row.big .choice { min-height: 54px; display: inline-flex; align-items: center; justify-content: center; text-align: center; font-size: var(--fs-base); font-weight: 700; }
 
     /* Navigace kroků — mobile-first */
     .wizard-nav { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); margin-top: var(--sp-6); }
@@ -160,11 +160,12 @@
                   </div>
                   <div class="q-block">
                     <label class="q-label" for="w_segment"><span data-v="auto">Jaký typ auta máte?</span><span data-v="agro" hidden>Jaký typ stroje máte?</span><span data-v="tech" hidden>Jaký typ vozidla máte?</span></label>
+                    <!-- Pořadí podle typického klienta (řemeslník s dodávkou): dodávka první, kombi zůstává výchozí (kalibrace odhadu i ukázkový příklad 300 000 Kč se nemění); klíče = SEGMENT_MAP v app.js -->
                     <select class="select" id="w_segment">
+                      <option value="mpv">Dodávka / skříňová do 3,5 t (i MPV)</option>
+                      <option value="kombi" selected>Kombi / střední třída</option>
+                      <option value="suv">SUV / pick-up</option>
                       <option value="hatchback">Malé / hatchback</option>
-                      <option value="kombi" selected>Střední třída / kombi</option>
-                      <option value="suv">SUV</option>
-                      <option value="mpv">MPV / dodávka do 3,5 t</option>
                       <option value="premium">Prémiové / vyšší třída</option>
                     </select>
                   </div>
@@ -346,12 +347,13 @@
                   </div>
 
                   <div class="q-block">
-                    <span class="q-label" id="lbl_purpose">K čemu kapitál potřebujete? <span class="muted" style="font-weight:600">(nepovinné)</span></span>
+                    <span class="q-label" id="lbl_purpose">K čemu peníze potřebujete? <span class="muted" style="font-weight:600">(nepovinné)</span></span>
+                    <!-- Popisky účelů podle řady (data-val zůstává stejné pro všechny řady); u TechCash je výchozí „faktury“ — nastavuje inline skript níže -->
                     <div class="choice-row big" data-bind="c_purpose" role="group" aria-labelledby="lbl_purpose">
-                      <button type="button" class="choice active" data-val="provoz" aria-pressed="true">Provoz/materiál</button>
-                      <button type="button" class="choice" data-val="faktury" aria-pressed="false">Překlenutí faktur</button>
-                      <button type="button" class="choice" data-val="dph-mzdy" aria-pressed="false">DPH/mzdy</button>
-                      <button type="button" class="choice" data-val="jiny" aria-pressed="false">Jiný firemní účel</button>
+                      <button type="button" class="choice active" data-val="provoz" aria-pressed="true"><span data-v="auto">Provoz/materiál</span><span data-v="agro" hidden>Osivo, hnojiva, nafta</span><span data-v="tech" hidden>Nafta, mýto, servis</span></button>
+                      <button type="button" class="choice" data-val="faktury" aria-pressed="false"><span data-v="auto">Překlenutí faktur</span><span data-v="agro" hidden>Do sklizně / výplaty dotací</span><span data-v="tech" hidden>Faktury po splatnosti</span></button>
+                      <button type="button" class="choice" data-val="dph-mzdy" aria-pressed="false"><span data-v="auto">DPH/mzdy</span><span data-v="agro" hidden>Díly, servis, mzdy</span><span data-v="tech" hidden>Mzdy řidičů, DPH</span></button>
+                      <button type="button" class="choice" data-val="jiny" aria-pressed="false"><span data-v="auto">Jiný firemní účel</span><span data-v="agro" hidden>Jiný účel hospodářství</span><span data-v="tech" hidden>Jiný firemní účel</span></button>
                     </div>
                     <input type="hidden" id="c_purpose" value="provoz" />
                     <span class="hint">Pomůže nám to připravit nabídku na míru vašemu podnikání — na výkupní cenu to nemá vliv.</span>
@@ -527,6 +529,16 @@
         el.textContent = (old || cond === "horsi" || enc)
           ? noun + " je na hraně našich výkupních kritérií (stáří, stav nebo zatížení) — posuzujeme individuálně."
           : noun.toLowerCase() + " spadá do běžně vykupovaných kategorií.";
+      }
+      // TechCash: landing stojí na překlenutí faktur → výchozí účel „faktury“ (běží až po AK.initWizardVertical,
+      // který nastavil body[data-vertical]; hodnota účelu nemá vliv na výkupní cenu).
+      if (document.body.getAttribute("data-vertical") === "tech") {
+        var pRow = wiz.querySelector('[data-bind="c_purpose"]');
+        var pHid = document.getElementById("c_purpose");
+        if (pRow && pHid) {
+          pRow.querySelectorAll(".choice").forEach(function (c) { c.classList.toggle("active", c.dataset.val === "faktury"); });
+          pHid.value = "faktury";
+        }
       }
       wiz.querySelectorAll(".choice-row").forEach(syncPressed);
       document.addEventListener("click", function (e) {

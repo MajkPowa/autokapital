@@ -26,7 +26,7 @@ předpoklady prototypu, ne závazná nabídka. Ukázka: vůz 300 000 Kč → vý
 ## Co prototyp obsahuje
 - **Landing pages** — `index.html` (výběr řady, 3 + 7 kroků, srovnání „prodat / čekat / dočasný výkup", kalkulačka, námitky, rádce, FAQ), `agrocash.html` (sezónní osa, use-cases, typy strojů, dotace), `techcash.html` (osa splatnosti faktur, flotila, mezinárodní provoz)
 - **Žádost** (`zadost.html`) — kvalifikační brána „Podnikáte na IČO?", reverzní lead-gate (nabídka před kontaktem), IČO s ověřením v ARES; `?typ=agro|tech` přepíná typy strojů, motohodiny a texty
-- **Rádce** (`blog/`) — 8 článků pro podnikatele (průvodce, ceny, cash flow, prodej vs. výkup, oceňování, AgroCash, TechCash, daně) s JSON-LD Article, TOC a souvisejícími články
+- **Rádce** (`blog/`) — 11 článků pro podnikatele (průvodce, ceny, cash flow, prodej vs. výkup, oceňování, AgroCash, TechCash, daně, Euro 7, spotřebitelský úvěr a insolvence odběratele) s JSON-LD Article, TOC a souvisejícími články
 - **Klientská zóna** (`portal.html`), **Admin** (`admin.html`, 7fázová pipeline, channel report, segmentace, compliance checklist), **Aftersales** (`aftersales.html`) — demo portály (noindex)
 - **Férovost & compliance** (`compliance.html`), **Roadmapa** (`faze2.html`), **Prezentace** (`prezentace.html`)
 
@@ -57,6 +57,15 @@ Fotky v `assets/img/`, zdrojové podklady v `Public/`. Odkazy v hlavičce/patič
 npx serve .
 ```
 Pozn.: `serve` při přesměrování na clean URL zahodí query string — žádost s vertikálou testujte jako `/zadost?typ=agro`.
+
+## Připomínky z analýzy webu
+Přehled zpracování a otevřených podkladů: `tools/CASHAUTO-PRIPOMINKY.md`.
+Společné srovnání sazeb vykresluje `assets/js/shell.js` ze stejného `AK.verticals` jako kalkulačky.
+WhatsApp se v mobilním menu a patičce zobrazí po doplnění ověřeného čísla do `WHATSAPP_NUMBER`
+v `shell.js` (mezinárodní formát, např. `+420` následované číslem). Do té doby zůstává skrytý.
+Demo upozornění v `portal.html#platby` obsluhuje `assets/js/portal-reminders.js`; nastavení ukládá
+do localStorage pro konkrétní demo případ. E-mail, SMS ani push neodesílá. Ostrý provoz vyžaduje
+autentizovaný backend, skutečné smluvní termíny, plánovač a poskytovatele zpráv.
 
 ---
 *Demoprezentace. Nejedná se o závaznou nabídku ani o právní poradenství. Ukázková data.*

@@ -35,7 +35,8 @@
       {"@type":"Question","name":"Kolik stojí rezervace zpětného odkupu u techniky?","acceptedAnswer":{"@type":"Answer","text":"Měsíční rezervační poplatek je u AgroCash orientačně 3 % z odhadní hodnoty stroje. U stroje za 1 500 000 Kč je to 45 000 Kč měsíčně; za 6 měsíců 270 000 Kč. Přesnou částku v Kč vidíte před podpisem."}},
       {"@type":"Question","name":"Jak probíhá převod vlastnictví u stroje bez SPZ?","acceptedAnswer":{"@type":"Answer","text":"U registrovaných strojů (traktory, samojízdné stroje s technickým průkazem) proběhne přepis stejně jako u vozidla. U neregistrované techniky převod řeší kupní smlouva a předávací protokol; stroj fyzicky zůstává u vás."}},
       {"@type":"Question","name":"Co když byl stroj pořízen s dotací?","acceptedAnswer":{"@type":"Answer","text":"Dotační tituly často vážou udržitelnost majetku na několik let. Podmínky vašeho titulu prosím ověřte u poskytovatele dotace — v některých případech dočasný výkup není možný a raději vám to řekneme hned."}},
-      {"@type":"Question","name":"Kdo platí pojištění a servis stroje?","acceptedAnswer":{"@type":"Answer","text":"Podmínky užívání (pojištění, servis, škody, případné limity motohodin) jsou jasně uvedené ve smlouvě o užívání. U registrovaných strojů zařídíme převod pojištění za vás."}}
+      {"@type":"Question","name":"Kdo platí pojištění a servis stroje?","acceptedAnswer":{"@type":"Answer","text":"Podmínky užívání (pojištění, servis, škody, případné limity motohodin) jsou jasně uvedené ve smlouvě o užívání. U registrovaných strojů zařídíme převod pojištění za vás."}},
+      {"@type":"Question","name":"Jak řešit pojištění při práci v terénu?","acceptedAnswer":{"@type":"Answer","text":"Před podpisem si ověřte, zda pojištění zahrnuje konkrétní stroj, jeho práci mimo komunikace i obsluhu, která jej používá. S pojistitelem projděte limity, výluky a spoluúčast pro vaše činnosti. Rozsah krytí určuje pojistná smlouva; samotný dočasný výkup ho nerozšiřuje."}}
     ]}
   ]}
   </script>
@@ -49,9 +50,10 @@
     <div class="container">
       <div class="hero-copy anim-hero">
         <ol class="breadcrumbs"><li><a href="index.html">CashAuto</a></li><li aria-current="page">AgroCash</li></ol><div class="brand-lockup"><span class="brand-word xl"><span class="bw-ink">Agro</span><span class="bw-cash">Cash</span></span><span class="lk-of">produktová řada CashAuto</span></div>
-        <h1 class="display-headline mt-4"><span class="line-dark">Peníze ze stroje.</span><span class="line-accent">Sezóna jede dál.</span></h1>
-        <p class="lead mt-4">Traktor, kombajn nebo manipulátor od vás dočasně vykoupíme a&nbsp;výkupní cenu pošleme na účet. Stroj dál pracuje na vašich polích — a&nbsp;po sklizni ho odkoupíte zpět za cenu, kterou znáte předem.</p>
-        <div class="hero-actions mt-6"><a class="btn btn-primary btn-lg" href="zadost.html?typ=agro">Chci nabídku pro stroj</a><a class="link-arrow" href="#jak-to-funguje">Jak to funguje na statku</a></div>
+        <span class="eyebrow mt-4">Výhradně pro farmy a agro-podniky s IČO</span>
+        <h1 class="display-headline mt-3"><span class="line-dark">Peníze ze stroje.</span><span class="line-accent">Sezóna jede dál.</span></h1>
+        <p class="lead mt-4">Mějte víc klidu na sezónu a&nbsp;jasný plán výdajů. Traktor, kombajn nebo manipulátor od vás dočasně vykoupíme, stroj dál pracuje podle smlouvy. Poplatky i&nbsp;podmínky zpětného odkupu po sklizni znáte předem.</p>
+        <div class="hero-actions mt-6"><a class="btn btn-primary btn-lg" href="zadost.html?typ=agro">Zjistit nabídku pro stroj</a><a class="link-arrow" href="#jak-to-funguje">Jak to funguje na statku</a></div>
         <p class="muted mt-3" style="font-size:var(--fs-sm)">Nezávazná žádost zdarma · pro farmy a&nbsp;agro-podniky s&nbsp;IČO · technik přijede na statek · Raději zavolat? <a href="tel:+420800123456" style="font-weight:600">800 123 456</a></p>
         
       </div>
@@ -86,16 +88,17 @@
             <span class="muted">Cena zpětného odkupu</span>
             <span class="mono" style="font-weight:600;color:var(--green)" id="heroBuyback">975&nbsp;000&nbsp;Kč</span>
           </div>
+          <div class="niche-ctl mt-4"><label for="heroHarvest">Kdy čekáte tržby nebo dotace?</label><select class="select" id="heroHarvest" data-niche-ctl="heroTerm" data-map="months" aria-describedby="nicheHint"></select></div><span class="hint-line" id="nicheHint" aria-live="polite" style="display:block;font-size:var(--fs-xs);font-weight:500;color:var(--muted);margin-top:6px"></span>
           <div class="mt-4">
-            <span class="calc-label" style="display:block;margin-bottom:8px">Doba rezervace (do sklizně)</span>
+            <span class="calc-label" style="display:block;margin-bottom:8px">Doba rezervace (podle zvoleného měsíce, lze upravit)</span>
             <div class="segmented" role="radiogroup" aria-label="Doba rezervace" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="false" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="6" />
           </div>
-          <div class="niche-ctl mt-4"><label for="heroHarvest">Kdy čekáte tržby nebo dotace?</label><select class="select" id="heroHarvest" data-niche-ctl="heroTerm" data-map="months" aria-describedby="nicheHint"></select></div><span class="hint-line" id="nicheHint"></span>
           <div class="between mt-3" style="font-size:var(--fs-sm)">
             <span class="muted">Poplatek za zvolenou dobu celkem</span>
             <span class="mono" style="font-weight:600;color:var(--ink)" id="heroPeriod">270&nbsp;000&nbsp;Kč za 6&nbsp;měsíců</span>
           </div>
-          <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html?typ=agro">Chci nabídku pro stroj</a>
+          <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html?typ=agro">Upřesnit nabídku stroje</a>
+          <p class="muted mb-0 mt-3" style="font-size:var(--fs-sm);text-align:center"><a href="#srovnani-parametru">Porovnat výkup a poplatky všech tří řad</a></p>
           <p class="cost-warning mb-0 mt-3" style="font-size:var(--fs-sm)">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
           <p class="muted mb-0 mt-2" style="font-size:var(--fs-xs);text-align:center">Orientačně: výkup 65&nbsp;% a&nbsp;poplatek 3&nbsp;% z&nbsp;odhadní hodnoty stroje · vše v&nbsp;Kč před podpisem</p>
         </div>
@@ -121,13 +124,17 @@
     </div>
   </section>
 
+  <div id="srovnani-parametru" data-pricing-comparison>
+    <noscript><p class="container">Orientační parametry: CashAuto výkup 70 % / měsíční poplatek 4 %; AgroCash 65 % / 3 %; TechCash 65 % / 3,5 %. Obě procenta se počítají z odhadní hodnoty majetku.</p></noscript>
+  </div>
+
   <!-- ===================== 02 SEZÓNNÍ MEZERA ===================== -->
   <section class="section" id="sezona">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Proč AgroCash</span>
-        <h2 class="mt-3">Výdaje na jaře, tržby po sklizni. Mezitím stojí kapitál ve strojích.</h2>
-        <p class="lead">Osivo, hnojiva, nafta a náhradní díly se platí, když pole teprve začínají. Peníze z úrody a dotací přijdou o půl roku později. AgroCash tuto mezeru překlene — stroj od vás dočasně vykoupíme, ale neopustí vaše pole a sezónu vám odpracuje.</p>
+        <h2 class="mt-3">Výdaje na jaře, tržby po sklizni. Mezitím máte peníze v&nbsp;železe.</h2>
+        <p class="lead">Osivo, hnojiva, nafta a náhradní díly se platí, když pole teprve začínají. Peníze z&nbsp;prodeje úrody a&nbsp;z&nbsp;plateb SZIF přijdou o&nbsp;půl roku později. AgroCash tuto mezeru překlene — stroj od vás dočasně vykoupíme, ale neopustí vaše pole a sezónu vám odpracuje.</p>
       </div>
       <div class="season mobile-carousel" data-reveal-stagger>
         <div class="s-item peak"><div class="s-q">Zima</div><div class="s-t">Nákupy před sezónou</div><p>Osivo, hnojiva, přípravky, zálohy na naftu, zimní servis techniky. Tržby minimální.</p></div>
@@ -171,17 +178,17 @@
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Na co farmy peníze používají</span>
-        <h2 class="mt-3">Provozní kapitál pro hospodaření</h2>
+        <h2 class="mt-3">Peníze na provoz hospodářství — když je potřebujete</h2>
       </div>
       <div class="usecase-grid mobile-carousel" data-reveal-stagger>
         <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V12"/><path d="M12 12c-4 0-7-3-7-7 4 0 7 3 7 7z"/><path d="M12 14c4 0 7-3 7-7-4 0-7 3-7 7z"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Osivo a hnojiva</h3><p>Nákup před setím, kdy dodavatelé chtějí platbu předem nebo skonto za rychlou úhradu.</p><span class="uc-amt">typicky 200 000 – 800 000 Kč</span></div></div>
         <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/><path d="M4 20h12M16 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V10l-3-3"/><path d="M7 8h6"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Nafta na sezónu</h3><p>Zálohy na palivo pro setí, sklizeň a dopravu — nejvyšší provozní položka roku.</p><span class="uc-amt">typicky 150 000 – 500 000 Kč</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 9l-3 3-3-3 3-3-2.3 1.3z"/><path d="M4 20l7-7"/><path d="M9.3 9.3a4 4 0 0 0-5-5L2 7l3 3 3-3-3-3 2.3 1.3z"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Náhradní díly a servis</h3><p>Oprava kombajnu týden před sklizní nesnese odklad. Díly a servis se platí hned.</p><span class="uc-amt">typicky 100 000 – 400 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Náhradní díly a servis</h3><p>Oprava kombajnu týden před sklizní nesnese odklad. Díly a servis se platí hned.</p><span class="uc-amt">typicky 100 000 – 400 000 Kč</span></div></div>
         <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6M18 20a6 6 0 0 0-3-5.2"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Mzdy sezónních pracovníků</h3><p>Brigádníci a strojníci na sklizeň chtějí výplatu na konci měsíce, ne po prodeji úrody.</p><span class="uc-amt">typicky 100 000 – 300 000 Kč</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Překlenutí do výplaty dotací</h3><p>Dotační platby chodí s odstupem. Provoz mezitím běží — a účty se platí teď.</p><span class="uc-amt">podle výše očekávané platby</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v10H3z"/><path d="M3 12h18M8 7v10"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Krmivo a veterinární péče</h3><p>Živočišná výroba nečeká — krmné směsi, léčiva a služby veterináře jdou průběžně.</p><span class="uc-amt">typicky 80 000 – 250 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Překlenutí do výplaty dotací</h3><p>Dotační platby chodí s odstupem. Provoz mezitím běží — a účty se platí teď.</p><span class="uc-amt">podle výše očekávané platby</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9h10l1.5 11h-13z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Krmivo a veterinární péče</h3><p>Živočišná výroba nečeká — krmné směsi, léčiva a služby veterináře jdou průběžně.</p><span class="uc-amt">typicky 80 000 – 250 000 Kč</span></div></div>
       </div>
-      <p class="muted text-center mt-4 mb-0" style="font-size:var(--fs-xs)">Orientační rozpětí z praxe (demo). Peníze z výkupu použijete pro své podnikání podle vlastního uvážení — účel na výkupní cenu nemá vliv.</p>
+      <p class="muted text-center mt-4 mb-0" style="font-size:var(--fs-xs)">Orientační rozpětí podle typu provozu. Peníze z&nbsp;výkupu použijete pro své hospodaření podle vlastního uvážení — účel na výkupní cenu nemá vliv.</p>
     </div>
   </section>
 
@@ -301,6 +308,7 @@
         <div class="faq-item"><button class="faq-q" type="button">Jak probíhá převod vlastnictví u stroje bez SPZ?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">U registrovaných strojů (traktory, samojízdné stroje s technickým průkazem) proběhne přepis stejně jako u vozidla. U neregistrované techniky převod řeší kupní smlouva a předávací protokol; stroj fyzicky zůstává u vás.</div></div></div>
         <div class="faq-item"><button class="faq-q" type="button">Co když byl stroj pořízen s dotací?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Dotační tituly často vážou udržitelnost majetku na několik let. Podmínky vašeho titulu prosím ověřte u poskytovatele dotace — v některých případech dočasný výkup není možný a raději vám to řekneme hned.</div></div></div>
         <div class="faq-item"><button class="faq-q" type="button">Kdo platí pojištění a servis stroje?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Podmínky užívání (pojištění, servis, škody, případné limity motohodin) jsou jasně uvedené ve smlouvě o užívání. U registrovaných strojů zařídíme převod pojištění za vás.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Jak řešit pojištění při práci v terénu?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Před podpisem si ověřte, zda pojištění zahrnuje konkrétní stroj, jeho práci mimo komunikace i obsluhu, která jej používá. S pojistitelem projděte limity, výluky a spoluúčast pro vaše činnosti. Rozsah krytí určuje pojistná smlouva; samotný dočasný výkup ho nerozšiřuje.</div></div></div>
       </div>
     </div>
   </section>
@@ -347,11 +355,11 @@
       <p class="muted mt-4 mb-0" style="font-size:var(--fs-sm)">Další řady CashAuto: <a href="index.html">CashAuto pro firemní vozy</a> · <a href="techcash.html">TechCash pro autodopravce</a> · <a href="compliance.html">jak o službě mluvíme</a></p>
       <div class="cta-band mt-7" data-reveal>
         <div>
-          <h3>Zjistěte, kolik za váš stroj nabídneme.</h3>
-          <p>Nezávazně, za 2 minuty, s technikem u vás na statku. Pro zemědělské podnikatele a firmy s IČO — spotřebitelům službu neposkytujeme.</p>
+          <h3>Provoz se nezastaví. Připravte další sezónu v klidu.</h3>
+          <p>Zjistěte orientační částky a v klidu je porovnejte s rozpočtem farmy. Rozhodnutí je na vás, nabídka vás k ničemu nezavazuje. Výhradně pro zemědělské podnikatele a firmy s IČO.</p>
         </div>
         <div class="cta-actions">
-          <a class="btn btn-primary btn-lg" href="zadost.html?typ=agro">Chci nabídku pro stroj</a>
+          <a class="btn btn-primary btn-lg" href="zadost.html?typ=agro">Získat nabídku před sezónou</a>
           <a class="cta-phone" href="tel:+420800123456">800 123 456</a>
         </div>
       </div>

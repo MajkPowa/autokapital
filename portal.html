@@ -86,6 +86,11 @@
           <h2>Dobrý den, Jane</h2>
           <p class="muted mt-2">OSVČ · elektroinstalace · Brno · IČO 765 22 901 · případ AK-2026-04812</p>
 
+          <div class="notice mt-4" style="flex-wrap:wrap;align-items:center">
+            <div class="fill"><strong>Upozornění na důležité termíny · demo</strong><p class="mb-0 mt-2" id="reminderOverview">Nastavte si náhled upozornění na rezervační poplatek a možnost zpětného odkupu.</p></div>
+            <button class="btn btn-ghost btn-sm" type="button" id="openReminders">Nastavit upozornění</button>
+          </div>
+
           <div class="grid grid-2 mt-5">
             <!-- Moje žádost -->
             <div class="card pad-lg">
@@ -245,7 +250,59 @@
                 <tbody id="paymentsBody"></tbody>
               </table>
             </div>
-            <p class="muted mb-0 mt-4" style="font-size:var(--fs-sm)">Upozorníme vás před každou splatností; možnost zpětného odkupu je vázaná na řádnou úhradu rezervačního poplatku. Cenu zpětného odkupu (210 000 Kč) znáte předem — odkup je vždy dobrovolný.</p>
+            <p class="muted mb-0 mt-4" style="font-size:var(--fs-sm)">Možnost zpětného odkupu je vázaná na řádnou úhradu rezervačního poplatku. Cenu zpětného odkupu (210 000 Kč) znáte předem — odkup je vždy dobrovolný. Níže si můžete vyzkoušet nastavení upozornění.</p>
+          </div>
+
+          <div class="card pad-lg mt-5" aria-labelledby="remindersTitle">
+            <div class="between" style="flex-wrap:wrap;gap:var(--sp-3)">
+              <h3 id="remindersTitle" tabindex="-1">Upozornění na termíny</h3>
+              <span class="pill pill-muted">Ukázka · nic neodesíláme</span>
+            </div>
+            <p class="muted mt-3" id="reminderDemoNote">Nastavení se ukládá pouze v tomto prohlížeči. E-mail, SMS ani push se v demu neodesílají. Náhled slouží k vyzkoušení; na skutečné termíny vás neupozorní.</p>
+            <form id="reminderForm" aria-describedby="reminderDemoNote">
+              <div class="grid grid-2 mt-4">
+                <fieldset class="card pad" style="min-width:0">
+                  <legend style="padding:0 8px;font-weight:700">Rezervační poplatek</legend>
+                  <div class="field">
+                    <label for="feeReminderChannel">Kanál upozornění</label>
+                    <select class="select" id="feeReminderChannel" name="feeChannel">
+                      <option value="off">Vypnuto</option><option value="email">E-mail (ukázka)</option><option value="sms">SMS (ukázka)</option><option value="push">Push (ukázka)</option>
+                    </select>
+                  </div>
+                  <div class="field mt-3">
+                    <label for="feeReminderDays">Předstih před splatností</label>
+                    <select class="select" id="feeReminderDays" name="feeDays">
+                      <option value="1">1 den</option><option value="3" selected>3 dny</option><option value="7">7 dní</option><option value="14">14 dní</option>
+                    </select>
+                  </div>
+                </fieldset>
+                <fieldset class="card pad" style="min-width:0">
+                  <legend style="padding:0 8px;font-weight:700">Možnost zpětného odkupu</legend>
+                  <div class="field">
+                    <label for="buybackReminderChannel">Kanál připomenutí</label>
+                    <select class="select" id="buybackReminderChannel" name="buybackChannel">
+                      <option value="off">Vypnuto</option><option value="email">E-mail (ukázka)</option><option value="sms">SMS (ukázka)</option><option value="push">Push (ukázka)</option>
+                    </select>
+                  </div>
+                  <div class="field mt-3">
+                    <label for="buybackReminderDays">Předstih před další platbou</label>
+                    <select class="select" id="buybackReminderDays" name="buybackDays">
+                      <option value="1">1 den</option><option value="3">3 dny</option><option value="7" selected>7 dní</option><option value="14">14 dní</option>
+                    </select>
+                    <span class="hint">Odkup je možný kdykoliv. Ukázka jej připomíná před další platbou; nejde o konec smlouvy ani povinný termín odkupu.</span>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="cluster mt-4" style="flex-wrap:wrap">
+                <button class="btn btn-primary" type="submit">Uložit nastavení v prohlížeči</button>
+                <button class="btn btn-ghost" type="button" id="clearReminders">Smazat uložené nastavení</button>
+              </div>
+              <p class="muted mt-3 mb-0" id="reminderSaveStatus" role="status" aria-live="polite"></p>
+            </form>
+            <div class="notice mt-4" id="reminderDataNote"></div>
+            <h4 class="mt-4">Náhled podle zvoleného nastavení</h4>
+            <div class="grid grid-2 mt-3" id="reminderPreview" aria-live="polite"></div>
+            <noscript><p class="notice mt-4">Pro náhled a místní uložení nastavení zapněte JavaScript. Tato ukázka žádná upozornění neodesílá.</p></noscript>
           </div>
         </section>
 
@@ -386,5 +443,6 @@
       // which fires after this synchronous script. No extra binding needed.
     })();
   </script>
+  <script src="assets/js/portal-reminders.js"></script>
 </body>
 </html>

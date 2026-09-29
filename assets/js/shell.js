@@ -51,6 +51,48 @@
   };
 
   const PHONE = { tel: "+420800123456", label: "800 123 456" };
+  // Aktivovat až po dodání ověřeného WhatsApp Business čísla v mezinárodním formátu.
+  // Prázdná hodnota nezobrazuje odkaz; demo telefon se pro WhatsApp nepoužívá.
+  const WHATSAPP_NUMBER = "";
+  function whatsappLink(className) {
+    if (!/^\+?[1-9]\d{7,14}$/.test(WHATSAPP_NUMBER)) return "";
+    const number = WHATSAPP_NUMBER.replace(/^\+/, "");
+    const message = encodeURIComponent("Dobrý den, zajímají mě podmínky dočasného výkupu pro podnikatele.");
+    return `<a class="${className}" href="https://wa.me/${number}?text=${message}" target="_blank" rel="noopener noreferrer">Napsat na WhatsApp</a>`;
+  }
+
+  function familyHTML(active) {
+    return `<div class="brand-family"><div class="container brand-family-inner">
+      <p><strong>Provoz se nezastaví.</strong><span> Rodina CashAuto</span></p>
+      <nav aria-label="Produktové řady CashAuto">${[
+        ["home", "/index.html", "CashAuto"], ["agro", "/agrocash.html", "AgroCash"], ["tech", "/techcash.html", "TechCash"]
+      ].map(([key, href, label]) => `<a href="${href}"${active === key ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav>
+    </div></div>`;
+  }
+
+  // Jediný zdroj sazeb pro srovnání i kalkulačky: AK.verticals v data.js.
+  function renderPricingComparison() {
+    const verticals = window.AK && window.AK.verticals;
+    if (!verticals) return;
+    const percent = n => (n * 100).toLocaleString("cs-CZ", { maximumFractionDigits: 1 }) + " %";
+    const current = document.body.getAttribute("data-vertical") || "auto";
+    document.querySelectorAll("[data-pricing-comparison]").forEach(host => {
+      host.innerHTML = `<section class="section pricing-comparison" aria-labelledby="pricing-title"><div class="container">
+        <div class="section-head"><div><span class="eyebrow">Podmínky vedle sebe</span><h2 id="pricing-title">Tři řady. Přehledné ceny.</h2>
+          <p>Každá řada má vlastní orientační parametry podle typu majetku. Sazba ${percent(verticals.auto.feeRate)} měsíčně platí pro firemní vozy CashAuto; AgroCash a TechCash mají sazby uvedené níže.</p></div></div>
+        <div class="pricing-table-wrap" role="region" aria-label="Srovnání orientačních cen produktových řad" tabindex="0"><table class="pricing-table">
+          <caption>Výkup a měsíční rezervační poplatek z odhadní hodnoty majetku</caption>
+          <thead><tr><th scope="col">Produktová řada</th><th scope="col">Výkup</th><th scope="col">Poplatek za měsíc</th></tr></thead>
+          <tbody>${["auto", "agro", "tech"].map(key => {
+            const v = verticals[key];
+            const href = key === "auto" ? "/index.html" : key === "agro" ? "/agrocash.html" : "/techcash.html";
+            return `<tr${key === current ? ' class="pricing-current"' : ""}><th scope="row"><a href="${href}">${v.name}</a><span>${v.label}</span></th><td>${percent(v.vykupRate)}</td><td>${percent(v.feeRate)}</td></tr>`;
+          }).join("")}</tbody></table></div>
+        <p class="pricing-note"><strong>Obě procenta vycházejí z odhadní hodnoty, nikoli z vyplacené částky.</strong> Nižší procentní sazba proto sama o sobě neznamená nižší poplatek v Kč. Konkrétní výkupní cenu, poplatky za zvolenou dobu a cenu zpětného odkupu uvidíte před podpisem.</p>
+        <p class="muted mb-0" style="font-size:var(--fs-sm)">Orientační propočet není závazná nabídka. Stav a hodnotu majetku i podmínky každé žádosti posuzujeme individuálně. <a href="/compliance.html">Podmínky a férovost</a></p>
+      </div></section>`;
+    });
+  }
 
   // Kotvy „Jak to funguje“ / „Kalkulačka“ / „Časté dotazy“ vedou na sekci AKTUÁLNÍ stránky
   // (agrocash.html a techcash.html mají vlastní), jinak na hlavní stránku. Volá se až při renderu (DOM je k dispozici).
@@ -60,7 +102,7 @@
 
   // v4 (Apple-like): položky jsou čistý text — bez barevných teček vertikál (.nav-dot) v hlavičce i v mobilním menu.
   const NAV = [
-    { label: "Firemní vozy", href: "/index.html", key: "home" },
+    { label: "CashAuto", href: "/index.html", key: "home" },
     { label: "AgroCash", href: "/agrocash.html", key: "agro" },
     { label: "TechCash", href: "/techcash.html", key: "tech" },
     { label: "Jak to funguje", anchor: "jak-to-funguje", key: "" },
@@ -112,6 +154,7 @@
         </div>
       </div>
     </header>
+    ${familyHTML(active)}
     <div class="mobile-menu" id="mobileMenu" style="overflow-y:auto">
       <nav aria-label="Mobilní navigace"><ul class="nav-links">${navLinks(active)}
         <li><a href="${own("kalkulacka")}">Kalkulačka</a></li>
@@ -120,6 +163,7 @@
       </ul></nav>
       <div class="mm-actions">
         ${mobileCta}
+        ${whatsappLink("btn btn-ghost btn-lg")}
       </div>
     </div>`;
   }
@@ -133,7 +177,7 @@
         <div class="footer-grid cols-5">
           <div>
             <a class="brand" href="/" aria-label="CashAuto — domů">${LOGO_IMG}</a>
-            <p class="mt-3" style="max-width:320px">Peníze z auta. Jezdíte dál. Dočasný výkup vozu, stroje či tahače se zpětným odkupem — pro OSVČ, farmy, dopravce a firmy s IČO.</p>
+            <p class="mt-3" style="max-width:320px"><strong>Provoz se nezastaví.</strong> CashAuto, AgroCash a TechCash — jedna rodina pro podnikatele. Dočasný výkup vozu, stroje či tahače se zpětným odkupem.</p>
             <span class="pill pill-mint mt-2">${I.shield} Rychle · Férově · Přehledně</span>
           </div>
           <div>
@@ -164,6 +208,7 @@
               <li><a href="${own("faq")}">Časté dotazy</a></li>
               <li><a href="mailto:info@cashauto.cz">info@cashauto.cz</a></li>
               <li><a href="tel:${PHONE.tel}">+420 ${PHONE.label}</a></li>
+              ${whatsappLink("") ? `<li>${whatsappLink("")}</li>` : ""}
               <li class="muted">Po–Pá 8–18</li>
             </ul>
           </div>
@@ -195,6 +240,7 @@
       const f = document.getElementById("site-footer");
       if (h) h.outerHTML = headerHTML(active);
       if (f) f.outerHTML = footerHTML();
+      renderPricingComparison();
       document.querySelectorAll(".site-header svg, .mobile-menu svg, .site-footer svg").forEach(s => s.setAttribute("aria-hidden", "true"));
       // hlavní obsah pro skip-link (mobilní menu je sourozenec hlavičky, proto první prvek ZA ním)
       const main = document.querySelector("main") || document.querySelector(".mobile-menu + *");
@@ -202,15 +248,20 @@
       // mobile toggle
       const tog = document.getElementById("navToggle");
       const menu = document.getElementById("mobileMenu");
+      const family = document.querySelector(".brand-family");
       if (tog && menu) {
         tog.addEventListener("click", () => {
           const open = menu.classList.toggle("open");
+          if (family) family.inert = open;
           tog.setAttribute("aria-expanded", String(open));
           tog.setAttribute("aria-label", open ? "Zavřít menu" : "Otevřít menu");
           tog.innerHTML = open ? I.x : I.menu;
           document.body.style.overflow = open ? "hidden" : "";
         });
         menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { if (menu.classList.contains("open")) tog.click(); }));
+        menu.addEventListener("keydown", e => {
+          if (e.key === "Escape" && menu.classList.contains("open")) { tog.click(); tog.focus(); }
+        });
       }
     }
   });

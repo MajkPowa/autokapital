@@ -1456,29 +1456,40 @@ input[type="range"].range:focus-visible { outline: 3px solid var(--green); outli
 /* =========================================================================
    v5 — NICHE THEMES per řada (dílna · pole · depo): barvy, ikony, pozadí, animace
    ========================================================================= */
+body[data-vertical="auto"] { --surface-2: #f4f6f5; --tile-dark: #1b1f1d; --niche-dark: #0e1411; }
 body[data-vertical="agro"] { --surface-2: #f6f4ee; --tile-dark: #17211a; --niche-dark: #0f1712; --niche-glow: rgba(200,144,26,.38); --accent-050: #f7efdc; }
 body[data-vertical="tech"] { --surface-2: #f2f4f7; --tile-dark: #161b22; --niche-dark: #0b0f14; --niche-glow: rgba(232,100,27,.30); --accent-050: #fdeee4; }
-body[data-vertical] .section.dark { background: var(--niche-dark); }
-.hero-v4 { position: relative; overflow: hidden; }
-/* AgroCash: východ slunce nad polem + brázdy */
-body[data-vertical="agro"] .hero-v4.dark { background: radial-gradient(70% 55% at 72% -5%, var(--niche-glow), transparent 70%), var(--niche-dark); }
+/* fallback #000: zadost.html dostává data-vertical až z app.js — nedefinovaná proměnná bez fallbacku by shodila background na transparent (bílý text na bílé) */
+body[data-vertical] .section.dark { background: var(--niche-dark, #000); }
+/* isolation: hero je stacking context na všech řadách → ::before/::after (z 0) leží vždy pod .container (z 1), nezávisle na animacích */
+.hero-v4 { position: relative; overflow: hidden; isolation: isolate; }
+/* AgroCash: východ slunce nad polem (záře v ::before — jednorázově „vyjde“ a pak stojí, obsah hero se nehýbe) + brázdy (::after) */
+body[data-vertical="agro"] .hero-v4.dark { background: var(--niche-dark); }
+body[data-vertical="agro"] .hero-v4.dark::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(70% 55% at 72% -5%, var(--niche-glow), transparent 70%); }
 body[data-vertical="agro"] .hero-v4.dark::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 160px; pointer-events: none; z-index: 0;
   background: repeating-linear-gradient(-6deg, rgba(200,144,26,.09) 0 2px, transparent 2px 26px);
   -webkit-mask-image: linear-gradient(180deg, transparent, #000); mask-image: linear-gradient(180deg, transparent, #000); }
 body[data-vertical="agro"] .hero-v4 .container { position: relative; z-index: 1; }
-@keyframes sunGlow { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
-html.js body[data-vertical="agro"] .hero-v4.dark { animation: sunGlow 9s ease-in-out infinite; }
+@keyframes sunRise { from { opacity: 0; transform: translateY(6%); } to { opacity: 1; transform: none; } }
+html.js body[data-vertical="agro"] .hero-v4.dark::before { animation: sunRise 2.4s var(--ease) both; }
 /* TechCash: asfalt + běžící dálniční pruh */
 body[data-vertical="tech"] .hero-v4.dark { background: linear-gradient(180deg, #0b0f14 0%, #121820 100%); }
-body[data-vertical="tech"] .hero-v4.dark::after { content: ""; position: absolute; left: 0; right: 0; bottom: 26px; height: 4px; z-index: 0; pointer-events: none; opacity: .55;
-  background: repeating-linear-gradient(90deg, var(--accent) 0 44px, transparent 44px 88px); background-size: 88px 4px; }
-html.js body[data-vertical="tech"] .hero-v4.dark::after { animation: roadDash 1.4s linear infinite; }
-@keyframes roadDash { from { background-position: 0 0; } to { background-position: -88px 0; } }
+/* vodicí čára je na dálnici bílá (oranžová přerušovaná = přechodné značení uzavírky); transform = kompozitor bez překreslování;
+   2 cykly = 4,4 s < 5 s (WCAG 2.2.2 bez nutnosti ovladače), pak pruh stojí — čísla v kalkulačce se čtou v klidu */
+body[data-vertical="tech"] .hero-v4.dark::after { content: ""; position: absolute; left: 0; bottom: 26px; width: 200%; height: 4px; z-index: 0; pointer-events: none; opacity: .35;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.85) 0 36px, transparent 36px 108px); background-size: 108px 4px; will-change: transform; }
+html.js body[data-vertical="tech"] .hero-v4.dark::after { animation: roadDash 2.2s linear 2; }
+@keyframes roadDash { from { transform: translateX(0); } to { transform: translateX(-108px); } }
 body[data-vertical="tech"] .hero-v4 .container { position: relative; z-index: 1; }
 /* Ikony a eyebrow v barvě řady */
 body[data-vertical="agro"] .eyebrow, body[data-vertical="tech"] .eyebrow { color: var(--accent-700); }
+/* tmavé plochy: --accent-700 měl 3,2:1 (agro) / 2,8:1 (tech) → --accent (#C8901A 6,5:1 · #E8641B 5,7:1 · #16A06A 5,6:1) */
+body[data-vertical] .section.dark .eyebrow, body[data-vertical] .hero-v4.dark .eyebrow { color: var(--accent); }
 body[data-vertical] .trust-strip .ts-ico, body[data-vertical] .hero-v4.dark .trust-strip .ts-ico { color: var(--accent); }
 body[data-vertical] .uc-card .uc-ico { color: var(--accent-700); background: var(--accent-050); }
+/* v .section.alt přebíjelo v4 pravidlo (0,4,0) niche override (0,3,1): glyf v barvě řady, box v teplé šedé — stejný rytmus jako .machine */
+body[data-vertical] .section.alt .uc-card .uc-ico { color: var(--accent-700); background: var(--surface-2); }
 body[data-vertical] .machine .m-ico { color: var(--accent-700); }
 body[data-vertical] .obj .obj-a .a-ico { color: var(--accent-700); background: var(--accent-050); }
 body[data-vertical] .doc-list li svg { color: var(--accent); }
@@ -1495,36 +1506,101 @@ body[data-vertical] .v-card .vc-more { color: var(--accent-700); }
 .season .s-item::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--line-2); transform: scaleX(0); transform-origin: left center; transition: transform 1.1s var(--ease) calc(var(--reveal-delay, 0ms) + 150ms); }
 .season .s-item.peak::after { background: var(--accent); }
 html.js .season .s-item.revealed::after { transform: scaleX(1); }
-body[data-vertical="tech"] .season { position: relative; }
-body[data-vertical="tech"] .season::before { content: ""; position: absolute; left: 4%; right: 4%; top: 50%; height: 3px; z-index: 0; opacity: .35; background: repeating-linear-gradient(90deg, var(--accent) 0 18px, transparent 18px 34px); }
+/* trasa běží NAD kartami (na top:50 % ji schovaly neprůhledné dlaždice), milník = oranžový bod jen u .peak; peak karta v --accent-050 jako u agro.
+   Na mobilu (carousel = scroll kontejner) by absolutní čára končila u pravého okraje viewportu → skryta. */
+body[data-vertical="tech"] .season { position: relative; padding-top: 20px; }
+body[data-vertical="tech"] .season::before { content: ""; position: absolute; left: 2%; right: 2%; top: 7px; height: 3px; opacity: .5; pointer-events: none; background: repeating-linear-gradient(90deg, var(--accent) 0 18px, transparent 18px 34px); }
 body[data-vertical="tech"] .season .s-item { z-index: 1; }
-body[data-vertical="tech"] .season .s-item .s-q { color: var(--accent-700); }
+body[data-vertical="tech"] .season .s-item.peak { background: var(--accent-050); }
+body[data-vertical="tech"] .season .s-item.peak::before { content: ""; position: absolute; top: 14px; right: 14px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+body[data-vertical="tech"] .season .s-item.peak .s-q { color: var(--accent-700); }
+@media (max-width: 860px) { body[data-vertical="tech"] .season { padding-top: 4px; } body[data-vertical="tech"] .season::before { display: none; } }
 body[data-vertical="agro"] .season .s-item.peak { background: linear-gradient(180deg, #fbf3e0 0%, #f7efdc 100%); }
 body[data-vertical="agro"] .season .s-item .s-q { color: var(--accent-700); }
 /* Story pás (3 svislé fotky) s niche popisky */
 .story-strip .photo-frame.tall { position: relative; }
+/* 720×1280 na výšku: globální .photo-frame img (4:3) by ořízlo ~58 % fotky; na mobilu 4:5 (karta carouselu ≈ 380 px místo 540 px), ořez centrovaný — subjekty jsou uprostřed */
+.story-strip .photo-frame.tall img { aspect-ratio: 9 / 16; }
+@media (max-width: 860px) { .story-strip .photo-frame.tall img { aspect-ratio: 4 / 5; } }
 .story-strip .story-tag { position: absolute; left: 14px; top: 14px; z-index: 1; }
 .story-strip .story-tag .pill { background: rgba(255,255,255,.9); color: var(--accent-700); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .story-strip h3 { margin-top: var(--sp-4); }
 .story-strip p { color: var(--muted); }
 /* Niche ovladač v kalkulačce (Kdy čekáte tržby? / Splatnost faktur) */
 .niche-ctl { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 12px; background: var(--accent-050); font-size: var(--fs-sm); color: var(--accent-700); font-weight: 600; }
-.niche-ctl .select { width: auto; padding: 8px 34px 8px 12px; font-size: 14px; background-color: #fff; border-color: transparent; }
-.niche-ctl .hint-line { display: block; font-size: var(--fs-xs); font-weight: 500; color: var(--muted); margin-top: 6px; }
+/* 16 px (iOS Safari bez auto-zoomu), 44 px dotykový cíl, hranice pole ≥ 3:1 (--muted-2 jako všechny .select z v4 auditu), fokus nepřebitý transparentní hranicí */
+.niche-ctl .select { width: auto; min-height: 44px; padding: 10px 34px 10px 12px; font-size: 16px; background-color: #fff; border-color: var(--muted-2); }
+.niche-ctl .select:focus { border-color: var(--green); }
+/* <span class="hint-line" id="nicheHint"> je SOUROZENEC za .niche-ctl (app.js ho hledá přes aria-describedby), ne potomek */
+.niche-ctl + .hint-line, .niche-ctl .hint-line { display: block; font-size: var(--fs-xs); font-weight: 500; color: var(--muted); margin-top: 6px; line-height: 1.4; }
 /* Tech: „tachometrová“ čísla — tabular + monospace-like tracking */
 body[data-vertical="tech"] .calc-amount, body[data-vertical="tech"] .stat-band .sb .num { font-variant-numeric: tabular-nums slashed-zero; letter-spacing: -0.02em; }
 /* Agro: měkčí rohy a teplejší dlaždice; tech: ostřejší rohy */
 body[data-vertical="agro"] { --r-lg: 24px; --r-xl: 30px; }
 body[data-vertical="tech"] { --r-lg: 16px; --r-xl: 20px; }
-body[data-vertical="tech"] .btn { border-radius: 12px; }
-body[data-vertical="tech"] .pill { border-radius: 6px; }
-body[data-vertical="tech"] .segmented, body[data-vertical="tech"] .segmented button { border-radius: 8px; }
-/* Reveal směr: agro roste zdola, tech přijíždí zleva */
+/* jen obsah stránky (main): hlavička, patička a mobilní CTA lišta (shell.js/app.js je vkládají mimo main) drží sdílený --r-pill na všech řadách */
+body[data-vertical="tech"] main .btn { border-radius: 12px; }
+body[data-vertical="tech"] main .pill { border-radius: 6px; }
+body[data-vertical="tech"] main .segmented, body[data-vertical="tech"] main .segmented button { border-radius: 8px; }
+/* Reveal směr: agro roste zdola, tech přijíždí zleva, auto „odměřený“ krátký posun */
 html.js body[data-vertical="agro"] [data-reveal] { transform: translateY(18px); }
 html.js body[data-vertical="tech"] [data-reveal] { transform: translateX(-16px); }
+html.js body[data-vertical="auto"] [data-reveal] { transform: translateY(12px) scale(.99); }
 html.js body[data-vertical] [data-reveal].revealed { transform: none; }
+
+/* CashAuto (dílna): zelená/bílá — eyebrow a ikony v --green-700, svinovací metr pod hero dlaždicemi, děrovaná stěna na nářadí v tmavé sekci */
+body[data-vertical="auto"] .eyebrow { color: var(--green-700); }                                                   /* #03543A · 9:1 na bílé i #f4f6f5 */
+body[data-vertical="auto"] .feature .ico-img, body[data-vertical="auto"] .feature .ico-box, body[data-vertical="auto"] .trust-strip .ts-ico { color: var(--green-700); }
+/* metr: dílky po 12 px (6 px vysoké), každý pátý 14 px; jednorázově se „vytáhne“ zleva, pak stojí */
+body[data-vertical="auto"] .hero-v4::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; z-index: 0; pointer-events: none; opacity: .28;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 12px) left bottom / 100% 6px no-repeat,
+              repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 60px) left bottom / 100% 14px no-repeat; }
+@keyframes tapePull { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+html.js body[data-vertical="auto"] .hero-v4::after { animation: tapePull 1.2s var(--ease) .35s both; }
+/* tmavá sekce „Tři řady“: pegboard (tečky 8 % bílé po 22 px) na --niche-dark */
+body[data-vertical="auto"] .section.dark { background: radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1.2px, transparent 1.8px) 0 0 / 22px 22px, var(--niche-dark); }
+/* výběr řad: ikona v barvě řady (v4 měla všechny bílé); #C8901A / #E8641B / #16A06A na #2c2c2e ≥ 4,1:1 (--green #007A52 by měl jen 2,6:1) */
+body[data-vertical="auto"] .section.dark .v-card .vc-ico { color: var(--vc); }
+body[data-vertical="auto"] .section.dark .v-card[data-v="auto"] .vc-ico { color: var(--green-bright); }
+
 @media (prefers-reduced-motion: reduce) {
-  html.js body[data-vertical="tech"] .hero-v4.dark::after, html.js body[data-vertical="agro"] .hero-v4.dark { animation: none !important; }
+  html.js body[data-vertical="tech"] .hero-v4.dark::after, html.js body[data-vertical="agro"] .hero-v4.dark::before { animation: none !important; }
+  html.js body[data-vertical="auto"] .hero-v4::after { animation: none !important; clip-path: none; }
   .season .s-item::after { transform: none !important; transition: none !important; }
 }
 @media (max-width: 520px) { .niche-ctl { flex-direction: column; align-items: stretch; } .niche-ctl .select { width: 100%; } }
+
+/* Společná rodina značek je viditelná i bez otevření mobilního menu. */
+.brand-family { background: #f5f5f7; border-bottom: 1px solid var(--line); }
+.brand-family-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; padding-block: 10px; }
+.brand-family p { margin: 0; font-size: 13px; color: var(--ink); }
+.brand-family p span { color: var(--muted); margin-left: 8px; }
+.brand-family nav { display: flex; gap: 8px; }
+.brand-family nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 14px; border-radius: var(--r-pill); color: var(--ink); font-size: 13px; font-weight: 600; }
+.brand-family nav a:hover { background: #e8e8ed; }
+.brand-family nav a[aria-current="page"] { background: var(--ink); color: #fff; }
+[data-pricing-comparison] { scroll-margin-top: calc(var(--header-h) + 16px); }
+.pricing-comparison { padding-block: 56px; }
+.pricing-comparison .section-head { margin-bottom: 24px; }
+.pricing-comparison .section-head p { max-width: 760px; }
+.pricing-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-lg); }
+.pricing-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.pricing-table caption { text-align: left; padding: 16px 20px; color: var(--muted); }
+.pricing-table th, .pricing-table td { text-align: left; padding: 16px 20px; border-top: 1px solid var(--line); }
+.pricing-table thead th { background: var(--surface-2); font-weight: 600; }
+.pricing-table tbody th span { display: block; font-weight: 400; color: var(--muted); font-size: 13px; margin-top: 4px; }
+.pricing-table tbody th a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.pricing-table td { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 20px; }
+.pricing-table .pricing-current { background: #f0f7f3; }
+.pricing-note { max-width: 900px; margin-top: 20px; font-size: var(--fs-sm); }
+@media (max-width: 640px) {
+  .brand-family-inner { flex-direction: column; gap: 4px; padding-block: 10px; }
+  .brand-family p span { display: none; }
+  .brand-family nav { width: 100%; justify-content: center; gap: 4px; }
+  .brand-family nav a { padding-inline: 12px; }
+  .pricing-comparison { padding-block: 36px; }
+  .pricing-table caption, .pricing-table th, .pricing-table td { padding: 12px; }
+  .pricing-table td { font-size: 17px; }
+  .pricing-table thead th { font-size: 12px; }
+  .pricing-table tbody th span { font-size: 12px; }
+}
