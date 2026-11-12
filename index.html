@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600)</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600);["pageswap","pagereveal"].forEach(function(n){addEventListener(n,function(e){var t=e.viewTransition;if(t){t.ready.catch(function(){});t.finished.catch(function(){})}})})</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CashAuto — Peníze z firemního auta. Jezdíte dál | OSVČ a firmy</title>
   <meta name="description" content="Dočasný výkup firemního vozu se zpětným odkupem pro OSVČ a firmy s IČO. Výkupní cena, měsíční poplatek i cena odkupu předem v Kč. Auto dál jezdí za zakázkami." />
   <link rel="canonical" href="https://cashauto.cz/" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#007A52" />
+  <meta name="theme-color" content="#F4F1EA" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CashAuto" />
   <meta property="og:locale" content="cs_CZ" />
@@ -21,10 +21,10 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="assets/img/hero-family.webp" media="(min-width: 861px)" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/design-system.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 3h6l-7 26H0L7 3Z' fill='%23007A52'/%3E%3Cpath d='M16 3h6l-7 26H9L16 3Z' fill='%23007A52'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Inter:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/img/hero-auto-800.webp" imagesrcset="assets/img/hero-auto-800.webp 800w, assets/img/hero-auto.webp 1600w" imagesizes="(min-width: 960px) 44vw, 90vw" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/css/signal.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%230F1512'/%3E%3Cpath d='M11.6 8h5.200l-4.800 18H6.800z' fill='%23D4F23A'/%3E%3Cpath d='M21.500 8h5.200l-4.800 18h-5.200z' fill='%23D4F23A'/%3E%3C/svg%3E" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
     {"@type":"Organization","@id":"https://cashauto.cz/#org","name":"CashAuto a.s.","url":"https://cashauto.cz/","logo":"https://cashauto.cz/assets/img/og-home.jpg","email":"info@cashauto.cz","telephone":"+420800123456","address":{"@type":"PostalAddress","streetAddress":"Příkladová 123","postalCode":"110 00","addressLocality":"Praha 1","addressCountry":"CZ"},"areaServed":"CZ","brand":[{"@type":"Brand","name":"CashAuto"},{"@type":"Brand","name":"AgroCash"},{"@type":"Brand","name":"TechCash"}]},
@@ -45,91 +45,93 @@
   <main id="main">
 
   <!-- ===================== 01 HERO ===================== -->
-  <section class="hero hero-v4" id="hero">
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Výhradně pro podnikatele a firmy s IČO</p>
+        <h1 class="display"><span class="hl"><span>Peníze z&nbsp;auta.</span></span> <span class="hl hl-dyn"><span>Jezdíte dál.</span></span></h1>
+        <p class="lead">Uvolněte peníze z&nbsp;firemního vozu a&nbsp;mějte víc klidu na zakázky. Auto od vás dočasně vykoupíme, vy ho dál používáte podle smlouvy. Výkupní cenu, poplatky i&nbsp;podmínky zpětného odkupu znáte předem — rozhodnutí máte v&nbsp;rukou.</p>
+        <div class="hero-actions"><a class="btn btn-primary btn-lg" href="zadost.html">Zjistit nabídku pro vůz</a><a class="link-arrow" href="#jak-to-funguje">Jak to funguje</a></div>
+        <p class="hero-note">Nezávazná žádost zdarma · výsledek za 2&nbsp;minuty · Raději zavolat? <a href="tel:+420800123456">800 123 456</a></p>
+        <p class="hero-note">Máte traktor nebo tahač? <a href="agrocash.html">AgroCash</a> · <a href="techcash.html">TechCash</a></p>
+      </div>
+      <div class="hero-visual">
+        <div class="slashes">
+          <span class="slash slash-a" aria-hidden="true"></span>
+          <span class="slash slash-b"><img src="assets/img/hero-auto.webp" srcset="assets/img/hero-auto-800.webp 800w, assets/img/hero-auto.webp 1600w" sizes="(min-width: 960px) 44vw, 90vw" alt="Řemeslník v reflexní vestě nakládá bednu s nářadím do bílé firemní dodávky na dvoře dílny" width="1600" height="1195" fetchpriority="high" decoding="async" style="object-position:60% 50%" /></span>
+        </div>
+        <div class="hero-chips" aria-hidden="true"><span class="tagchip"><span>Dodávka jezdí dál</span></span><span class="tagchip"><span>Všechna čísla předem</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 02 KALKULAČKA (dynamický pás) ===================== -->
+  <section class="calc-band" id="kalkulacka" aria-labelledby="calcTitle">
+    <div class="container calc-grid">
+      <div class="calc-in">
+        <p class="eyebrow">Orientační výpočet · firemní vůz · nezávazně</p>
+        <h2 id="calcTitle">Tři čísla, která rozhodují</h2>
+        <div class="calc-field">
+          <label class="calc-label" for="heroRange">Odhad hodnoty vozu</label>
+          <div class="calc-value odo" id="heroValue">300&nbsp;000&nbsp;Kč</div>
+          <input type="range" class="range" id="heroRange" min="100000" max="1200000" step="10000" value="300000" />
+          <div class="range-ends" aria-hidden="true"><span>100&nbsp;000&nbsp;Kč</span><span>1&nbsp;200&nbsp;000&nbsp;Kč</span></div>
+        </div>
+        <div class="calc-field">
+          <span class="calc-label" id="termLabel">Doba rezervace (do zaplacení zakázky)</span>
+          <div class="segmented" role="radiogroup" aria-labelledby="termLabel" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="false" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="3" />
+        </div>
+        <div class="calc-field niche-ctl"><label for="heroPay">Kdy vám zaplatí zakázku?</label><select class="select" id="heroPay" data-niche-ctl="heroTerm" data-map="days" data-hint="odkup hned po zaplacení zakázky, dřívější odkup bez penalizace." aria-describedby="nicheHint"><option value="14">Do 14 dní (záloha)</option><option value="30">Do 30 dní</option><option value="60" selected>Do 60 dní</option><option value="90">Do 90 dní</option><option value="180">Do půl roku</option><option value="365">Až za rok (zádržné)</option></select><span class="hint-line" id="nicheHint" aria-live="polite"></span></div>
+      </div>
+      <div class="calc-out">
+        <div aria-live="polite" aria-atomic="true">
+          <span class="calc-label">Výkupní cena</span>
+          <div class="calc-amount odo" id="heroAmount">210&nbsp;000&nbsp;Kč</div>
+          <div class="calc-rows">
+            <div class="calc-row"><span class="calc-label">Měsíční rezervační poplatek</span><span class="calc-num odo" id="heroFee">12&nbsp;000&nbsp;Kč&nbsp;/&nbsp;měsíc</span></div>
+            <div class="calc-row"><span class="calc-label">Cena zpětného odkupu</span><span class="calc-num odo" id="heroBuyback">210&nbsp;000&nbsp;Kč</span></div>
+            <div class="calc-row"><span class="calc-label">Poplatek za zvolenou dobu celkem</span><span class="calc-num odo" id="heroPeriod">36&nbsp;000&nbsp;Kč za 3&nbsp;měsíce</span></div>
+          </div>
+        </div>
+        <a class="btn btn-primary btn-block btn-lg" href="zadost.html">Upřesnit nabídku pro vůz</a>
+        <p class="cost-warning">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
+        <p class="calc-foot"><a href="#srovnani-parametru">Porovnat výkup a poplatky všech tří řad</a> · Nezávazně · všechna čísla předem · <a href="compliance.html">jak to funguje férově</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 DŮVĚRA ===================== -->
+  <section class="section tight" id="duvera" aria-label="Proč to funguje">
     <div class="container">
-      <div class="hero-copy anim-hero">
-        
-        <span class="eyebrow" style="color:var(--muted)">Výhradně pro podnikatele a firmy s IČO</span>
-        <h1 class="display-headline mt-3"><span class="line-dark">Peníze z&nbsp;auta.</span><span class="line-green">Jezdíte dál.</span></h1>
-        <p class="lead mt-4">Uvolněte peníze z&nbsp;firemního vozu a&nbsp;mějte víc klidu na zakázky. Auto od vás dočasně vykoupíme, vy ho dál používáte podle smlouvy. Výkupní cenu, poplatky i&nbsp;podmínky zpětného odkupu znáte předem — rozhodnutí máte v&nbsp;rukou.</p>
-        <div class="hero-actions mt-6"><a class="btn btn-primary btn-lg" href="zadost.html">Zjistit nabídku pro vůz</a><a class="link-arrow" href="#jak-to-funguje">Jak to funguje</a></div>
-        <p class="muted mt-3" style="font-size:var(--fs-sm)">Nezávazná žádost zdarma · výsledek za 2&nbsp;minuty · Raději zavolat? <a href="tel:+420800123456" style="font-weight:600">800 123 456</a></p>
-        <p class="muted mt-2 mb-0" style="font-size:var(--fs-sm)">Máte traktor nebo tahač? <a href="agrocash.html">AgroCash</a> · <a href="techcash.html">TechCash</a></p>
-      </div>
-      <div class="hero-tiles mt-7">
-        <div class="tile-photo">
-          <img src="assets/img/hero-family.webp" alt="Řemeslník s tabletem u bílého firemního kombi před dílnou" width="1376" height="768" fetchpriority="high" />
-        </div>
-        <div class="calc-card anim-float" id="kalkulacka">
-          <div class="between">
-            <span class="calc-label">Orientační výpočet · firemní vůz</span>
-            <span class="calc-label">Nezávazně</span>
-          </div>
-          <div class="mt-4">
-            <span class="calc-label">Odhad hodnoty vozu</span>
-            <div class="mono" style="font-size:var(--fs-xl);font-weight:700;color:var(--ink);letter-spacing:-0.03em" id="heroValue">300&nbsp;000&nbsp;Kč</div>
-            <input type="range" class="range" id="heroRange" min="100000" max="1200000" step="10000" value="300000" aria-label="Odhad hodnoty vozu" />
-            <div class="range-ends"><span>100&nbsp;000&nbsp;Kč</span><span>1&nbsp;200&nbsp;000&nbsp;Kč</span></div>
-          </div>
-          <hr class="divider" />
-          <div aria-live="polite" aria-atomic="true">
-            <div class="between" style="align-items:flex-end">
-              <div>
-                <span class="calc-label">Výkupní cena</span>
-                <div class="calc-amount mono" style="color:var(--ink)" id="heroAmount">210&nbsp;000&nbsp;Kč</div>
-              </div>
-              <div style="text-align:right">
-                <span class="calc-label">Měsíční rezervační poplatek</span>
-                <div class="mono" style="font-weight:700;color:var(--ink)" id="heroFee">12&nbsp;000&nbsp;Kč&nbsp;/&nbsp;měsíc</div>
-              </div>
-            </div>
-            <div class="between mt-3" style="font-size:var(--fs-sm)">
-              <span class="muted">Cena zpětného odkupu</span>
-              <span class="mono" style="font-weight:600;color:var(--ink)" id="heroBuyback">210&nbsp;000&nbsp;Kč</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="calc-label" style="display:block;margin-bottom:8px">Doba rezervace (do zaplacení zakázky)</span>
-            <div class="segmented" role="radiogroup" aria-label="Doba rezervace" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="false" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="3" />
-          </div>
-          <div class="niche-ctl mt-4"><label for="heroPay">Kdy vám zaplatí zakázku?</label><select class="select" id="heroPay" data-niche-ctl="heroTerm" data-map="days" data-hint="odkup hned po zaplacení zakázky, dřívější odkup bez penalizace." aria-describedby="nicheHint"><option value="14">Do 14 dní (záloha)</option><option value="30">Do 30 dní</option><option value="60" selected>Do 60 dní</option><option value="90">Do 90 dní</option><option value="180">Do půl roku</option><option value="365">Až za rok (zádržné)</option></select></div><span class="hint-line" id="nicheHint"></span>
-          <div class="between mt-3" style="font-size:var(--fs-sm)" aria-live="polite" aria-atomic="true">
-            <span class="muted">Poplatek za zvolenou dobu celkem</span>
-            <span class="mono" style="font-weight:600;color:var(--ink)" id="heroPeriod">36&nbsp;000&nbsp;Kč za 3&nbsp;měsíce</span>
-          </div>
-          <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html">Upřesnit nabídku pro vůz</a>
-          <p class="muted mb-0 mt-3" style="font-size:var(--fs-sm);text-align:center"><a href="#srovnani-parametru">Porovnat výkup a poplatky všech tří řad</a></p>
-          <p class="cost-warning mb-0 mt-3" style="font-size:var(--fs-sm)">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
-          <p class="muted mb-0 mt-2" style="font-size:var(--fs-xs);text-align:center">Nezávazně · všechna čísla předem · <a href="compliance.html">jak to funguje férově</a></p>
-        </div>
-      </div>
-      <div class="trust-strip mt-7" data-reveal>
+      <div class="trust-strip" data-reveal-stagger>
         <div class="ts-item">
-          <span class="ts-ico" style="color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="bolt" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5z"/><path d="M13 2 4.5 13.5H11L9.5 22 19 10h-6.5z"/></svg></span>
           <span class="ts-label"><strong>Rychlý proces</strong>peníze zpravidla do 24 hodin od podpisu</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico" style="color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="shield" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></span>
           <span class="ts-label"><strong>Vše víte předem</strong>výkup · poplatek · cena odkupu</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico" style="color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="visit" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M5 10.4 12 5l7 5.4V19H5z"/><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></span>
           <span class="ts-label"><strong>Technik přijede k vám</strong>do dílny, na stavbu i do provozu</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico" style="color:var(--ink)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 12l3-3 2.5 2.5L17 8"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="screen" viewBox="0 0 24 24" aria-hidden="true"><rect class="a" x="3" y="4" width="18" height="13" rx="2"/><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 12l3-3 2.5 2.5L17 8"/></svg></span>
           <span class="ts-label"><strong>Online přehled</strong>poplatky, termíny, dokumenty</span>
         </div>
       </div>
-      <div class="notice mt-5" data-reveal>
-        <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
+      <div class="notice mt-6" data-reveal>
+        <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
         <div>
           <strong>Ukázkový příklad.</strong> Odhad hodnoty vozu 300&nbsp;000&nbsp;Kč · výkupní cena 210&nbsp;000&nbsp;Kč · měsíční rezervační poplatek 12&nbsp;000&nbsp;Kč · poplatek za 3&nbsp;měsíce 36&nbsp;000&nbsp;Kč · cena zpětného odkupu 210&nbsp;000&nbsp;Kč · auto dál používáte pro podnikání podle smlouvy.
-          <span style="display:block;margin-top:6px;color:var(--muted)">Jde o&nbsp;orientační výpočet, ne o&nbsp;závaznou nabídku. Konečná nabídka závisí na ověření stavu a&nbsp;dokladů vozidla. <a href="blog/kolik-stoji-docasny-vykup-rezervacni-poplatek.html">Jak se poplatek počítá →</a></span>
+          <span class="muted" style="display:block;margin-top:6px">Jde o&nbsp;orientační výpočet, ne o&nbsp;závaznou nabídku. Konečná nabídka závisí na ověření stavu a&nbsp;dokladů vozidla. <a href="blog/kolik-stoji-docasny-vykup-rezervacni-poplatek.html">Jak se poplatek počítá →</a></span>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="marquee" data-marquee="Provoz se nezastaví|Peníze z auta|Jezdíte dál|Všechna čísla předem v Kč" aria-hidden="true"></div>
 
   <div id="srovnani-parametru" data-pricing-comparison>
     <noscript><p class="container">Orientační parametry: CashAuto výkup 70 % / měsíční poplatek 4 %; AgroCash 65 % / 3 %; TechCash 65 % / 3,5 %. Obě procenta se počítají z odhadní hodnoty majetku.</p></noscript>
@@ -145,21 +147,21 @@
       </div>
       <div class="vertical-picker mobile-carousel" data-reveal-stagger>
         <a class="v-card" data-v="auto" href="index.html#kalkulacka">
-          <span class="vc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13l2-5a3 3 0 0 1 2.8-2h8.4A3 3 0 0 1 21 8l2 5"/><path d="M2 13h20v5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H7v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><circle cx="7" cy="16" r="1.4"/><circle cx="17" cy="16" r="1.4"/></svg></span>
+          <span class="vc-ico"><svg class="pic" data-pic="van" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M2 6h11v10H2z"/><path d="M2 16V6h11v10"/><path d="M13 9h4.5l3.5 4v3h-8"/><path d="M9 16h5"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span>
           <span class="brand-word"><span class="bw-cash">Cash</span><span class="bw-ink">Auto</span></span>
           <span class="vc-for">Firemní vozy · OSVČ, řemeslníci, malé firmy</span>
           <ul class="vc-list"><li>Dodávky</li><li>Kombi</li><li>SUV</li><li>Osobní firemní</li></ul>
           <span class="vc-more">Kalkulačka pro firemní vůz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
         <a class="v-card" data-v="agro" href="agrocash.html">
-          <span class="vc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15V9h6l2-5h4v11"/><path d="M10 9V4"/><circle cx="7" cy="17" r="3.5"/><circle cx="18" cy="18" r="2.5"/><path d="M10.5 17h5"/></svg></span>
+          <span class="vc-ico"><svg class="pic" data-pic="tractor" viewBox="0 0 24 24" aria-hidden="true"><circle class="a" cx="7" cy="17" r="3.5"/><path d="M4 13.5V9h6l2-5h4v10.5"/><path d="M10 9V4"/><circle cx="7" cy="17" r="3.5"/><circle cx="18" cy="18" r="2.5"/><path d="M10.5 17h5"/></svg></span>
           <span class="brand-word"><span class="bw-ink">Agro</span><span class="bw-cash">Cash</span></span>
           <span class="vc-for">Zemědělská technika · farmy a agro-podniky</span>
           <ul class="vc-list"><li>Traktory</li><li>Kombajny</li><li>Řezačky</li><li>Manipulátory</li></ul>
           <span class="vc-more">Přejít na AgroCash <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
         <a class="v-card" data-v="tech" href="techcash.html">
-          <span class="vc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="6" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span>
+          <span class="vc-ico"><svg class="pic" data-pic="truck" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M2 6h12v10H2z"/><path d="M2 6h12v10H2z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="6" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span>
           <span class="brand-word"><span class="bw-ink">Tech</span><span class="bw-cash">Cash</span></span>
           <span class="vc-for">Autodopravci · tahače, návěsy, nákladní vozy</span>
           <ul class="vc-list"><li>Tahače</li><li>Návěsy</li><li>Nákladní</li><li>Dodávky</li></ul>
@@ -179,17 +181,17 @@
       </div>
       <div class="grid grid-3 mobile-carousel" data-reveal-stagger>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Nabídka v telefonu</span></span><img src="assets/img/story-phone.webp" alt="Truhlář v dílně drží telefon s orientační nabídkou, na ponku leží faktury a klíčky" width="720" height="1290" loading="lazy" style="object-position:50% 58%" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Nabídka v telefonu</span></span><img src="assets/img/story-phone.webp" srcset="assets/img/story-phone-540.webp 540w, assets/img/story-phone.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Truhlář v dílně drží telefon, na ponku leží faktury a klíčky od dodávky, v pozadí visí reflexní vesta" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Tři čísla za 2 minuty</h3>
           <p class="mb-0">Zadáte IČO a&nbsp;údaje o&nbsp;voze. Výkupní cenu, měsíční poplatek i&nbsp;cenu zpětného odkupu vidíte v&nbsp;Kč hned — mezi dvěma zakázkami.</p>
         </div>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Technik u vás</span></span><img src="assets/img/story-technik.webp" alt="Technik CashAuto s tabletem kontroluje bílé firemní kombi u klienta před domem" width="720" height="890" loading="lazy" style="object-position:50% 72%" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Technik u vás</span></span><img src="assets/img/story-technik.webp" srcset="assets/img/story-technik-540.webp 540w, assets/img/story-technik.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Technik v reflexní vestě s tabletem kontroluje pneumatiku bílé dodávky na dvoře, majitel stojí opodál" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Prohlídka u vás, hodina práce</h3>
           <p class="mb-0">Vůz nikam neodvážíte. Technik ověří stav a&nbsp;doklady na místě, potvrdí konečnou nabídku — a&nbsp;provoz nestojí.</p>
         </div>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Klíčky od dodávky</span></span><img src="assets/img/story-keys.webp" alt="Živnostnice v zástěře se opírá o okno bílé dodávky a drží klíčky, za ní malé obchody" width="720" height="1290" loading="lazy" style="object-position:50% 42%" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Klíčky od dodávky</span></span><img src="assets/img/story-keys.webp" srcset="assets/img/story-keys-540.webp 540w, assets/img/story-keys.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Malířka v pracovních montérkách se opírá o bílou dodávku a drží klíčky, na střeše žebřík upnutý popruhem" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Dodávka jezdí dál za zakázkami</h3>
           <p class="mb-0">Jste provozovatel a&nbsp;vůz dál používáte pro podnikání podle smlouvy o&nbsp;užívání. Odkup po zaplacení zakázky — nebo dřív, bez penalizace.</p>
         </div>
@@ -198,28 +200,31 @@
   </section>
 
   <!-- ===================== 04 JAK TO FUNGUJE ===================== -->
-  <section class="section" id="jak-to-funguje">
+  <section class="section dyn" id="jak-to-funguje">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Jak to funguje</span>
         <h2 class="mt-3">Tři kroky k penězům na účtu</h2>
         <p class="lead">Dočasný výkup vozu se zpětným odkupem: od formuláře k&nbsp;penězům na firemním účtu — bez inzerce, bez smlouvání a&nbsp;bez toho, aby vaše auto někde stálo.</p>
       </div>
-      <div class="big-steps mobile-carousel" data-reveal-stagger>
+      <div class="big-steps" data-reveal-stagger>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">2 minuty</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><rect x="18" y="6" width="28" height="52" rx="6"/><path d="M28 12h8"/><rect class="f m" x="24" y="21" width="16" height="8" rx="2"/><path class="m" style="--pd:420ms" d="M24 37h16"/><path class="m" style="--pd:560ms" d="M24 45h10"/></svg></span>
+          <span class="bs-time">2 minuty</span>
           <div class="big-num" aria-hidden="true">1</div>
           <h3>Zjistíte svá tři čísla</h3>
           <p>Zadáte IČO a základní údaje o voze. Hned vidíte výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu — v Kč, ne v procentech.</p>
         </div>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">do 3 dnů</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><path d="M6 46V26h26v20"/><path d="M32 32h10l8 8v6H32"/><path d="M21 46h14"/><g class="roll"><circle cx="15" cy="48" r="5.500"/><path d="M15 44.500v7M11.500 48h7"/></g><g class="roll"><circle cx="42" cy="48" r="5.500"/><path d="M42 44.500v7M38.500 48h7"/></g><g class="drop" style="--pd:520ms"><path class="f" d="M47 5c-5 0-9 3.800-9 8.600C38 19.800 47 27 47 27s9-7.200 9-13.400C56 8.800 52 5 47 5z"/><path d="M47 5c-5 0-9 3.800-9 8.600C38 19.800 47 27 47 27s9-7.200 9-13.400C56 8.800 52 5 47 5z"/><circle cx="47" cy="13.500" r="2.600"/></g></svg></span>
+          <span class="bs-time">do 3 dnů</span>
           <div class="big-num" aria-hidden="true">2</div>
           <h3>Technik přijede k vám</h3>
           <p>Prohlídka vozu proběhne u vás — v dílně, na stavbě nebo v provozovně. Potvrdíme konečnou nabídku a připravíme smlouvy.</p>
         </div>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">zpravidla do 24 h</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><path d="M12 6h24l10 10v42H12z"/><path d="M36 6v10h10"/><path d="M19 26h18M19 33h11"/><path class="m" style="--pd:420ms" d="M19 47c3-6 5-6 7 0s4 6 6 0"/><g class="pop" style="--pd:720ms"><circle class="f" cx="46" cy="45" r="11"/><circle cx="46" cy="45" r="11"/><path d="M41 45l3.500 3.500 6.500-7"/></g></svg></span>
+          <span class="bs-time">zpravidla do 24 h</span>
           <div class="big-num" aria-hidden="true">3</div>
           <h3>Podpis a peníze na účet</h3>
           <p>Po podpisu vyplatíme výkupní cenu — zpravidla do 24 hodin. Vůz dál používáte pro podnikání podle smlouvy a kdykoliv ho můžete odkoupit zpět.</p>
@@ -243,20 +248,15 @@
       <div class="table-wrap" data-reveal>
         <table class="compare">
           <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Prodat vůz natrvalo</th>
-              <th scope="col">Čekat na zaplacení faktur</th>
-              <th scope="col" class="is-us">Dočasný výkup CashAuto</th>
-            </tr>
+            <tr><th scope="col"></th><th scope="col" class="is-us">Dočasný výkup CashAuto</th><th scope="col">Prodat vůz natrvalo</th><th scope="col">Čekat na zaplacení faktur</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Kdy máte peníze</th><td>Až se najde kupec — týdny i měsíce</td><td>Za 30–90 dní, když odběratel zaplatí včas</td><td class="is-us">Zpravidla do 24&nbsp;hodin od podpisu</td></tr>
-            <tr><th scope="row">Můžete dál jezdit za zakázkami</th><td><span class="no">Ne</span> — vůz je pryč</td><td><span class="yes">Ano</span></td><td class="is-us"><span class="yes">Ano</span> — podle smlouvy o užívání</td></tr>
-            <tr><th scope="row">Máte auto zpět</th><td><span class="no">Ne</span></td><td>—</td><td class="is-us"><span class="yes">Ano</span> — za cenu známou předem</td></tr>
-            <tr><th scope="row">Co to stojí</th><td>Nižší cena z bazaru, čas na inzerci a prohlídky</td><td>Zastavené zakázky, penále, ušlé tržby</td><td class="is-us">Měsíční rezervační poplatek — v Kč, předem</td></tr>
-            <tr><th scope="row">Inzerce a smlouvání</th><td><span class="meh">Ano</span></td><td>—</td><td class="is-us"><span class="yes">Ne</span> — technik přijede k vám</td></tr>
-            <tr><th scope="row">Pro koho</th><td>Kdo vůz už nepotřebuje</td><td>Kdo si může dovolit čekat</td><td class="is-us">OSVČ a firmy, jejichž vůz vydělává</td></tr>
+            <tr><th scope="row">Kdy máte peníze</th><td class="is-us">Zpravidla do 24&nbsp;hodin od podpisu</td><td>Až se najde kupec — týdny i měsíce</td><td>Za 30–90 dní, když odběratel zaplatí včas</td></tr>
+            <tr><th scope="row">Můžete dál jezdit za zakázkami</th><td class="is-us"><span class="yes">Ano</span> — podle smlouvy o užívání</td><td><span class="no">Ne</span> — vůz je pryč</td><td><span class="yes">Ano</span></td></tr>
+            <tr><th scope="row">Máte auto zpět</th><td class="is-us"><span class="yes">Ano</span> — za cenu známou předem</td><td><span class="no">Ne</span></td><td>—</td></tr>
+            <tr><th scope="row">Co to stojí</th><td class="is-us">Měsíční rezervační poplatek — v Kč, předem</td><td>Nižší cena z bazaru, čas na inzerci a prohlídky</td><td>Zastavené zakázky, penále, ušlé tržby</td></tr>
+            <tr><th scope="row">Inzerce a smlouvání</th><td class="is-us"><span class="yes">Ne</span> — technik přijede k vám</td><td><span class="meh">Ano</span></td><td>—</td></tr>
+            <tr><th scope="row">Pro koho</th><td class="is-us">OSVČ a firmy, jejichž vůz vydělává</td><td>Kdo vůz už nepotřebuje</td><td>Kdo si může dovolit čekat</td></tr>
           </tbody>
         </table>
       </div>
@@ -265,7 +265,7 @@
   </section>
 
   <!-- ===================== 06 VÝHODY + KLIENTSKÁ ZÓNA ===================== -->
-  <section class="section" id="vyhody">
+  <section class="section dyn" id="vyhody">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Proč CashAuto</span>
@@ -274,42 +274,50 @@
       </div>
       <div class="grid grid-4 compact" data-reveal-stagger>
         <div class="card pad feature hover">
-          <div class="ico-img"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13l2-5a3 3 0 0 1 2.8-2h8.4A3 3 0 0 1 21 8l2 5"/><path d="M2 13h20v5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H7v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><circle cx="7" cy="16" r="1.4"/><circle cx="17" cy="16" r="1.4"/></svg></div>
+          <div class="ico-img"><svg class="pic" data-pic="van" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M2 6h11v10H2z"/><path d="M2 16V6h11v10"/><path d="M13 9h4.5l3.5 4v3h-8"/><path d="M9 16h5"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></div>
           <h3>Auto dál pracuje pro vás</h3>
           <p>Vůz dál používáte pro podnikání podle smlouvy o užívání vozidla — zakázky nestojí.</p>
         </div>
         <div class="card pad feature hover">
-          <div class="ico-img"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></div>
+          <div class="ico-img"><svg class="pic" data-pic="doc" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></div>
           <h3>Vše víte předem</h3>
           <p>Výkupní cena, poplatek, termíny i možnost zpětného odkupu jsou jasně uvedené.</p>
         </div>
         <div class="card pad feature hover">
-          <div class="ico-img"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="ico-img"><svg class="pic" data-pic="shield" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <h3>Bez inzerce a smlouvání</h3>
           <p>Nemusíte hledat kupce ani řešit prodej přes bazar — a vůz vaší firmě dál slouží.</p>
         </div>
         <div class="card pad feature hover">
-          <div class="ico-img"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6"/><path d="M3 3v5h5"/><path d="M12 7.5V12l3 2"/></svg></div>
+          <div class="ico-img"><svg class="pic" data-pic="back" viewBox="0 0 24 24" aria-hidden="true"><circle class="a" cx="12" cy="12" r="5.2"/><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6"/><path d="M3 3v5h5"/><path d="M12 8v4l2.5 1.5"/></svg></div>
           <h3>Odkup kdykoliv dřív</h3>
           <p>Dobu rezervace volíte 1–12 měsíců. Zaplatí zakázka dřív? Vůz můžete odkoupit zpět hned — bez penalizace.</p>
         </div>
       </div>
-      <div class="grid grid-2 mt-7" id="portal" style="align-items:center;gap:var(--sp-6)" data-reveal>
+      <div class="grid grid-2 split mt-7" id="portal" data-reveal>
         <div>
           <span class="eyebrow">Klientská zóna</span>
-          <h3 class="mt-3" style="font-size:var(--fs-xl)">Vše přehledně na jednom místě</h3>
+          <h3 class="mt-3 h-xl">Vše přehledně na jednom místě</h3>
           <p class="lead mt-3">Dokumenty, termíny, rezervační poplatky i&nbsp;cena zpětného odkupu — kdykoliv v&nbsp;mobilu mezi zakázkami, s&nbsp;upozorněním před splatností. Vše pro účetnictví pohromadě.</p>
           <a class="link-arrow mt-4" href="portal.html">Prohlédnout klientskou zónu</a>
         </div>
-        <div class="ui-frame">
-          <img src="assets/img/portal-ui.webp" alt="Náhled klientské zóny CashAuto — přehled výkupu, poplatků a dokumentů" width="1280" height="720" loading="lazy" />
+        <div class="ui-frame" role="img" aria-label="Náhled klientské zóny CashAuto — cena zpětného odkupu, měsíční poplatek, termín další úhrady a dokumenty">
+          <div class="ui-mock" aria-hidden="true">
+            <div class="ui-mock-top"><strong>Klientská zóna</strong><span class="pill pill-mint">Rezervace aktivní</span></div>
+            <div class="ui-mock-grid">
+              <div class="ui-tile hot wide"><span>Cena zpětného odkupu</span><b>210&nbsp;000&nbsp;Kč</b></div>
+              <div class="ui-tile"><span>Měsíční poplatek</span><b>12&nbsp;000&nbsp;Kč</b></div>
+              <div class="ui-tile"><span>Další úhrada</span><b>za 9 dní</b><div class="ui-bar"><i></i></div></div>
+              <div class="ui-tile wide"><span>Dokumenty</span><ul class="ui-list"><li>Kupní smlouva <em>PDF</em></li><li>Smlouva o užívání vozidla <em>PDF</em></li><li>Smlouva o zpětném odkupu <em>PDF</em></li></ul></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===================== 07 NÁMITKY ===================== -->
-  <section class="section alt" id="namitky">
+  <section class="section dark" id="namitky">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Na rovinu</span>
@@ -408,7 +416,7 @@
       </div>
       <div class="post-grid mt-6 mobile-carousel" data-reveal-stagger>
         <a class="card hover post-card" href="blog/docasny-vykup-vozu-jak-to-funguje.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/story-technik.webp" alt="" width="720" height="890" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/story-technik.webp" srcset="assets/img/story-technik-540.webp 540w, assets/img/story-technik.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" width="900" height="1205" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Průvodce</span>
             <h3>Dočasný výkup vozu se zpětným odkupem: jak to funguje krok za krokem</h3>
@@ -417,7 +425,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="blog/kolik-stoji-docasny-vykup-rezervacni-poplatek.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/blog-ucetni.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/blog-ucetni.webp" srcset="assets/img/blog-ucetni-640.webp 640w, assets/img/blog-ucetni.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Ceny &amp; poplatky</span>
             <h3>Kolik stojí dočasný výkup? Rezervační poplatek srozumitelně (příklad v Kč)</h3>
@@ -426,7 +434,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="blog/cash-flow-osvc-faktury-po-splatnosti.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/blog-cashflow.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/blog-cashflow.webp" srcset="assets/img/blog-cashflow-640.webp 640w, assets/img/blog-cashflow.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Cash flow</span>
             <h3>Cash flow OSVČ: 7 způsobů, jak překlenout faktury po splatnosti</h3>
@@ -439,28 +447,27 @@
   </section>
 
   <!-- ===================== 10 FINAL CTA ===================== -->
-  <section class="section tight">
+  <section class="section tight" id="zaver">
     <div class="container">
-      <div class="card pad-lg cta-dark" style="background:var(--tile-dark);color:#a1a1a6;overflow:hidden" data-reveal="scale">
-        <div class="grid grid-2" style="align-items:center;gap:var(--sp-6)">
-          <div>
-            <h2 style="color:#f5f5f7">Provoz se nezastaví. Mějte prostor na další zakázku.</h2>
-            <p class="mt-3" style="color:#a1a1a6">Nabídku si v&nbsp;klidu projděte a&nbsp;rozhodněte, jestli dává vašemu podnikání smysl. Orientační částky zjistíte zdarma za 2&nbsp;minuty, bez závazku.</p>
-            <ul class="checklist mt-4" style="color:#f5f5f7">
-              <li><span class="ico" style="background:#2c2c2e;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Pro OSVČ a firmy s IČO</li>
-              <li><span class="ico" style="background:#2c2c2e;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Technik přijede k vám</li>
-              <li><span class="ico" style="background:#2c2c2e;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Výkup, poplatek i cena odkupu předem</li>
-              <li><span class="ico" style="background:#2c2c2e;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Auto dál jezdí za zakázkami</li>
-            </ul>
-            <div class="cluster mt-4" style="align-items:center;gap:var(--sp-4) var(--sp-5)">
-              <a class="btn btn-white btn-lg" href="zadost.html">Zjistit své možnosti</a>
-              <a class="link-arrow" style="color:#f5f5f7" href="tel:+420800123456">Zavolat 800 123 456</a>
-            </div>
-            <p class="mt-3 mb-0" style="font-size:var(--fs-sm);color:#a1a1a6">Žádné skryté kroky · služba je určena výhradně podnikatelům a firmám — spotřebitelům ji neposkytujeme · CashAuto a.s. · působíme po celé ČR</p>
+      <div class="cta-dyn" data-reveal="scale">
+        <div>
+          <h2>Provoz se nezastaví. Mějte prostor na další zakázku.</h2>
+          <p>Nabídku si v&nbsp;klidu projděte a&nbsp;rozhodněte, jestli dává vašemu podnikání smysl. Orientační částky zjistíte zdarma za 2&nbsp;minuty, bez závazku.</p>
+          <ul class="checklist">
+            <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Pro OSVČ a firmy s IČO</li>
+            <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Technik přijede k vám</li>
+            <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Výkup, poplatek i cena odkupu předem</li>
+            <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>Auto dál jezdí za zakázkami</li>
+          </ul>
+          <div class="cta-actions">
+            <a class="btn btn-primary btn-lg" href="zadost.html">Zjistit své možnosti</a>
+            <a class="cta-phone" href="tel:+420800123456" aria-label="Zavolat 800 123 456">800 123 456</a>
           </div>
-          <div>
-            <img class="cta-photo" src="assets/img/cta-family.webp" alt="Podnikatel u firemního vozu na konci pracovního dne, v ruce klíčky" width="860" height="645" loading="lazy" />
-          </div>
+          <p class="cta-fine">Žádné skryté kroky · služba je určena výhradně podnikatelům a firmám — spotřebitelům ji neposkytujeme · CashAuto a.s. · působíme po celé ČR</p>
+        </div>
+        <div class="slashes">
+          <span class="slash slash-a" aria-hidden="true"></span>
+          <span class="slash slash-b"><img class="cta-photo" src="assets/img/cta-auto.webp" srcset="assets/img/cta-auto-640.webp 640w, assets/img/cta-auto.webp 1200w" sizes="(min-width: 861px) 46vw, 92vw" alt="Řemeslník v reflexní vestě zavírá zadní dveře bílé dodávky na stavbě na konci pracovního dne" width="1200" height="896" loading="lazy" decoding="async" /></span>
         </div>
       </div>
     </div>

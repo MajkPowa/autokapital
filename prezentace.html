@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600)</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600);["pageswap","pagereveal"].forEach(function(n){addEventListener(n,function(e){var t=e.viewTransition;if(t){t.ready.catch(function(){});t.finished.catch(function(){})}})})</script>
   <title>CashAuto — Prezentace projektu</title>
   <meta name="description" content="Prezentace CashAuto pro podnikatele: provozní kapitál z hodnoty firemního vozu, stroje či tahače díky dočasnému výkupu se zpětným odkupem. Jen pro OSVČ a firmy." />
   <link rel="canonical" href="https://cashauto.cz/prezentace.html" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#007A52" />
+  <meta name="theme-color" content="#F4F1EA" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CashAuto" />
   <meta property="og:locale" content="cs_CZ" />
@@ -19,28 +19,28 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/design-system.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 3h6l-7 26H0L7 3Z' fill='%23007A52'/%3E%3Cpath d='M16 3h6l-7 26H9L16 3Z' fill='%23007A52'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Inter:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/signal.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%230F1512'/%3E%3Cpath d='M11.6 8h5.200l-4.800 18H6.800z' fill='%23D4F23A'/%3E%3Cpath d='M21.500 8h5.200l-4.800 18h-5.200z' fill='%23D4F23A'/%3E%3C/svg%3E" />
   <style>
-    /* Page-local helpers (colors via CSS vars only) */
+    /* Lokální pomůcky prezentace — barvy jen přes proměnné systému v6 */
     .deck-lead { max-width: 760px; }
-    .deck-headline { font-size: var(--fs-4xl); line-height: 1.06; }
+    .deck-headline { font-size: clamp(2rem, 7.4vw, 3.75rem); line-height: 1.04; }
     .deck-meta-sm { font-size: var(--fs-sm); }
     .deck-meta-xs { font-size: var(--fs-xs); }
-    .deck-eyebrow-light { color: var(--green-bright); }
-    .deck-pill-light { background: rgba(255,255,255,0.12); color: var(--white); }
-    .deck-divider-soft { border-top: 1px solid rgba(255,255,255,0.18); padding-top: var(--sp-3); }
+    .deck-eyebrow-light { color: var(--dyn); }
+    .deck-pill-light { background: var(--ink-3); color: var(--paper); }
+    .deck-divider-soft { border-top: 1px solid var(--line-ink); padding-top: var(--sp-3); }
     .deck-tile-li { align-items: flex-start; flex-wrap: nowrap; }
-    .deck-tile-ico { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; }
-    .deck-cta-grad { background: linear-gradient(135deg, var(--green-050), var(--green-tint)); }
+    .deck-tile-ico { flex: none; width: 26px; height: 26px; border-radius: 7px; background: var(--dyn); color: var(--ink); display: grid; place-items: center; }
+    .deck-cta-grad { background: var(--dyn); }
     .deck-note-link { display: inline-block; margin-top: 8px; font-weight: 700; }
     .deck-segment-flag { font-weight: 700; }
-    .deck-note-pale { font-size: var(--fs-xs); color: #A9D3C2; }
+    .deck-note-pale { font-size: var(--fs-xs); color: var(--muted-ink); }
     .deck-grid-gap-5 { gap: var(--sp-5); }
     .deck-grid-gap-6 { gap: var(--sp-6); align-items: center; }
-    .deck-card-bordered { border: 2px solid var(--green); }
-    .deck-card-pale { background: var(--green-050); }
+    .deck-card-bordered { box-shadow: inset 0 0 0 2px var(--ink); }
+    .deck-card-pale { background: var(--paper-2); }
     .deck-notice-top { align-items: flex-start; }
   </style>
 </head>
@@ -48,7 +48,7 @@
   <div id="site-header"></div>
 
   <!-- ===================== INTRO ===================== -->
-  <section class="section full-bleed-bg">
+  <section class="section dyn full-bleed-bg">
     <div class="container">
       <div class="section-head center anim-hero">
         <span class="eyebrow">Prezentace projektu</span>

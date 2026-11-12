@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600)</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600);["pageswap","pagereveal"].forEach(function(n){addEventListener(n,function(e){var t=e.viewTransition;if(t){t.ready.catch(function(){});t.finished.catch(function(){})}})})</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AgroCash — Peníze ze stroje, sezóna jede dál | CashAuto</title>
   <meta name="description" content="Dočasný výkup traktoru, kombajnu či jiné techniky se zpětným odkupem pro farmy s IČO. Výkupní cena, poplatek i cena odkupu předem v Kč. Stroj dál pracuje." />
   <link rel="canonical" href="https://cashauto.cz/agrocash.html" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#007A52" />
+  <meta name="theme-color" content="#F4F1EA" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CashAuto" />
   <meta property="og:locale" content="cs_CZ" />
@@ -21,10 +21,10 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="assets/img/hero-agro.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/design-system.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 3h6l-7 26H0L7 3Z' fill='%23007A52'/%3E%3Cpath d='M16 3h6l-7 26H9L16 3Z' fill='%23007A52'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Inter:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/img/hero-agro-800.webp" imagesrcset="assets/img/hero-agro-800.webp 800w, assets/img/hero-agro.webp 1600w" imagesizes="(min-width: 960px) 44vw, 90vw" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/css/signal.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%230F1512'/%3E%3Cpath d='M11.6 8h5.200l-4.800 18H6.800z' fill='%23FFC738'/%3E%3Cpath d='M21.500 8h5.200l-4.800 18h-5.200z' fill='%23FFC738'/%3E%3C/svg%3E" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
     {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CashAuto","item":"https://cashauto.cz/"},{"@type":"ListItem","position":2,"name":"AgroCash","item":"https://cashauto.cz/agrocash.html"}]},
@@ -46,90 +46,94 @@
   <main id="main">
 
   <!-- ===================== 01 HERO ===================== -->
-  <section class="hero hero-v4 dark" id="hero">
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <ol class="breadcrumbs"><li><a href="index.html">CashAuto</a></li><li aria-current="page">AgroCash</li></ol>
+        <div class="brand-lockup"><span class="brand-word xl"><span class="bw-ink">Agro</span><span class="bw-cash">Cash</span></span><span class="lk-of">produktová řada CashAuto</span></div>
+        <p class="eyebrow">Výhradně pro farmy a agro-podniky s IČO</p>
+        <h1 class="display long"><span class="hl"><span>Peníze ze stroje.</span></span> <span class="hl hl-dyn"><span>Sezóna jede dál.</span></span></h1>
+        <p class="lead">Mějte víc klidu na sezónu a&nbsp;jasný plán výdajů. Traktor, kombajn nebo manipulátor od vás dočasně vykoupíme, stroj dál pracuje podle smlouvy. Poplatky i&nbsp;podmínky zpětného odkupu po sklizni znáte předem.</p>
+        <div class="hero-actions"><a class="btn btn-primary btn-lg" href="zadost.html?typ=agro">Zjistit nabídku pro stroj</a><a class="link-arrow" href="#jak-to-funguje">Jak to funguje na statku</a></div>
+        <p class="hero-note">Nezávazná žádost zdarma · pro farmy a&nbsp;agro-podniky s&nbsp;IČO · technik přijede na statek · Raději zavolat? <a href="tel:+420800123456">800 123 456</a></p>
+      </div>
+      <div class="hero-visual">
+        <div class="slashes">
+          <span class="slash slash-a" aria-hidden="true"></span>
+          <span class="slash slash-b"><img src="assets/img/hero-agro.webp" srcset="assets/img/hero-agro-800.webp 800w, assets/img/hero-agro.webp 1600w" sizes="(min-width: 960px) 44vw, 90vw" alt="Zemědělec v hořčicově žluté bundě stojí u traktoru na okraji zralého ječmenného pole při východu slunce" width="1600" height="1195" fetchpriority="high" decoding="async" style="object-position:86% 50%" /></span>
+        </div>
+        <div class="hero-chips" aria-hidden="true"><span class="tagchip"><span>Stroj pracuje dál</span></span><span class="tagchip"><span>Odkup po sklizni</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KALKULAČKA (dynamický pás) ===================== -->
+  <section class="calc-band" id="kalkulacka" aria-labelledby="calcTitle">
+    <div class="container calc-grid">
+      <div class="calc-in">
+        <p class="eyebrow">Orientační výpočet · zemědělská technika · nezávazně</p>
+        <h2 id="calcTitle">Tři čísla před sezónou</h2>
+        <div class="calc-field">
+          <label class="calc-label" for="heroRange">Odhad hodnoty stroje</label>
+          <div class="calc-value odo" id="heroValue">1&nbsp;500&nbsp;000&nbsp;Kč</div>
+          <input type="range" class="range" id="heroRange" min="300000" max="6000000" step="50000" value="1500000" />
+          <div class="range-ends" aria-hidden="true"><span>300&nbsp;000&nbsp;Kč</span><span>6&nbsp;000&nbsp;000&nbsp;Kč</span></div>
+        </div>
+        <div class="calc-field niche-ctl"><label for="heroHarvest">Kdy čekáte tržby nebo dotace?</label><select class="select" id="heroHarvest" data-niche-ctl="heroTerm" data-map="months" aria-describedby="nicheHint"></select><span class="hint-line" id="nicheHint" aria-live="polite"></span></div>
+        <div class="calc-field">
+          <span class="calc-label" id="termLabel">Doba rezervace (podle zvoleného měsíce, lze upravit)</span>
+          <div class="segmented" role="radiogroup" aria-labelledby="termLabel" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="false" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="6" />
+        </div>
+      </div>
+      <div class="calc-out">
+        <div aria-live="polite" aria-atomic="true">
+          <span class="calc-label">Výkupní nabídka</span>
+          <div class="calc-amount odo" id="heroAmount">975&nbsp;000&nbsp;Kč</div>
+          <div class="calc-rows">
+            <div class="calc-row"><span class="calc-label">Měsíční rezervační poplatek</span><span class="calc-num odo" id="heroFee">45&nbsp;000&nbsp;Kč&nbsp;/&nbsp;měsíc</span></div>
+            <div class="calc-row"><span class="calc-label">Cena zpětného odkupu</span><span class="calc-num odo" id="heroBuyback">975&nbsp;000&nbsp;Kč</span></div>
+            <div class="calc-row"><span class="calc-label">Poplatek za zvolenou dobu celkem</span><span class="calc-num odo" id="heroPeriod">270&nbsp;000&nbsp;Kč za 6&nbsp;měsíců</span></div>
+          </div>
+        </div>
+        <a class="btn btn-primary btn-block btn-lg" href="zadost.html?typ=agro">Upřesnit nabídku stroje</a>
+        <p class="cost-warning">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
+        <p class="calc-foot"><a href="#srovnani-parametru">Porovnat výkup a poplatky všech tří řad</a> · Orientačně: výkup 65&nbsp;% a&nbsp;poplatek 3&nbsp;% z&nbsp;odhadní hodnoty stroje · vše v&nbsp;Kč před podpisem</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DŮVĚRA ===================== -->
+  <section class="section tight" id="duvera" aria-label="Proč to funguje">
     <div class="container">
-      <div class="hero-copy anim-hero">
-        <ol class="breadcrumbs"><li><a href="index.html">CashAuto</a></li><li aria-current="page">AgroCash</li></ol><div class="brand-lockup"><span class="brand-word xl"><span class="bw-ink">Agro</span><span class="bw-cash">Cash</span></span><span class="lk-of">produktová řada CashAuto</span></div>
-        <span class="eyebrow mt-4">Výhradně pro farmy a agro-podniky s IČO</span>
-        <h1 class="display-headline mt-3"><span class="line-dark">Peníze ze stroje.</span><span class="line-accent">Sezóna jede dál.</span></h1>
-        <p class="lead mt-4">Mějte víc klidu na sezónu a&nbsp;jasný plán výdajů. Traktor, kombajn nebo manipulátor od vás dočasně vykoupíme, stroj dál pracuje podle smlouvy. Poplatky i&nbsp;podmínky zpětného odkupu po sklizni znáte předem.</p>
-        <div class="hero-actions mt-6"><a class="btn btn-primary btn-lg" href="zadost.html?typ=agro">Zjistit nabídku pro stroj</a><a class="link-arrow" href="#jak-to-funguje">Jak to funguje na statku</a></div>
-        <p class="muted mt-3" style="font-size:var(--fs-sm)">Nezávazná žádost zdarma · pro farmy a&nbsp;agro-podniky s&nbsp;IČO · technik přijede na statek · Raději zavolat? <a href="tel:+420800123456" style="font-weight:600">800 123 456</a></p>
-        
-      </div>
-      <div class="hero-tiles mt-7">
-        <div class="tile-photo">
-          <img src="assets/img/hero-agro.webp" alt="Farmář s tabletem u zeleného traktoru na okraji pole při východu slunce" width="1376" height="768" fetchpriority="high" />
-          <div class="tile-caption" aria-hidden="true"><span class="pill">Stroj pracuje dál</span><span class="pill">Odkup po sklizni</span></div>
-        </div>
-        <div class="calc-card anim-float" id="kalkulacka">
-          <div class="between">
-            <span class="calc-label">Orientační výpočet · zemědělská technika</span>
-            <span class="pill pill-accent"><span class="dot"></span> nezávazně</span>
-          </div>
-          <div class="mt-4">
-            <span class="calc-label">Odhad hodnoty stroje</span>
-            <div class="mono" style="font-size:var(--fs-xl);font-weight:700;color:var(--ink);letter-spacing:-0.03em" id="heroValue">1&nbsp;500&nbsp;000&nbsp;Kč</div>
-            <input type="range" class="range" id="heroRange" min="300000" max="6000000" step="50000" value="1500000" aria-label="Odhad hodnoty stroje" />
-            <div class="range-ends"><span>300&nbsp;000&nbsp;Kč</span><span>6&nbsp;000&nbsp;000&nbsp;Kč</span></div>
-          </div>
-          <hr class="divider" />
-          <div class="between" style="align-items:flex-end">
-            <div>
-              <span class="calc-label">Výkupní nabídka</span>
-              <div class="calc-amount mono" id="heroAmount">975&nbsp;000&nbsp;Kč</div>
-            </div>
-            <div style="text-align:right">
-              <span class="calc-label">Měsíční rezervační poplatek</span>
-              <div class="mono" style="font-weight:700;color:var(--ink)" id="heroFee">45&nbsp;000&nbsp;Kč&nbsp;/&nbsp;měsíc</div>
-            </div>
-          </div>
-          <div class="between mt-3" style="font-size:var(--fs-sm)">
-            <span class="muted">Cena zpětného odkupu</span>
-            <span class="mono" style="font-weight:600;color:var(--green)" id="heroBuyback">975&nbsp;000&nbsp;Kč</span>
-          </div>
-          <div class="niche-ctl mt-4"><label for="heroHarvest">Kdy čekáte tržby nebo dotace?</label><select class="select" id="heroHarvest" data-niche-ctl="heroTerm" data-map="months" aria-describedby="nicheHint"></select></div><span class="hint-line" id="nicheHint" aria-live="polite" style="display:block;font-size:var(--fs-xs);font-weight:500;color:var(--muted);margin-top:6px"></span>
-          <div class="mt-4">
-            <span class="calc-label" style="display:block;margin-bottom:8px">Doba rezervace (podle zvoleného měsíce, lze upravit)</span>
-            <div class="segmented" role="radiogroup" aria-label="Doba rezervace" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="false" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="6" />
-          </div>
-          <div class="between mt-3" style="font-size:var(--fs-sm)">
-            <span class="muted">Poplatek za zvolenou dobu celkem</span>
-            <span class="mono" style="font-weight:600;color:var(--ink)" id="heroPeriod">270&nbsp;000&nbsp;Kč za 6&nbsp;měsíců</span>
-          </div>
-          <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html?typ=agro">Upřesnit nabídku stroje</a>
-          <p class="muted mb-0 mt-3" style="font-size:var(--fs-sm);text-align:center"><a href="#srovnani-parametru">Porovnat výkup a poplatky všech tří řad</a></p>
-          <p class="cost-warning mb-0 mt-3" style="font-size:var(--fs-sm)">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
-          <p class="muted mb-0 mt-2" style="font-size:var(--fs-xs);text-align:center">Orientačně: výkup 65&nbsp;% a&nbsp;poplatek 3&nbsp;% z&nbsp;odhadní hodnoty stroje · vše v&nbsp;Kč před podpisem</p>
-        </div>
-      </div>
-      <div class="trust-strip mt-7" data-reveal>
+      <div class="trust-strip" data-reveal-stagger>
         <div class="ts-item">
-          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="visit" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M5 10.4 12 5l7 5.4V19H5z"/><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></span>
           <span class="ts-label"><strong>Technik přijede na statek</strong>prohlídka stroje u vás, nikam nejezdíte</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="shield" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></span>
           <span class="ts-label"><strong>Vše víte předem</strong>výkup · poplatek · cena odkupu</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15V9h6l2-5h4v11"/><path d="M10 9V4"/><circle cx="7" cy="17" r="3.5"/><circle cx="18" cy="18" r="2.5"/><path d="M10.5 17h5"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="tractor" viewBox="0 0 24 24" aria-hidden="true"><circle class="a" cx="7" cy="17" r="3.5"/><path d="M4 13.5V9h6l2-5h4v10.5"/><path d="M10 9V4"/><circle cx="7" cy="17" r="3.5"/><circle cx="18" cy="18" r="2.5"/><path d="M10.5 17h5"/></svg></span>
           <span class="ts-label"><strong>Stroj pracuje dál</strong>setí, postřiky i sklizeň podle smlouvy</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="clock" viewBox="0 0 24 24" aria-hidden="true"><circle class="a" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
           <span class="ts-label"><strong>Rezervace až 12 měsíců</strong>odkup po sklizni nebo po výplatě dotací</span>
         </div>
       </div>
     </div>
   </section>
 
+  <div class="marquee" data-marquee="Provoz se nezastaví|Peníze ze stroje|Sezóna jede dál|Odkup po sklizni" aria-hidden="true"></div>
+
   <div id="srovnani-parametru" data-pricing-comparison>
     <noscript><p class="container">Orientační parametry: CashAuto výkup 70 % / měsíční poplatek 4 %; AgroCash 65 % / 3 %; TechCash 65 % / 3,5 %. Obě procenta se počítají z odhadní hodnoty majetku.</p></noscript>
   </div>
 
   <!-- ===================== 02 SEZÓNNÍ MEZERA ===================== -->
-  <section class="section" id="sezona">
+  <section class="section alt" id="sezona">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Proč AgroCash</span>
@@ -148,7 +152,7 @@
 
 
   <!-- ===================== STORY (niche) ===================== -->
-  <section class="section story-strip" id="pribeh">
+  <section class="section dyn story-strip" id="pribeh">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Jak to vypadá na statku</span>
@@ -156,17 +160,17 @@
       </div>
       <div class="grid grid-3 mobile-carousel" data-reveal-stagger>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Osivo a hnojiva</span></span><img src="assets/img/agro-story-osivo.webp" alt="Farmářovy ruce kontrolují osivo pšenice v pytli ve stodole" width="720" height="1280" loading="lazy" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Osivo a hnojiva</span></span><img src="assets/img/agro-story-osivo.webp" srcset="assets/img/agro-story-osivo-540.webp 540w, assets/img/agro-story-osivo.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Ruce zemědělce nabírají osivo pšenice z pytle ve stodole" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Dodavatel chce zaplatit teď</h3>
           <p class="mb-0">Peníze z dočasného výkupu traktoru pokryjí nákup před setím — bez prodeje stroje, který vám sezónu odpracuje.</p>
         </div>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Setí nečeká</span></span><img src="assets/img/agro-story-seti.webp" alt="Zelený traktor se secím strojem seje na jarním poli při nízkém slunci" width="720" height="1280" loading="lazy" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Setí nečeká</span></span><img src="assets/img/agro-story-seti.webp" srcset="assets/img/agro-story-seti-540.webp 540w, assets/img/agro-story-seti.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Traktor se secím strojem na jarním poli, za ním zlatě nasvícený prach" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Traktor dál jezdí po vašich polích</h3>
           <p class="mb-0">Technik přijede na statek, prohlídka trvá hodinu a stroj se ani nezastaví. Provozovatelem zůstáváte vy.</p>
         </div>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">U kuchyňského stolu</span></span><img src="assets/img/agro-story-stul.webp" alt="Farmář u kuchyňského stolu s notebookem a fakturami plánuje sezónu" width="720" height="1280" loading="lazy" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">U kuchyňského stolu</span></span><img src="assets/img/agro-story-stul.webp" srcset="assets/img/agro-story-stul-540.webp 540w, assets/img/agro-story-stul.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Zemědělec u stolu v kanceláři statku s notebookem a fakturami plánuje sezónu" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Nabídka za 2 minuty, odkup po sklizni</h3>
           <p class="mb-0">Tři čísla v Kč hned online. Dobu rezervace nastavíte podle sklizně nebo výplaty dotací — odkup dřív je bez penalizace.</p>
         </div>
@@ -174,19 +178,19 @@
     </div>
   </section>
   <!-- ===================== 03 NA CO PENÍZE ===================== -->
-  <section class="section alt" id="pouziti">
+  <section class="section dark" id="pouziti">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Na co farmy peníze používají</span>
         <h2 class="mt-3">Peníze na provoz hospodářství — když je potřebujete</h2>
       </div>
       <div class="usecase-grid mobile-carousel" data-reveal-stagger>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22V12"/><path d="M12 12c-4 0-7-3-7-7 4 0 7 3 7 7z"/><path d="M12 14c4 0 7-3 7-7-4 0-7 3-7 7z"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Osivo a hnojiva</h3><p>Nákup před setím, kdy dodavatelé chtějí platbu předem nebo skonto za rychlou úhradu.</p><span class="uc-amt">typicky 200 000 – 800 000 Kč</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/><path d="M4 20h12M16 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V10l-3-3"/><path d="M7 8h6"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Nafta na sezónu</h3><p>Zálohy na palivo pro setí, sklizeň a dopravu — nejvyšší provozní položka roku.</p><span class="uc-amt">typicky 150 000 – 500 000 Kč</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Náhradní díly a servis</h3><p>Oprava kombajnu týden před sklizní nesnese odklad. Díly a servis se platí hned.</p><span class="uc-amt">typicky 100 000 – 400 000 Kč</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6M18 20a6 6 0 0 0-3-5.2"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Mzdy sezónních pracovníků</h3><p>Brigádníci a strojníci na sklizeň chtějí výplatu na konci měsíce, ne po prodeji úrody.</p><span class="uc-amt">typicky 100 000 – 300 000 Kč</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Překlenutí do výplaty dotací</h3><p>Dotační platby chodí s odstupem. Provoz mezitím běží — a účty se platí teď.</p><span class="uc-amt">podle výše očekávané platby</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9h10l1.5 11h-13z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg></span><div><h3 class="h4" style="font-size:var(--fs-md);margin-bottom:4px">Krmivo a veterinární péče</h3><p>Živočišná výroba nečeká — krmné směsi, léčiva a služby veterináře jdou průběžně.</p><span class="uc-amt">typicky 80 000 – 250 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="seed" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M12 12c-4 0-7-3-7-7 4 0 7 3 7 7z"/><path d="M12 22V12"/><path d="M12 12c-4 0-7-3-7-7 4 0 7 3 7 7z"/><path d="M12 14c4 0 7-3 7-7-4 0-7 3-7 7z"/></svg></span><div><h3 class="h4">Osivo a hnojiva</h3><p>Nákup před setím, kdy dodavatelé chtějí platbu předem nebo skonto za rychlou úhradu.</p><span class="uc-amt">typicky 200 000 – 800 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="fuel" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M4 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14z"/><path d="M4 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/><path d="M3 20h14M16 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V10l-3-3"/><path d="M7 8h6"/></svg></span><div><h3 class="h4">Nafta na sezónu</h3><p>Zálohy na palivo pro setí, sklizeň a dopravu — nejvyšší provozní položka roku.</p><span class="uc-amt">typicky 150 000 – 500 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="wrench" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></svg></span><div><h3 class="h4">Náhradní díly a servis</h3><p>Oprava kombajnu týden před sklizní nesnese odklad. Díly a servis se platí hned.</p><span class="uc-amt">typicky 100 000 – 400 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="users" viewBox="0 0 24 24" aria-hidden="true"><circle class="a" cx="9" cy="8" r="3.2"/><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6M18 20a6 6 0 0 0-3-5.2"/></svg></span><div><h3 class="h4">Mzdy sezónních pracovníků</h3><p>Brigádníci a strojníci na sklizeň chtějí výplatu na konci měsíce, ne po prodeji úrody.</p><span class="uc-amt">typicky 100 000 – 300 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="calendar" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4H3z"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><h3 class="h4">Překlenutí do výplaty dotací</h3><p>Dotační platby chodí s odstupem. Provoz mezitím běží — a účty se platí teď.</p><span class="uc-amt">podle výše očekávané platby</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="bag" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M7 9h10l1.5 11h-13z"/><path d="M7 9h10l1.5 11h-13z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg></span><div><h3 class="h4">Krmivo a veterinární péče</h3><p>Živočišná výroba nečeká — krmné směsi, léčiva a služby veterináře jdou průběžně.</p><span class="uc-amt">typicky 80 000 – 250 000 Kč</span></div></div>
       </div>
       <p class="muted text-center mt-4 mb-0" style="font-size:var(--fs-xs)">Orientační rozpětí podle typu provozu. Peníze z&nbsp;výkupu použijete pro své hospodaření podle vlastního uvážení — účel na výkupní cenu nemá vliv.</p>
     </div>
@@ -210,7 +214,7 @@
         <div class="machine"><span class="m-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="12" width="26" height="18" rx="3"/><circle cx="21" cy="21" r="6"/><circle cx="14" cy="36" r="4"/><circle cx="30" cy="36" r="4"/><path d="M34 20h8"/></svg></span><strong>Lisy a balíkovače</strong><span>svinovací i hranaté</span></div>
         <div class="machine"><span class="m-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16h30l6 6v8H6z"/><circle cx="14" cy="35" r="4"/><circle cx="32" cy="35" r="4"/><path d="M2 30h4"/></svg></span><strong>Návěsy a přívěsy</strong><span>sklápěcí, cisterny, překládací</span></div>
       </div>
-      <div class="notice mt-5" style="align-items:flex-start" data-reveal>
+      <div class="notice mt-5" data-reveal>
         <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg></span>
         <div><strong>Stroje pořízené s dotací.</strong> Dotační tituly často vážou udržitelnost majetku na několik let. Podmínky svého titulu prosím ověřte u poskytovatele dotace ještě před žádostí — v některých případech dočasný výkup není možný a raději vám to řekneme hned.</div>
       </div>
@@ -218,37 +222,40 @@
   </section>
 
   <!-- ===================== 05 JAK TO FUNGUJE NA STATKU ===================== -->
-  <section class="section dark" id="jak-to-funguje">
+  <section class="section dyn" id="jak-to-funguje">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Jak to funguje na statku</span>
         <h2 class="mt-3">Tři kroky. Stroj neopustí vaše pole.</h2>
       </div>
-      <div class="big-steps mobile-carousel" data-reveal-stagger>
+      <div class="big-steps" data-reveal-stagger>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">2 minuty</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><rect x="18" y="6" width="28" height="52" rx="6"/><path d="M28 12h8"/><rect class="f m" x="24" y="21" width="16" height="8" rx="2"/><path class="m" style="--pd:420ms" d="M24 37h16"/><path class="m" style="--pd:560ms" d="M24 45h10"/></svg></span>
+          <span class="bs-time">2 minuty</span>
           <div class="big-num" aria-hidden="true">1</div>
           <h3>Zjistíte svá tři čísla</h3>
           <p>Zadáte IČO, typ stroje, rok výroby a motohodiny. Hned vidíte výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu — v Kč.</p>
         </div>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">do 3 dnů</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><path d="M10 38V28h14l4-12h10v24"/><path d="M24 28V16"/><path d="M26 46h12"/><g class="roll"><circle cx="17" cy="46" r="9"/><path d="M17 40v12M11 46h12"/></g><g class="roll"><circle cx="44" cy="49" r="6"/><path d="M44 45v8M40 49h8"/></g><g class="drop" style="--pd:520ms"><path class="f" d="M47 5c-5 0-9 3.800-9 8.600C38 19.800 47 27 47 27s9-7.200 9-13.400C56 8.800 52 5 47 5z"/><path d="M47 5c-5 0-9 3.800-9 8.600C38 19.800 47 27 47 27s9-7.200 9-13.400C56 8.800 52 5 47 5z"/><circle cx="47" cy="13.500" r="2.600"/></g></svg></span>
+          <span class="bs-time">do 3 dnů</span>
           <div class="big-num" aria-hidden="true">2</div>
           <h3>Technik přijede na statek</h3>
           <p>Zkontroluje motohodiny, servisní knihu, hydrauliku, pneumatiky či pásy a doklady. Stroj zůstává tam, kde pracuje.</p>
         </div>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">do 24 hodin</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><path d="M12 6h24l10 10v42H12z"/><path d="M36 6v10h10"/><path d="M19 26h18M19 33h11"/><path class="m" style="--pd:420ms" d="M19 47c3-6 5-6 7 0s4 6 6 0"/><g class="pop" style="--pd:720ms"><circle class="f" cx="46" cy="45" r="11"/><circle cx="46" cy="45" r="11"/><path d="M41 45l3.500 3.500 6.500-7"/></g></svg></span>
+          <span class="bs-time">do 24 hodin</span>
           <div class="big-num" aria-hidden="true">3</div>
           <h3>Podpis a peníze na účet</h3>
           <p>Kupní smlouva, předávací protokol a smlouva o užívání. U registrovaných strojů zařídíme převod pojištění. Odkup zpět kdykoliv do konce rezervace.</p>
         </div>
       </div>
-      <div class="grid grid-2 mt-7" style="align-items:center;gap:var(--sp-6)" data-reveal>
-        <div class="photo-frame"><img src="assets/img/agro-machines.webp" alt="Sklízecí mlátička při sklizni pšenice, vedle čeká traktor s návěsem" width="1200" height="896" loading="lazy" /></div>
+      <div class="grid grid-2 split mt-7" data-reveal>
+        <div class="photo-frame"><img src="assets/img/agro-machines.webp" srcset="assets/img/agro-machines-640.webp 640w, assets/img/agro-machines.webp 1200w" sizes="(min-width: 861px) 46vw, 92vw" alt="Sklízecí mlátička při sklizni pšenice, vedle jede traktor s vlekem" width="1200" height="896" loading="lazy" decoding="async" /></div>
         <div>
-          <h3 style="font-size:var(--fs-xl)">Co technik kontroluje</h3>
-          <ul class="doc-list mt-4" style="grid-template-columns:1fr">
+          <h3 class="h-xl">Co technik kontroluje</h3>
+          <ul class="doc-list single mt-4">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Motohodiny a servisní historie<small>servisní kniha, poslední velký servis, výměny olejů</small></span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Technický stav<small>motor, převodovka, hydraulika, pneumatiky nebo pásy, elektronika</small></span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Doklady o vlastnictví<small>technický průkaz u registrovaných strojů, jinak kupní smlouva či faktura o pořízení</small></span></li>
@@ -257,10 +264,10 @@
         </div>
       </div>
       <div class="stat-band mt-7" data-reveal>
-        <div class="sb"><div class="num">65 %</div><div class="cap">orientační výkupní cena z odhadní hodnoty stroje</div></div>
-        <div class="sb"><div class="num">3 %</div><div class="cap">měsíční rezervační poplatek z odhadní hodnoty (v Kč předem)</div></div>
-        <div class="sb"><div class="num">1–12 měs.</div><div class="cap">doba rezervace zpětného odkupu podle vaší sklizně</div></div>
-        <div class="sb"><div class="num">do 24 h</div><div class="cap">výplata výkupní ceny od podpisu smluv (zpravidla)</div></div>
+        <div class="sb"><div class="num odo">65 %</div><div class="cap">orientační výkupní cena z odhadní hodnoty stroje</div></div>
+        <div class="sb"><div class="num odo">3 %</div><div class="cap">měsíční rezervační poplatek z odhadní hodnoty (v Kč předem)</div></div>
+        <div class="sb"><div class="num odo">1–12 měs.</div><div class="cap">doba rezervace zpětného odkupu podle vaší sklizně</div></div>
+        <div class="sb"><div class="num odo">do 24 h</div><div class="cap">výplata výkupní ceny od podpisu smluv (zpravidla)</div></div>
       </div>
       <p class="cost-warning mt-5 mb-0">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
     </div>
@@ -273,7 +280,7 @@
         <span class="eyebrow">Na rovinu</span>
         <h2 class="mt-3">Co se ptají zemědělci, než se ozvou</h2>
       </div>
-      <div class="objections mobile-carousel" data-reveal-stagger>
+      <div class="objections cols-2 mobile-carousel" data-reveal-stagger>
         <div class="obj">
           <div class="obj-q"><span class="q-ico" aria-hidden="true">?</span>„Na jaře nemám z čeho platit měsíční poplatek.“</div>
           <div class="obj-a"><span class="a-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span>Poplatek se platí každý měsíc rezervace — i&nbsp;na jaře. Jeho výši v&nbsp;Kč znáte předem: počítejte s&nbsp;ním v&nbsp;rozpočtu stejně jako s&nbsp;naftou a&nbsp;dobu rezervace nastavte tak, aby odkup vyšel po sklizni nebo po výplatě dotací. Pokud by poplatek pro vaši farmu nebyl únosný, řekneme vám to na rovinu.</span></div>
@@ -325,7 +332,7 @@
       </div>
       <div class="post-grid mt-6 mobile-carousel" data-related="" data-reveal>
         <a class="card hover post-card" href="blog/agrocash-penize-ze-zemedelske-techniky-pred-sezonou.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/blog-agro-sezona.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/blog-agro-sezona.webp" srcset="assets/img/blog-agro-sezona-640.webp 640w, assets/img/blog-agro-sezona.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">AgroCash</span>
             <h3>Peníze ze zemědělské techniky před sezónou: jak AgroCash funguje pro farmy</h3>
@@ -334,7 +341,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="blog/docasny-vykup-vozu-jak-to-funguje.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/story-technik.webp" alt="" width="720" height="1280" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/story-technik.webp" srcset="assets/img/story-technik-540.webp 540w, assets/img/story-technik.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" width="900" height="1205" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Průvodce</span>
             <h3>Dočasný výkup vozu se zpětným odkupem: jak to funguje krok za krokem</h3>
@@ -343,7 +350,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="blog/kolik-stoji-docasny-vykup-rezervacni-poplatek.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/blog-ucetni.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="assets/img/blog-ucetni.webp" srcset="assets/img/blog-ucetni-640.webp 640w, assets/img/blog-ucetni.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Ceny &amp; poplatky</span>
             <h3>Kolik stojí dočasný výkup? Rezervační poplatek srozumitelně (příklad v Kč)</h3>

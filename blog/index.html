@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600)</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600);["pageswap","pagereveal"].forEach(function(n){addEventListener(n,function(e){var t=e.viewTransition;if(t){t.ready.catch(function(){});t.finished.catch(function(){})}})})</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rádce pro podnikatele — cash flow, ceny, oceňování | CashAuto</title>
   <meta name="description" content="Články pro OSVČ, farmy a dopravce: jak funguje dočasný výkup vozu se zpětným odkupem, kolik stojí rezervační poplatek, cash flow, oceňování vozů a účetnictví." />
   <link rel="canonical" href="https://cashauto.cz/blog/" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#007A52" />
+  <meta name="theme-color" content="#F4F1EA" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CashAuto" />
   <meta property="og:locale" content="cs_CZ" />
@@ -21,9 +21,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/design-system.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 3h6l-7 26H0L7 3Z' fill='%23007A52'/%3E%3Cpath d='M16 3h6l-7 26H9L16 3Z' fill='%23007A52'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Inter:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/signal.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%230F1512'/%3E%3Cpath d='M11.6 8h5.200l-4.800 18H6.800z' fill='%23D4F23A'/%3E%3Cpath d='M21.500 8h5.200l-4.800 18h-5.200z' fill='%23D4F23A'/%3E%3C/svg%3E" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
     {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CashAuto","item":"https://cashauto.cz/"},{"@type":"ListItem","position":2,"name":"Rádce","item":"https://cashauto.cz/blog/"}]},
@@ -35,7 +35,7 @@
   <div id="site-header"></div>
   <main id="main">
 
-  <section class="article-hero">
+  <section class="article-hero dyn">
     <div class="container">
       <ol class="breadcrumbs"><li><a href="/">CashAuto</a></li><li aria-current="page">Rádce</li></ol>
       <span class="eyebrow">Rádce pro podnikatele</span>
@@ -54,7 +54,7 @@
       <h2 class="sr-only">Všechny články</h2>
       <div class="post-grid" data-reveal-stagger>
         <a class="card hover post-card featured" href="/blog/docasny-vykup-vozu-jak-to-funguje.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/story-technik.webp" alt="Technik s tabletem prohlíží firemní vůz před provozovnou" width="720" height="1280" loading="eager" fetchpriority="high" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/story-technik.webp" srcset="/assets/img/story-technik-540.webp 540w, /assets/img/story-technik.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" width="900" height="1205" alt="Technik s tabletem prohlíží firemní vůz před provozovnou" loading="eager" fetchpriority="high" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-mint pc-tag">Průvodce</span>
             <h3>Dočasný výkup vozu se zpětným odkupem: jak to funguje krok za krokem</h3>
@@ -63,7 +63,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="/blog/euro-7-hodnota-firemniho-vozu.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-oceneni.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-oceneni.webp" srcset="/assets/img/blog-oceneni-640.webp 640w, /assets/img/blog-oceneni.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Oceňování</span>
             <h3>Euro 7 a&nbsp;hodnota firemního vozu: co ověřit před prodejem</h3>
@@ -72,7 +72,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="/blog/docasny-vykup-majetku-a-spotrebitelsky-uver.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-srovnani.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-srovnani.webp" srcset="/assets/img/blog-srovnani-640.webp 640w, /assets/img/blog-srovnani.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Rozhodování</span>
             <h3>Dočasný výkup firemního majetku a&nbsp;spotřebitelský úvěr: rozdíly a&nbsp;rizika</h3>
@@ -81,7 +81,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="/blog/insolvence-odberatele-cash-flow-podnikatele.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-cashflow.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-cashflow.webp" srcset="/assets/img/blog-cashflow-640.webp 640w, /assets/img/blog-cashflow.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Cash flow</span>
             <h3>Insolvence odběratele: jak postupovat a&nbsp;přepočítat cash flow firmy</h3>
@@ -90,7 +90,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="/blog/kolik-stoji-docasny-vykup-rezervacni-poplatek.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-ucetni.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-ucetni.webp" srcset="/assets/img/blog-ucetni-640.webp 640w, /assets/img/blog-ucetni.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Ceny &amp; poplatky</span>
             <h3>Kolik stojí dočasný výkup? Rezervační poplatek srozumitelně (příklad v&nbsp;Kč)</h3>
@@ -99,7 +99,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="/blog/cash-flow-osvc-faktury-po-splatnosti.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-cashflow.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-cashflow.webp" srcset="/assets/img/blog-cashflow-640.webp 640w, /assets/img/blog-cashflow.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Cash flow</span>
             <h3>Cash flow OSVČ: 7 způsobů, jak překlenout faktury po splatnosti</h3>
@@ -108,7 +108,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="/blog/prodat-firemni-auto-nebo-docasny-vykup.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-srovnani.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-srovnani.webp" srcset="/assets/img/blog-srovnani-640.webp 640w, /assets/img/blog-srovnani.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Rozhodování</span>
             <h3>Prodat firemní auto, nebo ho dočasně vykoupit? Srovnání pro podnikatele</h3>
@@ -117,7 +117,7 @@
           </div>
         </a>
         <a class="card hover post-card" href="/blog/jak-se-ocenuje-firemni-vuz-vykupni-cena.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-oceneni.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-oceneni.webp" srcset="/assets/img/blog-oceneni-640.webp 640w, /assets/img/blog-oceneni.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Oceňování</span>
             <h3>Jak se oceňuje firemní vůz: co ovlivňuje výkupní cenu</h3>
@@ -126,25 +126,25 @@
           </div>
         </a>
         <a class="card hover post-card" id="agro" href="/blog/agrocash-penize-ze-zemedelske-techniky-pred-sezonou.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-agro-sezona.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-agro-sezona.webp" srcset="/assets/img/blog-agro-sezona-640.webp 640w, /assets/img/blog-agro-sezona.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
-            <span class="pill pill-agro pc-tag" style="background:#FBF3E0;color:#8A5F0C">AgroCash</span>
+            <span class="pill pill-agro pc-tag">AgroCash</span>
             <h3>Peníze ze zemědělské techniky před sezónou: jak AgroCash funguje pro farmy</h3>
             <p>Osivo, hnojiva, nafta a&nbsp;náhradní díly se platí na jaře, tržby přijdou po sklizni. Jak dočasný výkup traktoru překlene sezónní mezeru.</p>
             <div class="pc-meta"><span>7 min čtení</span></div>
           </div>
         </a>
         <a class="card hover post-card" id="tech" href="/blog/techcash-splatnost-faktur-dopravci.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-tech-faktury.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-tech-faktury.webp" srcset="/assets/img/blog-tech-faktury-640.webp 640w, /assets/img/blog-tech-faktury.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
-            <span class="pill pill-tech pc-tag" style="background:#FDEFE6;color:#9C3E0B">TechCash</span>
+            <span class="pill pill-tech pc-tag">TechCash</span>
             <h3>Splatnost faktur 60–90 dní: jak dopravci udrží kamiony v&nbsp;pohybu</h3>
             <p>Nafta, mýto, AdBlue, pneumatiky a&nbsp;mzdy řidičů se platí hned, spediční faktury chodí za tři měsíce. Jak TechCash pomáhá překlenout mezeru.</p>
             <div class="pc-meta"><span>7 min čtení</span></div>
           </div>
         </a>
         <a class="card hover post-card" href="/blog/danove-souvislosti-docasneho-vykupu-osvc-sro.html">
-          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-ucetni.webp" alt="" width="1376" height="768" loading="lazy" /></div>
+          <div class="pc-cover-wrap"><img class="pc-cover" src="/assets/img/blog-ucetni.webp" srcset="/assets/img/blog-ucetni-640.webp 640w, /assets/img/blog-ucetni.webp 1280w" sizes="(min-width: 861px) 33vw, 82vw" width="1280" height="714" alt="" loading="lazy" decoding="async" /></div>
           <div class="pc-body">
             <span class="pill pill-muted pc-tag">Účetnictví</span>
             <h3>Daňové a&nbsp;účetní souvislosti dočasného výkupu pro OSVČ a&nbsp;s.r.o.</h3>

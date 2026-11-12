@@ -1,0 +1,77 @@
+/* =========================================================================
+   CashAuto — v6 „Signál“ · kompatibilní vrstva pro demo portály
+   (portal.html, admin.html, aftersales.html). Načítá se ZA design-system.css
+   a přemapuje jeho tokeny na asfalt / papír / dynamickou barvu + písmo Archivo.
+   Marketingové stránky ji nepoužívají (mají jen signal.css).
+   ========================================================================= */
+:root {
+  --ink: #0F1512; --ink-2: #1B2420; --ink-3: #2A3530; --text: #0F1512;
+  --paper: #F4F1EA; --paper-0: #FBF9F5; --paper-2: #EAE6DC; --paper-3: #DCD7CA;
+  --dyn: #D4F23A; --muted: #5A635D; --muted-2: #5A635D; --muted-ink: #A9B0AA;
+  --bg: var(--paper); --surface: var(--paper-0); --surface-2: var(--paper-2); --white: var(--paper-0);
+  --line: rgba(15, 21, 18, .14); --line-2: rgba(15, 21, 18, .28);
+  --green: var(--ink); --green-600: var(--ink-2); --green-700: var(--ink); --green-bright: var(--ink);
+  --green-050: var(--paper-2); --green-100: var(--paper-3); --green-tint: var(--paper);
+  --accent: var(--dyn); --accent-050: var(--paper-2); --accent-100: var(--paper-3); --accent-700: var(--ink); --accent-ink: var(--ink);
+  --success: var(--ink); --success-bg: var(--paper-2); --info-bg: var(--paper-2);
+  --tile-dark: var(--ink); --navy: var(--ink); --mint: var(--dyn);
+  --font-display: "Archivo", "Arial Black", "Inter", system-ui, sans-serif;
+  --shadow-blue: none; --r-pill: 12px;
+}
+body { background: var(--paper); color: var(--ink); }
+h1, h2, h3, .stat .num, .calc-amount, .brand, .topbar h1, #appTitle { font-family: var(--font-display); font-stretch: 112%; font-weight: 800; letter-spacing: -.025em; }
+::selection { background: var(--dyn); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px var(--dyn); }
+
+/* postranní panel */
+.sidebar { background: var(--ink); color: var(--muted-ink); }
+.sidebar .brand { color: var(--paper); }
+.sidebar .brand svg path { fill: var(--dyn); }
+.sidebar .side-link { color: var(--muted-ink); border-radius: 10px; }
+.sidebar .side-link:hover { background: var(--ink-2); color: var(--paper); }
+.sidebar .side-link.active { background: var(--dyn); color: var(--ink); }
+.sidebar .side-link.active svg { color: var(--ink); }
+.sidebar .nav-group-label { color: var(--muted-ink); }
+.sidebar :focus-visible { outline-color: var(--dyn); box-shadow: none; }
+.badge-count { background: var(--dyn); color: var(--ink); }
+.topbar { background: var(--paper); border-bottom: 1px solid var(--line); }
+
+/* tlačítka a štítky */
+.btn { border-radius: 12px; font-weight: 700; }
+.btn-primary, .btn-navy { background: var(--ink); color: var(--paper); box-shadow: none; }
+.btn-primary:hover, .btn-navy:hover { background: var(--ink-2); color: var(--paper); }
+.btn-mint, .btn-white { background: var(--dyn); color: var(--ink); }
+.btn-ghost { background: transparent; border: 1.5px solid var(--line-2); color: var(--ink); }
+.pill { border-radius: 7px; font-weight: 700; background: var(--paper-2); color: var(--ink); }
+.pill-mint, .pill-success, .pill-accent { background: var(--dyn); color: var(--ink); }
+.pill-navy { background: var(--ink); color: var(--paper); }
+.pill-warning { background: var(--warning-bg, #F5E9CF); color: #6B4500; }
+.pill-danger { background: var(--danger-bg, #F6E3DE); color: #8E2A22; }
+.eyebrow { color: var(--ink); }
+
+/* plochy */
+.card, .kanban-col, .doc-card, .vehicle-card, .table-wrap { background: var(--paper-0); border-color: var(--line); box-shadow: none; }
+.kanban-card { background: var(--paper); border-color: var(--line); }
+.card.navy { background: var(--ink); color: var(--paper); }
+.card.navy .muted, .card.navy p { color: var(--muted-ink); }
+.table thead th, th { background: var(--paper-2); color: var(--ink); }
+.rowhover:hover { background: var(--paper-2); }
+.notice, .disclaimer { background: var(--paper-2); border-color: transparent; color: var(--ink); }
+.cost-warning { color: var(--ink); }
+.progress { background: var(--paper-3); }
+.progress > span, .progress.mint > span { background: var(--ink); }
+.tab.active { color: var(--ink); border-color: var(--ink); }
+.input, .select { background: var(--paper-0); border-color: var(--line-2); border-radius: 12px; }
+.input:focus, .select:focus { border-color: var(--ink); box-shadow: 0 0 0 4px var(--dyn); }
+.avatar { background: var(--dyn); color: var(--ink); }
+.tracker li.done .node { background: var(--ink); border-color: var(--ink); }
+.tracker li.active .node { background: var(--dyn); border-color: var(--ink); box-shadow: none; }
+.tracker li.done::before { background: var(--ink); }
+.step .step-num, .steps .step-num { background: var(--dyn); color: var(--ink); }
+.stat .num .accent, .accent { color: var(--ink); background: var(--dyn); padding: 0 .12em; border-radius: .12em; }
+.checklist .ico { background: var(--ink); color: var(--dyn); }
+.toast { background: var(--ink); color: var(--paper); }
+.toast .ico { background: var(--dyn); color: var(--ink); }
+.pic { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pic .a { fill: var(--dyn); stroke: none; }
+.logo-mark .lm-bg { fill: var(--dyn); } .logo-mark .lm-s { fill: var(--ink); }

@@ -30,27 +30,44 @@ předpoklady prototypu, ne závazná nabídka. Ukázka: vůz 300 000 Kč → vý
 - **Klientská zóna** (`portal.html`), **Admin** (`admin.html`, 7fázová pipeline, channel report, segmentace, compliance checklist), **Aftersales** (`aftersales.html`) — demo portály (noindex)
 - **Férovost & compliance** (`compliance.html`), **Roadmapa** (`faze2.html`), **Prezentace** (`prezentace.html`)
 
-## Design (v4 — Apple-like, mobile-first)
-Jedno písmo (Inter), velké titulky v sentence case s těsným prokladem, šedé dlaždice `#f5f5f7` bez rámečků,
-pill tlačítka, tenký translucentní header, segmentové ovladače a iOS slider v kalkulačce, horizontální snap
-carousely karet na mobilu, klidný scroll-reveal. Vertikály mají vlastní akcent (`body[data-vertical]`):
-AgroCash sklizňová zlatá, TechCash signální oranžová. Vše v `assets/css/design-system.css` (vrstvy v1 → v4).
+## Design (v6 — „Signál“, mobile-first)
+Barva reflexní vesty a jízdních pruhů — svět řemeslníků, dopravců a zemědělců. Motivem je dvojité lomítko `//` z loga
+(šikmé dlaždice, běžící přerušované čáry, pásy).
+
+- **Dvě hlavní barvy + jedna dynamická.** Asfalt `--ink #0F1512` a papír `--paper #F4F1EA` (ostatní neutrály jsou jen
+  jejich odstíny). Dynamická `--dyn` zabírá zhruba 30 % plochy stránky (blok v heru, pás kalkulačky, srovnání řad,
+  jedna celá sekce, závěrečná výzva) a je dynamická dvakrát: mění se podle řady přes `body[data-vertical]`
+  (CashAuto reflexní `#D4F23A`, AgroCash sklizňová `#FFC738`, TechCash signální `#FF7A33`) a nese pohyb.
+  Text na `--dyn` je vždy asfalt; `--dyn` se nikdy nepoužívá jako barva textu na papíře.
+- **Písmo.** Titulky a čísla Archivo (variabilní, šířka 112 %, řez 800–900), text Inter. Obojí z Google Fonts, `display=swap`.
+- **Pohyb** (jen `transform`/`opacity`, vše za `prefers-reduced-motion`, bez knihoven): titulek hera se setře zpoza lomítkové
+  masky a dynamický blok vjede; částky se odvalují jako odometr (`AK.odo` v `app.js`); běžící pás a přerušované čáry
+  (jen ve viewportu); odlesk na hlavních tlačítkách; scroll-reveal s postupným zpožděním; animované piktogramy kroků;
+  mobilní CTA lišta a „zhutnění“ hlavičky přes IntersectionObserver (žádné posluchače scrollu); přechody mezi stránkami
+  `@view-transition` a ukazatel průběhu čtení jako progresivní vylepšení.
+- **Soubory.** Marketingové stránky načítají jen `assets/css/signal.css`. Demo portály (`portal`, `admin`, `aftersales`)
+  mají původní `design-system.css` + `assets/css/signal-portal.css`, která jeho tokeny přemapuje na nový systém.
+- **Grafika.** Fotografie v `assets/img/` (WebP ve dvou šířkách, `srcset`) vznikají skriptem `tools/gen-images.py`
+  (sloty, prompty a export; klíč se čte z `.env`, surové soubory zůstávají mimo repozitář). OG obrázky sází
+  `tools/make-og.py`. Piktogramy (mřížka 24, tah 2 px, výplň `.a`) jsou v objektu `P` v `assets/js/shell.js`;
+  do HTML je staticky propisuje `tools/apply-pictograms.py`.
 
 ## SEO
 Canonical, Open Graph, JSON-LD (Organization, WebSite, Service, FAQPage, Article, BreadcrumbList),
-`sitemap.xml`, `robots.txt`, OG obrázky `assets/img/og-*.jpg`, demo portály noindex.
+`sitemap.xml`, `robots.txt`, OG obrázky `assets/img/og-*.jpg` (generuje `tools/make-og.py`), demo portály noindex.
 
 ## Kontroly
 ```bash
 node tools/check-links.js    # interní odkazy, kotvy, assety, sitemap, JS literály
 node tools/check-seo.js      # title/description, canonical, OG, h1, JSON-LD vs. obsah, sitemap
 node tools/check-terms.js    # terminologie & compliance (--strict = jen tvrdá porušení)
+python tools/apply-pictograms.py --check   # piktogramy v HTML odpovídají sadě v shell.js
 ```
 Pravidla pro texty a články: `tools/ARTICLE-BRIEF.md`, šablona článku `tools/article-template.html`.
 
 ## Technologie
 Statický web — HTML5 + CSS + vanilla JS (`assets/js/data.js`, `shell.js`, `app.js`). Bez build kroku.
-Fotky v `assets/img/`, zdrojové podklady v `Public/`. Odkazy v hlavičce/patičce jsou root-absolutní (kvůli `/blog/`).
+Fotky v `assets/img/`, starší zdrojové podklady v `Public/` (web je už nepoužívá). Odkazy v hlavičce/patičce jsou root-absolutní (kvůli `/blog/`).
 
 ## Lokální spuštění
 ```bash

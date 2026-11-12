@@ -1,6 +1,6 @@
 /* =========================================================================
    CashAuto — Shared app logic (dočasný výkup vozu se zpětným odkupem)
-   Formatting, toast, tabs, sidebar, výkup calculators, wizard, FAQ.
+   Formatting, odometr, toast, tabs, sidebar, výkup calculators, wizard, FAQ.
    Model: výkupní cena = 70 % odhadní hodnoty; měsíční rezervační poplatek = 4 %
    z hodnoty vozu; cena zpětného odkupu = výkupní cena (podle smlouvy).
    NENÍ úvěr — žádné RPSN, úroky ani splátky.
@@ -19,6 +19,78 @@
   };
   const round = (n, to) => Math.round(n / to) * to;
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+
+  // ---------- Odometr: číslice se odvalují jako na tachometru ----------
+  // AK.odo.set(el, "210 000 Kč") rozloží text na sloupce číslic (.od) a statické části (.ot).
+  // Čtečky dostanou prostý text (.sr-only), vizuální vrstva je aria-hidden. Animuje se jen transform.
+  // První odvalení proběhne, až když je prvek vidět (IntersectionObserver); bez JS zůstává prostý text.
+  AK.odo = (function () {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const STRIP = "<i>" + "0123456789".split("").map(d => "<b>" + d + "</b>").join("") + "</i>";
+    const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    const tokens = (text) => {
+      const out = [];
+      for (const ch of text) {
+        if (ch >= "0" && ch <= "9") out.push({ d: +ch });
+        else if (out.length && out[out.length - 1].s != null) out[out.length - 1].s += ch;
+        else out.push({ s: ch });
+      }
+      return out;
+    };
+    const apply = (el) => {
+      const vis = el._odoVis, tk = el._odoTokens;
+      if (!vis || !tk) return;
+      const strips = vis.querySelectorAll(".od > i");
+      let j = 0;
+      tk.forEach(t => { if (t.d != null && strips[j]) strips[j++].style.setProperty("--d", t.d); });
+    };
+    let io = null;
+    const watch = (el) => {
+      if (reduce || !("IntersectionObserver" in window)) { el._odoSeen = true; return; }
+      if (!io) io = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target); e.target._odoSeen = true;
+        requestAnimationFrame(() => apply(e.target));
+      }), { threshold: 0.2 });
+      io.observe(el);
+    };
+    function set(el, text) {
+      if (!el) return;
+      text = String(text);
+      if (!el.classList.contains("odo")) { el.textContent = text; return; }
+      if (!el._odoVis) {
+        el.textContent = "";
+        const sr = document.createElement("span"); sr.className = "sr-only";
+        const vis = document.createElement("span"); vis.className = "odo-v"; vis.setAttribute("aria-hidden", "true");
+        el.append(sr, vis); el._odoSr = sr; el._odoVis = vis;
+        watch(el);
+      }
+      el._odoSr.textContent = text;
+      const tk = tokens(text);
+      const sig = tk.map(t => (t.d != null ? "d" : "s" + t.s)).join("|");
+      const vis = el._odoVis;
+      el._odoTokens = tk;
+      if (vis._sig !== sig) {
+        // přestavba: nové sloupce převezmou dosavadní hodnoty (zarovnáno zprava), aby se odvalil jen rozdíl
+        const old = [...vis.querySelectorAll(".od > i")].map(i => i.style.getPropertyValue("--d") || "0");
+        const nd = tk.filter(t => t.d != null).length;
+        let k = 0;
+        vis.innerHTML = tk.map(t => {
+          if (t.d == null) return '<span class="ot">' + esc(t.s) + "</span>";
+          const fromRight = nd - 1 - k; k++;
+          const prev = old.length - 1 - fromRight >= 0 ? old[old.length - 1 - fromRight] : "0";
+          return '<span class="od" style="--i:' + fromRight + '"><i style="--d:' + prev + '">' + STRIP.slice(3) + "</span>";
+        }).join("");
+        vis._sig = sig;
+        if (el._odoSeen) { if (reduce) apply(el); else requestAnimationFrame(() => requestAnimationFrame(() => apply(el))); }
+      } else if (el._odoSeen) apply(el);
+    }
+    return { set };
+  })();
+  // statická čísla (pásy s parametry): <div class="num odo">65 %</div>
+  AK.initOdo = function () {
+    document.querySelectorAll(".odo").forEach(el => { if (!el._odoVis) AK.odo.set(el, el.textContent.trim()); });
+  };
 
   // ---------- Toast ----------
   AK.toast = function (msg) {
@@ -203,11 +275,11 @@
       const months = +(elTerm && elTerm.value) || 3;
       // čtečka oznámí „300 000 Kč“ místo surového čísla 300000
       range.setAttribute("aria-valuetext", AK.fmt.czk(value));
-      if (elValue) elValue.textContent = AK.fmt.czk(value);
-      if (elAmount) elAmount.textContent = AK.fmt.czk(o.vykup);
-      if (elFee) elFee.textContent = AK.fmt.czk(o.fee) + " / měsíc";
-      if (elBuyback) elBuyback.textContent = AK.fmt.czk(o.buyback);
-      if (elPeriod) elPeriod.textContent = AK.fmt.czk(o.fee * months) + " za " + months + (months === 1 ? " měsíc" : (months < 5 ? " měsíce" : " měsíců"));
+      AK.odo.set(elValue, AK.fmt.czk(value));
+      AK.odo.set(elAmount, AK.fmt.czk(o.vykup));
+      AK.odo.set(elFee, AK.fmt.czk(o.fee) + " / měsíc");
+      AK.odo.set(elBuyback, AK.fmt.czk(o.buyback));
+      AK.odo.set(elPeriod, AK.fmt.czk(o.fee * months) + " za " + months + (months === 1 ? " měsíc" : (months < 5 ? " měsíce" : " měsíců")));
       if (remember) AK.rememberValue(value);
     }
     range.addEventListener("input", () => render(true));
@@ -229,10 +301,10 @@
       const o = AK.valuation.buildOffer({ marketValue: value });
       const months = +(elTerm && elTerm.value) || 3;
       if (valEl.type === "range") valEl.setAttribute("aria-valuetext", AK.fmt.czk(value));
-      if (elAmount) elAmount.textContent = AK.fmt.czk(o.vykup);
-      if (elFee) elFee.textContent = AK.fmt.czk(o.fee);
-      if (elPeriod) elPeriod.textContent = AK.fmt.czk(o.fee * months);
-      if (elBuyback) elBuyback.textContent = AK.fmt.czk(o.buyback);
+      AK.odo.set(elAmount, AK.fmt.czk(o.vykup));
+      AK.odo.set(elFee, AK.fmt.czk(o.fee));
+      AK.odo.set(elPeriod, AK.fmt.czk(o.fee * months));
+      AK.odo.set(elBuyback, AK.fmt.czk(o.buyback));
       if (remember && +valEl.value >= 50000) AK.rememberValue(value);
     }
     valEl.addEventListener("input", () => render(true));
@@ -350,7 +422,7 @@
     const untouched = wizardDefaults === null || vehicleSnapshot() === wizardDefaults;
     const market = (carried && untouched) ? carried : AK.valuation.estimateMarketValue({ segment, year, mileage, condition });
     const o = AK.valuation.buildOffer({ marketValue: market });
-    const set = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
+    const set = (id, val) => AK.odo.set(document.getElementById(id), val);
     set("r_market", AK.fmt.czk(o.marketValue));
     set("r_amount", AK.fmt.czk(o.vykup));
     set("r_fee", AK.fmt.czk(o.fee));
@@ -447,24 +519,20 @@
       '<a class="btn btn-primary" href="' + href + '">' + ctaText + '</a>';
     document.body.appendChild(bar);
     document.body.classList.add("has-mobile-cta");
-    let ticking = false;
-    // Lišta se neukazuje, dokud je ve viewportu kalkulačka s vlastním CTA a varováním o ceně
-    // (na 360–430 px sahá hero kalkulačka do ~1500 px, takže samotný práh 520 px nestačí),
-    // ani při otevřeném mobilním menu (lišta by překryla spodní tlačítka menu, např. „Zavolat“).
-    const calcs = [...document.querySelectorAll(".hero-tiles .calc-card, .hero .calc-card, .calc-large")];
-    const calcVisible = () => calcs.some(c => { const r = c.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; });
+    // Lišta vyjede, jakmile z viewportu zmizí hero i kalkulačka (mají vlastní CTA a varování o ceně),
+    // a schová se u závěrečné výzvy a patičky. Sleduje se přes IntersectionObserver, bez posluchače scrollu.
+    // Při otevřeném mobilním menu je skrytá (překryla by jeho spodní tlačítka).
     const menuOpen = () => { const m = document.getElementById("mobileMenu"); return !!(m && m.classList.contains("open")); };
-    const update = () => {
-      ticking = false;
-      const show = !menuOpen() && !calcVisible() && window.scrollY > 520 && (window.innerHeight + window.scrollY) < document.body.scrollHeight - 420;
-      bar.classList.toggle("visible", show);
-    };
-    const schedule = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule, { passive: true });
+    const first = document.querySelector("main > section, main > .hero, body > section");
+    const guards = [first, ...document.querySelectorAll(".calc-band, .cta-dyn, .cta-band, .site-footer")].filter(Boolean);
+    const seen = new Map(guards.map(g => [g, g === first]));
+    const update = () => bar.classList.toggle("visible", !menuOpen() && ![...seen.values()].some(Boolean));
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(es => { es.forEach(e => seen.set(e.target, e.isIntersecting)); update(); });
+      guards.forEach(g => io.observe(g));
+    }
     // přepnutí menu (shell.js) — delegovaně, aby nezáleželo na pořadí inicializace; rAF počká na změnu třídy
-    document.addEventListener("click", e => { if (e.target.closest && e.target.closest("#navToggle")) schedule(); });
-    update();
+    document.addEventListener("click", e => { if (e.target.closest && e.target.closest("#navToggle")) requestAnimationFrame(update); });
   };
 
   // ---------- Žádost: přizpůsobení vertikále (?typ=agro|tech) ----------
@@ -516,9 +584,11 @@
     const pool = list.slice(start).concat(list.slice(0, start)).filter(a => a.slug !== cur);
     pool.sort((a, b) => (b.vertical === vert) - (a.vertical === vert));
     const pick = pool.slice(0, 3);
+    // obálky mají menší variantu pro mobil (fotky na výšku -540, na šířku -640)
+    const cover = (a) => { const tall = /\/(story|agro-story|tech-story)-/.test(a.cover); return { small: a.cover.replace(/\.webp$/, (tall ? "-540" : "-640") + ".webp"), sw: tall ? 540 : 640, w: tall ? 900 : 1280, h: tall ? 1205 : 714 }; };
     box.innerHTML = pick.map(a => `
       <a class="card hover post-card" href="/blog/${a.slug}.html">
-        <div class="pc-cover-wrap"><img class="pc-cover" src="${a.cover}" alt="" width="1376" height="768" loading="lazy" /></div>
+        <div class="pc-cover-wrap"><img class="pc-cover" src="${a.cover}" srcset="${cover(a).small} ${cover(a).sw}w, ${a.cover} ${cover(a).w}w" sizes="(min-width: 861px) 33vw, 82vw" alt="" width="${cover(a).w}" height="${cover(a).h}" loading="lazy" decoding="async" /></div>
         <div class="pc-body">
           <span class="pill pill-muted pc-tag">${a.tag}</span>
           <h3>${a.title}</h3>
@@ -625,6 +695,7 @@
     AK.initWizard();
     AK.initReveal();
     AK.initCountUp();
+    AK.initOdo();
     AK.initMobileCta();
     AK.initRelated();
     document.querySelectorAll("[data-demo]").forEach(el => {

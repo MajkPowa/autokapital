@@ -36,5 +36,8 @@
 
 Datum publikace: použij hodnotu z data.js (`AK.articles[].date`), `DATE_CS` ve formátu „10. 9. 2026“. `READ` = minuty z data.js. `ZADOST_QUERY` = "" pro auto, "?typ=agro" / "?typ=tech" pro vertikály. `VERTICAL` = auto|agro|tech.
 
+## Obálky (design v6)
+Obálka je WebP 1280×714 v `assets/img/` s menší variantou `-640.webp` (fotky na výšku 900×1205 a `-540.webp`). V článku má `<img>` obálky atributy `srcset`/`sizes` jako u ostatních článků; nové fotografie vznikají přes `tools/gen-images.py` (dokumentární styl, barva řady fyzicky v záběru, bez textů, log a SPZ).
+
 ## Šablona
 Zkopíruj `tools/article-template.html` 1:1 a nahraď všechny `{{PLACEHOLDERY}}`. Nic ze struktury (head, aside, related, footer, skripty) neměň. `{{TOC}}` = `<li><a href="#id">Nadpis</a></li>` pro každé h2. `{{BODY}}` vlož místo komentáře. `{{TITLE_SEO}}` ≤ 55 znaků (zkrácená verze titulku), `{{DESCRIPTION}}` 130–160 znaků, `{{COVER_ALT}}` popis fotky česky (bez slova „ilustrační“).

@@ -4,3 +4,8 @@ node_modules/
 .cache/
 .vscode/
 Thumbs.db
+
+# lokalni tajne klice a interni kampanove podklady (nepublikovat na web)
+.env
+.env.*
+kampan/

@@ -10,7 +10,7 @@
 const fs = require("fs"), path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 // Public/ = design podklady (mockupy, návod) blokované v robots.txt, nejsou součástí webu → záměrně vynechány.
-const SKIP_DIRS = ["node_modules", ".git", "Public", "tools"];
+const SKIP_DIRS = ["node_modules", ".git", "Public", "tools", "kampan"]; // kampan = interní reklamní podklady, nejsou součástí webu
 const LIMITS = { titleMax: 65, titleMin: 45, descMax: 160, descMin: 120 };
 const files = [];
 (function walk(d) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) { if (!SKIP_DIRS.includes(f)) walk(p); } else if (f.endsWith(".html")) files.push(p); } })(ROOT);

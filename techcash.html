@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600)</script>
+  <script>document.documentElement.classList.add("js");setTimeout(function(){document.documentElement.classList.add("reveal-fallback")},2600);["pageswap","pagereveal"].forEach(function(n){addEventListener(n,function(e){var t=e.viewTransition;if(t){t.ready.catch(function(){});t.finished.catch(function(){})}})})</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TechCash — Peníze z tahače pro dopravce, kamiony jedou dál</title>
   <meta name="description" content="Dočasný výkup tahače, návěsu či nákladního vozu se zpětným odkupem pro dopravce s IČO. Překlenete splatnost faktur, vozidlo dál jezdí. Čísla předem v Kč." />
   <link rel="canonical" href="https://cashauto.cz/techcash.html" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#007A52" />
+  <meta name="theme-color" content="#F4F1EA" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CashAuto" />
   <meta property="og:locale" content="cs_CZ" />
@@ -21,10 +21,10 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="assets/img/hero-tech.webp" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/design-system.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 3h6l-7 26H0L7 3Z' fill='%23007A52'/%3E%3Cpath d='M16 3h6l-7 26H9L16 3Z' fill='%23007A52'/%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Inter:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/img/hero-tech-800.webp" imagesrcset="assets/img/hero-tech-800.webp 800w, assets/img/hero-tech.webp 1600w" imagesizes="(min-width: 960px) 44vw, 90vw" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/css/signal.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%230F1512'/%3E%3Cpath d='M11.6 8h5.200l-4.800 18H6.800z' fill='%23FF7A33'/%3E%3Cpath d='M21.500 8h5.200l-4.800 18h-5.200z' fill='%23FF7A33'/%3E%3C/svg%3E" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
     {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CashAuto","item":"https://cashauto.cz/"},{"@type":"ListItem","position":2,"name":"TechCash — autodopravci","item":"https://cashauto.cz/techcash.html"}]},
@@ -44,90 +44,94 @@
   <main id="main">
 
   <!-- ===================== 01 HERO ===================== -->
-  <section class="hero hero-v4 dark" id="hero">
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <ol class="breadcrumbs"><li><a href="index.html">CashAuto</a></li><li aria-current="page">TechCash</li></ol>
+        <div class="brand-lockup"><span class="brand-word xl"><span class="bw-ink">Tech</span><span class="bw-cash">Cash</span></span><span class="lk-of">produktová řada CashAuto</span></div>
+        <p class="eyebrow">Výhradně pro dopravce a firmy s IČO</p>
+        <h1 class="display long"><span class="hl"><span>Peníze z&nbsp;tahače.</span></span> <span class="hl hl-dyn"><span>Kamiony jedou dál.</span></span></h1>
+        <p class="lead">Plánujte další jízdy s&nbsp;větším klidem, i&nbsp;když čekáte na úhradu faktur. Tahač, návěs nebo nákladní vůz od vás dočasně vykoupíme a&nbsp;vy ho dál používáte podle smlouvy. Poplatky i&nbsp;podmínky zpětného odkupu znáte předem.</p>
+        <div class="hero-actions"><a class="btn btn-primary btn-lg" href="zadost.html?typ=tech">Zjistit nabídku pro tahač</a><a class="link-arrow" href="#jak-to-funguje">Jak to funguje v depu</a></div>
+        <p class="hero-note">Nezávazná žádost zdarma · pro autodopravce a&nbsp;spedice s&nbsp;IČO · technik přijede do depa · Raději zavolat? <a href="tel:+420800123456">800 123 456</a></p>
+      </div>
+      <div class="hero-visual">
+        <div class="slashes">
+          <span class="slash slash-a" aria-hidden="true"></span>
+          <span class="slash slash-b"><img src="assets/img/hero-tech.webp" srcset="assets/img/hero-tech-800.webp 800w, assets/img/hero-tech.webp 1600w" sizes="(min-width: 960px) 44vw, 90vw" alt="Majitel dopravní firmy v oranžové reflexní vestě s deskami stojí u bílého tahače v depu za svítání" width="1600" height="1195" fetchpriority="high" decoding="async" style="object-position:80% 50%" /></span>
+        </div>
+        <div class="hero-chips" aria-hidden="true"><span class="tagchip"><span>Vozidlo jede dál</span></span><span class="tagchip"><span>Odkup po zaplacení faktur</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KALKULAČKA (dynamický pás) ===================== -->
+  <section class="calc-band" id="kalkulacka" aria-labelledby="calcTitle">
+    <div class="container calc-grid">
+      <div class="calc-in">
+        <p class="eyebrow">Orientační výpočet · nákladní vozidlo · nezávazně</p>
+        <h2 id="calcTitle">Tři čísla k vaší flotile</h2>
+        <div class="calc-field">
+          <label class="calc-label" for="heroRange">Odhad hodnoty vozidla</label>
+          <div class="calc-value odo" id="heroValue">1&nbsp;800&nbsp;000&nbsp;Kč</div>
+          <input type="range" class="range" id="heroRange" min="400000" max="6000000" step="50000" value="1800000" />
+          <div class="range-ends" aria-hidden="true"><span>400&nbsp;000&nbsp;Kč</span><span>6&nbsp;000&nbsp;000&nbsp;Kč</span></div>
+        </div>
+        <div class="calc-field">
+          <span class="calc-label" id="termLabel">Doba rezervace (do zaplacení faktur)</span>
+          <div class="segmented" role="radiogroup" aria-labelledby="termLabel" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="false" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="3" />
+        </div>
+        <div class="calc-field niche-ctl"><label for="heroDue">Splatnost vašich faktur</label><select class="select" id="heroDue" data-niche-ctl="heroTerm" data-map="days" aria-describedby="nicheHint"><option value="30">30 dní</option><option value="45">45 dní</option><option value="60">60 dní</option><option value="90" selected>90 dní</option><option value="120">120 dní</option></select><span class="hint-line" id="nicheHint" aria-live="polite"></span></div>
+      </div>
+      <div class="calc-out">
+        <div aria-live="polite" aria-atomic="true">
+          <span class="calc-label">Výkupní nabídka</span>
+          <div class="calc-amount odo" id="heroAmount">1&nbsp;170&nbsp;000&nbsp;Kč</div>
+          <div class="calc-rows">
+            <div class="calc-row"><span class="calc-label">Měsíční rezervační poplatek</span><span class="calc-num odo" id="heroFee">63&nbsp;000&nbsp;Kč&nbsp;/&nbsp;měsíc</span></div>
+            <div class="calc-row"><span class="calc-label">Cena zpětného odkupu</span><span class="calc-num odo" id="heroBuyback">1&nbsp;170&nbsp;000&nbsp;Kč</span></div>
+            <div class="calc-row"><span class="calc-label">Poplatek za zvolenou dobu celkem</span><span class="calc-num odo" id="heroPeriod">189&nbsp;000&nbsp;Kč za 3&nbsp;měsíce</span></div>
+          </div>
+        </div>
+        <a class="btn btn-primary btn-block btn-lg" href="zadost.html?typ=tech">Upřesnit nabídku vozidla</a>
+        <p class="cost-warning">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
+        <p class="calc-foot"><a href="#srovnani-parametru">Porovnat výkup a poplatky všech tří řad</a> · Orientačně: výkup 65&nbsp;% a&nbsp;poplatek 3,5&nbsp;% z&nbsp;odhadní hodnoty vozidla · vše v&nbsp;Kč před podpisem</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DŮVĚRA ===================== -->
+  <section class="section tight" id="duvera" aria-label="Proč to funguje">
     <div class="container">
-      <div class="hero-copy anim-hero">
-        <ol class="breadcrumbs"><li><a href="index.html">CashAuto</a></li><li aria-current="page">TechCash</li></ol><div class="brand-lockup"><span class="brand-word xl"><span class="bw-ink">Tech</span><span class="bw-cash">Cash</span></span><span class="lk-of">produktová řada CashAuto</span></div>
-        <span class="eyebrow mt-4">Výhradně pro dopravce a firmy s IČO</span>
-        <h1 class="display-headline mt-3"><span class="line-dark">Peníze z&nbsp;tahače.</span><span class="line-accent">Kamiony jedou dál.</span></h1>
-        <p class="lead mt-4">Plánujte další jízdy s&nbsp;větším klidem, i&nbsp;když čekáte na úhradu faktur. Tahač, návěs nebo nákladní vůz od vás dočasně vykoupíme a&nbsp;vy ho dál používáte podle smlouvy. Poplatky i&nbsp;podmínky zpětného odkupu znáte předem.</p>
-        <div class="hero-actions mt-6"><a class="btn btn-primary btn-lg" href="zadost.html?typ=tech">Zjistit nabídku pro tahač</a><a class="link-arrow" href="#jak-to-funguje">Jak to funguje v depu</a></div>
-        <p class="muted mt-3" style="font-size:var(--fs-sm)">Nezávazná žádost zdarma · pro autodopravce a&nbsp;spedice s&nbsp;IČO · technik přijede do depa · Raději zavolat? <a href="tel:+420800123456" style="font-weight:600">800 123 456</a></p>
-        
-      </div>
-      <div class="hero-tiles mt-7">
-        <div class="tile-photo">
-          <img src="assets/img/hero-tech.webp" alt="Majitel dopravní firmy s tabletem u kabiny bílého tahače v depu za svítání" width="1376" height="768" fetchpriority="high" />
-          <div class="tile-caption" aria-hidden="true"><span class="pill">Vozidlo jede dál</span><span class="pill">Odkup po zaplacení faktur</span></div>
-        </div>
-        <div class="calc-card anim-float" id="kalkulacka">
-          <div class="between">
-            <span class="calc-label">Orientační výpočet · nákladní vozidlo</span>
-            <span class="pill pill-accent"><span class="dot"></span> nezávazně</span>
-          </div>
-          <div class="mt-4">
-            <span class="calc-label">Odhad hodnoty vozidla</span>
-            <div class="mono" style="font-size:var(--fs-xl);font-weight:700;color:var(--ink);letter-spacing:-0.03em" id="heroValue">1&nbsp;800&nbsp;000&nbsp;Kč</div>
-            <input type="range" class="range" id="heroRange" min="400000" max="6000000" step="50000" value="1800000" aria-label="Odhad hodnoty vozidla" />
-            <div class="range-ends"><span>400&nbsp;000&nbsp;Kč</span><span>6&nbsp;000&nbsp;000&nbsp;Kč</span></div>
-          </div>
-          <hr class="divider" />
-          <div class="between" style="align-items:flex-end">
-            <div>
-              <span class="calc-label">Výkupní nabídka</span>
-              <div class="calc-amount mono" id="heroAmount">1&nbsp;170&nbsp;000&nbsp;Kč</div>
-            </div>
-            <div style="text-align:right">
-              <span class="calc-label">Měsíční rezervační poplatek</span>
-              <div class="mono" style="font-weight:700;color:var(--ink)" id="heroFee">63&nbsp;000&nbsp;Kč&nbsp;/&nbsp;měsíc</div>
-            </div>
-          </div>
-          <div class="between mt-3" style="font-size:var(--fs-sm)">
-            <span class="muted">Cena zpětného odkupu</span>
-            <span class="mono" style="font-weight:600;color:var(--green)" id="heroBuyback">1&nbsp;170&nbsp;000&nbsp;Kč</span>
-          </div>
-          <div class="mt-4">
-            <span class="calc-label" style="display:block;margin-bottom:8px">Doba rezervace (do zaplacení faktur)</span>
-            <div class="segmented" role="radiogroup" aria-label="Doba rezervace" data-segmented="heroTerm"><button type="button" role="radio" aria-checked="false" data-val="1">1 měs.</button><button type="button" role="radio" aria-checked="true" class="active" data-val="3">3 měs.</button><button type="button" role="radio" aria-checked="false" data-val="6">6 měs.</button><button type="button" role="radio" aria-checked="false" data-val="12">12 měs.</button></div><input type="hidden" id="heroTerm" value="3" />
-          </div>
-          <div class="niche-ctl mt-4"><label for="heroDue">Splatnost vašich faktur</label><select class="select" id="heroDue" data-niche-ctl="heroTerm" data-map="days" aria-describedby="nicheHint"><option value="30">30 dní</option><option value="45">45 dní</option><option value="60">60 dní</option><option value="90" selected>90 dní</option><option value="120">120 dní</option></select></div><span class="hint-line" id="nicheHint"></span>
-          <div class="between mt-3" style="font-size:var(--fs-sm)">
-            <span class="muted">Poplatek za zvolenou dobu celkem</span>
-            <span class="mono" style="font-weight:600;color:var(--ink)" id="heroPeriod">189&nbsp;000&nbsp;Kč za 3&nbsp;měsíce</span>
-          </div>
-          <a class="btn btn-primary btn-block btn-lg mt-4" href="zadost.html?typ=tech">Upřesnit nabídku vozidla</a>
-          <p class="muted mb-0 mt-3" style="font-size:var(--fs-sm);text-align:center"><a href="#srovnani-parametru">Porovnat výkup a poplatky všech tří řad</a></p>
-          <p class="cost-warning mb-0 mt-3" style="font-size:var(--fs-sm)">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
-          <p class="muted mb-0 mt-2" style="font-size:var(--fs-xs);text-align:center">Orientačně: výkup 65&nbsp;% a&nbsp;poplatek 3,5&nbsp;% z&nbsp;odhadní hodnoty vozidla · vše v&nbsp;Kč před podpisem</p>
-        </div>
-      </div>
-      <div class="trust-strip mt-7" data-reveal>
+      <div class="trust-strip" data-reveal-stagger>
         <div class="ts-item">
-          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="6" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="truck" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M2 6h12v10H2z"/><path d="M2 6h12v10H2z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="6" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span>
           <span class="ts-label"><strong>Vozidlo jede dál</strong>tuzemsko i mezinárodní přeprava podle smlouvy</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="shield" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></span>
           <span class="ts-label"><strong>Vše víte předem</strong>výkup · poplatek · cena odkupu</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="visit" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M5 10.4 12 5l7 5.4V19H5z"/><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></span>
           <span class="ts-label"><strong>Technik přijede do depa</strong>i mezi dvěma jízdami</span>
         </div>
         <div class="ts-item">
-          <span class="ts-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+          <span class="ts-ico"><svg class="pic" data-pic="chart" viewBox="0 0 24 24" aria-hidden="true"><rect class="a" x="8.4" y="4" width="3.2" height="16"/><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
           <span class="ts-label"><strong>Více vozidel z flotily</strong>každé zvlášť, přehledně v klientské zóně</span>
         </div>
       </div>
     </div>
   </section>
 
+  <div class="marquee" data-marquee="Provoz se nezastaví|Peníze z tahače|Kamiony jedou dál|Odkup po zaplacení faktur" aria-hidden="true"></div>
+
   <div id="srovnani-parametru" data-pricing-comparison>
     <noscript><p class="container">Orientační parametry: CashAuto výkup 70 % / měsíční poplatek 4 %; AgroCash 65 % / 3 %; TechCash 65 % / 3,5 %. Obě procenta se počítají z odhadní hodnoty majetku.</p></noscript>
   </div>
 
   <!-- ===================== 02 MEZERA VE SPLATNOSTI ===================== -->
-  <section class="section" id="splatnost">
+  <section class="section alt" id="splatnost">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Proč TechCash</span>
@@ -146,7 +150,7 @@
 
 
   <!-- ===================== STORY (niche) ===================== -->
-  <section class="section story-strip" id="pribeh">
+  <section class="section dyn story-strip" id="pribeh">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Jak to vypadá v depu</span>
@@ -154,17 +158,17 @@
       </div>
       <div class="grid grid-3 mobile-carousel" data-reveal-stagger>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Nafta a AdBlue hned</span></span><img src="assets/img/tech-story-nafta.webp" alt="Řidič ve vestě tankuje bílý tahač u pumpy za svítání" width="720" height="1280" loading="lazy" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Nafta a AdBlue hned</span></span><img src="assets/img/tech-story-nafta.webp" srcset="assets/img/tech-story-nafta-540.webp 540w, assets/img/tech-story-nafta.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Řidič v oranžové reflexní vestě tankuje naftu do tahače u výdejního stojanu v depu" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Tankovací karta nečeká na odběratele</h3>
           <p class="mb-0">Peníze z dočasného výkupu tahače pokryjí palivo, mýto a diety — kamion jede dál na vaše zakázky.</p>
         </div>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Kilometry vydělávají</span></span><img src="assets/img/tech-story-dalnice.webp" alt="Bílý tahač s návěsem jede za soumraku po dálnici" width="720" height="1280" loading="lazy" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Kilometry vydělávají</span></span><img src="assets/img/tech-story-dalnice.webp" srcset="assets/img/tech-story-dalnice-540.webp 540w, assets/img/tech-story-dalnice.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Bílý kamion na dálnici za soumraku, na krajnici oranžové kužely" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Vozidlo dál jezdí, i mezinárodně</h3>
           <p class="mb-0">Zůstáváte provozovatelem v technickém průkazu. Technik přijede do depa mezi dvěma jízdami, plán jízd se nemění.</p>
         </div>
         <div>
-          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Dispečink v klidu</span></span><img src="assets/img/tech-story-dispecer.webp" alt="Majitel dopravní firmy s tabletem v kanceláři s mapou tras a výhledem na kamiony" width="720" height="1280" loading="lazy" /></div>
+          <div class="photo-frame tall"><span class="story-tag"><span class="pill">Dispečink v klidu</span></span><img src="assets/img/tech-story-dispecer.webp" srcset="assets/img/tech-story-dispecer-540.webp 540w, assets/img/tech-story-dispecer.webp 900w" sizes="(min-width: 861px) 31vw, 82vw" alt="Dispečer se sluchátky u dvou monitorů v kanceláři dopravce, na židli oranžová reflexní vesta" width="900" height="1205" loading="lazy" decoding="async" /></div>
           <h3>Odkup, až odběratel zaplatí</h3>
           <p class="mb-0">Dobu rezervace nastavíte podle splatnosti faktur (60–90 dní). Tři čísla v Kč vidíte hned, dřívější odkup je bez penalizace.</p>
         </div>
@@ -172,19 +176,19 @@
     </div>
   </section>
   <!-- ===================== 03 NA CO PENÍZE ===================== -->
-  <section class="section alt" id="pouziti">
+  <section class="section dark" id="pouziti">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Na co dopravci peníze používají</span>
         <h2 class="mt-3">Provozní kapitál pro flotilu</h2>
       </div>
       <div class="usecase-grid mobile-carousel" data-reveal-stagger>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/><path d="M4 20h12M16 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V10l-3-3"/><path d="M7 8h6"/></svg></span><div><h4>Nafta a AdBlue</h4><p>Tankovací karty a zálohy na palivo pro celou flotilu — největší měsíční výdaj dopravce.</p><span class="uc-amt">typicky 150 000 – 600 000 Kč / měsíc</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span><div><h4>Mýto a dálniční poplatky</h4><p>Elektronické mýto v ČR i v zahraničí se strhává průběžně a nečeká na splatnost faktur.</p><span class="uc-amt">typicky 40 000 – 200 000 Kč / měsíc</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span><div><h4>Pneumatiky a servis</h4><p>Sada pneumatik na tahač s návěsem, brzdy, tachograf, STK — bez toho vozidlo nevyjede.</p><span class="uc-amt">typicky 60 000 – 250 000 Kč</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6M18 20a6 6 0 0 0-3-5.2"/></svg></span><div><h4>Mzdy řidičů a diety</h4><p>Řidiči dostanou výplatu na konci měsíce. Odběratel zaplatí za tři. Ten rozdíl nese dopravce.</p><span class="uc-amt">typicky 100 000 – 500 000 Kč / měsíc</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/></svg></span><div><h4>Pojištění a povinné platby</h4><p>Pojištění flotily, silniční daň, licence a poplatky se platí předem a v celku.</p><span class="uc-amt">typicky 50 000 – 300 000 Kč</span></div></div>
-        <div class="uc-card"><span class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></span><div><h4>Záloha na nový kontrakt</h4><p>Nový odběratel chce první jízdy hned — a zaplatí, až se rozjede pravidelná spolupráce.</p><span class="uc-amt">podle objemu kontraktu</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="fuel" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M4 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14z"/><path d="M4 20V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v14"/><path d="M3 20h14M16 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0V10l-3-3"/><path d="M7 8h6"/></svg></span><div><h4>Nafta a AdBlue</h4><p>Tankovací karty a zálohy na palivo pro celou flotilu — největší měsíční výdaj dopravce.</p><span class="uc-amt">typicky 150 000 – 600 000 Kč / měsíc</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="map" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M9 4 3 6v14l6-2z"/><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span><div><h4>Mýto a dálniční poplatky</h4><p>Elektronické mýto v ČR i v zahraničí se strhává průběžně a nečeká na splatnost faktur.</p><span class="uc-amt">typicky 40 000 – 200 000 Kč / měsíc</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="tyre" viewBox="0 0 24 24" aria-hidden="true"><circle class="a" cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span><div><h4>Pneumatiky a servis</h4><p>Sada pneumatik na tahač s návěsem, brzdy, tachograf, STK — bez toho vozidlo nevyjede.</p><span class="uc-amt">typicky 60 000 – 250 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="users" viewBox="0 0 24 24" aria-hidden="true"><circle class="a" cx="9" cy="8" r="3.2"/><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 6M18 20a6 6 0 0 0-3-5.2"/></svg></span><div><h4>Mzdy řidičů a diety</h4><p>Řidiči dostanou výplatu na konci měsíce. Odběratel zaplatí za tři. Ten rozdíl nese dopravce.</p><span class="uc-amt">typicky 100 000 – 500 000 Kč / měsíc</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="cover" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/></svg></span><div><h4>Pojištění a povinné platby</h4><p>Pojištění flotily, silniční daň, licence a poplatky se platí předem a v celku.</p><span class="uc-amt">typicky 50 000 – 300 000 Kč</span></div></div>
+        <div class="uc-card"><span class="uc-ico"><svg class="pic" data-pic="doc" viewBox="0 0 24 24" aria-hidden="true"><path class="a" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></span><div><h4>Záloha na nový kontrakt</h4><p>Nový odběratel chce první jízdy hned — a zaplatí, až se rozjede pravidelná spolupráce.</p><span class="uc-amt">podle objemu kontraktu</span></div></div>
       </div>
       <p class="muted text-center mt-4 mb-0" style="font-size:var(--fs-xs)">Orientační rozpětí podle typu provozu. Peníze z výkupu použijete pro své podnikání podle vlastního uvážení — účel na výkupní cenu nemá vliv.</p>
     </div>
@@ -212,49 +216,52 @@
   </section>
 
   <!-- ===================== 05 JAK TO FUNGUJE V DEPU ===================== -->
-  <section class="section dark" id="jak-to-funguje">
+  <section class="section dyn" id="jak-to-funguje">
     <div class="container">
       <div class="section-head center" data-reveal>
         <span class="eyebrow">Jak to funguje v depu</span>
         <h2 class="mt-3">Tři kroky. Vozidlo nevypadne z plánu jízd.</h2>
       </div>
-      <div class="big-steps mobile-carousel" data-reveal-stagger>
+      <div class="big-steps" data-reveal-stagger>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">2 minuty</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><rect x="18" y="6" width="28" height="52" rx="6"/><path d="M28 12h8"/><rect class="f m" x="24" y="21" width="16" height="8" rx="2"/><path class="m" style="--pd:420ms" d="M24 37h16"/><path class="m" style="--pd:560ms" d="M24 45h10"/></svg></span>
+          <span class="bs-time">2 minuty</span>
           <div class="big-num" aria-hidden="true">1</div>
           <h3>Zjistíte svá tři čísla</h3>
           <p>Zadáte IČO, typ vozidla, rok výroby a nájezd. Hned vidíte výkupní cenu, měsíční rezervační poplatek i cenu zpětného odkupu — v Kč.</p>
         </div>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">do 3 dnů</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><path d="M4 44V22h30v22"/><path d="M34 28h10l7 8v8H34"/><path d="M20 44h8"/><g class="roll"><circle cx="13" cy="47" r="5.500"/><path d="M13 43.500v7M9.500 47h7"/></g><g class="roll"><circle cx="34" cy="47" r="5.500"/><path d="M34 43.500v7M30.500 47h7"/></g><g class="roll"><circle cx="46" cy="47" r="5.500"/><path d="M46 43.500v7M42.500 47h7"/></g><g class="drop" style="--pd:520ms"><path class="f" d="M47 5c-5 0-9 3.800-9 8.600C38 19.800 47 27 47 27s9-7.200 9-13.400C56 8.800 52 5 47 5z"/><path d="M47 5c-5 0-9 3.800-9 8.600C38 19.800 47 27 47 27s9-7.200 9-13.400C56 8.800 52 5 47 5z"/><circle cx="47" cy="13.500" r="2.600"/></g></svg></span>
+          <span class="bs-time">do 3 dnů</span>
           <div class="big-num" aria-hidden="true">2</div>
           <h3>Technik přijede do depa</h3>
           <p>Zkontroluje tachograf, servisní historii, pneumatiky, brzdy, nástavbu a doklady. Prohlídku naplánujeme mezi jízdy.</p>
         </div>
         <div class="big-step">
-          <span class="bs-time text-sm muted" style="font-weight:500">do 24 hodin</span>
+          <span class="step-pic" aria-hidden="true"><svg class="sp" viewBox="0 0 64 64"><path d="M12 6h24l10 10v42H12z"/><path d="M36 6v10h10"/><path d="M19 26h18M19 33h11"/><path class="m" style="--pd:420ms" d="M19 47c3-6 5-6 7 0s4 6 6 0"/><g class="pop" style="--pd:720ms"><circle class="f" cx="46" cy="45" r="11"/><circle cx="46" cy="45" r="11"/><path d="M41 45l3.500 3.500 6.500-7"/></g></svg></span>
+          <span class="bs-time">do 24 hodin</span>
           <div class="big-num" aria-hidden="true">3</div>
           <h3>Podpis a peníze na účet</h3>
           <p>Kupní smlouva, předávací protokol a smlouva o užívání. Zůstáváte provozovatelem v technickém průkazu; převod pojištění zařídíme.</p>
         </div>
       </div>
-      <div class="grid grid-2 mt-7" style="align-items:center;gap:var(--sp-6)" data-reveal>
+      <div class="grid grid-2 split mt-7" data-reveal>
         <div>
-          <h3 style="font-size:var(--fs-xl)">Co technik kontroluje</h3>
-          <ul class="doc-list mt-4" style="grid-template-columns:1fr">
+          <h3 class="h-xl">Co technik kontroluje</h3>
+          <ul class="doc-list single mt-4">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Nájezd a servisní historie<small>tachograf, servisní kniha, poslední velký servis, výměny</small></span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Technický stav<small>motor, převodovka, brzdy, pneumatiky, nástavba či agregát, platná STK</small></span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Doklady<small>velký technický průkaz, doklad o pořízení, oprávnění jednat za firmu</small></span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Zatížení vozidla<small>stávající leasing či úvěr na vozidlo — posuzujeme individuálně</small></span></li>
           </ul>
         </div>
-        <div class="photo-frame"><img src="assets/img/tech-fleet.webp" alt="Tři bílé tahače s návěsy v řadě na dvoře logistického depa v modré hodince" width="1200" height="896" loading="lazy" /></div>
+        <div class="photo-frame"><img src="assets/img/tech-fleet.webp" srcset="assets/img/tech-fleet-640.webp 640w, assets/img/tech-fleet.webp 1200w" sizes="(min-width: 861px) 46vw, 92vw" alt="Řada bílých návěsů v depu dopravce za ranní mlhy, v popředí oranžové kužely" width="1200" height="896" loading="lazy" decoding="async" /></div>
       </div>
       <div class="stat-band mt-7" data-reveal>
-        <div class="sb"><div class="num">65 %</div><div class="cap">orientační výkupní cena z odhadní hodnoty vozidla</div></div>
-        <div class="sb"><div class="num">3,5 %</div><div class="cap">měsíční rezervační poplatek z odhadní hodnoty (v Kč předem)</div></div>
-        <div class="sb"><div class="num">1–12 měs.</div><div class="cap">doba rezervace zpětného odkupu podle splatnosti faktur</div></div>
-        <div class="sb"><div class="num">do 24 h</div><div class="cap">výplata výkupní ceny od podpisu smluv (zpravidla)</div></div>
+        <div class="sb"><div class="num odo">65 %</div><div class="cap">orientační výkupní cena z odhadní hodnoty vozidla</div></div>
+        <div class="sb"><div class="num odo">3,5 %</div><div class="cap">měsíční rezervační poplatek z odhadní hodnoty (v Kč předem)</div></div>
+        <div class="sb"><div class="num odo">1–12 měs.</div><div class="cap">doba rezervace zpětného odkupu podle splatnosti faktur</div></div>
+        <div class="sb"><div class="num odo">do 24 h</div><div class="cap">výplata výkupní ceny od podpisu smluv (zpravidla)</div></div>
       </div>
       <p class="cost-warning mt-5 mb-0">Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</p>
     </div>
@@ -267,7 +274,7 @@
         <span class="eyebrow">Na rovinu</span>
         <h2 class="mt-3">Co se ptají dopravci, než se ozvou</h2>
       </div>
-      <div class="objections mobile-carousel" data-reveal-stagger>
+      <div class="objections cols-2 mobile-carousel" data-reveal-stagger>
         <div class="obj">
           <div class="obj-q"><span class="q-ico" aria-hidden="true">?</span>„Jezdím do zahraničí. Můžu s vozidlem přes hranice?“</div>
           <div class="obj-a"><span class="a-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span>Ano. Zůstáváte provozovatelem zapsaným v technickém průkazu a vozidlo používáte pro svou dopravu podle smlouvy o užívání — tuzemsko i mezinárodní přeprava. Konkrétní podmínky (limity nájezdu, území) máte ve smlouvě před podpisem.</span></div>

@@ -4,7 +4,7 @@
 const fs = require("fs"), path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const files = [];
-(function walk(d) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) { if (!["node_modules", ".git", "Public", "tools"].includes(f)) walk(p); } else if (/\.(html|js)$/.test(f)) files.push(p); } })(ROOT);
+(function walk(d) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) { if (!["node_modules", ".git", "Public", "tools", "kampan"].includes(f)) walk(p); } else if (/\.(html|js)$/.test(f)) files.push(p); } })(ROOT);
 // [regex, note, hardBan]
 const RULES = [
   [/RPSN/g, "RPSN nikde v kalkulacích/textech", true],

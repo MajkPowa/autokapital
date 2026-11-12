@@ -18,7 +18,7 @@ const rel = f => path.relative(ROOT, f).replace(/\\/g, "/");
 // ---- inventory --------------------------------------------------------------------------------------------
 const htmlFiles = [], jsFiles = [];
 const JS_DIR = path.join(ROOT, "assets", "js");
-(function walk(d) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) { if (!["node_modules", ".git", "tools"].includes(f)) walk(p); } else if (f.endsWith(".html")) htmlFiles.push(p); else if (f.endsWith(".js") && p.startsWith(JS_DIR + path.sep)) jsFiles.push(p); } })(ROOT);
+(function walk(d) { for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) { if (!["node_modules", ".git", "tools", "kampan"].includes(f)) walk(p); } else if (f.endsWith(".html")) htmlFiles.push(p); else if (f.endsWith(".js") && p.startsWith(JS_DIR + path.sep)) jsFiles.push(p); } })(ROOT);
 const ids = {};
 for (const f of htmlFiles) { const s = fs.readFileSync(f, "utf8"); ids[f] = new Set([...s.matchAll(/\sid="([^"]+)"/g)].map(m => m[1])); }
 // ids injected by shell.js at runtime
