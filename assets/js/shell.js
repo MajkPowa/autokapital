@@ -1,6 +1,6 @@
 /* =========================================================================
    CashAuto — Shared chrome (icons, logo, marketing header + footer)
-   Pages set <body data-shell="marketing" data-active="home|agro|tech|blog|prezentace">
+   Pages set <body data-shell="marketing" data-active="home|agro|tech|blog">
    to auto-render the header into #site-header and footer into #site-footer.
    All chrome links are root-absolute so pages in /blog/ resolve correctly.
    ========================================================================= */
@@ -119,7 +119,7 @@
             return `<tr${key === current ? ' class="pricing-current"' : ""}><th scope="row"><a href="${href}">${v.name}</a><span>${v.label}</span></th><td>${percent(v.vykupRate)}</td><td>${percent(v.feeRate)}</td></tr>`;
           }).join("")}</tbody></table></div>
         <p class="pricing-note"><strong>Obě procenta vycházejí z odhadní hodnoty, nikoli z vyplacené částky.</strong> Nižší procentní sazba proto sama o sobě neznamená nižší poplatek v Kč. Konkrétní výkupní cenu, poplatky za zvolenou dobu a cenu zpětného odkupu uvidíte před podpisem.</p>
-        <p class="muted mb-0" style="font-size:var(--fs-sm)">Orientační propočet není závazná nabídka. Stav a hodnotu majetku i podmínky každé žádosti posuzujeme individuálně. <a href="/compliance.html">Podmínky a férovost</a></p>
+        <p class="muted mb-0" style="font-size:var(--fs-sm)">Orientační propočet není závazná nabídka. Stav a hodnotu majetku i podmínky každé žádosti posuzujeme individuálně. <a href="/compliance.html">Férovost &amp; compliance</a></p>
       </div></section>`;
     });
   }
@@ -141,7 +141,6 @@
     { label: "Jak to funguje", anchor: "jak-to-funguje", key: "" },
     { label: "Kalkulačka", anchor: "kalkulacka", key: "" },
     { label: "Rádce", href: "/blog/", key: "blog" },
-    { label: "O nás", href: "/prezentace.html", key: "prezentace" },
   ];
 
   function navLinks(active, items) {
@@ -226,7 +225,6 @@
           <div>
             <h4>Společnost</h4>
             <ul class="footer-links">
-              <li><a href="/prezentace.html">O nás</a></li>
               <li><a href="/compliance.html">Férovost &amp; compliance</a></li>
               <li><a href="/portal.html">Klientská zóna</a></li>
             </ul>
@@ -247,10 +245,9 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <span><strong>Povinné informace:</strong> CashAuto a.s. (demo) · IČO 000 00 000 · Sídlo a adresa pro doručování: Příkladová 123, 110 00 Praha 1 · Tel.: <a href="tel:${PHONE.tel}">+420 ${PHONE.label}</a> · E-mail: <a href="mailto:info@cashauto.cz">info@cashauto.cz</a> · <a href="/compliance.html#povinne-informace">Povinné informace, kontaktní údaje a vaše práva</a></span>
+          <span><strong>Povinné informace:</strong> Službu CashAuto provozuje Habitanti mining s.r.o. · IČO 09828524 · DIČ CZ09828524 · Sídlo a adresa pro doručování: Kaprova 42/14, Staré Město, 110&nbsp;00 Praha&nbsp;1 · zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka 343120 · Tel.: <a href="tel:${PHONE.tel}">+420 ${PHONE.label}</a> · E-mail: <a href="mailto:info@cashauto.cz">info@cashauto.cz</a> · <a href="/compliance.html#povinne-informace">Povinné informace, kontaktní údaje a vaše práva</a></span>
           <span>Pozor! Tato služba není zdarma — za rezervaci možnosti zpětného odkupu platíte měsíční poplatek.</span>
-          <span>© 2026 CashAuto a.s. — Demoprezentace produktu. Nejedná se o závaznou nabídku ani o právní poradenství. Služba je určena výhradně podnikatelům a firmám — spotřebitelům ji neposkytujeme. AgroCash a TechCash jsou produktové řady CashAuto a.s.</span>
-          <span>Pro partnery a investory (demo): <a href="/prezentace.html">Prezentace</a> · <a href="/faze2.html">Fáze 2</a> · <a href="/admin.html">Admin</a> · <a href="/aftersales.html">Aftersales</a></span>
+          <span>© 2026 Habitanti mining s.r.o. — CashAuto, AgroCash a TechCash. Informace na webu nejsou závaznou nabídkou ani právním poradenstvím; podmínky vždy stanoví smlouva. Služba je určena výhradně podnikatelům a firmám — spotřebitelům ji neposkytujeme.</span>
         </div>
       </div>
     </footer>`;

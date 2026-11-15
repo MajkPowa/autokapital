@@ -233,7 +233,7 @@ main > .section ~ .section ~ .section { content-visibility: auto; contain-intrin
 /* řádky titulku za lomítkovou maskou */
 .hl { display: block; width: fit-content; max-width: calc(100% + .3em); overflow: hidden; transform: skewX(var(--slant)); transform-origin: 0 100%; margin-left: -.12em; }
 .hl > span { display: block; padding: .02em .14em .07em .12em; transform: skewX(var(--unslant)); transform-origin: 0 100%; }
-.hl-dyn { background: var(--dyn); margin-top: .1em; margin-left: -.04em; border-radius: .08em; }
+.hl-dyn { background: linear-gradient(var(--dyn), var(--dyn)) 0 0 / 100% 100% no-repeat; margin-top: .1em; margin-left: -.04em; border-radius: .08em; }
 .hl-dyn > span { padding-inline: .2em .24em; }
 /* dvojice lomítek: barva + fotografie; pod nimi dynamický blok, který plynule přejde do pásu kalkulačky */
 .hero { overflow: clip; padding-bottom: 0; }
@@ -682,9 +682,10 @@ a.card { text-decoration: none; }
 .offer-cell { padding: var(--sp-4); border-radius: var(--r-md); background: var(--ink-2); min-width: 0; }
 .offer-cell .cap { display: block; font-size: var(--fs-xs); font-weight: 600; }
 .offer-cell .val { margin-top: 4px; font-size: clamp(1.25rem, 5.4vw, 1.75rem); font-weight: 800; font-family: var(--font-display); letter-spacing: -.03em; line-height: 1.1; white-space: nowrap; }
-.stars { letter-spacing: 3px; font-size: 1.125rem; }
-.review-card .quote { margin-top: 10px; font-family: var(--font-display); font-stretch: 105%; font-weight: 600; font-size: 1.0625rem; line-height: 1.4; letter-spacing: -.01em; }
-.review-card .who { display: block; margin-top: 12px; font-size: var(--fs-sm); font-weight: 700; }
+.next-title { display: block; font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: 1.125rem; letter-spacing: -.02em; }
+.next-steps { counter-reset: nx; display: grid; gap: 12px; margin: 14px 0 14px; padding: 0; list-style: none; }
+.next-steps li { counter-increment: nx; display: flex; gap: 12px; align-items: flex-start; font-size: var(--fs-sm); font-weight: 600; line-height: 1.45; }
+.next-steps li::before { content: counter(nx); flex: none; width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; background: var(--ink); color: var(--dyn); font-family: var(--font-display); font-weight: 800; font-size: .8125rem; }
 .toast-wrap { position: fixed; z-index: 300; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translateX(-50%); display: grid; gap: 8px; width: min(92vw, 460px); }
 .toast { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 14px; background: var(--ink); color: var(--paper); font-weight: 600; box-shadow: var(--shadow-lg); animation: toast-in 320ms var(--ease); }
 .toast .ico { flex: none; width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; background: var(--dyn); color: var(--ink); }
@@ -740,26 +741,25 @@ a.card { text-decoration: none; }
 @keyframes faq-in { from { opacity: 0; transform: translateY(-6px); } }
 @keyframes step-in { from { opacity: 0; transform: translateX(14px); } }
 @keyframes toast-in { from { opacity: 0; transform: translateY(12px); } }
-@keyframes hl-out { from { transform: translateX(-102%) skewX(var(--slant)); } to { transform: translateX(0) skewX(var(--slant)); } }
-@keyframes hl-in { from { transform: skewX(var(--unslant)) translateX(102%); } to { transform: skewX(var(--unslant)) translateX(0); } }
+@keyframes hl-sweep { from { background-size: 0% 100%; } }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
 @keyframes block-up { from { transform: translateY(60%) skewY(-5deg); } to { transform: translateY(0) skewY(-5deg); } }
 @keyframes block-in { from { transform: translateX(70%) skewX(var(--slant)); } to { transform: translateX(0) skewX(var(--slant)); } }
-@keyframes slash-in { from { opacity: 0; transform: translateY(14%) skewX(var(--slant)); } to { opacity: 1; transform: translateY(0) skewX(var(--slant)); } }
+@keyframes slash-in { from { transform: translateY(14%) skewX(var(--slant)); } to { transform: translateY(0) skewX(var(--slant)); } }
+@keyframes rise-solid { from { transform: translateY(18px); } }
 
-/* vstup hera: řádky titulku se setřou zpoza lomítka, dynamický blok vjede */
-.js .hero .hl { animation: hl-out 760ms var(--ease) both; }
-.js .hero .hl > span { animation: hl-in 760ms var(--ease) both; }
-.js .hero .hl:nth-child(2), .js .hero .hl:nth-child(2) > span { animation-delay: 140ms; }
-.js .hero .eyebrow, .js .hero .breadcrumbs, .js .hero .brand-lockup { animation: rise 500ms var(--ease) both; }
-.js .hero .lead { animation: rise 600ms var(--ease) 320ms both; }
-.js .hero .hero-actions { animation: rise 600ms var(--ease) 420ms both; }
-.js .hero .hero-note { animation: rise 600ms var(--ease) 500ms both; }
+/* vstup hera: obsah první obrazovky je vidět hned od prvního vykreslení (nic nezačíná s opacity 0);
+   titulek stojí, animuje se jen barevný podklad akcentu, drobný posun textů a dynamický blok */
+.js .hero .hl-dyn { animation: hl-sweep 620ms var(--ease) 120ms backwards; }
+.js .hero .eyebrow, .js .hero .breadcrumbs, .js .hero .brand-lockup { animation: rise-solid 500ms var(--ease) both; }
+.js .hero .lead { animation: rise-solid 600ms var(--ease) 120ms both; }
+.js .hero .hero-actions { animation: rise-solid 600ms var(--ease) 180ms both; }
+.js .hero .hero-note { animation: rise-solid 600ms var(--ease) 240ms both; }
 .js .hero-visual::before { animation: block-up 900ms var(--ease) both; }
 @media (min-width: 960px) { .js .hero::before { animation: block-in 900ms var(--ease) both; } }
 .js .hero .slash-b { animation: slash-in 800ms var(--ease) 120ms both; }
 .js .hero .slash-a { animation: slash-in 800ms var(--ease) 300ms both; }
-.js .hero .tagchip { animation: rise 500ms var(--ease) 700ms both; }
+.js .hero .tagchip { animation: rise-solid 500ms var(--ease) 700ms both; }
 .js .hero .tagchip:nth-child(2) { animation-delay: 820ms; }
 
 /* scroll reveal */
@@ -856,8 +856,8 @@ a.card { text-decoration: none; }
 .mt-item { display: flex; gap: 14px; align-items: flex-start; }
 .mini-trust strong { display: block; }
 .mini-trust .mt-item > div > span { font-size: var(--fs-sm); color: var(--muted); line-height: 1.45; }
-.card.review-card { background: var(--dyn); }
-.review-card .muted { color: rgba(15, 21, 18, .75); }
+.card.next-card { background: var(--dyn); }
+.next-card .muted { display: block; color: rgba(15, 21, 18, .75); }
 @media (max-width: 640px) { .wizard-nav { flex-direction: column-reverse; align-items: stretch; } .wizard-nav .btn { width: 100%; } .wizard-nav .hint { text-align: center; } }
 @media (max-width: 520px) { .zadost-grid > div > .card.pad-lg { padding: 16px; } .q-block { padding: 16px; } .choice-row.big { grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); } .choice-row.big .choice { padding-inline: 10px; } .offer-panel { padding: 18px; } }
 @media (max-width: 380px) { .offer-pair { grid-template-columns: 1fr; } }
@@ -876,7 +876,6 @@ a.card { text-decoration: none; }
 .article-body { padding-top: 0; }
 .pc-tag { align-self: flex-start; }
 .compact { gap: var(--sp-4); }
-.stars { color: var(--ink); }
 
 /* ---------- 31 · Prezentace (O nás) ---------- */
 .stat .num { font-size: clamp(1.6rem, 5.5vw, 2.4rem); font-weight: 900; line-height: 1; white-space: nowrap; }
