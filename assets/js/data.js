@@ -81,35 +81,48 @@ window.AK = (function () {
     { name: "Informační dokument pro klienta", meta: "PDF · 24. 3. 2026", kind: "Informace", signed: false },
   ];
 
+  // Provozovatel služby (stejné údaje jako patička webu v shell.js a stránka Férovost) — plní se do šablon smluv a e-mailů
+  const operator = { brand: "CashAuto", name: "Habitanti mining s.r.o.", ico: "09828524", dic: "CZ09828524", seat: "Kaprova 42/14, Staré Město, 110 00 Praha 1",
+    reg: "zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka 343120", email: "info@cashauto.cz", phone: "800 123 456", web: "cashauto.cz" };
+
   // ----- Admin data (podnikatelé a firmy, model výkupu) -----
   // CRM pipeline — 7 fází dle interního reportu:
   // 1 lead → 2 call → 3 scoring → 4 návštěva technikem → 5 schválení → 6 pojištění → 7 přepis & podpis (hotovo)
+  // line: auto (výchozí, 70 % / 4 %) · agro (65 % / 3 %) · tech (65 % / 3,5 %); IČO u řad agro a tech má záměrně neplatnou kontrolní číslici
   const pipeline = [
     { key: "lead", label: "1 · Nový lead", items: [
-      { id: "AK-5104", name: "Pavel Horák — OSVČ", ico: "08912334", car: "VW Passat B8", vykup: 175000, fee: 10000, segment: "C2", channel: "GA/PPC", risk: "low" },
-      { id: "AK-5103", name: "Dvořák Pekařství s.r.o.", ico: "06244810", car: "Hyundai i30", vykup: 119000, fee: 6800, segment: "C3", channel: "Facebook", risk: "low" },
+      { id: "AK-5104", name: "Pavel Horák — OSVČ", ico: "08912334", car: "VW Passat B8", vykup: 175000, fee: 10000, segment: "C2", channel: "GA/PPC", risk: "low", city: "Olomouc", contact: "Pavel Horák", email: "pavel.horak@example.com", year: 2017, km: 148000 },
+      { id: "AK-5103", name: "Dvořák Pekařství s.r.o.", ico: "06244810", car: "Hyundai i30", vykup: 119000, fee: 6800, segment: "C3", channel: "Facebook", risk: "low", city: "Plzeň", contact: "Martin Dvořák", email: "dvorak@example.com", year: 2016, km: 131000 },
+      { id: "AG-2044", line: "agro", name: "Jaroslav Kříž — OSVČ", ico: "13320983", car: "Zetor Forterra 140", vykup: 585000, fee: 27000, segment: "traktor", channel: "Sklik", risk: "low", city: "Havlíčkův Brod", contact: "Jaroslav Kříž", email: "kriz@example.com", year: 2016, km: 5200 },
+      { id: "TC-3020", line: "tech", name: "Logistika Hrubý s.r.o.", ico: "14296295", car: "MAN TGX 18.470", vykup: 975000, fee: 52500, segment: "tahač", channel: "GA/PPC", risk: "low", city: "Kolín", contact: "Radek Hrubý", email: "hruby@example.com", year: 2018, km: 742000 },
     ]},
     { key: "call", label: "2 · Call", items: [
-      { id: "AK-5101", name: "Jiří Svoboda — OSVČ", ico: "71455902", car: "Dacia Duster", vykup: 98000, fee: 5600, segment: "C3", channel: "Sklik", risk: "low" },
-      { id: "AK-5098", name: "Marešová Úklid s.r.o.", ico: "04578123", car: "Škoda Fabia", vykup: 91000, fee: 5200, segment: "C3", channel: "GA/PPC", risk: "low" },
+      { id: "AK-5101", name: "Jiří Svoboda — OSVČ", ico: "71455902", car: "Dacia Duster", vykup: 98000, fee: 5600, segment: "C3", channel: "Sklik", risk: "low", city: "Jihlava", contact: "Jiří Svoboda", email: "jiri.svoboda@example.com", year: 2015, km: 156000 },
+      { id: "AK-5098", name: "Marešová Úklid s.r.o.", ico: "04578123", car: "Škoda Fabia", vykup: 91000, fee: 5200, segment: "C3", channel: "GA/PPC", risk: "low", city: "Hradec Králové", contact: "Lenka Marešová", email: "maresova@example.com", year: 2016, km: 98000 },
+      { id: "TC-3017", line: "tech", name: "Beneš Transport s.r.o.", ico: "15271602", car: "DAF XF 480", vykup: 1170000, fee: 63000, segment: "tahač", channel: "Facebook", risk: "low", city: "Mladá Boleslav", contact: "Ondřej Beneš", email: "benes.transport@example.com", year: 2019, km: 615000 },
     ]},
     { key: "scoring", label: "3 · Scoring", items: [
-      { id: "AK-5095", name: "Tomáš Král — OSVČ", ico: "72891445", car: "Ford Focus", vykup: 133000, fee: 7600, segment: "C3", channel: "Instagram", risk: "med" },
-      { id: "AK-5089", name: "Procházková Catering — OSVČ", ico: "69102887", car: "Kia Ceed", vykup: 154000, fee: 8800, segment: "C3", channel: "Retention/CRM", risk: "low" },
+      { id: "AK-5095", name: "Tomáš Král — OSVČ", ico: "72891445", car: "Ford Focus", vykup: 133000, fee: 7600, segment: "C3", channel: "Instagram", risk: "med", city: "Liberec", contact: "Tomáš Král", email: "tomas.kral@example.com", year: 2016, km: 142000 },
+      { id: "AK-5089", name: "Procházková Catering — OSVČ", ico: "69102887", car: "Kia Ceed", vykup: 154000, fee: 8800, segment: "C3", channel: "Retention/CRM", risk: "low", city: "Ostrava", contact: "Jana Procházková", email: "prochazkova@example.com", year: 2018, km: 87000 },
+      { id: "AG-2041", line: "agro", name: "Farma Dvořák s.r.o.", ico: "16246911", car: "John Deere 6130R", vykup: 975000, fee: 45000, segment: "traktor", channel: "GA/PPC", risk: "low", city: "Třebíč", contact: "Václav Dvořák", email: "farma.dvorak@example.com", year: 2018, km: 4100 },
+      { id: "TC-3012", line: "tech", name: "Autodoprava Kolář — OSVČ", ico: "17222225", car: "Schmitz Cargobull — návěs", vykup: 390000, fee: 21000, segment: "návěs", channel: "Retention/CRM", risk: "med", city: "Opava", contact: "Milan Kolář", email: "kolar@example.com", year: 2017, km: 0 },
     ]},
     { key: "technik", label: "4 · Návštěva technikem", items: [
-      { id: "AK-5085", name: "Novotný Stavby s.r.o.", ico: "27740551", car: "Škoda Kodiaq", vykup: 320000, fee: 18300, segment: "C1", channel: "GA/PPC", risk: "low" },
+      { id: "AK-5085", name: "Novotný Stavby s.r.o.", ico: "27740551", car: "Škoda Kodiaq", vykup: 320000, fee: 18300, segment: "C1", channel: "GA/PPC", risk: "low", city: "Pardubice", contact: "Petr Novotný", email: "novotny@example.com", year: 2019, km: 112000, spz: "5E1 0000", vin: "TMBLJ9NS0K8000000" },
+      { id: "AG-2038", line: "agro", name: "Zemědělské družstvo Lipina", ico: "18197534", car: "Claas Lexion 650", vykup: 2080000, fee: 96000, segment: "kombajn", channel: "Sklik", risk: "med", city: "Znojmo", contact: "Josef Marek", email: "zd.lipina@example.com", year: 2015, km: 3350 },
     ]},
     { key: "approval", label: "5 · Schválení", items: [
-      { id: "AK-5081", name: "Beneš Autodoprava — OSVČ", ico: "74520663", car: "VW Tiguan", vykup: 280000, fee: 16000, segment: "C2", channel: "Facebook", risk: "med" },
-      { id: "AK-5077", name: "Jan Novák — OSVČ", ico: "76522901", car: "Škoda Octavia", vykup: 210000, fee: 12000, segment: "C2", channel: "GA/PPC", risk: "low" },
+      { id: "AK-5081", name: "Beneš Autodoprava — OSVČ", ico: "74520663", car: "VW Tiguan", vykup: 280000, fee: 16000, segment: "C2", channel: "Facebook", risk: "med", city: "Praha", contact: "Karel Beneš", email: "benes@example.com", year: 2018, km: 126000, spz: "1AA 0000", vin: "WVGZZZ5NZJW000000" },
+      { id: "AK-5077", name: "Jan Novák — OSVČ", ico: "76522901", car: "Škoda Octavia", vykup: 210000, fee: 12000, segment: "C2", channel: "GA/PPC", risk: "low", city: "Brno", contact: "Jan Novák", email: "jan.novak@example.com", year: 2017, km: 162000, spz: "1BA 0000", vin: "TMBJG7NE0H0000000" },
+      { id: "AG-2030", line: "agro", name: "Statek Vysočina s.r.o.", ico: "19172845", car: "New Holland T7.210", vykup: 1170000, fee: 54000, segment: "traktor", channel: "GA/PPC", risk: "low", city: "Žďár nad Sázavou", contact: "Hana Veselá", email: "statek@example.com", year: 2017, km: 6050 },
     ]},
     { key: "insurance", label: "6 · Pojištění", items: [
-      { id: "AK-5072", name: "Křížová Květiny — OSVČ", ico: "70133289", car: "Toyota Corolla", vykup: 185000, fee: 10600, segment: "C2", channel: "Retention/CRM", risk: "low" },
+      { id: "AK-5072", name: "Křížová Květiny — OSVČ", ico: "70133289", car: "Toyota Corolla", vykup: 185000, fee: 10600, segment: "C2", channel: "Retention/CRM", risk: "low", city: "Zlín", contact: "Eva Křížová", email: "krizova@example.com", year: 2019, km: 74000, spz: "1ZA 0000", vin: "SB1K93BE00E000000" },
+      { id: "TC-3009", line: "tech", name: "Spedice Morava s.r.o.", ico: "20148154", car: "Volvo FH 500", vykup: 1560000, fee: 84000, segment: "tahač", channel: "GA/PPC", risk: "low", city: "Prostějov", contact: "Tomáš Urban", email: "spedice.morava@example.com", year: 2020, km: 498000 },
     ]},
     { key: "done", label: "7 · Přepis & podpis — hotovo", items: [
-      { id: "AK-4812", name: "Jan Novák — OSVČ", ico: "76522901", car: "Škoda Octavia", vykup: 210000, fee: 12000, segment: "C2", channel: "GA/PPC", risk: "low" },
-      { id: "AK-4790", name: "Horáková Krejčovství — OSVČ", ico: "68845120", car: "Toyota Yaris", vykup: 105000, fee: 6000, segment: "C3", channel: "Sklik", risk: "low" },
+      { id: "AK-4812", name: "Jan Novák — OSVČ", ico: "76522901", car: "Škoda Octavia", vykup: 210000, fee: 12000, segment: "C2", channel: "GA/PPC", risk: "low", city: "Brno", contact: "Jan Novák", email: "jan.novak@example.com", year: 2017, km: 162000, spz: "1BA 0000", vin: "TMBJG7NE0H0000000" },
+      { id: "AK-4790", name: "Horáková Krejčovství — OSVČ", ico: "68845120", car: "Toyota Yaris", vykup: 105000, fee: 6000, segment: "C3", channel: "Sklik", risk: "low", city: "České Budějovice", contact: "Marie Horáková", email: "horakova@example.com", year: 2015, km: 119000, spz: "1CA 0000", vin: "VNKKG3D300A000000" },
     ]},
   ];
 
@@ -325,7 +338,7 @@ window.AK = (function () {
 
   return {
     user, activeCase, vehicle, processSteps, payments, documents,
-    pipeline, adminLeads, riskAlerts, adminVehicles, kpis,
+    operator, pipeline, adminLeads, riskAlerts, adminVehicles, kpis,
     products, faqs, exampleOffer,
     segments, typicalClient,
     reportMonths, channelReport, reportRows,

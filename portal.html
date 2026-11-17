@@ -22,6 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Inter:wght@400..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/design-system.css" />
   <link rel="stylesheet" href="assets/css/signal-portal.css" />
+  <link rel="stylesheet" href="assets/css/app-ux.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%230F1512'/%3E%3Cpath d='M11.6 8h5.200l-4.800 18H6.800z' fill='%23D4F23A'/%3E%3Cpath d='M21.500 8h5.200l-4.800 18h-5.200z' fill='%23D4F23A'/%3E%3C/svg%3E" />
 </head>
 <body data-active="portal">
@@ -31,20 +32,20 @@
       <a class="brand" href="index.html" aria-label="CashAuto — domů"><svg width="24" height="18" viewBox="0 0 26 20" aria-hidden="true"><path d="M6 1H11L5 19H0L6 1Z" fill="#fff"/><path d="M14 1H19L13 19H8L14 1Z" fill="#fff"/></svg><span>CashAuto</span></a>
 
       <div class="nav-group-label">Můj účet</div>
-      <button class="side-link" data-target="overview" data-title="Přehled">
+      <button class="side-link" data-bn="Přehled" data-target="overview" data-title="Přehled">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
         Přehled
       </button>
-      <button class="side-link" data-target="vozidlo" data-title="Moje auto">
+      <button class="side-link" data-bn="Auto" data-target="vozidlo" data-title="Moje auto">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13l2-5a3 3 0 0 1 2.8-2h8.4A3 3 0 0 1 19 8l2 5"/><path d="M3 13h18v5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H8v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><circle cx="7.5" cy="16" r="1.3"/><circle cx="16.5" cy="16" r="1.3"/></svg>
         Moje auto
       </button>
-      <button class="side-link" data-target="platby" data-title="Platby a termíny" aria-label="Platby a termíny, 1 splatná">
+      <button class="side-link" data-bn="Platby" data-target="platby" data-title="Platby a termíny" aria-label="Platby a termíny, 1 splatná">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 9.5h19"/></svg>
         Platby a termíny
         <span class="badge-count" aria-hidden="true">1</span>
       </button>
-      <button class="side-link" data-target="dokumenty" data-title="Dokumenty">
+      <button class="side-link" data-bn="Dokumenty" data-target="dokumenty" data-title="Dokumenty">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
         Dokumenty
       </button>
@@ -441,5 +442,6 @@
     })();
   </script>
   <script src="assets/js/portal-reminders.js"></script>
+  <script src="assets/js/app-ux.js"></script>
 </body>
 </html>
