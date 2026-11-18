@@ -87,7 +87,8 @@ const JS_LITERAL = /["'`](\/[A-Za-z0-9_\-.\/]*(?:\?[^"'`\s#]*)?(?:#[A-Za-z0-9_\-
 const JS_TEMPLATE_PREFIX = /["'`](\/[A-Za-z0-9_\-.\/]*)\$\{/g; // `/blog/${slug}.html` — usually inside href="…" of a bigger template
 for (const f of jsFiles) {
   const s = fs.readFileSync(f, "utf8");
-  for (const m of s.matchAll(JS_LITERAL)) checkRef(m[1], f, ROOT);
+  // /auth/v1/… a /rest/v1/… jsou cesty API ověřovací služby (backend.js), ne stránky webu
+  for (const m of s.matchAll(JS_LITERAL)) if (!/^\/(auth|rest)\/v1\//.test(m[1])) checkRef(m[1], f, ROOT);
   for (const m of s.matchAll(JS_TEMPLATE_PREFIX)) checkRef(m[1].slice(0, m[1].lastIndexOf("/") + 1), f, ROOT, { dirOnly: true });
   if (path.basename(f) === "data.js") for (const m of s.matchAll(/\bslug:\s*"([^"]+)"/g)) checkRef(`/blog/${m[1]}.html`, f, ROOT);
 }

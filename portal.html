@@ -23,6 +23,10 @@
   <link rel="stylesheet" href="assets/css/design-system.css" />
   <link rel="stylesheet" href="assets/css/signal-portal.css" />
   <link rel="stylesheet" href="assets/css/app-ux.css" />
+  <link rel="stylesheet" href="assets/css/app-auth.css" />
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/backend.js"></script>
+  <script src="assets/js/guard.js" data-need="any"></script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%230F1512'/%3E%3Cpath d='M11.6 8h5.200l-4.800 18H6.800z' fill='%23D4F23A'/%3E%3Cpath d='M21.500 8h5.200l-4.800 18h-5.200z' fill='%23D4F23A'/%3E%3C/svg%3E" />
 </head>
 <body data-active="portal">
@@ -49,9 +53,14 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
         Dokumenty
       </button>
-      <button class="side-link" data-target="podpora" data-title="Podpora">
+      <button class="side-link" data-bn="Podpora" data-target="podpora" data-title="Podpora">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg>
         Podpora
+      </button>
+
+      <button class="side-link" data-bn="Profil" data-target="profil" data-title="Můj profil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        Můj profil
       </button>
 
       <div class="nav-group-label">Ostatní</div>
@@ -72,7 +81,7 @@
           <h1 id="appTitle">Přehled</h1>
         </div>
         <div class="cluster" style="gap:var(--sp-3)">
-          <span class="pill pill-success"><span class="dot"></span> Aktivní</span>
+          <span class="pill pill-success" data-sample-only><span class="dot"></span> Aktivní</span>
           <span class="avatar" title="Jan Novák">JN</span>
         </div>
       </div>
@@ -81,8 +90,8 @@
 
         <!-- ============ PŘEHLED ============ -->
         <section class="tab-panel active" id="overview">
-          <h2>Dobrý den, Jane</h2>
-          <p class="muted mt-2">OSVČ · elektroinstalace · Brno · IČO 765 22 901 · případ AK-2026-04812</p>
+<div id="clientHome"></div>
+          <div data-sample-only>
 
           <div class="notice mt-4" style="flex-wrap:wrap;align-items:center">
             <div class="fill"><strong>Upozornění na důležité termíny · demo</strong><p class="mb-0 mt-2" id="reminderOverview">Nastavte si náhled upozornění na rezervační poplatek a možnost zpětného odkupu.</p></div>
@@ -144,6 +153,7 @@
               <li class="cluster" style="gap:8px;font-size:var(--fs-sm);color:var(--ink)"><span aria-hidden="true" style="width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;font-size:var(--fs-xs);display:grid;place-items:center;flex:none">7</span>Přepis a podpis</li>
             </ol>
           </div>
+        </div>
         </section>
 
         <!-- ============ MOJE AUTO ============ -->
@@ -314,6 +324,39 @@
           <div class="grid grid-2" id="docsGrid"></div>
         </section>
 
+        <!-- ============ MŮJ PROFIL ============ -->
+        <section class="tab-panel" id="profil">
+          <div class="grid grid-2" style="align-items:start">
+            <form class="card pad-lg" id="profileForm" novalidate>
+              <h3>Můj profil</h3>
+              <p class="muted mt-2" style="font-size:var(--fs-sm)">Údaje používáme pro komunikaci k vašim žádostem a případům.</p>
+              <div class="pf-grid mt-4">
+                <div class="pf-field full"><label for="pf_name">Jméno a příjmení</label><input id="pf_name" name="name" type="text" autocomplete="name" required /></div>
+                <div class="pf-field full"><label for="pf_company">Firma nebo název podnikání</label><input id="pf_company" name="company" type="text" autocomplete="organization" /></div>
+                <div class="pf-field"><label for="pf_ico">IČO</label><input id="pf_ico" name="ico" type="text" inputmode="numeric" maxlength="9" autocomplete="off" /></div>
+                <div class="pf-field"><label for="pf_phone">Telefon</label><input id="pf_phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" /></div>
+                <div class="pf-field full"><label for="pf_email">E-mail (přihlašovací)</label><input id="pf_email" name="email" type="email" readonly /></div>
+              </div>
+              <button type="submit" class="btn btn-primary pf-save"><span class="spin" aria-hidden="true"></span><span>Uložit profil</span></button>
+              <p class="pf-msg" id="profileMsg" role="status"></p>
+            </form>
+            <div class="stack gap-5">
+              <form class="card pad-lg" id="passForm" novalidate>
+                <h3>Změna hesla</h3>
+                <div class="pf-field mt-4"><label for="pf_newpass">Nové heslo</label><input id="pf_newpass" name="newpass" type="password" autocomplete="new-password" required /></div>
+                <p class="muted" style="font-size:var(--fs-xs);margin:-4px 0 12px">Aspoň 10 znaků, písmeno a číslice.</p>
+                <button type="submit" class="btn btn-ghost pf-save"><span class="spin" aria-hidden="true"></span><span>Změnit heslo</span></button>
+                <p class="pf-msg" id="passMsg" role="status"></p>
+              </form>
+              <div class="card pad-lg">
+                <h3>Účet</h3>
+                <p class="pf-mode mt-3" id="profileMode"></p>
+                <button type="button" class="btn btn-ghost mt-4" id="profileLogout" style="min-height:48px">Odhlásit se</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- ============ PODPORA ============ -->
         <section class="tab-panel" id="podpora">
           <div class="grid grid-2">
@@ -321,7 +364,7 @@
             <div class="card pad-lg">
               <h3>Napište nám</h3>
               <p class="muted mt-2" style="font-size:var(--fs-sm)">Obvykle odpovídáme do několika minut v pracovní době. Jsme tu, když to potřebujete.</p>
-              <div class="stack gap-3 mt-4">
+              <div class="stack gap-3 mt-4" data-sample-only>
                 <div style="align-self:flex-start;max-width:80%;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:11px 14px;font-size:var(--fs-sm)">
                   Dobrý den, Jane. Váš případ AK-2026-04812 je aktivní a auto můžete dál používat. Můžeme vám s něčím pomoci?
                 </div>
@@ -443,5 +486,6 @@
   </script>
   <script src="assets/js/portal-reminders.js"></script>
   <script src="assets/js/app-ux.js"></script>
+  <script src="assets/js/portal-account.js"></script>
 </body>
 </html>

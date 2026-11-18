@@ -1,0 +1,48 @@
+/* Videomanuál (manual.html) — samostatná tmavá stránka v identitě Signál */
+:root { --ink: #0F1512; --ink-2: #171f1b; --paper: #F4F1EA; --lime: #D4F23A; --mut: #9aa39c; --line: rgba(244, 241, 234, .14); }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--ink); color: var(--paper); font: 400 16px/1.55 Inter, system-ui, sans-serif; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
+
+.mn-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px clamp(16px, 4vw, 40px); border-bottom: 1px solid var(--line); }
+.mn-brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 800 20px/1 Archivo, sans-serif; font-stretch: 112%; letter-spacing: -.01em; }
+.mn-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--lime); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none; }
+.mn-btn:hover { filter: brightness(1.06); }
+
+.mn-wrap { max-width: 1240px; margin: 0 auto; padding: clamp(24px, 5vw, 56px) clamp(16px, 4vw, 40px) 72px; }
+.mn-eyebrow { margin: 0 0 10px; color: var(--lime); font: 700 13px/1 Inter, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+h1 { margin: 0; font: 800 clamp(28px, 5vw, 48px)/1.05 Archivo, sans-serif; font-stretch: 112%; letter-spacing: -.025em; text-wrap: balance; }
+.mn-lead { margin: 14px 0 0; max-width: 62ch; color: var(--mut); font-size: clamp(16px, 2vw, 18px); }
+
+.mn-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; margin-top: clamp(22px, 4vw, 36px); align-items: start; }
+.mn-player video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 14px; box-shadow: 0 0 0 1px var(--line), 0 24px 60px rgba(0, 0, 0, .45); }
+.mn-under { margin: 12px 0 0; font-size: 14px; color: var(--mut); }
+
+.mn-chapters { background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px; padding: 18px 10px 10px; }
+.mn-chapters h2 { margin: 0 10px 10px; font: 700 13px/1 Inter, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--mut); }
+.mn-chapters ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.mn-chapters button { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 8px; width: 100%; min-height: 46px; padding: 6px 10px; border: 0; border-radius: 10px; background: transparent; color: var(--paper); font: 600 15px/1.25 Inter, sans-serif; text-align: left; cursor: pointer; }
+.mn-chapters button:hover { background: rgba(244, 241, 234, .07); }
+.mn-chapters button .n { font: 800 14px/1 Archivo, sans-serif; color: var(--mut); font-variant-numeric: tabular-nums; }
+.mn-chapters button .t { color: var(--mut); font-weight: 500; font-size: 13px; font-variant-numeric: tabular-nums; }
+.mn-chapters button[aria-current="true"] { background: var(--lime); color: var(--ink); }
+.mn-chapters button[aria-current="true"] .n, .mn-chapters button[aria-current="true"] .t { color: var(--ink); }
+
+.mn-note { margin-top: 28px; padding: 22px clamp(18px, 3vw, 28px); border: 1px solid var(--line); border-radius: 14px; max-width: 860px; }
+.mn-note h2 { margin: 0 0 12px; font: 800 20px/1.2 Archivo, sans-serif; font-stretch: 112%; }
+.mn-note ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.mn-note li { position: relative; padding-left: 30px; }
+.mn-note li::before { content: "//"; position: absolute; left: 0; top: 0; color: var(--lime); font: 900 16px/1.55 Archivo, sans-serif; }
+.mn-note p { margin: 14px 0 0; color: var(--mut); }
+
+@media (max-width: 900px) {
+  .mn-grid { grid-template-columns: 1fr; }
+  .mn-chapters ol { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .mn-chapters ol { grid-template-columns: 1fr; }
+  .mn-btn { padding: 0 14px; font-size: 14px; }
+}
+@media (prefers-reduced-motion: no-preference) { .mn-chapters button { transition: background-color .15s; } }

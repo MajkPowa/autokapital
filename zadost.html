@@ -318,6 +318,7 @@
                     <span>Souhlasím se zpracováním údajů, ověřením <span data-v="auto">vozu</span><span data-v="agro" hidden>stroje</span><span data-v="tech" hidden>vozidla</span> a ověřením IČO v ARES pro přípravu nezávazné orientační výkupní nabídky.</span>
                   </label>
 
+                  <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label for="c_web">Web (nevyplňujte)</label><input type="text" id="c_web" tabindex="-1" autocomplete="off" /></div>
                   <div class="wizard-error hide" role="alert">Zkontrolujte prosím zvýrazněná pole — potřebujeme platné IČO (8 číslic), jméno či název firmy, telefon nebo e-mail a váš souhlas.</div>
 
                   <p class="muted mb-0" style="font-size:var(--fs-xs)">Služba je určena výhradně podnikatelům a firmám. Spotřebitelům ji neposkytujeme. Před podpisem smluv standardně ověřujeme identitu jednající osoby, IČO a oprávnění jednat, vlastnictví <span data-v="auto">vozu</span><span data-v="agro" hidden>stroje</span><span data-v="tech" hidden>vozidla</span> a jeho případné zatížení (KYC/AML dle zákona). Je to běžná součást férového procesu.</p>
@@ -343,7 +344,8 @@
                   <a class="btn btn-ghost" href="tel:+420800123456">Zavolat 800 123 456</a>
                   <a class="btn btn-ghost" href="index.html" data-v="auto">Zpět na hlavní stránku</a><a class="btn btn-ghost" href="agrocash.html" data-v="agro" hidden>Zpět na AgroCash</a><a class="btn btn-ghost" href="techcash.html" data-v="tech" hidden>Zpět na TechCash</a>
                 </div>
-                <p class="muted mt-4 mb-0" style="font-size:var(--fs-sm)">Chcete vidět, jak vypadá správa případu? <a href="portal.html">Prohlédněte si klientskou zónu (demo)</a>.</p>
+                <p class="muted mt-4 mb-0" style="font-size:var(--fs-sm)">Chcete vidět, jak vypadá správa případu? <a href="prihlaseni.html?tab=novy">Založte si účet a sledujte průběh žádosti</a>.</p>
+                <p class="muted mt-3 mb-0" id="applyDemoNote" hidden style="font-size:var(--fs-sm)"><strong>Ukázkový režim:</strong> žádost je uložená jen v tomto prohlížeči, nikomu se neodeslala.</p>
               </div>
 
             </div>
@@ -403,6 +405,9 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/shell.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/backend.js"></script>
+  <script src="assets/js/apply.js"></script>
   <script>
     // Kvalifikační brána: bez IČO službu neposkytujeme. Otázka není předvyplněná —
     // „Pokračovat“ se odemkne až po výslovné volbě.

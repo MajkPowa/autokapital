@@ -54,11 +54,23 @@
       return s;
     } catch (e) { return null; }
   }
-  var saved = load();
-  var state = saved ? saved.cols : seed();
+  // Ostrý režim: případy jsou v databázi (AKbackend), ukládají se jen změněné řádky. Ukázkový režim: localStorage.
+  var B = window.AKbackend, LIVE = !!(B && B.live);
+  var saved = LIVE ? null : load();
+  var state = LIVE ? AK.pipeline.map(function (c) { return { key: c.key, items: [] }; }) : saved ? saved.cols : seed();
   var changed = !!saved;
   var log = (saved && saved.log) || {};
-  function save() { try { localStorage.setItem(STORE, JSON.stringify({ cols: state, log: log })); } catch (e) { /* soukromé okno: stav drží jen do zavření stránky */ } }
+  var snap = {}, syncT = 0, META = { id: 1, line: 1, _stage: 1, _pos: 1, _created: 1 };
+  function rowOf(it, key, pos) { var d = {}; Object.keys(it).forEach(function (k) { if (!META[k]) d[k] = it[k]; }); return { id: it.id, stage: key, position: pos, line: it.line || "auto", data: d }; }
+  function sync() {
+    var rows = [];
+    state.forEach(function (col) { col.items.forEach(function (it, i) { var r = rowOf(it, col.key, i), j = JSON.stringify(r); if (snap[it.id] !== j) { rows.push(r); snap[it.id] = j; } }); });
+    if (rows.length) B.saveCases(rows).catch(function (e) { rows.forEach(function (r) { delete snap[r.id]; }); toast("Změny se nepodařilo uložit: " + e.message); });
+  }
+  function save() {
+    if (LIVE) { clearTimeout(syncT); syncT = setTimeout(sync, 500); return; }
+    try { localStorage.setItem(STORE, JSON.stringify({ cols: state, log: log })); } catch (e) { /* soukromé okno: stav drží jen do zavření stránky */ }
+  }
   function find(id) {
     for (var c = 0; c < state.length; c++) for (var i = 0; i < state[c].items.length; i++) if (state[c].items[i].id === id) return { c: c, i: i, item: state[c].items[i], key: state[c].key };
     return null;
@@ -148,7 +160,7 @@
       el.querySelector(".col-empty").textContent = mine.length && !vis.length ? "Nic neodpovídá filtru" : "Sem přetáhněte případ";
     });
     document.getElementById("kbSummary").innerHTML = (line !== "all" ? esc(L.LINES[line].label) + " · " : "") + (filtering ? "Zobrazeno <strong>" + shown + "</strong> z " + total : "<strong>" + total + "</strong> případů") + " · výkup celkem <strong>" + czk(sum) + "</strong>";
-    document.getElementById("kbReset").hidden = !changed;
+    document.getElementById("kbReset").hidden = !changed || LIVE;
     var cur = stagesBar.querySelector('[aria-current="true"]'), curKey = cur ? cur.dataset.key : STAGES[0].key;
     var chips = function (cls) {
       return STAGES.map(function (st, i) {
@@ -174,7 +186,8 @@
   function toast(msg, undo) {
     var wrap = document.querySelector(".toast-wrap");
     if (!wrap) { wrap = document.createElement("div"); wrap.className = "toast-wrap"; document.body.appendChild(wrap); }
-    [].forEach.call(wrap.querySelectorAll(".toast.has-action"), function (t) { t.remove(); });
+    // nový přesun nahradí předchozí nabídku „Zpět“; informační oznámení (např. automatizace) ji nechá být
+    if (undo) [].forEach.call(wrap.querySelectorAll(".toast.has-action"), function (t) { t.remove(); });
     var t = document.createElement("div"); t.className = "toast" + (undo ? " has-action" : ""); t.setAttribute("role", "status");
     t.innerHTML = '<span class="ico">' + ICO.check.replace("<svg", '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"') + "</span><span></span>";
     t.querySelector("span:last-child").textContent = msg;
@@ -492,7 +505,25 @@
   });
 
   document.addEventListener("ak:line", function () { applyFilter(); });
+  if (!LIVE && B) {   // žádosti odeslané z formuláře v tomto prohlížeči → fáze „Nový lead“
+    var added = 0;
+    B.takeDemoApplications().forEach(function (a) { if (!find(a.id)) { state[0].items.unshift(Object.assign({}, a)); added++; } });
+    if (added) { changed = true; save(); }
+  }
   render();
+  if (LIVE) {
+    var modePill = document.querySelector("#pipeline .pill-muted"); if (modePill) modePill.textContent = "Ostrá data · změny se ukládají do databáze";
+    board.setAttribute("aria-busy", "true");
+    B.ready.then(function () { return B.listCases(); }).then(function (rows) {
+      var at = {}; state.forEach(function (c, i) { at[c.key] = i; });
+      rows.forEach(function (r) {
+        var it = Object.assign({ name: "Bez názvu", car: "", vykup: 0, fee: 0, segment: "", channel: "", risk: "low" }, r), k = at[r._stage] != null ? r._stage : "lead";
+        delete it._stage; delete it._pos; delete it._created; state[at[k]].items.push(it);
+      });
+      state.forEach(function (col) { col.items.forEach(function (it, i) { snap[it.id] = JSON.stringify(rowOf(it, col.key, i)); }); });
+      board.removeAttribute("aria-busy"); render();
+    }, function (e) { board.removeAttribute("aria-busy"); toast("Případy se nepodařilo načíst: " + e.message); });
+  }
   // otevření případu odjinud (např. z tabulky Žádosti): <button data-open-case="AK-5081">
   document.addEventListener("click", function (e) {
     var b = e.target.closest("[data-open-case]"); if (!b) return;

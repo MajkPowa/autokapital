@@ -179,7 +179,7 @@
         <nav aria-label="Hlavní navigace"><ul class="nav-links">${navLinks(active)}</ul></nav>
         <div class="nav-actions">
           ${headerPhone}
-          <a class="nav-plain desktop-only" href="/portal.html">Přihlásit se</a>
+          <a class="nav-plain desktop-only" href="/prihlaseni.html">Přihlásit se</a>
           ${headerCta}
           <button class="nav-toggle" id="navToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">${I.menu}</button>
         </div>
@@ -190,7 +190,7 @@
     <div class="mobile-menu" id="mobileMenu">
       <nav aria-label="Mobilní navigace"><ul class="nav-links">${navLinks(active, LINES)}${navLinks(active)}
         <li><a href="/compliance.html">Férovost &amp; compliance</a></li>
-        <li><a href="/portal.html">Přihlásit do klientské zóny</a></li>
+        <li><a href="/prihlaseni.html">Přihlásit do klientské zóny</a></li>
       </ul></nav>
       <div class="mm-actions">
         ${mobileCta}

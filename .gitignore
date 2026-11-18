@@ -9,3 +9,6 @@ Thumbs.db
 .env
 .env.*
 kampan/
+
+# lokalni SQL s konkretnimi e-maily spravcu (nepublikovat)
+*.local.sql

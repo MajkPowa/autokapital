@@ -384,9 +384,13 @@
       const nextBtn = e.target.closest("[data-next]");
       if (nextBtn) {
         const cur = steps[i];
+        if (!cur.contains(nextBtn)) return;   // tlačítko z jiného (skrytého) kroku nic nespouští
         if (cur.hasAttribute("data-validate") && cur.getAttribute("data-validate") === "contact" && !validateContact(cur)) return;
         // úspěšné odeslání kontaktu (poslední krok s data-submit-toast)
-        if (nextBtn.hasAttribute("data-submit-toast")) { AK.toast(nextBtn.getAttribute("data-submit-toast")); }
+        if (nextBtn.hasAttribute("data-submit-toast")) {
+          if (AK.submitApplication) { AK.submitApplication(nextBtn, () => show(i + 1, true)); return; }   // skutečné odeslání (apply.js)
+          AK.toast(nextBtn.getAttribute("data-submit-toast"));
+        }
         show(i + 1, true);
       }
       if (e.target.closest("[data-prev]")) show(i - 1, true);
@@ -422,6 +426,7 @@
     const untouched = wizardDefaults === null || vehicleSnapshot() === wizardDefaults;
     const market = (carried && untouched) ? carried : AK.valuation.estimateMarketValue({ segment, year, mileage, condition });
     const o = AK.valuation.buildOffer({ marketValue: market });
+    AK.lastOffer = Object.assign({ months, year, mileage, condition, segment }, o);   // pro odeslání žádosti (apply.js)
     const set = (id, val) => AK.odo.set(document.getElementById(id), val);
     set("r_market", AK.fmt.czk(o.marketValue));
     set("r_amount", AK.fmt.czk(o.vykup));

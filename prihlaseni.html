@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Přihlášení | CashAuto</title>
+  <meta name="description" content="Přihlášení do klientské zóny CashAuto a vytvoření účtu pro podnikatele a firmy s IČO." />
+  <link rel="canonical" href="https://cashauto.cz/prihlaseni.html" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co; base-uri 'none'; form-action 'self'; object-src 'none'" />
+  <meta name="theme-color" content="#0F1512" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Inter:wght@400..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/design-system.css" />
+  <link rel="stylesheet" href="assets/css/signal-portal.css" />
+  <link rel="stylesheet" href="assets/css/app-auth.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%230F1512'/%3E%3Cpath d='M11.6 8h5.200l-4.800 18H6.800z' fill='%23D4F23A'/%3E%3Cpath d='M21.500 8h5.200l-4.800 18h-5.200z' fill='%23D4F23A'/%3E%3C/svg%3E" />
+</head>
+<body class="auth-page">
+  <main class="auth-wrap">
+    <a class="auth-brand" href="index.html" aria-label="CashAuto — zpět na web">
+      <svg width="34" height="28" viewBox="0 0 34 28" aria-hidden="true"><rect width="34" height="28" rx="7" fill="#D4F23A"/><path d="M11.6 6h5.200l-4.300 16H7.300z" fill="#0F1512"/><path d="M21.500 6h5.200l-4.300 16h-5.200z" fill="#0F1512"/></svg>
+      <span>CashAuto</span>
+    </a>
+
+    <section class="auth-card" aria-labelledby="authTitle">
+      <div class="auth-demo" id="authDemo" hidden>
+        <strong>Ukázkový režim.</strong> Účty existují jen v tomto prohlížeči a nic se nikam neodesílá. Slouží k vyzkoušení, ne jako zabezpečení.
+        <div class="auth-demo-btns">
+          <button type="button" class="btn btn-sm btn-ghost" data-demo-login="client">Vstoupit jako ukázkový klient</button>
+          <button type="button" class="btn btn-sm btn-ghost" data-demo-login="staff">Vstoupit jako ukázkový správce</button>
+        </div>
+      </div>
+
+      <div class="auth-tabs" role="tablist" aria-label="Přihlášení nebo nový účet">
+        <button type="button" role="tab" id="tabLogin" aria-controls="paneLogin" aria-selected="true">Přihlášení</button>
+        <button type="button" role="tab" id="tabSignup" aria-controls="paneSignup" aria-selected="false">Nový účet</button>
+      </div>
+
+      <div class="auth-msg" id="authMsg" role="alert" hidden></div>
+
+      <!-- Přihlášení -->
+      <form class="auth-pane" id="paneLogin" role="tabpanel" aria-labelledby="tabLogin" novalidate>
+        <h1 id="authTitle">Přihlaste se</h1>
+        <p class="auth-lead">Klientská zóna i administrace mají společné přihlášení.</p>
+        <div class="auth-field"><label for="l_email">E-mail</label><input id="l_email" type="email" autocomplete="username" inputmode="email" required /></div>
+        <div class="auth-field"><label for="l_pass">Heslo</label>
+          <div class="auth-pass"><input id="l_pass" type="password" autocomplete="current-password" required /><button type="button" class="auth-eye" data-eye="l_pass" aria-pressed="false">Zobrazit</button></div>
+        </div>
+        <button type="submit" class="btn btn-primary auth-submit"><span class="spin" aria-hidden="true"></span><span>Přihlásit se</span></button>
+        <button type="button" class="auth-link" data-go="reset">Zapomněli jste heslo?</button>
+      </form>
+
+      <!-- Nový účet -->
+      <form class="auth-pane" id="paneSignup" role="tabpanel" aria-labelledby="tabSignup" novalidate hidden>
+        <h2>Vytvořte si účet</h2>
+        <p class="auth-lead">Pro podnikatele a firmy s IČO. Zabere to minutu.</p>
+        <div class="auth-field"><label for="s_name">Jméno a příjmení</label><input id="s_name" type="text" autocomplete="name" required /></div>
+        <div class="auth-row">
+          <div class="auth-field"><label for="s_ico">IČO</label><input id="s_ico" type="text" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="8 číslic" required /></div>
+          <div class="auth-field"><label for="s_phone">Telefon <span>(nepovinné)</span></label><input id="s_phone" type="tel" autocomplete="tel" inputmode="tel" /></div>
+        </div>
+        <div class="auth-field"><label for="s_company">Firma nebo název podnikání <span>(nepovinné)</span></label><input id="s_company" type="text" autocomplete="organization" /></div>
+        <div class="auth-field"><label for="s_email">E-mail</label><input id="s_email" type="email" autocomplete="username" inputmode="email" required /></div>
+        <div class="auth-field"><label for="s_pass">Heslo</label>
+          <div class="auth-pass"><input id="s_pass" type="password" autocomplete="new-password" aria-describedby="s_pass_hint" required /><button type="button" class="auth-eye" data-eye="s_pass" aria-pressed="false">Zobrazit</button></div>
+          <div class="auth-meter" aria-hidden="true"><i></i><i></i><i></i></div>
+          <p class="auth-hint" id="s_pass_hint">Aspoň 10 znaků, písmeno a číslice.</p>
+        </div>
+        <label class="auth-check"><input id="s_agree" type="checkbox" required /><span>Potvrzuji, že jednám jako podnikatel nebo za firmu s IČO, a beru na vědomí <a href="compliance.html#povinne-informace" target="_blank" rel="noopener">povinné informace</a>.</span></label>
+        <button type="submit" class="btn btn-primary auth-submit"><span class="spin" aria-hidden="true"></span><span>Vytvořit účet</span></button>
+      </form>
+
+      <!-- Zapomenuté heslo -->
+      <form class="auth-pane" id="paneReset" novalidate hidden>
+        <h2>Obnova hesla</h2>
+        <p class="auth-lead">Pošleme vám odkaz, přes který si nastavíte nové heslo.</p>
+        <div class="auth-field"><label for="r_email">E-mail</label><input id="r_email" type="email" autocomplete="username" inputmode="email" required /></div>
+        <button type="submit" class="btn btn-primary auth-submit"><span class="spin" aria-hidden="true"></span><span>Poslat odkaz</span></button>
+        <button type="button" class="auth-link" data-go="login">Zpět na přihlášení</button>
+      </form>
+
+      <!-- Nové heslo (po kliknutí na odkaz z e-mailu) -->
+      <form class="auth-pane" id="paneNewpass" novalidate hidden>
+        <h2>Nastavte si nové heslo</h2>
+        <div class="auth-field"><label for="n_pass">Nové heslo</label>
+          <div class="auth-pass"><input id="n_pass" type="password" autocomplete="new-password" required /><button type="button" class="auth-eye" data-eye="n_pass" aria-pressed="false">Zobrazit</button></div>
+          <p class="auth-hint">Aspoň 10 znaků, písmeno a číslice.</p>
+        </div>
+        <button type="submit" class="btn btn-primary auth-submit"><span class="spin" aria-hidden="true"></span><span>Uložit heslo</span></button>
+      </form>
+    </section>
+
+    <p class="auth-foot">Jen pro podnikatele a firmy s IČO · <a href="index.html">Zpět na web</a> · <a href="manual.html">Videomanuál</a> · <a href="compliance.html">Férovost &amp; compliance</a></p>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/backend.js"></script>
+  <script src="assets/js/auth-page.js"></script>
+</body>
+</html>

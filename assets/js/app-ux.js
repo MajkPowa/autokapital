@@ -63,10 +63,12 @@
   document.body.classList.add("has-bottom-nav");
 
   function syncNav() {
-    var inNav = false;
+    var inNav = false, shown = 0;
     items.forEach(function (it) {
       var on = it.link.classList.contains("active");
-      if (on) inNav = true;
+      it.btn.hidden = it.link.hidden || shown >= 4;      // nejvýš čtyři položky + „Více“
+      if (!it.btn.hidden) shown++;
+      if (on && !it.btn.hidden) inNav = true;
       it.btn.classList.toggle("active", on);
       if (on) it.btn.setAttribute("aria-current", "page"); else it.btn.removeAttribute("aria-current");
       var badge = it.link.querySelector(".badge-count"), mine = it.btn.querySelector(".bn-badge");
@@ -91,7 +93,7 @@
       if (open !== wasOpen) { wasOpen = open; syncDrawer(); }
       syncNav();
     });
-  }).observe(sb, { attributes: true, attributeFilter: ["class", "aria-label"], subtree: true, childList: true, characterData: true });
+  }).observe(sb, { attributes: true, attributeFilter: ["class", "aria-label", "hidden"], subtree: true, childList: true, characterData: true });
   syncNav(); syncDrawer();
 
   // ---------- tabulky na telefonu ----------
